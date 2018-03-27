@@ -359,7 +359,7 @@ en:
     your_token: Your access token
   auth:
     agreement_html: By signing up you agree to follow <a href="%{rules_path}">the rules of the instance</a> and <a href="%{terms_path}">our terms of service</a>.
-    change_password: Security
+    change_password: Password
     confirm_email: Confirm email
     delete_account: Delete account
     delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed here</a>. You will be asked for confirmation.
@@ -370,15 +370,19 @@ en:
     logout: Logout
     migrate_account: Move to a different account
     migrate_account_html: If you wish to redirect this account to a different one, you can <a href="%{path}">configure it here</a>.
+    or: or
     or_log_in_with: Or log in with
     providers:
       cas: CAS
       saml: SAML
     register: Sign up
+    register_elsewhere: Sign up on another server
     resend_confirmation: Resend confirmation instructions
     reset_password: Reset password
+    security: Security
     set_new_password: Set new password
   authorize_follow:
+    already_following: You are already following this account
     error: Unfortunately, there was an error looking up the remote account
     follow: Follow
     follow_request: 'You have sent a follow request to:'
@@ -471,6 +475,7 @@ en:
       '21600': 6 hours
       '3600': 1 hour
       '43200': 12 hours
+      '604800': 1 week
       '86400': 1 day
     expires_in_prompt: Never
     generate: Generate
@@ -545,7 +550,9 @@ en:
           trillion: T
           unit: ''
   pagination:
+    newer: Newer
     next: Next
+    older: Older
     prev: Prev
     truncate: "&hellip;"
   preferences:
@@ -629,6 +636,15 @@ en:
     two_factor_authentication: Two-factor Auth
     your_apps: Your applications
   statuses:
+    attached:
+      description: 'Attached: %{attached}'
+      image:
+        one: "%{count} image"
+        other: "%{count} images"
+      video:
+        one: "%{count} video"
+        other: "%{count} videos"
+    content_warning: 'Content warning: %{warning}'
     open_in_web: Open in web
     over_character_limit: character limit of %{max} exceeded
     pin_errors:
@@ -767,4 +783,5 @@ en:
   users:
     invalid_email: The e-mail address is invalid
     invalid_otp_token: Invalid two-factor code
+    seamless_external_login: You are logged in via an external service, so password and e-mail settings are not available.
     signed_in_as: 'Signed in as:'
