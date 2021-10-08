@@ -376,7 +376,7 @@ GEM
       concurrent-ruby (~> 1.0, >= 1.0.2)
       sidekiq (>= 3.5)
       statsd-ruby (~> 1.4, >= 1.4.0)
-    oj (3.13.7)
+    oj (3.13.9)
     omniauth (1.9.1)
       hashie (>= 3.4.6)
       rack (>= 1.6.2, < 3)
@@ -696,6 +696,7 @@ DEPENDENCIES
   devise_pam_authenticatable2 (~> 9.2)
   discard (~> 1.2)
   doorkeeper (~> 5.5)
+  dotenv
   dotenv-rails (~> 2.7)
   ed25519 (~> 1.2)
   fabrication (~> 2.22)
@@ -712,7 +713,9 @@ DEPENDENCIES
   http_accept_language (~> 2.1)
   httplog (~> 1.5.0)
   i18n-tasks (~> 0.9)
+  idn-ruby
   iso-639
+  json
   json-ld
   json-ld-preloaded (~> 3.1)
   kaminari (~> 1.2)
