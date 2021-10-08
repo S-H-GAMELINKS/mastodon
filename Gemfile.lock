@@ -528,9 +528,9 @@ GEM
       rubocop-ast (>= 1.9.1, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 3.0)
-    rubocop-ast (1.11.0)
+    rubocop-ast (1.12.0)
       parser (>= 3.0.1.1)
-    rubocop-rails (2.12.2)
+    rubocop-rails (2.12.3)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.7.0, < 2.0)
@@ -627,7 +627,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.7)
-    unicode-display_width (1.7.0)
+    unicode-display_width (1.8.0)
     uniform_notifier (1.14.2)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -696,6 +696,7 @@ DEPENDENCIES
   devise_pam_authenticatable2 (~> 9.2)
   discard (~> 1.2)
   doorkeeper (~> 5.5)
+  dotenv
   dotenv-rails (~> 2.7)
   ed25519 (~> 1.2)
   fabrication (~> 2.22)
@@ -712,7 +713,9 @@ DEPENDENCIES
   http_accept_language (~> 2.1)
   httplog (~> 1.5.0)
   i18n-tasks (~> 0.9)
+  idn-ruby
   iso-639
+  json
   json-ld
   json-ld-preloaded (~> 3.1)
   kaminari (~> 1.2)
