@@ -622,7 +622,7 @@ GEM
       unf (~> 0.1.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
-    tzinfo-data (1.2021.2)
+    tzinfo-data (1.2021.3)
       tzinfo (>= 1.0.0)
     unf (0.1.4)
       unf_ext
@@ -696,6 +696,7 @@ DEPENDENCIES
   devise_pam_authenticatable2 (~> 9.2)
   discard (~> 1.2)
   doorkeeper (~> 5.5)
+  dotenv
   dotenv-rails (~> 2.7)
   ed25519 (~> 1.2)
   fabrication (~> 2.22)
@@ -712,7 +713,9 @@ DEPENDENCIES
   http_accept_language (~> 2.1)
   httplog (~> 1.5.0)
   i18n-tasks (~> 0.9)
+  idn-ruby
   iso-639
+  json
   json-ld
   json-ld-preloaded (~> 3.1)
   kaminari (~> 1.2)
