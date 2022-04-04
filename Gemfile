@@ -145,7 +145,7 @@ group :development do
 end
 
 group :production do
-  gem 'lograge', '~> 0.11'
+  gem 'lograge', '~> 0.12'
 end
 
 #gem 'mastodon_cthulhu', '~> 0.1.2'
