@@ -458,7 +458,7 @@ GEM
     pg (1.4.5)
     pghero (2.8.3)
       activerecord (>= 5)
-    pkg-config (1.4.9)
+    pkg-config (1.5.1)
     posix-spawn (0.3.15)
     premailer (1.14.2)
       addressable
@@ -754,6 +754,8 @@ DEPENDENCIES
   climate_control (~> 0.2)
   cocoon (~> 1.2)
   color_diff (~> 0.1)
+  concurrent-ruby
+  connection_pool
   devise (~> 4.8)
   devise-two-factor (~> 4.0)
   devise_pam_authenticatable2 (~> 9.2)
@@ -802,7 +804,7 @@ DEPENDENCIES
   parslet
   pg (~> 1.4)
   pghero (~> 2.8)
-  pkg-config (~> 1.4)
+  pkg-config (~> 1.5)
   posix-spawn
   premailer-rails
   private_address_check (~> 0.5)
