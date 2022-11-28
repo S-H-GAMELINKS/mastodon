@@ -537,7 +537,7 @@ GEM
     rake (13.0.6)
     rdf (3.2.9)
       link_header (~> 0.0, >= 0.0.8)
-    rdf-normalize (0.5.0)
+    rdf-normalize (0.5.1)
       rdf (~> 3.2)
     redcarpet (3.5.1)
     redis (4.5.1)
@@ -754,6 +754,8 @@ DEPENDENCIES
   climate_control (~> 0.2)
   cocoon (~> 1.2)
   color_diff (~> 0.1)
+  concurrent-ruby
+  connection_pool
   devise (~> 4.8)
   devise-two-factor (~> 4.0)
   devise_pam_authenticatable2 (~> 9.2)
