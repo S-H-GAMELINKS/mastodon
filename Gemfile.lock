@@ -682,7 +682,7 @@ GEM
       unf (~> 0.1.0)
     tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
-    tzinfo-data (1.2022.6)
+    tzinfo-data (1.2022.7)
       tzinfo (>= 1.0.0)
     unf (0.1.4)
       unf_ext
@@ -754,6 +754,8 @@ DEPENDENCIES
   climate_control (~> 0.2)
   cocoon (~> 1.2)
   color_diff (~> 0.1)
+  concurrent-ruby
+  connection_pool
   devise (~> 4.8)
   devise-two-factor (~> 4.0)
   devise_pam_authenticatable2 (~> 9.2)
