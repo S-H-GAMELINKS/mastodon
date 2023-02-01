@@ -349,7 +349,7 @@ GEM
     json-schema (3.0.0)
       addressable (>= 2.8)
     jsonapi-renderer (0.2.2)
-    jwt (2.5.0)
+    jwt (2.6.0)
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.2)
@@ -811,7 +811,7 @@ DEPENDENCIES
   json-ld
   json-ld-preloaded (~> 3.2)
   json-schema (~> 3.0)
-  jwt (~> 2.5)
+  jwt (~> 2.6)
   kaminari (~> 1.2)
   kt-paperclip (~> 7.1)
   letter_opener (~> 1.8)
