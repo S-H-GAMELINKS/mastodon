@@ -1,4 +1,4 @@
-import { autoPlayGif, resizedCustomEmoji } from '../../initial_state';
+import { autoPlayGif } from '../../initial_state';
 import unicodeMapping from './emoji_unicode_mapping_light';
 import { assetHost } from 'mastodon/utils/config';
 import Trie from 'substring-trie';
@@ -69,75 +69,6 @@ const emojifyTextNode = (node, customEmojis) => {
 
     fragment.append(document.createTextNode(str.slice(0, i)));
     if (replacement) {
-      fragment.append(replacement);
-    }
-    str = str.slice(rend);
-  }
-
-  fragment.append(document.createTextNode(str));
-  node.parentElement.replaceChild(fragment, node);
-};
-
-const emojifyTextNodeForLocal = (isLocalCustomEmoji, node, customEmojis) => {
-  let str = node.textContent;
-
-  const fragment = new DocumentFragment();
-
-  for (;;) {
-    let match, i = 0;
-
-    if (customEmojis === null) {
-      while (i < str.length && !(match = trie.search(str.slice(i)))) {
-        i += str.codePointAt(i) < 65536 ? 1 : 2;
-      }
-    } else {
-      while (i < str.length && str[i] !== ':' && !(match = trie.search(str.slice(i)))) {
-        i += str.codePointAt(i) < 65536 ? 1 : 2;
-      }
-    }
-
-    let rend, replacement = null;
-    if (i === str.length) {
-      break;
-    } else if (str[i] === ':') {
-      if (!(() => {
-        rend = str.indexOf(':', i + 1) + 1;
-        if (!rend) return false; // no pair of ':'
-        const shortname = str.slice(i, rend);
-        // now got a replacee as ':shortname:'
-        // if you want additional emoji handler, add statements below which set replacement and return true.
-        if (shortname in customEmojis) {
-          const filename = autoPlayGif ? customEmojis[shortname].url : customEmojis[shortname].static_url;
-          replacement = document.createElement('img');
-          replacement.setAttribute('draggable', false);
-          replacement.setAttribute('class', isLocalCustomEmoji && resizedCustomEmoji ? 'emojione local-custom-emoji' : 'emojione custom-emoji');
-          replacement.setAttribute('alt', shortname);
-          replacement.setAttribute('title', shortname);
-          replacement.setAttribute('src', filename);
-          replacement.setAttribute('data-original', customEmojis[shortname].url);
-          replacement.setAttribute('data-static', customEmojis[shortname].static_url);
-          return true;
-        }
-        return false;
-      })()) rend = ++i;
-    } else { // matched to unicode emoji
-      const { filename, shortCode } = unicodeMapping[match];
-      const title = shortCode ? `:${shortCode}:` : '';
-      replacement = document.createElement('img');
-      replacement.setAttribute('draggable', false);
-      replacement.setAttribute('class', 'emojione');
-      replacement.setAttribute('alt', match);
-      replacement.setAttribute('title', title);
-      replacement.setAttribute('src', `${assetHost}/emoji/${emojiFilename(filename)}.svg`);
-      rend = i + match.length;
-      // If the matched character was followed by VS15 (for selecting text presentation), skip it.
-      if (str.codePointAt(rend) === 65038) {
-        rend += 1;
-      }
-    }
-
-    fragment.append(document.createTextNode(str.slice(0, i)));
-    if (replacement) {
       fragment.append(domParser.parseFromString(replacement, 'text/html').documentElement.getElementsByTagName('img')[0]);
     }
     node.textContent = str.slice(0, i);
@@ -162,20 +93,6 @@ const emojifyNode = (node, customEmojis) => {
   }
 };
 
-const emojifyNodeForLocal = (isLocalCustomEmoji, node, customEmojis) => {
-  for (const child of node.childNodes) {
-    switch(child.nodeType) {
-      case Node.TEXT_NODE:
-        emojifyTextNodeForLocal(isLocalCustomEmoji, child, customEmojis);
-        break;
-      case Node.ELEMENT_NODE:
-        if (!child.classList.contains('invisible'))
-          emojifyNodeForLocal(isLocalCustomEmoji, child, customEmojis);
-        break;
-    }
-  }
-};
-
 const emojify = (str, customEmojis = {}) => {
   const wrapper = document.createElement('div');
   wrapper.innerHTML = str;
@@ -187,18 +104,6 @@ const emojify = (str, customEmojis = {}) => {
 
   return wrapper.innerHTML;
 };
-
-export const emojifyStatus = (isLocalCustomEmoji, str, customEmojis = {}) => {
-  const wrapper = document.createElement('div');
-  wrapper.innerHTML = str;
-
-  if (!Object.keys(customEmojis).length)
-    customEmojis = null;
-
-  emojifyNodeForLocal(isLocalCustomEmoji, wrapper, customEmojis);
-
-  return wrapper.innerHTML;
-}
 
 export default emojify;
 
