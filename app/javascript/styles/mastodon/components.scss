@@ -849,6 +849,11 @@
     margin: -3px 0 0;
   }
 
+  .local-custom-emoji {
+    width: 100px;
+    height: 100px;
+  }
+
   p {
     margin-bottom: 20px;
     white-space: pre-wrap;
@@ -1262,6 +1267,11 @@
       width: 24px;
       height: 24px;
       margin: -1px 0 0;
+    }
+
+    .local-custom-emoji {
+      width: 100px;
+      height: 100px;
     }
 
     .status__content__spoiler-link {
