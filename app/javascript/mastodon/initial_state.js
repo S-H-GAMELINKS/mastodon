@@ -82,6 +82,7 @@
  * @property {string} version
  * @property {boolean} translation_enabled
  * @property {boolean} resized_custom_emoji
+ * @property {boolean} hide_local_timeline
  */
 
 /**
@@ -137,5 +138,6 @@ export const translationEnabled = getMeta('translation_enabled');
 export const languages = initialState?.languages;
 export const statusPageUrl = getMeta('status_page_url');
 export const resizedCustomEmoji = getMeta('resized_custom_emoji');
+export const hideLocalTimeline = getMeta('hide_local_timeline');
 
 export default initialState;
