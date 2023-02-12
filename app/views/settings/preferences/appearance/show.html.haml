@@ -43,10 +43,13 @@
   .fields-group
     = f.input :setting_resized_custom_emoji, as: :boolean, wrapper: :with_label, recommended: true
 
-  %h4= t 'ローカルタイムライン'
+  %h4= t '公開タイムライン'
+
+  %p.hint= t 'メニューから指定した公開タイムラインを非表示にすることができます。ただし、公開範囲の設定によっては従来通り投稿が掲載されます。'
 
   .fields-group
     = f.input :setting_hide_local_timeline, as: :boolean, wrapper: :with_label
+    = f.input :setting_hide_federated_timeline, as: :boolean, wrapper: :with_label
 
   %h4= t 'appearance.discovery'
 
