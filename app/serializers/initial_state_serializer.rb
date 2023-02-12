@@ -16,7 +16,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       streaming_api_base_url: Rails.configuration.x.streaming_api_base_url,
       access_token: object.token,
       locale: I18n.locale,
-      domain: instance_presenter.domain,
+      domain: Addressable::IDNA.to_unicode(instance_presenter.domain),
       title: instance_presenter.title,
       admin: object.admin&.id&.to_s,
       search_enabled: Chewy.enabled?,
@@ -32,6 +32,8 @@ class InitialStateSerializer < ActiveModel::Serializer
       activity_api_enabled: Setting.activity_api_enabled,
       single_user_mode: Rails.configuration.x.single_user_mode,
       translation_enabled: TranslationService.configured?,
+      trends_as_landing_page: Setting.trends_as_landing_page,
+      status_page_url: Setting.status_page_url,
     }
 
     if object.current_account
@@ -50,6 +52,8 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:trends]            = Setting.trends && object.current_account.user.setting_trends
       store[:crop_images]       = object.current_account.user.setting_crop_images
       store[:resized_custom_emoji] = object.current_account.user.setting_resized_custom_emoji
+      store[:hide_local_timeline] = object.current_account.user.setting_hide_local_timeline
+      store[:hide_federated_timeline] = object.current_account.user.setting_hide_federated_timeline
     else
       store[:auto_play_gif] = Setting.auto_play_gif
       store[:display_media] = Setting.display_media

@@ -13,11 +13,12 @@ import spring from 'react-motion/lib/spring';
 import SearchResultsContainer from './containers/search_results_container';
 import { openModal } from 'mastodon/actions/modal';
 import elephantUIPlane from '../../../images/elephant_ui_plane.svg';
-import { mascot } from '../../initial_state';
+import { mascot, hideLocalTimeline, hideFederatedTimeline } from '../../initial_state';
 import Icon from 'mastodon/components/icon';
 import { logOut } from 'mastodon/utils/log_out';
 import Column from 'mastodon/components/column';
 import { Helmet } from 'react-helmet';
+import { isMobile } from '../../is_mobile';
 
 const messages = defineMessages({
   start: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
@@ -73,15 +74,15 @@ class Compose extends React.PureComponent {
     }));
 
     return false;
-  }
+  };
 
   onFocus = () => {
     this.props.dispatch(changeComposing(true));
-  }
+  };
 
   onBlur = () => {
     this.props.dispatch(changeComposing(false));
-  }
+  };
 
   render () {
     const { multiColumn, showSearch, intl } = this.props;
@@ -99,10 +100,10 @@ class Compose extends React.PureComponent {
             {!columns.some(column => column.get('id') === 'NOTIFICATIONS') && (
               <Link to='/notifications' className='drawer__tab' title={intl.formatMessage(messages.notifications)} aria-label={intl.formatMessage(messages.notifications)}><Icon id='bell' fixedWidth /></Link>
             )}
-            {!columns.some(column => column.get('id') === 'COMMUNITY') && (
+            {((!columns.some(column => column.get('id') === 'COMMUNITY')) && !hideLocalTimeline) && (
               <Link to='/public/local' className='drawer__tab' title={intl.formatMessage(messages.community)} aria-label={intl.formatMessage(messages.community)}><Icon id='users' fixedWidth /></Link>
             )}
-            {!columns.some(column => column.get('id') === 'PUBLIC') && (
+            {((!columns.some(column => column.get('id') === 'PUBLIC')) && !hideFederatedTimeline) && (
               <Link to='/public' className='drawer__tab' title={intl.formatMessage(messages.public)} aria-label={intl.formatMessage(messages.public)}><Icon id='globe' fixedWidth /></Link>
             )}
             <a href='/settings/preferences' className='drawer__tab' title={intl.formatMessage(messages.preferences)} aria-label={intl.formatMessage(messages.preferences)}><Icon id='cog' fixedWidth /></a>
@@ -115,7 +116,7 @@ class Compose extends React.PureComponent {
             <div className='drawer__inner' onFocus={this.onFocus}>
               <NavigationContainer onClose={this.onBlur} />
 
-              <ComposeFormContainer />
+              <ComposeFormContainer autoFocus={!isMobile(window.innerWidth)} />
 
               <div className='drawer__inner__mastodon'>
                 <img alt='' draggable='false' src={mascot || elephantUIPlane} />
