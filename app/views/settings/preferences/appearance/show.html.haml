@@ -45,11 +45,23 @@
 
   %h4= t '公開タイムライン'
 
-  %p.hint= t 'メニューから指定した公開タイムラインを非表示にすることができます。ただし、公開範囲の設定によっては従来通り投稿が掲載されます。公開タイムラインに投稿が掲載されないようにするには、公開範囲を「公開」以外に設定してください。'
+  %p.hint= t '（Web版）メニューから指定した公開タイムラインを非表示にすることができます。'
 
   .fields-group
     = f.input :setting_hide_local_timeline, as: :boolean, wrapper: :with_label
     = f.input :setting_hide_federated_timeline, as: :boolean, wrapper: :with_label
+
+  %p.hint= t '（壁打ちの方向け/Web版）公開範囲の設定によっては従来通り投稿が掲載されます。公開タイムラインに投稿が掲載されないようにするには、公開範囲を「公開」以外に設定してください。'
+
+  .fields-group.fields-row__column.fields-row__column-6
+    = f.input :setting_default_privacy, collection: Status.selectable_visibilities, wrapper: :with_label, include_blank: false, label_method: lambda { |visibility| safe_join([I18n.t("statuses.visibilities.#{visibility}"), I18n.t("statuses.visibilities.#{visibility}_long")], ' - ') }, required: false, hint: false
+
+  %p.hint= t '（壁打ちの方向け/Web版）知り合いのみからの通知のみ受け取る場合は、以下から通知を制限することができます。'
+  .fields-group
+    = f.simple_fields_for :interactions, hash_to_object(current_user.settings.interactions) do |ff|
+      = ff.input :must_be_follower, as: :boolean, wrapper: :with_label
+      = ff.input :must_be_following, as: :boolean, wrapper: :with_label
+      = ff.input :must_be_following_dm, as: :boolean, wrapper: :with_label
 
   %h4= t 'appearance.discovery'
 
