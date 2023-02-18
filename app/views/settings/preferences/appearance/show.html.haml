@@ -23,7 +23,7 @@
     = f.input :setting_hide_local_timeline, as: :boolean, wrapper: :with_label
     = f.input :setting_hide_federated_timeline, as: :boolean, wrapper: :with_label
 
-  %p.hint= t '（壁打ちの方向け/Web版）公開範囲の設定によっては従来通り投稿が掲載されます。公開タイムラインに投稿が掲載されないようにするには、公開範囲を「公開」以外に設定してください。'
+  %p.hint= t '（壁打ちの方向け/Web版のデフォルト公開範囲）公開範囲の設定によっては公開タイムライン投稿が掲載されます。<br>公開タイムラインに投稿が掲載されないようにするには、公開範囲を「公開」以外に設定してください。'
 
   .fields-group.fields-row__column.fields-row__column-12
     = f.input :setting_default_privacy, collection: Status.selectable_visibilities, wrapper: :with_label, include_blank: false, label_method: lambda { |visibility| safe_join([I18n.t("statuses.visibilities.#{visibility}"), I18n.t("statuses.visibilities.#{visibility}_long")], ' - ') }, required: false, hint: false
