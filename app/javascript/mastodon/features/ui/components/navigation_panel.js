@@ -69,6 +69,7 @@ class NavigationPanel extends React.Component {
           <>
             {!hideLocalTimeline && <ColumnLink transparent to='/public/local' icon='users' text={intl.formatMessage(messages.local)} />}
             {!hideFederatedTimeline && <ColumnLink transparent exact to='/public' icon='globe' text={intl.formatMessage(messages.federated)} />}
+            <ColumnLink transparent href='https://tagcloud.otadon.com/' icon='cloud' text='Otadon Hashtag Cloud' />
           </>
         )}
 

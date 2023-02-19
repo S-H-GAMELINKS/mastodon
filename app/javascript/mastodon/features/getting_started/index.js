@@ -132,6 +132,7 @@ class GettingStarted extends ImmutablePureComponent {
       navItems.push(
         <ColumnSubheading key='header-settings' text={intl.formatMessage(messages.settings_subheading)} />,
         <ColumnLink key='preferences' icon='gears' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />,
+        <ColumnLink key='otatagcloud' icon='cloud' text='Otadon Hashtag Cloud' href='https://tagcloud.otadon.com/' />,
       );
     }
 
