@@ -264,9 +264,9 @@ ja:
         trends: トレンドを有効にする
         trends_as_landing_page: 新規登録画面にトレンドを表示する
       interactions:
-        must_be_follower: フォロワー以外からの通知をブロック
-        must_be_following: フォローしていないユーザーからの通知をブロック
-        must_be_following_dm: フォローしていないユーザーからのダイレクトメッセージをブロック
+        must_be_follower: フォロワー以外からの通知を受け取らない
+        must_be_following: フォローしていないユーザーからの通知を受け取らない
+        must_be_following_dm: フォローしていないユーザーからのダイレクトメッセージを受け取らない
       invite:
         comment: コメント
       invite_request:
