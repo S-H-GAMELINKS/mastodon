@@ -72,6 +72,12 @@ class NavigationPanel extends React.Component {
           </>
         )}
 
+        {(!signedIn && timelinePreview) && (
+          <>
+            <ColumnLink transparent href='https://tagcloud.otadon.com/' icon='cloud' text='Otadon Hashtag Cloud' />
+          </>
+        )}
+
         {!signedIn && (
           <div className='navigation-panel__sign-in-banner'>
             <hr />
@@ -94,7 +100,7 @@ class NavigationPanel extends React.Component {
           </React.Fragment>
         )}
 
-        {(signedIn || timelinePreview) && (
+        {(signedIn && timelinePreview) && (
           <>
             <ColumnLink transparent href='https://tagcloud.otadon.com/' icon='cloud' text='Otadon Hashtag Cloud' />
           </>
