@@ -69,7 +69,6 @@ class NavigationPanel extends React.Component {
           <>
             {!hideLocalTimeline && <ColumnLink transparent to='/public/local' icon='users' text={intl.formatMessage(messages.local)} />}
             {!hideFederatedTimeline && <ColumnLink transparent exact to='/public' icon='globe' text={intl.formatMessage(messages.federated)} />}
-            <ColumnLink transparent href='https://tagcloud.otadon.com/' icon='cloud' text='Otadon Hashtag Cloud' />
           </>
         )}
 
@@ -93,6 +92,12 @@ class NavigationPanel extends React.Component {
 
             <ColumnLink transparent href='/settings/preferences' icon='cog' text={intl.formatMessage(messages.preferences)} />
           </React.Fragment>
+        )}
+
+        {(signedIn || timelinePreview) && (
+          <>
+            <ColumnLink transparent href='https://tagcloud.otadon.com/' icon='cloud' text='Otadon Hashtag Cloud' />
+          </>
         )}
 
         <div className='navigation-panel__legal'>
