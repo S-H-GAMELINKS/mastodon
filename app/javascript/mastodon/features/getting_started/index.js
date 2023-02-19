@@ -115,6 +115,10 @@ class GettingStarted extends ImmutablePureComponent {
       );
     }
 
+    navItems.push(
+      <ColumnLink key='otatagcloud' icon='cloud' text='Otadon Hashtag Cloud' href='https://tagcloud.otadon.com/' />,
+    );
+
     if (signedIn) {
       navItems.push(
         <ColumnSubheading key='header-personal' text={intl.formatMessage(messages.personal)} />,
