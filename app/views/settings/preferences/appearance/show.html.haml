@@ -15,20 +15,20 @@
     .flash-message.translation-prompt
       #{t 'appearance.localization.body'} #{content_tag(:a, t('appearance.localization.guide_link_text'), href: t('appearance.localization.guide_link'), target: "_blank", rel: "noopener")}
 
-  %h4= t '公開タイムライン/壁打ちの方向けの設定'
+  %h4= t '（Web版）公開タイムライン/壁打ちの方向けの設定'
 
-  %p.hint= t '（Web版）メニューから指定した公開タイムラインを非表示にすることができます。'
+  %p.hint= t 'メニューから指定した公開タイムラインを非表示にすることができます。'
 
   .fields-group
     = f.input :setting_hide_local_timeline, as: :boolean, wrapper: :with_label
     = f.input :setting_hide_federated_timeline, as: :boolean, wrapper: :with_label
 
-  %p.hint= t '（Web版のデフォルト公開範囲）意図せず公開タイムラインに投稿が掲載されないようにするには、デフォルトの公開範囲を「公開」以外に設定することをおすすめします。'
+  %p.hint= t '（いつも使う公開範囲）意図せず公開タイムラインに投稿が掲載されないようにするには、いつも使う公開範囲を「公開」以外に設定することをおすすめします。'
 
   .fields-group.fields-row__column.fields-row__column-12
     = f.input :setting_default_privacy, collection: Status.selectable_visibilities, wrapper: :with_label, include_blank: false, label_method: lambda { |visibility| safe_join([I18n.t("statuses.visibilities.#{visibility}"), I18n.t("statuses.visibilities.#{visibility}_long")], ' - ') }, required: false, hint: false
 
-  %p.hint= t '（Web版）通知を受け取る範囲を制限するには以下から設定してください。'
+  %p.hint= t '通知を受け取る範囲を制限するには以下から設定してください。'
   .fields-group
     = f.simple_fields_for :interactions, hash_to_object(current_user.settings.interactions) do |ff|
       = ff.input :must_be_follower, as: :boolean, wrapper: :with_label
