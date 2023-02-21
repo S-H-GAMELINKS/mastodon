@@ -324,7 +324,7 @@ class Account < ApplicationRecord
     self[:fields] = fields
   end
 
-  DEFAULT_FIELDS_SIZE = 4
+  DEFAULT_FIELDS_SIZE = 6
 
   def build_fields
     return if fields.size >= DEFAULT_FIELDS_SIZE
