@@ -102,7 +102,7 @@ class NavigationPanel extends React.Component {
 
         {(signedIn && timelinePreview) && (
           <>
-          {!showOtadonTagCloud && <ColumnLink transparent href='https://tagcloud.otadon.com/' icon='cloud' text='Otadon Hashtag Cloud' />}
+          {showOtadonTagCloud && <ColumnLink transparent href='https://tagcloud.otadon.com/' icon='cloud' text='Otadon Hashtag Cloud' />}
           </>
         )}
 
