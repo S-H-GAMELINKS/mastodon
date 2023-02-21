@@ -42,6 +42,7 @@ class UserSettingsDecorator
     user.settings['resized_custom_emoji'] = resized_custom_emoji if change?('setting_resized_custom_emoji')
     user.settings['hide_local_timeline'] = hide_local_timeline if change?('setting_hide_local_timeline')
     user.settings['hide_federated_timeline'] = hide_federated_timeline if change?('setting_hide_federated_timeline')
+    user.settings['show_otadon_tag_cloud'] = show_otadon_tag_cloud if change?('setting_show_otadon_tag_cloud')
   end
 
   def merged_notification_emails
@@ -150,6 +151,10 @@ class UserSettingsDecorator
 
   def hide_federated_timeline
     boolean_cast_setting 'setting_hide_federated_timeline'
+  end
+
+  def show_otadon_tag_cloud
+    boolean_cast_setting 'setting_show_otadon_tag_cloud'
   end
 
   def boolean_cast_setting(key)
