@@ -58,6 +58,7 @@ class Settings::PreferencesController < Settings::BaseController
       :setting_resized_custom_emoji,
       :setting_hide_local_timeline,
       :setting_hide_federated_timeline,
+      :setting_show_otadon_tag_cloud,
       notification_emails: %i(follow follow_request reblog favourite mention report pending_account trending_tag appeal),
       interactions: %i(must_be_follower must_be_following must_be_following_dm)
     )

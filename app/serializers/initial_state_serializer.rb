@@ -54,6 +54,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:resized_custom_emoji] = object.current_account.user.setting_resized_custom_emoji
       store[:hide_local_timeline] = object.current_account.user.setting_hide_local_timeline
       store[:hide_federated_timeline] = object.current_account.user.setting_hide_federated_timeline
+      store[:show_otadon_tag_cloud] = object.current_account.user.setting_show_otadon_tag_cloud
     else
       store[:auto_play_gif] = Setting.auto_play_gif
       store[:display_media] = Setting.display_media

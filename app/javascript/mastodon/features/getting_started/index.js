@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { me, showTrends, hideLocalTimeline, hideFederatedTimeline } from '../../initial_state';
+import { me, showTrends, hideLocalTimeline, hideFederatedTimeline, showOtadonTagCloud } from '../../initial_state';
 import { fetchFollowRequests } from 'mastodon/actions/accounts';
 import { List as ImmutableList } from 'immutable';
 import NavigationContainer from '../compose/containers/navigation_container';
@@ -115,9 +115,11 @@ class GettingStarted extends ImmutablePureComponent {
       );
     }
 
-    navItems.push(
-      <ColumnLink key='otatagcloud' icon='cloud' text='Otadon Hashtag Cloud' href='https://tagcloud.otadon.com/' />,
-    );
+    if(showOtadonTagCloud) {
+      navItems.push(
+        <ColumnLink key='otatagcloud' icon='cloud' text='Otadon Hashtag Cloud' href='https://tagcloud.otadon.com/' />,
+      );
+    }
 
     if (signedIn) {
       navItems.push(

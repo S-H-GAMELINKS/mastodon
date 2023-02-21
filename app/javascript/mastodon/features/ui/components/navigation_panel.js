@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
 import Logo from 'mastodon/components/logo';
-import { timelinePreview, showTrends, hideLocalTimeline, hideFederatedTimeline } from 'mastodon/initial_state';
+import { timelinePreview, showTrends, hideLocalTimeline, hideFederatedTimeline,showOtadonTagCloud } from 'mastodon/initial_state';
 import ColumnLink from './column_link';
 import DisabledAccountBanner from './disabled_account_banner';
 import FollowRequestsColumnLink from './follow_requests_column_link';
@@ -102,7 +102,7 @@ class NavigationPanel extends React.Component {
 
         {(signedIn && timelinePreview) && (
           <>
-            <ColumnLink transparent href='https://tagcloud.otadon.com/' icon='cloud' text='Otadon Hashtag Cloud' />
+          {!showOtadonTagCloud && <ColumnLink transparent href='https://tagcloud.otadon.com/' icon='cloud' text='Otadon Hashtag Cloud' />}
           </>
         )}
 
