@@ -56,6 +56,7 @@ class Settings::PreferencesController < Settings::BaseController
       :setting_crop_images,
       :setting_always_send_emails,
       :setting_resized_custom_emoji,
+      :setting_unfollow_all_when_migrate,
       :setting_portfolio_default_hashtag_flag,
       :setting_portfolio_default_hashtag,
       notification_emails: %i(follow follow_request reblog favourite mention report pending_account trending_tag appeal),

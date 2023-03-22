@@ -41,5 +41,10 @@
   .fields-group
     = f.input :chosen_languages, collection: filterable_languages, wrapper: :with_block_label, include_blank: false, label_method: lambda { |locale| native_locale_name(locale) }, required: false, as: :check_boxes, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'
 
+  %h4= t 'アカウント引っ越し時のフォロー解除'
+
+  .fields-group
+    = f.input :setting_unfollow_all_when_migrate, as: :boolean, wrapper: :with_label, recommended: true
+
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit
