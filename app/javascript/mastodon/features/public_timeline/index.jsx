@@ -33,8 +33,6 @@ const mapStateToProps = (state, { columnId }) => {
   };
 };
 
-export default @connect(mapStateToProps)
-@injectIntl
 class PublicTimeline extends React.PureComponent {
 
   static contextTypes = {
@@ -121,7 +119,7 @@ class PublicTimeline extends React.PureComponent {
     const { dispatch, onlyMedia, onlyRemote, onlyLocal } = this.props;
 
     dispatch(expandPublicTimeline({ maxId, onlyMedia, onlyRemote, onlyLocal }));
-  }
+  };
 
   render () {
     const { intl, columnId, hasUnread, multiColumn, onlyMedia, onlyRemote, onlyLocal } = this.props;
@@ -164,3 +162,5 @@ class PublicTimeline extends React.PureComponent {
   }
 
 }
+
+export default connect(mapStateToProps)(injectIntl(PublicTimeline));

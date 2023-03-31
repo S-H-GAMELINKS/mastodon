@@ -31,7 +31,6 @@ const messages = defineMessages({
   saveChanges: { id: 'compose_form.save_changes', defaultMessage: 'Save changes' },
 });
 
-export default @injectIntl
 class ComposeForm extends ImmutablePureComponent {
 
   static contextTypes = {
@@ -200,14 +199,14 @@ class ComposeForm extends ImmutablePureComponent {
 
   setPlaceholder = (intl, privacy) => {
     switch(privacy) {
-      case 'portfolio':
-        return 'どんな作品を投稿する？';
-      case 'nyan':
-        return 'どんなことを吐き出したい？';
-      default:
-        return intl.formatMessage(messages.placeholder);
+    case 'portfolio':
+      return 'どんな作品を投稿する？';
+    case 'nyan':
+      return 'どんなことを吐き出したい？';
+    default:
+      return intl.formatMessage(messages.placeholder);
     }
-  }
+  };
 
   handleEmojiPick = (data) => {
     const { text }     = this.props;
@@ -316,3 +315,5 @@ class ComposeForm extends ImmutablePureComponent {
   }
 
 }
+
+export default injectIntl(ComposeForm);
