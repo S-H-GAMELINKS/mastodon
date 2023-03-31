@@ -16,6 +16,11 @@ class UserSettings
   setting :default_sensitive, default: false
   setting :default_privacy, default: nil
 
+  # Creatodonの独自機能設定
+  setting :resized_custom_emoji, default: true
+  setting :portfolio_default_hashtag_flag, default: false
+  setting :portfolio_default_hashtag, default: ''
+
   namespace :web do
     setting :crop_images, default: true
     setting :advanced_layout, default: false

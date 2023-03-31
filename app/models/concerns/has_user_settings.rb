@@ -138,4 +138,16 @@ module HasUserSettings
   def hide_all_media?
     settings['web.display_media'] == 'hide_all'
   end
+
+  def resized_custom_emoji
+    settings['resized_custom_emoji']
+  end
+
+  def portfolio_default_hashtag_flag
+    settings['portfolio_default_hashtag_flag']
+  end
+
+  def portfolio_default_hashtag
+    settings['portfolio_default_hashtag']
+  end
 end

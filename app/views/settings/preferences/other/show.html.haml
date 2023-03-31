@@ -29,13 +29,13 @@
     .fields-group
       = ff.input :show_application, wrapper: :with_label, recommended: true, label: I18n.t('simple_form.labels.defaults.setting_show_application'), hint: I18n.t('simple_form.hints.defaults.setting_show_application')
 
-  %h4= t '公開範囲「ポートフォリオ」でのデフォルトハッシュタグ'
+    %h4= t '公開範囲「ポートフォリオ」でのデフォルトハッシュタグ'
 
-  .fields-group
-    = f.input :setting_portfolio_default_hashtag_flag, as: :boolean, wrapper: :with_label
+    .fields-group
+      = ff.input :portfolio_default_hashtag_flag, as: :boolean, wrapper: :with_label
 
-  .fields-group
-    = f.input :setting_portfolio_default_hashtag, as: :text, wrapper: :with_label
+    .fields-group
+      = ff.input :portfolio_default_hashtag, as: :text, wrapper: :with_label
 
   %h4= t 'preferences.public_timelines'
 
