@@ -40,8 +40,8 @@ class PostStatusUpdatedWithVisibilityService < BaseService
       @visibility = 'public'
   
       # 公開範囲：ポートフォリオ用のデフォルトハッシュタグを利用するフラグが有効になっている場合はデフォルトハッシュタグを追加する
-      if user.setting_portfolio_default_hashtag_flag
-        @text = "#{@text}#{user.setting_portfolio_default_hashtag}\n"
+      if user.portfolio_default_hashtag_flag
+        @text = "#{@text}#{user.portfolio_default_hashtag}\n"
       end
     end
   
