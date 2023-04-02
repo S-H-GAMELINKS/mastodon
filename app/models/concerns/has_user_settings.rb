@@ -150,4 +150,8 @@ module HasUserSettings
   def portfolio_default_hashtag
     settings['portfolio_default_hashtag']
   end
+
+  def unfollow_all_when_migrate
+    settings['unfollow_all_when_migrate']
+  end
 end
