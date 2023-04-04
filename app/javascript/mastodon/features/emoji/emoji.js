@@ -120,7 +120,26 @@ const emojifyTextNodeForLocal = (isLocalCustomEmoji, node, customEmojis) => {
           const filename = autoPlayGif ? customEmojis[shortname].url : customEmojis[shortname].static_url;
           replacement = document.createElement('img');
           replacement.setAttribute('draggable', false);
-          replacement.setAttribute('class', isLocalCustomEmoji && resizedCustomEmoji ? 'emojione local-custom-emoji' : 'emojione custom-emoji');
+
+          if (isLocalCustomEmoji) {
+            switch (resizedCustomEmoji) {
+              case 'hover':
+                replacement.setAttribute('class', 'emojione local-custom-emoji');
+                break;
+              case 'fixed_x2':
+                replacement.setAttribute('class', 'emojione local-custom-emoji-fixed');
+                break;
+              case 'fixed_x2':
+                replacement.setAttribute('class', 'emojione local-custom-emoji-fixed-big');
+                break;
+              default:
+                replacement.setAttribute('class', 'emojione custom-emoji');
+                break
+            }
+          } else {
+            replacement.setAttribute('class', 'emojione custom-emoji');
+          }
+
           replacement.setAttribute('alt', shortname);
           replacement.setAttribute('title', shortname);
           replacement.setAttribute('src', filename);
