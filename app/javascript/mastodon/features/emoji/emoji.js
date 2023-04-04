@@ -129,7 +129,7 @@ const emojifyTextNodeForLocal = (isLocalCustomEmoji, node, customEmojis) => {
               case 'fixed_x2':
                 replacement.setAttribute('class', 'emojione local-custom-emoji-fixed');
                 break;
-              case 'fixed_x2':
+              case 'fixed_x3':
                 replacement.setAttribute('class', 'emojione local-custom-emoji-fixed-big');
                 break;
               default:
