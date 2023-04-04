@@ -58,7 +58,7 @@
   .fields-group
     = f.input :setting_crop_images, as: :boolean, wrapper: :with_label
 
-  %h4= t 'ローカルカスタム絵文字の表示サイズ'
+  %h4= t 'ローカルカスタム絵文字'
 
   .fields-group
     = f.input :setting_resized_custom_emoji, collection: ['default', 'hover', 'fixed_x2', 'fixed_x3'],label_method: lambda { |item| t("simple_form.hints.defaults.setting_display_local_emoji_#{item}") }, hint: false, as: :radio_buttons, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li', wrapper: :with_floating_label
