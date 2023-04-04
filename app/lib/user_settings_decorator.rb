@@ -142,7 +142,7 @@ class UserSettingsDecorator
   end
 
   def resized_custom_emoji
-    boolean_cast_setting 'setting_resized_custom_emoji'
+    settings['setting_resized_custom_emoji']
   end
 
   def hide_local_timeline

@@ -884,6 +884,17 @@ body > [data-popper-placement] {
     }
   }
 
+  .local-custom-emoji-fixed {
+    width: 70px;
+    height: 70px;
+  }
+
+  .local-custom-emoji-fixed-big {
+    width: 90px;
+    height: 90px;
+    padding: 3px;
+  }
+
   p {
     margin-bottom: 20px;
     white-space: pre-wrap;
@@ -1308,6 +1319,17 @@ body > [data-popper-placement] {
         width: 70px;
         height: 70px;
       }
+    }
+
+    .local-custom-emoji-fixed {
+      width: 70px;
+      height: 70px;
+    }
+
+    .local-custom-emoji-fixed-big {
+      width: 90px;
+      height: 90px;
+      padding: 3px;
     }
 
     .status__content__spoiler-link {
