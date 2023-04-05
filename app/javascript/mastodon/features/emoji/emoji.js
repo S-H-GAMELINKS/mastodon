@@ -122,7 +122,7 @@ const emojifyTextNodeForLocal = (isLocalCustomEmoji, node, customEmojis) => {
           replacement.setAttribute('draggable', false);
 
           if (isLocalCustomEmoji) {
-            if (customEmojis[shortname].startsWith('stamp', 1) && (resizedCustomEmojiStamp !== 'same_as_emoji')) {
+            if (shortname.startsWith('stamp_', 1) && (resizedCustomEmojiStamp !== 'same_as_emoji')) {
               switch (resizedCustomEmojiStamp) {
                 case 'fixed_x2':
                   replacement.setAttribute('class', 'emojione local-custom-emoji-stamp');
