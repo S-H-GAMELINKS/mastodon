@@ -52,6 +52,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:resized_custom_emoji]       = object.current_account.user.resized_custom_emoji
       store[:portfolio_default_hashtag_flag]       = object.current_account.user.portfolio_default_hashtag_flag
       store[:portfolio_default_hashtag]       = object.current_account.user.portfolio_default_hashtag
+      store[:unfollow_all_when_migrate] = object.current_account.user.unfollow_all_when_migrate
     else
       store[:auto_play_gif] = Setting.auto_play_gif
       store[:display_media] = Setting.display_media

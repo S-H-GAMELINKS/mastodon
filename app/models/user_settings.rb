@@ -20,6 +20,7 @@ class UserSettings
   setting :resized_custom_emoji, default: true
   setting :portfolio_default_hashtag_flag, default: false
   setting :portfolio_default_hashtag, default: ''
+  setting :unfollow_all_when_migrate, default: true
 
   namespace :web do
     setting :crop_images, default: true

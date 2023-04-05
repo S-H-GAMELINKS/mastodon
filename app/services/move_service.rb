@@ -10,6 +10,8 @@ class MoveService < BaseService
     process_local_relationships!
     distribute_update!
     distribute_move!
+    # フォロー解除を行うフラグが有効の場合はフォローをすべて解除する
+    unfollow_all if @source_account.user.unfollow_all_when_migrate
   end
 
   private
@@ -28,5 +30,10 @@ class MoveService < BaseService
 
   def distribute_move!
     ActivityPub::MoveDistributionWorker.perform_async(@migration.id)
+  end
+
+  # 引っ越し時にアカウントのフォローをすべて解除
+  def unfollow_all
+    UnfollowAllWorker.perform_async(@source_account.id)
   end
 end
