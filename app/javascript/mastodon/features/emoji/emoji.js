@@ -1,4 +1,4 @@
-import { autoPlayGif, resizedCustomEmoji } from '../../initial_state';
+import { autoPlayGif, resizedCustomEmoji, resizedCustomEmojiStamp } from '../../initial_state';
 import unicodeMapping from './emoji_unicode_mapping_light';
 import { assetHost } from 'mastodon/utils/config';
 import Trie from 'substring-trie';
@@ -122,19 +122,30 @@ const emojifyTextNodeForLocal = (isLocalCustomEmoji, node, customEmojis) => {
           replacement.setAttribute('draggable', false);
 
           if (isLocalCustomEmoji) {
-            switch (resizedCustomEmoji) {
-              case 'hover':
-                replacement.setAttribute('class', 'emojione local-custom-emoji');
-                break;
-              case 'fixed_x2':
-                replacement.setAttribute('class', 'emojione local-custom-emoji-fixed');
-                break;
-              case 'fixed_x3':
-                replacement.setAttribute('class', 'emojione local-custom-emoji-fixed-big');
-                break;
-              default:
-                replacement.setAttribute('class', 'emojione custom-emoji');
-                break
+            if (shortname.startsWith('stamp_', 1) && (resizedCustomEmojiStamp !== 'same_as_emoji')) {
+              switch (resizedCustomEmojiStamp) {
+                case 'fixed_x2':
+                  replacement.setAttribute('class', 'emojione local-custom-emoji-stamp');
+                  break;
+                default:
+                  replacement.setAttribute('class', 'emojione custom-emoji');
+                  break;
+              }
+            } else {
+              switch (resizedCustomEmoji) {
+                case 'hover':
+                  replacement.setAttribute('class', 'emojione local-custom-emoji');
+                  break;
+                case 'fixed_x2':
+                  replacement.setAttribute('class', 'emojione local-custom-emoji-fixed');
+                  break;
+                case 'fixed_x3':
+                  replacement.setAttribute('class', 'emojione local-custom-emoji-fixed-big');
+                  break;
+                default:
+                  replacement.setAttribute('class', 'emojione custom-emoji');
+                  break;
+              }
             }
           } else {
             replacement.setAttribute('class', 'emojione custom-emoji');
