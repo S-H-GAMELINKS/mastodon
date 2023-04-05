@@ -134,7 +134,7 @@ const emojifyTextNodeForLocal = (isLocalCustomEmoji, node, customEmojis) => {
                 break;
               default:
                 replacement.setAttribute('class', 'emojione custom-emoji');
-                break
+                break;
             }
           } else {
             replacement.setAttribute('class', 'emojione custom-emoji');
