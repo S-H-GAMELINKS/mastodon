@@ -1216,6 +1216,7 @@ ja:
       domain_blocking: 非表示にしたドメインリスト
       following: フォロー中のアカウントリスト
       muting: ミュートしたアカウントリスト
+      tweet: Twitterでの呟き
     upload: アップロード
   invites:
     delete: 無効化

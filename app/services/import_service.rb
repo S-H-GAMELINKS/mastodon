@@ -20,6 +20,8 @@ class ImportService < BaseService
       import_domain_blocks!
     when 'bookmarks'
       import_bookmarks!
+    when 'tweet'
+      import_tweets!
     end
   end
 
@@ -126,6 +128,33 @@ class ImportService < BaseService
 
     statuses.each do |status|
       @account.bookmarks.find_or_create_by!(account: @account, status: status)
+    end
+  end
+
+  def import_medias!(media_paths)
+    media_paths.map do |path|
+      next if path.nil?
+      file = URI.open(path)
+      @account.media_attachments.create!(file: file).id
+    end
+  end
+
+  def import_tweets!
+    parse_import_data!(['text', 'image_0', 'image_1', 'image_2', 'image_3'])
+    @data.reverse_each do |row|
+      text = row["text"]
+
+      media_paths = [row['image_0'], row['image_1'], row['image_2'], row['image_3']]
+
+      media_ids = import_medias!(media_paths)
+
+      if text != "text"
+        PostStatusService.new.call(
+          @account,
+          text: text,
+          media_ids: media_ids
+        )
+      end
     end
   end
 
