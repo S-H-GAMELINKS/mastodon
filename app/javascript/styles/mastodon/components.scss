@@ -6711,6 +6711,10 @@ a.status-card.compact:hover {
     }
   }
 
+  a.feature_tag_timeline {
+    margin-left: 0.5em;
+  }
+
   &.directory__section-headline {
     background: darken($ui-base-color, 2%);
     border-bottom-color: transparent;

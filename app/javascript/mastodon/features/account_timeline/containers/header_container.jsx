@@ -21,6 +21,7 @@ import { openModal } from '../../../actions/modal';
 import { blockDomain, unblockDomain } from '../../../actions/domain_blocks';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { unfollowModal } from '../../../initial_state';
+import { List as ImmutableList } from 'immutable';
 
 const messages = defineMessages({
   cancelFollowRequestConfirm: { id: 'confirmations.cancel_follow_request.confirm', defaultMessage: 'Withdraw request' },
@@ -33,6 +34,7 @@ const makeMapStateToProps = () => {
 
   const mapStateToProps = (state, { accountId }) => ({
     account: getAccount(state, accountId),
+    featuredTags: state.getIn(['user_lists', 'featured_tags', accountId, 'items'], ImmutableList()),
     domain: state.getIn(['meta', 'domain']),
     hidden: getAccountHidden(state, accountId),
   });

@@ -8,10 +8,17 @@ import MovedNote from './moved_note';
 import { FormattedMessage } from 'react-intl';
 import { NavLink } from 'react-router-dom';
 
+// 注目のハッシュタグの名前をデフォルト値に設定吸うためのWorkaround
+// See: https://github.com/formatjs/babel-plugin-react-intl/issues/119#issuecomment-326202499
+function DynamicFormattedMessage(props) {
+  return <FormattedMessage {...props} />;
+}
+
 export default class Header extends ImmutablePureComponent {
 
   static propTypes = {
     account: ImmutablePropTypes.map,
+    featuredTags: ImmutablePropTypes.list,
     onFollow: PropTypes.func.isRequired,
     onBlock: PropTypes.func.isRequired,
     onMention: PropTypes.func.isRequired,
@@ -108,7 +115,7 @@ export default class Header extends ImmutablePureComponent {
   };
 
   render () {
-    const { account, hidden, hideTabs } = this.props;
+    const { account, hidden, hideTabs, featuredTags } = this.props;
 
     if (account === null) {
       return null;
@@ -147,6 +154,10 @@ export default class Header extends ImmutablePureComponent {
             <NavLink exact to={`/@${account.get('acct')}/with_replies`}><FormattedMessage id='account.posts_with_replies' defaultMessage='Posts and replies' /></NavLink>
             <NavLink exact to={`/@${account.get('acct')}/media`}><FormattedMessage id='account.media' defaultMessage='Media' /></NavLink>
             <NavLink exact to={`/@${account.get('acct')}/tagged/CreatodonFolio`}><FormattedMessage id='account.portfolio' defaultMessage='Portfolio' /></NavLink>
+            {featuredTags.take(3).map(featuredTag => {
+              const tagName = `${featuredTag.get('name')}`;
+              return <NavLink key={tagName} className='feature_tag_timeline' exact to={`/@${account.get('acct')}/tagged/${tagName}`}><DynamicFormattedMessage id='account.featuredTag' defaultMessage={tagName} /></NavLink>;
+            })}
           </div>
         )}
       </div>
