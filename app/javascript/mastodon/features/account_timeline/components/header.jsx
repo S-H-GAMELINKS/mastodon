@@ -154,7 +154,7 @@ export default class Header extends ImmutablePureComponent {
             <NavLink exact to={`/@${account.get('acct')}/with_replies`}><FormattedMessage id='account.posts_with_replies' defaultMessage='Posts and replies' /></NavLink>
             <NavLink exact to={`/@${account.get('acct')}/media`}><FormattedMessage id='account.media' defaultMessage='Media' /></NavLink>
             <NavLink exact to={`/@${account.get('acct')}/tagged/CreatodonFolio`}><FormattedMessage id='account.portfolio' defaultMessage='Portfolio' /></NavLink>
-            {featuredTags.take(3).map(featuredTag => {
+            {featuredTags.map(featuredTag => {
               const tagName = `${featuredTag.get('name')}`;
               return <NavLink key={tagName} className='feature_tag_timeline' exact to={`/@${account.get('acct')}/tagged/${tagName}`}><DynamicFormattedMessage id='account.featuredTag' defaultMessage={tagName} /></NavLink>;
             })}

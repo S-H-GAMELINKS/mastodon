@@ -6665,11 +6665,17 @@ a.status-card.compact:hover {
   cursor: default;
   display: flex;
   flex-shrink: 0;
+  overflow-x: scroll;
+  overflow-y: hidden;
 
   button {
     background: darken($ui-base-color, 4%);
     border: 0;
     margin: 0;
+  }
+
+  a:first-child {
+    margin-left: 0.5em;
   }
 
   button,
@@ -6678,6 +6684,8 @@ a.status-card.compact:hover {
     flex: 1 1 auto;
     color: $darker-text-color;
     padding: 15px 0;
+    margin-right: 0.5em;
+    height: 1.5rem;
     font-size: 14px;
     font-weight: 500;
     text-align: center;
@@ -6709,10 +6717,6 @@ a.status-card.compact:hover {
         border-color: transparent transparent $ui-base-color;
       }
     }
-  }
-
-  a.feature_tag_timeline {
-    margin-left: 0.5em;
   }
 
   &.directory__section-headline {
