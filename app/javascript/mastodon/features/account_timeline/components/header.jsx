@@ -33,6 +33,7 @@ export default class Header extends ImmutablePureComponent {
     onChangeLanguages: PropTypes.func.isRequired,
     onInteractionModal: PropTypes.func.isRequired,
     onOpenAvatar: PropTypes.func.isRequired,
+    onOpenURL: PropTypes.func.isRequired,
     hideTabs: PropTypes.bool,
     domain: PropTypes.string.isRequired,
     hidden: PropTypes.bool,
@@ -144,6 +145,7 @@ export default class Header extends ImmutablePureComponent {
           onChangeLanguages={this.handleChangeLanguages}
           onInteractionModal={this.handleInteractionModal}
           onOpenAvatar={this.handleOpenAvatar}
+          onOpenURL={this.props.onOpenURL}
           domain={this.props.domain}
           hidden={hidden}
         />
