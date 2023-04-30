@@ -1,0 +1,3 @@
+[submodule "app/javascript/styles/twitter"]
+	path = app/javascript/styles/twitter
+	url = https://github.com/ronilaukkarinen/mastodon-bird-ui.git
