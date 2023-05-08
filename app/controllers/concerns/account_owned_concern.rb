@@ -3,12 +3,13 @@
 module AccountOwnedConcern
   extend ActiveSupport::Concern
 
-  included do
+  included do |included_class|
     before_action :authenticate_user!, if: -> { whitelist_mode? && request.format != :json }
     before_action :set_account, if: :account_required?
     before_action :check_account_approval, if: :account_required?
     before_action :check_account_suspension, if: :account_required?
     before_action :check_account_confirmation, if: :account_required?
+    before_action :set_account_with_user_settings, if: -> { :account_required? && included_class.name == 'AccountsController' }
   end
 
   private
@@ -19,6 +20,10 @@ module AccountOwnedConcern
 
   def set_account
     @account = Account.find_local!(username_param)
+  end
+
+  def set_account_with_user_settings
+    @account = Account.joins(:user).find_local!(username_param)
   end
 
   def username_param

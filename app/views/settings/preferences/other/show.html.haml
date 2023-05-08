@@ -42,6 +42,11 @@
     .fields-group
       = ff.input :unfollow_all_when_migrate, as: :boolean, wrapper: :with_label, recommended: true
 
+    %h4= t 'アカウントの詳細画面の非表示'
+
+    .fields-group
+      = ff.input :hide_account_detail, as: :boolean, wrapper: :with_label, recommended: true
+
   %h4= t 'preferences.public_timelines'
 
   .fields-group

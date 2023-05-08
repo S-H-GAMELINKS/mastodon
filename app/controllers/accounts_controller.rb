@@ -15,6 +15,8 @@ class AccountsController < ApplicationController
   skip_before_action :require_functional!, unless: :whitelist_mode?
 
   def show
+    redirect_to root_path if @account.user.settings[:hide_account_detail]
+
     respond_to do |format|
       format.html do
         expires_in(15.seconds, public: true, stale_while_revalidate: 30.seconds, stale_if_error: 1.hour) unless user_signed_in?

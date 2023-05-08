@@ -154,4 +154,8 @@ module HasUserSettings
   def unfollow_all_when_migrate
     settings['unfollow_all_when_migrate']
   end
+
+  def hide_account_detail
+    settings['hide_account_detail']
+  end
 end
