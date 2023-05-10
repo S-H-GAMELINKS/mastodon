@@ -56,6 +56,7 @@ ja:
         setting_display_media_show_all: メディアを常に表示する
         setting_display_local_emoji_default: デフォルトのサイズで表示する
         setting_display_local_emoji_hover: ホバー時に拡大表示する
+        setting_display_local_emoji_best: 程よく拡大表示する
         setting_display_local_emoji_fixed_x2: 拡大して表示する
         setting_display_local_emoji_fixed_x3: 拡大して表示する（もっと巨大化）
         setting_display_local_emoji_stamp_default: デフォルトのサイズで表示する
