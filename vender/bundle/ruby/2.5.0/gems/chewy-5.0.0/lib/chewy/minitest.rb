@@ -1,1 +1,0 @@
-require 'chewy/minitest/helpers'
