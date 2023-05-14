@@ -49,10 +49,11 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:use_pending_items] = object.current_account.user.setting_use_pending_items
       store[:trends]            = Setting.trends && object.current_account.user.setting_trends
       store[:crop_images]       = object.current_account.user.setting_crop_images
-      store[:resized_custom_emoji]       = object.current_account.user.resized_custom_emoji
-      store[:portfolio_default_hashtag_flag]       = object.current_account.user.portfolio_default_hashtag_flag
-      store[:portfolio_default_hashtag]       = object.current_account.user.portfolio_default_hashtag
+      store[:resized_custom_emoji] = object.current_account.user.resized_custom_emoji
+      store[:portfolio_default_hashtag_flag] = object.current_account.user.portfolio_default_hashtag_flag
+      store[:portfolio_default_hashtag] = object.current_account.user.portfolio_default_hashtag
       store[:unfollow_all_when_migrate] = object.current_account.user.unfollow_all_when_migrate
+      store[:allow_public_post_searchable_in_meilisearch] = object.current_account.user.allow_public_post_searchable_in_meilisearch
     else
       store[:auto_play_gif] = Setting.auto_play_gif
       store[:display_media] = Setting.display_media

@@ -411,6 +411,10 @@ class Status < ApplicationRecord
     end
   end
 
+  def to_h
+    { id: id, content: content }
+  end
+
   private
 
   def update_status_stat!(attrs)

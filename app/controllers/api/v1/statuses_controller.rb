@@ -78,6 +78,8 @@ class Api::V1::StatusesController < Api::BaseController
       idempotency: request.headers['Idempotency-Key'],
       with_rate_limit: true
     )
+    
+    StatusIndexService.new.call(@status) if (enabled = ENV['ES_ENABLED'] == 'true') && @status.visibility == 'public' && current_user.allow_public_post_searchable_in_meilisearch
 
     render json: @status, serializer: @status.is_a?(ScheduledStatus) ? REST::ScheduledStatusSerializer : REST::StatusSerializer
   rescue PostStatusService::UnexpectedMentionsError => e

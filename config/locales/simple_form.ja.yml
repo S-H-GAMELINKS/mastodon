@@ -221,6 +221,7 @@ ja:
         portfolio_default_hashtag_flag: 公開範囲「ポートフォリオ」で投稿する際にデフォルトハッシュタグを付与する
         portfolio_default_hashtag: ポートフォリオとして投稿する際のデフォルトハッシュタグ
         unfollow_all_when_migrate: アカウント引っ越し時にフォローを全て解除する
+        allow_public_post_searchable_in_meilisearch: meilisearchでの公開投稿の検索を許可する
         severity: 重大性
         sign_in_token_attempt: セキュリティコード
         title: タイトル

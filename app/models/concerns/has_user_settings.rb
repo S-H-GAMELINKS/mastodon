@@ -154,4 +154,8 @@ module HasUserSettings
   def unfollow_all_when_migrate
     settings['unfollow_all_when_migrate']
   end
+
+  def allow_public_post_searchable_in_meilisearch
+    settings['allow_public_post_searchable_in_meilisearch']
+  end
 end

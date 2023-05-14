@@ -325,6 +325,9 @@ GEM
       domain_name (~> 0.5)
     http-form_data (2.3.0)
     http_accept_language (2.1.1)
+    httparty (0.21.0)
+      mini_mime (>= 1.0.0)
+      multi_xml (>= 0.5.2)
     httpclient (2.8.3)
     httplog (1.6.2)
       rack (>= 2.0)
@@ -410,6 +413,8 @@ GEM
     mario-redis-lock (1.2.1)
       redis (>= 3.0.5)
     matrix (0.4.2)
+    meilisearch (0.23.0)
+      httparty (>= 0.17.1, < 0.22.0)
     memory_profiler (1.0.1)
     method_source (1.0.0)
     mime-types (3.4.1)
@@ -420,6 +425,7 @@ GEM
     minitest (5.18.0)
     msgpack (1.7.0)
     multi_json (1.15.0)
+    multi_xml (0.6.0)
     multipart-post (2.3.0)
     net-http (0.3.2)
       uri
@@ -825,6 +831,7 @@ DEPENDENCIES
   lograge (~> 0.12)
   makara (~> 0.5)
   mario-redis-lock (~> 1.2)
+  meilisearch
   memory_profiler
   mime-types (~> 3.4.1)
   net-http (~> 0.3.2)

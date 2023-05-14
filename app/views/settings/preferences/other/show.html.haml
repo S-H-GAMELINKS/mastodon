@@ -42,6 +42,12 @@
     .fields-group
       = ff.input :unfollow_all_when_migrate, as: :boolean, wrapper: :with_label, recommended: true
 
+    %h4= t 'meilisearchでの公開投稿の検索を許可'
+
+    .fields-group
+      = ff.input :allow_public_post_searchable_in_meilisearch, as: :boolean, wrapper: :with_label, recommended: true
+
+
   %h4= t 'preferences.public_timelines'
 
   .fields-group

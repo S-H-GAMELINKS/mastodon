@@ -21,6 +21,7 @@ class UserSettings
   setting :portfolio_default_hashtag_flag, default: false
   setting :portfolio_default_hashtag, default: ''
   setting :unfollow_all_when_migrate, default: true
+  setting :allow_public_post_searchable_in_meilisearch, default: false
 
   namespace :web do
     setting :crop_images, default: true
