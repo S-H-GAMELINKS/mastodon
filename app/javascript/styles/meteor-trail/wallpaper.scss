@@ -13,7 +13,7 @@
 body {
   &.app-body {
     background: no-repeat fixed center top/80% url($wallpaper);
-    @media (max-width <= 697px) {
+    @media (width <= 697px) {
       background-position: 25% 75%;
       background-attachment: fixed;
     }
@@ -21,7 +21,7 @@ body {
 
   &.about-body {
     background: no-repeat fixed center top/80% url($wallpaper);
-    @media (max-width <= 697px) {
+    @media (width <= 697px) {
       background-position: 25% 75%;
       background-attachment: fixed;
     }
@@ -29,7 +29,7 @@ body {
 
   &.tag-body {
     background: no-repeat fixed center top/80% url($wallpaper);
-    @media (max-width <= 697px) {
+    @media (width <= 697px) {
       background-position: 25% 75%;
       background-attachment: fixed;
     }
@@ -37,7 +37,7 @@ body {
 
   &.admin {
     background: no-repeat fixed center top/80% url($wallpaper);
-    @media (max-width <= 697px) {
+    @media (width <= 697px) {
       background-position: 25% 75%;
       background-attachment: fixed;
     }
@@ -45,7 +45,7 @@ body {
 
   &.error {
     background: no-repeat fixed center top/80% url($wallpaper);
-    @media (max-width <= 697px) {
+    @media (width <= 697px) {
       background-position: 25% 75%;
       background-attachment: fixed;
     }
@@ -226,7 +226,7 @@ body {
     background: rgba(darken($ui-base-color, 15%), 0.65);
   }
 
-  @media screen and (max-width <= 675px) {
+  @media screen and (width <= 675px) {
     .header {
       .links {
         background: transparent;
