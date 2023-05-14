@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_30_155710) do
+ActiveRecord::Schema.define(version: 2023_05_14_084559) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -339,12 +339,6 @@ ActiveRecord::Schema.define(version: 2023_03_30_155710) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["uri"], name: "index_conversations_on_uri", unique: true, opclass: :text_pattern_ops, where: "(uri IS NOT NULL)"
-  end
-
-  create_table "cthulhus", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.text "story"
   end
 
   create_table "custom_emoji_categories", force: :cascade do |t|

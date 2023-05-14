@@ -1,2 +1,0 @@
-Fabricator(:cthulhu) do
-end
