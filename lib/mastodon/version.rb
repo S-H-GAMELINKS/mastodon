@@ -33,7 +33,7 @@ module Mastodon
     end
 
     def repository
-      'S-H-GAMELINKS/mastodon'
+      ENV.fetch('GITHUB_REPOSITORY', 'mastodon/mastodon')
     end
 
     def source_base_url

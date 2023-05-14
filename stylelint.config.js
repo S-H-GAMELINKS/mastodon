@@ -8,6 +8,8 @@ module.exports = {
     'public/packs/**/*',
     'public/packs-test/**/*',
     'vendor/**/*',
+    'public/creatodon-folio/static/css/*',
+    'public/gallery/static/css/*'
   ],
   reportDescriptionlessDisables: true,
   reportInvalidScopeDisables: true,

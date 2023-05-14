@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddStoryToCthulhu < ActiveRecord::Migration[5.2]
   def change
     add_column :cthulhus, :story, :text

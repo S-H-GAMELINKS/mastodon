@@ -80,7 +80,7 @@ class Api::V1::StatusesController < Api::BaseController
     )
 
     render json: @status, serializer: @status.is_a?(ScheduledStatus) ? REST::ScheduledStatusSerializer : REST::StatusSerializer
-  rescue PostStatusService::UnexpectedMentionsError => e
+  rescue PostStatusUpdatedWithVisibilityService::UnexpectedMentionsError, PostStatusService::UnexpectedMentionsError => e
     unexpected_accounts = ActiveModel::Serializer::CollectionSerializer.new(
       e.accounts,
       serializer: REST::AccountSerializer
@@ -165,49 +165,5 @@ class Api::V1::StatusesController < Api::BaseController
 
   def pagination_params(core_params)
     params.slice(:limit).permit(:limit).merge(core_params)
-  end
-
-  def set_image_path
-    paths = Array.new
-
-    if status_params[:media_ids].class != nil.class
-      status_params[:media_ids].each do |id|
-
-        image = MediaAttachment.find(id)
-        if ENV['S3_REGION'].to_s != "" then
-          path =  "0" * (9 - image.id.to_s.size) + image.id.to_s
-          ps = "#{path[0] + path[1] + path[2]}/#{path[3] + path[4] + path[5]}/#{path[6] + path[7] + path[8]}/original/#{image.file_file_name.to_s}"
-          puts paths.push("https://s3-#{ENV['S3_REGION'].to_s}.amazonaws.com/#{ENV['S3_BUCKET']}/media_attachments/files/#{ps}")
-        else
-          path =  "0" * (9 - image.id.to_s.size) + image.id.to_s
-          ps = "#{path[0] + path[1] + path[2]}/#{path[3] + path[4] + path[5]}/#{path[6] + path[7] + path[8]}/original/#{image.file_file_name.to_s}"
-          puts paths.push("public/system/media_attachments/files/#{ps}")
-        end
-      end
-    end
-
-    return paths
-  end
-
-  def check_nsfw(paths)
-    keys = JSON.parse(File.open("./key.json").read).to_h
-
-    Dotenv.load
-
-    vision = Google::Cloud::Vision.new project: keys["project_id"]
-
-    paths.each do |path|
-
-      if path.to_s =~ /.jpg|.jpeg|.png/
-        response = vision.image(path.to_s)
-
-        res = response.safe_search
-
-        if res.adult? || res.violence? || res.medical? then
-          return true
-        end
-      end
-    end
-    return false
   end
 end

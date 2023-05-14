@@ -76,3 +76,10 @@ app/javascript/styles/mastodon/reset.scss
 
 # Ignore the generated AUTHORS.md
 AUTHORS.md
+
+# Ignore gallery
+public/creatodon-folio/asset-manifest.json
+public/gallery/asset-manifest.json
+
+# Ignore Twitetr theme json
+app/javascript/styles/twitter/package.json
