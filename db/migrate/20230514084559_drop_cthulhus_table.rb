@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DropCthulhusTable < ActiveRecord::Migration[6.1]
   def change
     drop_table :cthulhus do |t|
