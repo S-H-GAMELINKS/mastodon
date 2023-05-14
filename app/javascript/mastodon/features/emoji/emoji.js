@@ -136,6 +136,9 @@ const emojifyTextNodeForLocal = (isLocalCustomEmoji, node, customEmojis) => {
                 case 'hover':
                   replacement.setAttribute('class', 'emojione local-custom-emoji');
                   break;
+                case 'best':
+                  replacement.setAttribute('class', 'emojione local-custom-emoji-the-best');
+                  break;
                 case 'fixed_x2':
                   replacement.setAttribute('class', 'emojione local-custom-emoji-fixed');
                   break;
