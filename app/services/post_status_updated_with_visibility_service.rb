@@ -1,6 +1,15 @@
 # frozen_string_literal: true
 
 class PostStatusUpdatedWithVisibilityService < BaseService
+  class UnexpectedMentionsError < StandardError
+    attr_reader :accounts
+
+    def initialize(message, accounts)
+      super(message)
+      @accounts = accounts
+    end
+  end
+
   # Post a text status update with visibility
   # @param [User] user User from which to post
   # @param [Hash] options
@@ -38,5 +47,7 @@ class PostStatusUpdatedWithVisibilityService < BaseService
     end
 
     [@text, @visibility, @spoiler_text]
+  rescue NoMethodError
+    raise ActiveRecord::RecordInvalid
   end
 end

@@ -80,7 +80,7 @@ class Api::V1::StatusesController < Api::BaseController
     )
 
     render json: @status, serializer: @status.is_a?(ScheduledStatus) ? REST::ScheduledStatusSerializer : REST::StatusSerializer
-  rescue PostStatusService::UnexpectedMentionsError => e
+  rescue PostStatusUpdatedWithVisibilityService::UnexpectedMentionsError, PostStatusService::UnexpectedMentionsError => e
     unexpected_accounts = ActiveModel::Serializer::CollectionSerializer.new(
       e.accounts,
       serializer: REST::AccountSerializer
