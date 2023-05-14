@@ -1,17 +1,17 @@
 // Commonly used web colors
-$black: #000000;            // Black
-$white: #FFFFFF;            // White
-$success-green: #79bd9a;    // Padua
-$error-red: #df405a;        // Cerise
-$warning-red: #ff5050;      // Sunset Orange
-$gold-star: #ca8f04;        // Dark Goldenrod
+$black: #000000; // Black
+$white: #ffffff; // White
+$success-green: #79bd9a; // Padua
+$error-red: #df405a; // Cerise
+$warning-red: #ff5050; // Sunset Orange
+$gold-star: #ca8f04; // Dark Goldenrod
 $red-bookmark: $warning-red;
 
 // Values from the classic Mastodon UI
-$classic-base-color: #4372f5;         // Midnight Express
-$classic-primary-color: #c21306;      // Echo Blue
-$classic-secondary-color: #fa9108;    // Pattens Blue
-$classic-highlight-color: #00920c;    // Summer Sky
+$classic-base-color: #4372f5; // Midnight Express
+$classic-primary-color: #c21306; // Echo Blue
+$classic-secondary-color: #fa9108; // Pattens Blue
+$classic-highlight-color: #00920c; // Summer Sky
 
 // Variables for defaults in UI
 $base-shadow-color: $black !default;
@@ -22,10 +22,10 @@ $valid-value-color: $success-green !default;
 $error-value-color: $error-red !default;
 
 // Tell UI to use selected colors
-$ui-base-color: $classic-base-color !default;                  // Darkest
+$ui-base-color: $classic-base-color !default; // Darkest
 $ui-base-lighter-color: $ui-base-color !default; // Lighter darkest
-$ui-primary-color: $classic-primary-color !default;            // Lighter
-$ui-secondary-color: $classic-secondary-color !default;        // Lightest
+$ui-primary-color: $classic-primary-color !default; // Lighter
+$ui-secondary-color: $classic-secondary-color !default; // Lightest
 $ui-highlight-color: $classic-highlight-color !default;
 
 // Variables for texts
@@ -37,6 +37,7 @@ $highlight-text-color: $ui-highlight-color !default;
 $action-button-color: $ui-base-lighter-color !default;
 $passive-text-color: $gold-star !default;
 $active-passive-text-color: $success-green !default;
+
 // For texts on inverted backgrounds
 $inverted-text-color: $ui-base-color !default;
 $lighter-text-color: $ui-base-lighter-color !default;
@@ -47,6 +48,7 @@ $cjk-langs: ja, ko, zh-CN, zh-HK, zh-TW;
 
 // Variables for components
 $media-modal-media-max-width: 100%;
+
 // put margins on top and bottom of image to avoid the screen covered by image.
 $media-modal-media-max-height: 80%;
 
