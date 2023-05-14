@@ -17,35 +17,26 @@ class PostStatusUpdatedWithVisibilityService < BaseService
 
     # フロントから受け取った公開範囲：にゃーんのつぶやきかどうかをチェックし、にゃーんの場合は置き換え
     if @visibility == 'nyan'
-      @text = "にゃーん" 
+      @text = 'にゃーん'
       @visibility = 'public'
-  
+
       # CWのタイトルがあった場合は「にゃーん」をセット
-      if @spoiler_text != ''
-        @spoiler_text = "にゃーん"
-      end
+      @spoiler_text = 'にゃーん' if @spoiler_text != ''
     end
 
     # 投稿内に「シュレディンガーの猫」というハッシュタグがあった場合、ランダムに「にゃーん」に置き換える
-    if @text.include?("#シュレディンガーの猫")
-      if rand(0...10) > 4
-        @text = "にゃーん\n#シュレディンガーの猫"
-      end
-    end
-  
+    @text = "にゃーん\n#シュレディンガーの猫" if @text.include?('#シュレディンガーの猫') && rand(0...10) > 4
+
     # フロントから受け取った公開範囲：ポートフォリオの呟きかどうかをチェックし、
     # ポートフォリオの場合は公開範囲を置き換えた上でハッシュタグを追加する
     if @visibility == 'portfolio'
       @text = "#{@text}\n#CreatodonFolio\n"
       @visibility = 'public'
-  
+
       # 公開範囲：ポートフォリオ用のデフォルトハッシュタグを利用するフラグが有効になっている場合はデフォルトハッシュタグを追加する
-      if user.portfolio_default_hashtag_flag
-        @text = "#{@text}#{user.portfolio_default_hashtag}\n"
-      end
+      @text = "#{@text}#{user.portfolio_default_hashtag}\n" if user.portfolio_default_hashtag_flag
     end
-  
-    return @text, @visibility, @spoiler_text
+
+    [@text, @visibility, @spoiler_text]
   end
 end
-  
