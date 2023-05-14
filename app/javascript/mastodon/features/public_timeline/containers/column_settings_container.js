@@ -23,13 +23,13 @@ const mapDispatchToProps = (dispatch, { columnId }) => {
       }
 
       // 絞り込み「リモートのみ」がONになった場合は、絞り込み「ローカルのみ」をOFF
-      if (key[1] == 'onlyRemote' && checked) {
+      if (key[1] === 'onlyRemote' && checked) {
         console.log('this line');
         dispatch(changeSetting(['public', 'other', 'onlyLocal'], false));
       }
 
       // 絞り込み「ローカルのみ」がONになった場合は、絞り込み「リモートのみ」をOFF
-      if (key[1] == 'onlyLocal' && checked) {
+      if (key[1] === 'onlyLocal' && checked) {
         console.log('this line');
         dispatch(changeSetting(['public', 'other', 'onlyRemote'], false));
       }
