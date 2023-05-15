@@ -5,17 +5,17 @@ require 'rails_helper'
 describe Scheduler::AccountsStatusesCleanupScheduler do
   subject { described_class.new }
 
-  let!(:account1)  { Fabricate(:account, domain: nil) }
-  let!(:account2)  { Fabricate(:account, domain: nil) }
-  let!(:account3)  { Fabricate(:account, domain: nil) }
-  let!(:account4)  { Fabricate(:account, domain: nil) }
-  let!(:account5)  { Fabricate(:account, domain: nil) }
-  let!(:remote)    { Fabricate(:account) }
+  let!(:first_account) { Fabricate(:account, domain: nil) }
+  let!(:second_account)  { Fabricate(:account, domain: nil) }
+  let!(:third_account)  { Fabricate(:account, domain: nil) }
+  let!(:fourth_account) { Fabricate(:account, domain: nil) }
+  let!(:fifth_account) { Fabricate(:account, domain: nil) }
+  let!(:remote) { Fabricate(:account) }
 
-  let!(:policy1)   { Fabricate(:account_statuses_cleanup_policy, account: account1) }
-  let!(:policy2)   { Fabricate(:account_statuses_cleanup_policy, account: account3) }
-  let!(:policy3)   { Fabricate(:account_statuses_cleanup_policy, account: account4, enabled: false) }
-  let!(:policy4)   { Fabricate(:account_statuses_cleanup_policy, account: account5) }
+  let!(:first_policy) { Fabricate(:account_statuses_cleanup_policy, account: first_account) }
+  let!(:second_policy) { Fabricate(:account_statuses_cleanup_policy, account: third_account) }
+  let!(:third_policy) { Fabricate(:account_statuses_cleanup_policy, account: fourth_account, enabled: false) }
+  let!(:fourth_policy) { Fabricate(:account_statuses_cleanup_policy, account: fifth_account) }
 
   let(:queue_size)       { 0 }
   let(:queue_latency)    { 0 }
@@ -40,20 +40,20 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
 
     # Create a bunch of old statuses
     10.times do
-      Fabricate(:status, account: account1, created_at: 3.years.ago)
-      Fabricate(:status, account: account2, created_at: 3.years.ago)
-      Fabricate(:status, account: account3, created_at: 3.years.ago)
-      Fabricate(:status, account: account4, created_at: 3.years.ago)
-      Fabricate(:status, account: account5, created_at: 3.years.ago)
+      Fabricate(:status, account: first_account, created_at: 3.years.ago)
+      Fabricate(:status, account: second_account, created_at: 3.years.ago)
+      Fabricate(:status, account: third_account, created_at: 3.years.ago)
+      Fabricate(:status, account: fourth_account, created_at: 3.years.ago)
+      Fabricate(:status, account: fifth_account, created_at: 3.years.ago)
       Fabricate(:status, account: remote, created_at: 3.years.ago)
     end
 
     # Create a bunch of newer statuses
     5.times do
-      Fabricate(:status, account: account1, created_at: 3.minutes.ago)
-      Fabricate(:status, account: account2, created_at: 3.minutes.ago)
-      Fabricate(:status, account: account3, created_at: 3.minutes.ago)
-      Fabricate(:status, account: account4, created_at: 3.minutes.ago)
+      Fabricate(:status, account: first_account, created_at: 3.minutes.ago)
+      Fabricate(:status, account: second_account, created_at: 3.minutes.ago)
+      Fabricate(:status, account: third_account, created_at: 3.minutes.ago)
+      Fabricate(:status, account: fourth_account, created_at: 3.minutes.ago)
       Fabricate(:status, account: remote, created_at: 3.minutes.ago)
     end
   end
@@ -107,11 +107,11 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
       end
 
       it 'does not delete from accounts with no cleanup policy' do
-        expect { subject.perform }.to_not change { account2.statuses.count }
+        expect { subject.perform }.to_not change { second_account.statuses.count }
       end
 
       it 'does not delete from accounts with disabled cleanup policies' do
-        expect { subject.perform }.to_not change { account4.statuses.count }
+        expect { subject.perform }.to_not change { fourth_account.statuses.count }
       end
 
       it 'eventually deletes every deletable toot given enough runs' do
@@ -126,9 +126,9 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
 
         expect { 3.times { subject.perform } }
           .to change { Status.count }.by(-3 * 3)
-          .and change { account1.statuses.count }
-          .and change { account3.statuses.count }
-          .and change { account5.statuses.count }
+          .and change { first_account.statuses.count }
+          .and change { third_account.statuses.count }
+          .and change { fifth_account.statuses.count }
       end
 
       context 'when given a big budget' do

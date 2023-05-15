@@ -492,16 +492,16 @@ RSpec.describe FeedManager do
     let(:account)          { Fabricate(:account) }
     let(:followed_account) { Fabricate(:account) }
     let(:target_account)   { Fabricate(:account) }
-    let(:status_1)         { Fabricate(:status, account: followed_account) }
-    let(:status_2)         { Fabricate(:status, account: target_account) }
-    let(:status_3)         { Fabricate(:status, account: followed_account, mentions: [Fabricate(:mention, account: target_account)]) }
-    let(:status_4)         { Fabricate(:status, mentions: [Fabricate(:mention, account: target_account)]) }
-    let(:status_5)         { Fabricate(:status, account: followed_account, reblog: status_4) }
-    let(:status_6)         { Fabricate(:status, account: followed_account, reblog: status_2) }
-    let(:status_7)         { Fabricate(:status, account: followed_account) }
+    let(:first_status) { Fabricate(:status, account: followed_account) }
+    let(:second_status) { Fabricate(:status, account: target_account) }
+    let(:third_status) { Fabricate(:status, account: followed_account, mentions: [Fabricate(:mention, account: target_account)]) }
+    let(:fourth_status) { Fabricate(:status, mentions: [Fabricate(:mention, account: target_account)]) }
+    let(:fifth_status)         { Fabricate(:status, account: followed_account, reblog: fourth_status) }
+    let(:sixth_status)         { Fabricate(:status, account: followed_account, reblog: second_status) }
+    let(:seventh_status)         { Fabricate(:status, account: followed_account) }
 
     before do
-      [status_1, status_3, status_5, status_6, status_7].each do |status|
+      [first_status, third_status, fifth_status, sixth_status, seventh_status].each do |status|
         redis.zadd("feed:home:#{account.id}", status.id, status.id)
       end
     end
@@ -509,7 +509,7 @@ RSpec.describe FeedManager do
     it 'correctly cleans the home timeline' do
       FeedManager.instance.clear_from_home(account, target_account)
 
-      expect(redis.zrange("feed:home:#{account.id}", 0, -1)).to eq [status_1.id.to_s, status_7.id.to_s]
+      expect(redis.zrange("feed:home:#{account.id}", 0, -1)).to eq [first_status.id.to_s, seventh_status.id.to_s]
     end
   end
 end

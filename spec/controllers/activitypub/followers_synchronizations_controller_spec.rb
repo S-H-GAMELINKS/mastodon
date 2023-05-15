@@ -3,17 +3,17 @@
 require 'rails_helper'
 
 RSpec.describe ActivityPub::FollowersSynchronizationsController do
-  let!(:account)    { Fabricate(:account) }
-  let!(:follower_1) { Fabricate(:account, domain: 'example.com', uri: 'https://example.com/users/a') }
-  let!(:follower_2) { Fabricate(:account, domain: 'example.com', uri: 'https://example.com/users/b') }
-  let!(:follower_3) { Fabricate(:account, domain: 'foo.com', uri: 'https://foo.com/users/a') }
-  let!(:follower_4) { Fabricate(:account, username: 'instance-actor', domain: 'example.com', uri: 'https://example.com') }
+  let!(:account) { Fabricate(:account) }
+  let!(:first_follower) { Fabricate(:account, domain: 'example.com', uri: 'https://example.com/users/a') }
+  let!(:second_follower) { Fabricate(:account, domain: 'example.com', uri: 'https://example.com/users/b') }
+  let!(:third_follower) { Fabricate(:account, domain: 'foo.com', uri: 'https://foo.com/users/a') }
+  let!(:fourth_follower) { Fabricate(:account, username: 'instance-actor', domain: 'example.com', uri: 'https://example.com') }
 
   before do
-    follower_1.follow!(account)
-    follower_2.follow!(account)
-    follower_3.follow!(account)
-    follower_4.follow!(account)
+    first_follower.follow!(account)
+    second_follower.follow!(account)
+    third_follower.follow!(account)
+    fourth_follower.follow!(account)
 
     allow(controller).to receive(:signed_request_actor).and_return(remote_account)
   end
@@ -47,7 +47,7 @@ RSpec.describe ActivityPub::FollowersSynchronizationsController do
 
       it 'returns orderedItems with followers from example.com' do
         expect(body[:orderedItems]).to be_an Array
-        expect(body[:orderedItems]).to contain_exactly(follower_4.uri, follower_1.uri, follower_2.uri)
+        expect(body[:orderedItems]).to contain_exactly(fourth_follower.uri, first_follower.uri, second_follower.uri)
       end
 
       it 'returns private Cache-Control header' do

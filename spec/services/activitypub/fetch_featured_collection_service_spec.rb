@@ -9,7 +9,7 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService, type: :service do
 
   let!(:known_status) { Fabricate(:status, account: actor, uri: 'https://example.com/account/pinned/1') }
 
-  let(:status_json_1) do
+  let(:first_status_json) do
     {
       '@context': 'https://www.w3.org/ns/activitystreams',
       type: 'Note',
@@ -20,7 +20,7 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService, type: :service do
     }
   end
 
-  let(:status_json_2) do
+  let(:second_status_json) do
     {
       '@context': 'https://www.w3.org/ns/activitystreams',
       type: 'Note',
@@ -31,7 +31,7 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService, type: :service do
     }
   end
 
-  let(:status_json_4) do
+  let(:fourth_status_json) do
     {
       '@context': 'https://www.w3.org/ns/activitystreams',
       type: 'Note',
@@ -45,7 +45,7 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService, type: :service do
   let(:items) do
     [
       'https://example.com/account/pinned/1', # known
-      status_json_2, # unknown inlined
+      second_status_json, # unknown inlined
       'https://example.com/account/pinned/3', # unknown unreachable
       'https://example.com/account/pinned/4', # unknown reachable
     ]
@@ -62,10 +62,10 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService, type: :service do
 
   shared_examples 'sets pinned posts' do
     before do
-      stub_request(:get, 'https://example.com/account/pinned/1').to_return(status: 200, body: Oj.dump(status_json_1))
-      stub_request(:get, 'https://example.com/account/pinned/2').to_return(status: 200, body: Oj.dump(status_json_2))
+      stub_request(:get, 'https://example.com/account/pinned/1').to_return(status: 200, body: Oj.dump(first_status_json))
+      stub_request(:get, 'https://example.com/account/pinned/2').to_return(status: 200, body: Oj.dump(second_status_json))
       stub_request(:get, 'https://example.com/account/pinned/3').to_return(status: 404)
-      stub_request(:get, 'https://example.com/account/pinned/4').to_return(status: 200, body: Oj.dump(status_json_4))
+      stub_request(:get, 'https://example.com/account/pinned/4').to_return(status: 200, body: Oj.dump(fourth_status_json))
 
       subject.call(actor, note: true, hashtag: false)
     end

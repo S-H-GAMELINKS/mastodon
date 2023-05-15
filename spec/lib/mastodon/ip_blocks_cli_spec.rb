@@ -183,22 +183,22 @@ RSpec.describe Mastodon::IpBlocksCLI do
     end
 
     context 'with --force option' do
-      let!(:block1) { IpBlock.create(ip: '192.168.0.0/24', severity: :no_access) }
-      let!(:block2) { IpBlock.create(ip: '10.0.0.0/16', severity: :no_access) }
-      let!(:block3) { IpBlock.create(ip: '172.16.0.0/20', severity: :no_access) }
+      let!(:first_block) { IpBlock.create(ip: '192.168.0.0/24', severity: :no_access) }
+      let!(:second_block) { IpBlock.create(ip: '10.0.0.0/16', severity: :no_access) }
+      let!(:third_block) { IpBlock.create(ip: '172.16.0.0/20', severity: :no_access) }
       let(:arguments) { ['192.168.0.5', '10.0.1.50'] }
       let(:options) { { force: true } }
 
       it 'removes blocks for IP ranges that cover given IP(s)' do
         cli.invoke(:remove, arguments, options)
 
-        expect(IpBlock.where(id: [block1.id, block2.id])).to_not exist
+        expect(IpBlock.where(id: [first_block.id, second_block.id])).to_not exist
       end
 
       it 'does not remove other IP ranges' do
         cli.invoke(:remove, arguments, options)
 
-        expect(IpBlock.where(id: block3.id)).to exist
+        expect(IpBlock.where(id: third_block.id)).to exist
       end
     end
 
@@ -245,22 +245,22 @@ RSpec.describe Mastodon::IpBlocksCLI do
   end
 
   describe '#export' do
-    let(:block1) { IpBlock.create(ip: '192.168.0.0/24', severity: :no_access) }
-    let(:block2) { IpBlock.create(ip: '10.0.0.0/16', severity: :no_access) }
-    let(:block3) { IpBlock.create(ip: '127.0.0.1', severity: :sign_up_block) }
+    let(:first_block) { IpBlock.create(ip: '192.168.0.0/24', severity: :no_access) }
+    let(:second_block) { IpBlock.create(ip: '10.0.0.0/16', severity: :no_access) }
+    let(:third_block) { IpBlock.create(ip: '127.0.0.1', severity: :sign_up_block) }
 
     context 'when --format option is set to "plain"' do
       let(:options) { { format: 'plain' } }
 
       it 'exports blocked IPs with "no_access" severity in plain format' do
         expect { cli.invoke(:export, nil, options) }.to output(
-          a_string_including("#{block1.ip}/#{block1.ip.prefix}\n#{block2.ip}/#{block2.ip.prefix}")
+          a_string_including("#{first_block.ip}/#{first_block.ip.prefix}\n#{second_block.ip}/#{second_block.ip.prefix}")
         ).to_stdout
       end
 
       it 'does not export bloked IPs with different severities' do
         expect { cli.invoke(:export, nil, options) }.to_not output(
-          a_string_including("#{block3.ip}/#{block1.ip.prefix}")
+          a_string_including("#{third_block.ip}/#{first_block.ip.prefix}")
         ).to_stdout
       end
     end
@@ -270,13 +270,13 @@ RSpec.describe Mastodon::IpBlocksCLI do
 
       it 'exports blocked IPs with "no_access" severity in plain format' do
         expect { cli.invoke(:export, nil, options) }.to output(
-          a_string_including("deny #{block1.ip}/#{block1.ip.prefix};\ndeny #{block2.ip}/#{block2.ip.prefix};")
+          a_string_including("deny #{first_block.ip}/#{first_block.ip.prefix};\ndeny #{second_block.ip}/#{second_block.ip.prefix};")
         ).to_stdout
       end
 
       it 'does not export bloked IPs with different severities' do
         expect { cli.invoke(:export, nil, options) }.to_not output(
-          a_string_including("deny #{block3.ip}/#{block1.ip.prefix};")
+          a_string_including("deny #{third_block.ip}/#{first_block.ip.prefix};")
         ).to_stdout
       end
     end
@@ -284,7 +284,7 @@ RSpec.describe Mastodon::IpBlocksCLI do
     context 'when --format option is not provided' do
       it 'exports blocked IPs in plain format by default' do
         expect { cli.export }.to output(
-          a_string_including("#{block1.ip}/#{block1.ip.prefix}\n#{block2.ip}/#{block2.ip.prefix}")
+          a_string_including("#{first_block.ip}/#{first_block.ip.prefix}\n#{second_block.ip}/#{second_block.ip.prefix}")
         ).to_stdout
       end
     end
