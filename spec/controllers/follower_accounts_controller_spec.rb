@@ -6,12 +6,12 @@ describe FollowerAccountsController do
   render_views
 
   let(:alice) { Fabricate(:account) }
-  let(:follower0) { Fabricate(:account) }
-  let(:follower1) { Fabricate(:account) }
+  let(:first_follower) { Fabricate(:account) }
+  let(:second_follower) { Fabricate(:account) }
 
   describe 'GET #index' do
-    let!(:follow0) { follower0.follow!(alice) }
-    let!(:follow1) { follower1.follow!(alice) }
+    let!(:first_follow) { first_follower.follow!(alice) }
+    let!(:second_follow) { second_follower.follow!(alice) }
 
     context 'when format is html' do
       subject(:response) { get :index, params: { account_username: alice.username, format: :html } }

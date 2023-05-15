@@ -254,82 +254,82 @@ RSpec.describe Status do
   end
 
   describe '.tagged_with' do
-    let(:tag1)     { Fabricate(:tag) }
-    let(:tag2)     { Fabricate(:tag) }
-    let(:tag3)     { Fabricate(:tag) }
-    let!(:status1) { Fabricate(:status, tags: [tag1]) }
-    let!(:status2) { Fabricate(:status, tags: [tag2]) }
-    let!(:status3) { Fabricate(:status, tags: [tag3]) }
-    let!(:status4) { Fabricate(:status, tags: []) }
-    let!(:status5) { Fabricate(:status, tags: [tag1, tag2, tag3]) }
+    let(:first_tag) { Fabricate(:tag) }
+    let(:second_tag) { Fabricate(:tag) }
+    let(:third_tag)     { Fabricate(:tag) }
+    let!(:first_status) { Fabricate(:status, tags: [first_tag]) }
+    let!(:second_status) { Fabricate(:status, tags: [second_tag]) }
+    let!(:third_status) { Fabricate(:status, tags: [third_tag]) }
+    let!(:fourth_status) { Fabricate(:status, tags: []) }
+    let!(:fifth_status) { Fabricate(:status, tags: [first_tag, second_tag, third_tag]) }
 
     context 'when given one tag' do
       it 'returns the expected statuses' do
-        expect(Status.tagged_with([tag1.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status1.id, status5.id)
-        expect(Status.tagged_with([tag2.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status2.id, status5.id)
-        expect(Status.tagged_with([tag3.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status3.id, status5.id)
+        expect(Status.tagged_with([first_tag.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(first_status.id, fifth_status.id)
+        expect(Status.tagged_with([second_tag.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(second_status.id, fifth_status.id)
+        expect(Status.tagged_with([third_tag.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(third_status.id, fifth_status.id)
       end
     end
 
     context 'when given multiple tags' do
       it 'returns the expected statuses' do
-        expect(Status.tagged_with([tag1.id, tag2.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status1.id, status2.id, status5.id)
-        expect(Status.tagged_with([tag1.id, tag3.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status1.id, status3.id, status5.id)
-        expect(Status.tagged_with([tag2.id, tag3.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status2.id, status3.id, status5.id)
+        expect(Status.tagged_with([first_tag.id, second_tag.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(first_status.id, second_status.id, fifth_status.id)
+        expect(Status.tagged_with([first_tag.id, third_tag.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(first_status.id, third_status.id, fifth_status.id)
+        expect(Status.tagged_with([second_tag.id, third_tag.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(second_status.id, third_status.id, fifth_status.id)
       end
     end
   end
 
   describe '.tagged_with_all' do
-    let(:tag1)     { Fabricate(:tag) }
-    let(:tag2)     { Fabricate(:tag) }
-    let(:tag3)     { Fabricate(:tag) }
-    let!(:status1) { Fabricate(:status, tags: [tag1]) }
-    let!(:status2) { Fabricate(:status, tags: [tag2]) }
-    let!(:status3) { Fabricate(:status, tags: [tag3]) }
-    let!(:status4) { Fabricate(:status, tags: []) }
-    let!(:status5) { Fabricate(:status, tags: [tag1, tag2]) }
+    let(:first_tag) { Fabricate(:tag) }
+    let(:second_tag) { Fabricate(:tag) }
+    let(:third_tag)     { Fabricate(:tag) }
+    let!(:first_status) { Fabricate(:status, tags: [first_tag]) }
+    let!(:second_status) { Fabricate(:status, tags: [second_tag]) }
+    let!(:third_status) { Fabricate(:status, tags: [third_tag]) }
+    let!(:fourth_status) { Fabricate(:status, tags: []) }
+    let!(:fifth_status) { Fabricate(:status, tags: [first_tag, second_tag]) }
 
     context 'when given one tag' do
       it 'returns the expected statuses' do
-        expect(Status.tagged_with_all([tag1.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status1.id, status5.id)
-        expect(Status.tagged_with_all([tag2.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status2.id, status5.id)
-        expect(Status.tagged_with_all([tag3.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status3.id)
+        expect(Status.tagged_with_all([first_tag.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(first_status.id, fifth_status.id)
+        expect(Status.tagged_with_all([second_tag.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(second_status.id, fifth_status.id)
+        expect(Status.tagged_with_all([third_tag.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(third_status.id)
       end
     end
 
     context 'when given multiple tags' do
       it 'returns the expected statuses' do
-        expect(Status.tagged_with_all([tag1.id, tag2.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status5.id)
-        expect(Status.tagged_with_all([tag1.id, tag3.id]).reorder(:id).pluck(:id).uniq).to eq []
-        expect(Status.tagged_with_all([tag2.id, tag3.id]).reorder(:id).pluck(:id).uniq).to eq []
+        expect(Status.tagged_with_all([first_tag.id, second_tag.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(fifth_status.id)
+        expect(Status.tagged_with_all([first_tag.id, third_tag.id]).reorder(:id).pluck(:id).uniq).to eq []
+        expect(Status.tagged_with_all([second_tag.id, third_tag.id]).reorder(:id).pluck(:id).uniq).to eq []
       end
     end
   end
 
   describe '.tagged_with_none' do
-    let(:tag1)     { Fabricate(:tag) }
-    let(:tag2)     { Fabricate(:tag) }
-    let(:tag3)     { Fabricate(:tag) }
-    let!(:status1) { Fabricate(:status, tags: [tag1]) }
-    let!(:status2) { Fabricate(:status, tags: [tag2]) }
-    let!(:status3) { Fabricate(:status, tags: [tag3]) }
-    let!(:status4) { Fabricate(:status, tags: []) }
-    let!(:status5) { Fabricate(:status, tags: [tag1, tag2, tag3]) }
+    let(:first_tag) { Fabricate(:tag) }
+    let(:second_tag) { Fabricate(:tag) }
+    let(:third_tag)     { Fabricate(:tag) }
+    let!(:first_status) { Fabricate(:status, tags: [first_tag]) }
+    let!(:second_status) { Fabricate(:status, tags: [second_tag]) }
+    let!(:third_status) { Fabricate(:status, tags: [third_tag]) }
+    let!(:fourth_status) { Fabricate(:status, tags: []) }
+    let!(:fifth_status) { Fabricate(:status, tags: [first_tag, second_tag, third_tag]) }
 
     context 'when given one tag' do
       it 'returns the expected statuses' do
-        expect(Status.tagged_with_none([tag1.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status2.id, status3.id, status4.id)
-        expect(Status.tagged_with_none([tag2.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status1.id, status3.id, status4.id)
-        expect(Status.tagged_with_none([tag3.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status1.id, status2.id, status4.id)
+        expect(Status.tagged_with_none([first_tag.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(second_status.id, third_status.id, fourth_status.id)
+        expect(Status.tagged_with_none([second_tag.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(first_status.id, third_status.id, fourth_status.id)
+        expect(Status.tagged_with_none([third_tag.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(first_status.id, second_status.id, fourth_status.id)
       end
     end
 
     context 'when given multiple tags' do
       it 'returns the expected statuses' do
-        expect(Status.tagged_with_none([tag1.id, tag2.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status3.id, status4.id)
-        expect(Status.tagged_with_none([tag1.id, tag3.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status2.id, status4.id)
-        expect(Status.tagged_with_none([tag2.id, tag3.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(status1.id, status4.id)
+        expect(Status.tagged_with_none([first_tag.id, second_tag.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(third_status.id, fourth_status.id)
+        expect(Status.tagged_with_none([first_tag.id, third_tag.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(second_status.id, fourth_status.id)
+        expect(Status.tagged_with_none([second_tag.id, third_tag.id]).reorder(:id).pluck(:id).uniq).to contain_exactly(first_status.id, fourth_status.id)
       end
     end
   end

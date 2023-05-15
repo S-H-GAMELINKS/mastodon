@@ -8,11 +8,11 @@ describe ActivityPub::NoteSerializer do
   let!(:account) { Fabricate(:account) }
   let!(:other)   { Fabricate(:account) }
   let!(:parent)  { Fabricate(:status, account: account, visibility: :public) }
-  let!(:reply1)  { Fabricate(:status, account: account, thread: parent, visibility: :public) }
-  let!(:reply2)  { Fabricate(:status, account: account, thread: parent, visibility: :public) }
-  let!(:reply3)  { Fabricate(:status, account: other, thread: parent, visibility: :public) }
-  let!(:reply4)  { Fabricate(:status, account: account, thread: parent, visibility: :public) }
-  let!(:reply5)  { Fabricate(:status, account: account, thread: parent, visibility: :direct) }
+  let!(:first_reply) { Fabricate(:status, account: account, thread: parent, visibility: :public) }
+  let!(:second_reply) { Fabricate(:status, account: account, thread: parent, visibility: :public) }
+  let!(:third_reply) { Fabricate(:status, account: other, thread: parent, visibility: :public) }
+  let!(:fourth_reply) { Fabricate(:status, account: account, thread: parent, visibility: :public) }
+  let!(:fifth_reply) { Fabricate(:status, account: account, thread: parent, visibility: :direct) }
 
   before(:each) do
     @serialization = ActiveModelSerializers::SerializableResource.new(parent, serializer: ActivityPub::NoteSerializer, adapter: ActivityPub::Adapter)
@@ -31,14 +31,14 @@ describe ActivityPub::NoteSerializer do
   end
 
   it 'includes public self-replies in its replies collection' do
-    expect(subject['replies']['first']['items']).to include(reply1.uri, reply2.uri, reply4.uri)
+    expect(subject['replies']['first']['items']).to include(first_reply.uri, second_reply.uri, fourth_reply.uri)
   end
 
   it 'does not include replies from others in its replies collection' do
-    expect(subject['replies']['first']['items']).to_not include(reply3.uri)
+    expect(subject['replies']['first']['items']).to_not include(third_reply.uri)
   end
 
   it 'does not include replies with direct visibility in its replies collection' do
-    expect(subject['replies']['first']['items']).to_not include(reply5.uri)
+    expect(subject['replies']['first']['items']).to_not include(fifth_reply.uri)
   end
 end
