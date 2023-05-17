@@ -163,3 +163,5 @@ gem 'net-smtp'
 gem 'jwt', '~> 2.5'
 gem 'net-http', '~> 0.3.2'
 gem 'rubyzip', '~> 2.3'
+
+gem 'hcaptcha', '~> 7.1'
