@@ -2,8 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.described_class UnfollowAllService, type: :service do
-  subject { UnfollowAllService.new }
+RSpec.describe UnfollowAllService, type: :service do
+  subject { described_class.new }
 
   let(:sender) { Fabricate(:account, username: 'jhon') }
 
