@@ -117,5 +117,18 @@ RSpec.describe PostStatusUpdatedWithVisibilityService, type: :service do
       expect(result[1]).to be 'public'
       expect(result[2]).to be 'CW'
     end
+
+    # textがnilの場合は例外が発生する
+    it 'unexpected mention error when given text is nil' do
+      jhon.user.settings['portfolio_default_hashtag_flag'] = true
+      jhon.user.settings['portfolio_default_hashtag'] = ''
+
+      expect { subject.call(jhon.user, text: nil, visibility: 'portfolio', spoiler_text: '') }.to raise_error ActiveRecord::RecordInvalid
+    end
+
+    # ユーザーがnilの場合は例外が発生する
+    it 'unexpected mention error when given user is nil' do
+      expect { subject.call(nil, text: 'HALO is Awesome', visibility: 'portfolio', spoiler_text: '') }.to raise_error ActiveRecord::RecordInvalid
+    end
   end
 end
