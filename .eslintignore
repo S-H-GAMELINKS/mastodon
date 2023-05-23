@@ -11,3 +11,6 @@
 /tmp/**
 /vendor/**
 !.eslintrc.js
+cypress.config.ts
+cypress/**
+

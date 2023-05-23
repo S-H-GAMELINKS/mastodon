@@ -66,3 +66,7 @@ docker-compose.override.yml
 
 # GoogleCloudVision Key
 key.json
+
+# cypress ignore file
+cypress.env.json
+cypress/videos
