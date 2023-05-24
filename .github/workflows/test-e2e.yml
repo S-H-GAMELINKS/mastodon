@@ -160,13 +160,11 @@ jobs:
         env:
           CYPRESS_email: ${{ secrets.USER_EMAIL }}
           CYPRESS_password: ${{ secrets.USER_PASSWORD }}
-          CYPRESS_PROJECT_ID: ${{secrets.CYPRESS_PROJECT_ID}}
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           start: |
             bundle exec foreman start -f Procfile.dev
           wait-on: 'http://localhost:3000'
-          record: true
+          record: false
           wait-on-timeout: 300
-          command: yarn run cypress run --record --config-file cypress.config.ts
+          command: yarn run cypress run --config-file cypress.config.ts
