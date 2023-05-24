@@ -140,6 +140,8 @@ group :test do
 
   # Stub web requests for specs
   gem 'webmock', '~> 3.18'
+
+  gem 'foreman'
 end
 
 group :development do

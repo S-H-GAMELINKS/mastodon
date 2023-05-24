@@ -286,6 +286,7 @@ GEM
       fog-core (>= 1.45, <= 2.1.0)
       fog-json (>= 1.0)
       ipaddress (>= 0.8)
+    foreman (0.87.2)
     formatador (0.3.0)
     fugit (1.8.1)
       et-orbi (~> 1, >= 1.2.7)
@@ -806,6 +807,7 @@ DEPENDENCIES
   fastimage
   fog-core (<= 2.4.0)
   fog-openstack (~> 0.3)
+  foreman
   fuubar (~> 2.5)
   haml-rails (~> 2.0)
   haml_lint
