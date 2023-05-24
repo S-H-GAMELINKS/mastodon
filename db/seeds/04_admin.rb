@@ -12,7 +12,7 @@ if Rails.env.development? && ENV.fetch('E2E', nil)
   account.save(validate: false)
 
   email = 'gamelinks007@gmail.com'
-  password = 'Jhon117'
+  password = 'MasterChief117'
 
   User.where(email: email).first_or_initialize(email: email, password: password, password_confirmation: password, confirmed_at: Time.now.utc, role: UserRole.find_by(name: 'Owner'), account: account, agreement: true, approved: true, locale: 'ja').save!
 

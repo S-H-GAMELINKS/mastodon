@@ -158,7 +158,7 @@ jobs:
         uses: cypress-io/github-action@v5
         env:
           CYPRESS_email: gamelinks007@gmail.com
-          CYPRESS_password: Jhon117
+          CYPRESS_password: MasterChief117
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           start: |
