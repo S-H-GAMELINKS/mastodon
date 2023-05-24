@@ -7,12 +7,12 @@ if Rails.env.development?
   User.where(email: "admin@#{domain}").first_or_initialize(email: "admin@#{domain}", password: 'mastodonadmin', password_confirmation: 'mastodonadmin', confirmed_at: Time.now.utc, role: UserRole.find_by(name: 'Owner'), account: admin, agreement: true, approved: true).save!
 end
 
-email = ENV.fetch('USER_EMAIL', nil)
-password = ENV.fetch('USER_PASSWORD', nil)
-
-if Rails.env.development? && email && password
+if Rails.env.development? && ENV.fetch('E2E', nil)
   account = Account.where(username: 'S_H_').first_or_initialize(username: 'S_H_')
   account.save(validate: false)
+
+  email = 'gamelinks007@gmail.com'
+  password = 'Jhon117'
 
   User.where(email: email).first_or_initialize(email: email, password: password, password_confirmation: password, confirmed_at: Time.now.utc, role: UserRole.find_by(name: 'Owner'), account: account, agreement: true, approved: true, locale: 'ja').save!
 

@@ -111,8 +111,7 @@ jobs:
       PAM_CONTROLLED_SERVICE: pam_test_controlled
       BUNDLE_WITH: 'pam_authentication test'
       CI_JOBS: ${{ matrix.ci_job }}/4
-      USER_EMAIL: ${{ secrets.USER_EMAIL }}
-      USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
+      E2E: true
 
     strategy:
       fail-fast: false
@@ -158,8 +157,8 @@ jobs:
       - name: Cypress run with env
         uses: cypress-io/github-action@v5
         env:
-          CYPRESS_email: ${{ secrets.USER_EMAIL }}
-          CYPRESS_password: ${{ secrets.USER_PASSWORD }}
+          CYPRESS_email: gamelinks007@gmail.com
+          CYPRESS_password: Jhon117
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           start: |
