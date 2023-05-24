@@ -1,20 +1,20 @@
 // ログイン周りのE2Eテスト
 describe('access to login page', () => {
   beforeEach(() => {
-    cy.visit('/auth/sign_in');
+    cy.visit('/auth/sign_in?lang=ja');
   });
 
   // ログイン画面のURLチェック
   it('url check', () => {
     cy.url().should('include', '/auth/sign_in');
-    cy.url().should('eq', 'http://localhost:3000/auth/sign_in');
+    cy.url().should('eq', 'http://localhost:3000/auth/sign_in?lang=ja');
   });
 
   // ログイン画面内にあるテキストのチェック
   it('include login page text', () => {
-    cy.contains('Login to localhost');
-    cy.contains('E-mail address');
-    cy.contains('Password');
+    cy.contains('localhostにログイン');
+    cy.contains('メールアドレス');
+    cy.contains('パスワード');
   });
 
   // 実際にログイン
