@@ -106,4 +106,35 @@ describe('custom theme change test', () => {
     // タイムライン上に投稿した内容が表示されている
     cy.contains('にゃーん');
   });
+
+  // CWを設定し投稿の公開範囲「にゃーん」で投稿できる
+  it('can post nyan visibility', () => {
+    // 投稿画面へ遷移
+    cy.visit('/publish');
+
+    // 公開範囲を選択
+    cy.get('.privacy-dropdown__value-icon > .fa').click();
+
+    // 公開範囲「にゃーん」を選択
+    cy.get('[data-index="nyan"]').click();
+
+    // 公開範囲「にゃーん」を選択した際の表示をチェック
+    cy.contains('公開範囲が「にゃーん」になっています。');
+    cy.contains('どんなことを吐き出したい？');
+
+    // CWを設定
+    cy.get('[title="本文は隠されていません"]').click();
+    cy.get('#cw-spoiler-input').type('CW');
+
+    // 公開範囲「にゃーん」で投稿
+    cy.get('.autosuggest-textarea__textarea').type('HALOやりたい');
+    cy.get('.button').click();
+
+    // ホームタイムラインへ遷移し、リロード
+    cy.visit('/home');
+    cy.reload();
+
+    // タイムライン上に投稿した内容が表示されている
+    cy.contains('にゃーん');
+  });
 });
