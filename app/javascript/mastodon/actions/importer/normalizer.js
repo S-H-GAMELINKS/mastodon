@@ -1,7 +1,8 @@
 import escapeTextContentForBrowser from 'escape-html';
+
 import emojify, { emojifyStatus } from '../../features/emoji/emoji';
-import { unescapeHTML } from '../../utils/html';
 import { expandSpoilers, domain } from '../../initial_state';
+import { unescapeHTML } from '../../utils/html';
 
 const domParser = new DOMParser();
 
