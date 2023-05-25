@@ -8,10 +8,9 @@ describe('feature tag timeline', () => {
   });
 
   // アカウントの詳細画面で注目のハッシュタグタイムラインが項目としてあるかをチェック
-  it('include feature tag timeline', () => {
+  it('feature tag timeline exist', () => {
     cy.visit('/@S_H_');
-    cy.get('.feature_tag_timeline');
-    cy.contains('HALO');
+    cy.get('.feature_tag_timeline').contains('HALO');
   });
 
   // ログイン後にアカウントの詳細画面で注目のハッシュタグタイムラインが項目としてあるかをチェック
@@ -23,12 +22,10 @@ describe('feature tag timeline', () => {
 
     // アカウントの詳細画面で注目のハッシュタグタイムラインが項目としてあるかをチェック
     cy.visit('/@S_H_');
-    cy.get('.feature_tag_timeline');
-    cy.contains('HALO');
+    cy.get('.feature_tag_timeline').contains('HALO');
 
     // 注目のハッシュタグタイムラインが表示されるかをチェック
     cy.visit('/@S_H_/tagged/HALO');
-    cy.get('.feature_tag_timeline');
-    cy.contains('HALO');
+    cy.get('.feature_tag_timeline').contains('HALO');
   });
 });

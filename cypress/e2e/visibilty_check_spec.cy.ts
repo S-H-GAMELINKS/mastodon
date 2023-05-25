@@ -60,8 +60,12 @@ describe('custom theme change test', () => {
     cy.reload();
 
     // タイムライン上に投稿した内容が表示されている
-    cy.contains('HALOやりたい');
-    cy.contains('CreatodonFolio');
+    cy.get(
+      '[aria-posinset="1"] > [tabindex="-1"] > .status__wrapper > .status'
+    ).contains('HALOやりたい');
+    cy.get(
+      '[aria-posinset="1"] > [tabindex="-1"] > .status__wrapper > .status'
+    ).contains('CreatodonFolio');
   });
 
   // 投稿の公開範囲「にゃーん」が選択できる
@@ -104,11 +108,13 @@ describe('custom theme change test', () => {
     cy.reload();
 
     // タイムライン上に投稿した内容が表示されている
-    cy.contains('にゃーん');
+    cy.get(
+      '[aria-posinset="1"] > [tabindex="-1"] > .status__wrapper > .status'
+    ).contains('にゃーん');
   });
 
   // CWを設定し投稿の公開範囲「にゃーん」で投稿できる
-  it('can post nyan visibility', () => {
+  it('can post nyan visibility with cw', () => {
     // 投稿画面へ遷移
     cy.visit('/publish');
 
@@ -135,6 +141,11 @@ describe('custom theme change test', () => {
     cy.reload();
 
     // タイムライン上に投稿した内容が表示されている
-    cy.contains('にゃーん');
+    cy.get(
+      '[aria-posinset="1"] > [tabindex="-1"] > .status__wrapper > .status'
+    ).contains('にゃーん');
+    cy.get(
+      '[aria-posinset="1"] > [tabindex="-1"] > .status__wrapper > .status'
+    ).contains('もっと見る');
   });
 });
