@@ -150,4 +150,4 @@ jobs:
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'
 
-      - run: bundle exec rake rspec_chunked
+      - run: bundle exec rake rspec
