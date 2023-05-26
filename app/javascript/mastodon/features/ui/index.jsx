@@ -8,6 +8,7 @@ import { Redirect, Route, withRouter } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
+import axios from 'axios'
 import { debounce } from 'lodash';
 import { HotKeys } from 'react-hotkeys';
 
@@ -69,6 +70,35 @@ import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
 // Without this it ends up in ~8 very commonly used bundles.
 import '../../components/status';
+
+
+
+const setLocalStorageVersion = (version) => {
+  localStorage.setItem('VERSION', version)
+}
+
+const getLocalStorageRevision = () => {
+  if (!localStorage.getItem('VERSION')) {
+    return ''
+  }
+  return localStorage.getItem('VERSION')
+}
+
+const checkRevision = () => {
+  axios.get('/api/v2/instance').then(response => {
+
+    const current_version = response.data.version;
+
+    const user_cached_version = getLocalStorageRevision();
+
+    if (user_cached_version !== current_version) {
+      alert('新しいリリースが出ています。自動的にリロードを行います。');
+      setLocalStorageVersion(current_version);
+      location.reload(true)
+    }
+  }).catch(error => { // eslint-disable-line
+  });
+}
 
 const messages = defineMessages({
   beforeUnload: { id: 'ui.beforeunload', defaultMessage: 'Your draft will be lost if you leave Mastodon.' },
@@ -169,6 +199,7 @@ class SwitchingColumnsArea extends PureComponent {
       } else {
         redirect = <Redirect from='/' to='/getting-started' exact />;
       }
+      checkRevision();
     } else if (singleUserMode && owner && initialState?.accounts[owner]) {
       redirect = <Redirect from='/' to={`/@${initialState.accounts[owner].username}`} exact />;
     } else if (showTrends && trendsAsLanding) {
