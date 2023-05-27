@@ -142,6 +142,9 @@ group :test do
   gem 'webmock', '~> 3.18'
 
   gem 'foreman'
+
+  # for parallel test for GitHub Actions
+  gem 'parallel_tests'
 end
 
 group :development do
