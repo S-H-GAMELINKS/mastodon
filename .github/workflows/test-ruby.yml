@@ -147,7 +147,10 @@ jobs:
           ruby-version: ${{ matrix.ruby-version}}
           bundler-cache: true
 
-      - name: Load database schema
-        run: './bin/rails db:create db:schema:load db:seed'
+      - name: Set up database
+        run: |
+          bundle exec rake parallel:drop
+          bundle exec rake parallel:create
+          bundle exec rake parallel:migrate
 
       - run: bundle exec rake parallel:spec
