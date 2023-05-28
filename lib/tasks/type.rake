@@ -18,7 +18,7 @@ using(Module.new do
 
         FileUtils.mkdir_p("type/#{dir_name}")
 
-        File.write("type/#{file}", result)
+        File.write("type/#{file}s", result)
       end
     end
   end
