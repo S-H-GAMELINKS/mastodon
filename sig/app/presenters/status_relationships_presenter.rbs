@@ -1,0 +1,17 @@
+# TypeProf 0.21.7
+
+# Classes
+class StatusRelationshipsPresenter
+  PINNABLE_VISIBILITIES: [String, String, String]
+
+  attr_reader reblogs_map: Hash[untyped, untyped]
+  attr_reader favourites_map: Hash[untyped, untyped]
+  attr_reader mutes_map: Hash[untyped, untyped]
+  attr_reader pins_map: Hash[untyped, untyped]
+  attr_reader bookmarks_map: Hash[untyped, untyped]
+  attr_reader filters_map: Hash[untyped, untyped]
+  def initialize: (untyped statuses, ?nil current_account_id, **untyped) -> void
+
+  private
+  def build_filters_map: (untyped statuses, untyped current_account_id) -> untyped
+end

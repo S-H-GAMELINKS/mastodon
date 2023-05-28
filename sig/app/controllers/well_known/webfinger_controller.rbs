@@ -1,0 +1,19 @@
+# TypeProf 0.21.7
+
+# Classes
+module WellKnown
+  class WebfingerController
+    @account: untyped
+
+    def show: -> untyped
+
+    private
+    def set_account: -> untyped
+    def username_from_resource: -> untyped
+    def resource_param: -> untyped
+    def check_account_suspension: -> nil
+    def gone: -> untyped
+    def bad_request: -> untyped
+    def not_found: -> untyped
+  end
+end

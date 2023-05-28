@@ -1,0 +1,25 @@
+# TypeProf 0.21.7
+
+# Classes
+class EmailDomainBlock
+  @history: untyped
+
+  attr_accessor other_domains: untyped
+  def to_log_human_identifier: -> untyped
+  def history: -> untyped
+  def self.block?: (untyped domain_or_domains, ?attempt_ip: nil) -> bool
+
+  class Matcher
+    @uris: Array[nil]
+    @attempt_ip: nil
+
+    def initialize: (untyped domain_or_domains, ?attempt_ip: nil) -> void
+    def match?: -> bool
+
+    private
+    def invalid_uri?: -> bool
+    def blocking?: -> untyped
+    def domains_with_variants: -> Array[nil]
+    def extract_uris: (untyped domain_or_domains) -> Array[nil]
+  end
+end

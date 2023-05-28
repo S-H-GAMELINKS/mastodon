@@ -1,0 +1,10 @@
+# TypeProf 0.21.7
+
+# Classes
+class Ed25519SignatureValidator
+  def validate_each: (untyped record, untyped attribute, untyped value) -> nil
+
+  private
+  def verified?: (untyped verify_key, untyped signature, untyped message) -> false
+  def option_to_value: (untyped record, :message | :verify_key key) -> untyped
+end

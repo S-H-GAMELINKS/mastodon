@@ -1,0 +1,18 @@
+# TypeProf 0.21.7
+
+# Classes
+class ClearDomainMediaService
+  attr_reader domain_block: untyped
+  def call: (untyped domain_block) -> nil
+
+  private
+  def invalidate_association_caches!: (Array[untyped] status_ids) -> untyped
+  def clear_media!: -> untyped
+  def clear_account_images!: -> untyped
+  def clear_account_attachments!: -> untyped
+  def clear_emojos!: -> untyped
+  def blocked_domain: -> untyped
+  def blocked_domain_accounts: -> untyped
+  def media_from_blocked_domain: -> untyped
+  def emojis_from_blocked_domains: -> untyped
+end

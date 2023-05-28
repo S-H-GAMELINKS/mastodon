@@ -1,0 +1,13 @@
+# TypeProf 0.21.7
+
+# Classes
+module AccountAvatar
+  IMAGE_MIME_TYPES: [String, String, String, String]
+  LIMIT: untyped
+
+  def avatar_original_url: -> untyped
+  def avatar_static_url: -> untyped
+
+  private
+  def avatar_styles: (untyped file) -> {original: {geometry: String, file_geometry_parser: untyped}, static: {geometry: String, format: String, convert_options: String, file_geometry_parser: untyped}}
+end

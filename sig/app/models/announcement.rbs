@@ -1,0 +1,22 @@
+# TypeProf 0.21.7
+
+# Classes
+class Announcement
+  @mentions: untyped
+  @statuses: Array[untyped]
+  @tags: untyped
+  @emojis: untyped
+
+  def to_log_human_identifier: -> untyped
+  def publish!: -> untyped
+  def unpublish!: -> untyped
+  def time_range?: -> untyped
+  def mentions: -> untyped
+  def statuses: -> Array[untyped]
+  def tags: -> untyped
+  def emojis: -> untyped
+  def reactions: (?nil account) -> untyped
+
+  private
+  def set_published: -> Time?
+end

@@ -1,0 +1,12 @@
+# TypeProf 0.21.7
+
+# Classes
+module Expireable
+  @expires_in: untyped
+
+  def expires_in: -> nil
+  def expires_in=: (untyped interval) -> untyped
+  def expire!: -> untyped
+  def expired?: -> untyped
+  def expires?: -> untyped
+end

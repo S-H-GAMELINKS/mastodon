@@ -1,0 +1,22 @@
+# TypeProf 0.21.7
+
+# Classes
+class BackupService
+  CHUNK_SIZE: untyped
+
+  attr_reader account: untyped
+  attr_reader backup: untyped
+  def call: (untyped backup) -> untyped
+
+  private
+  def build_outbox_json!: (untyped file) -> untyped
+  def build_archive!: -> untyped
+  def dump_media_attachments!: (untyped zipfile) -> untyped
+  def dump_outbox!: (untyped zipfile) -> untyped
+  def dump_actor!: (untyped zipfile) -> untyped
+  def dump_likes!: (untyped zipfile) -> untyped
+  def dump_bookmarks!: (untyped zipfile) -> untyped
+  def collection_presenter: -> untyped
+  def serialize: (untyped object, untyped serializer) -> untyped
+  def download_to_zip: (untyped zipfile, untyped attachment, String filename) -> untyped
+end

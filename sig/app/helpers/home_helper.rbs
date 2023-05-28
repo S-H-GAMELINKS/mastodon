@@ -1,0 +1,10 @@
+# TypeProf 0.21.7
+
+# Classes
+module HomeHelper
+  def default_props: -> {locale: untyped}
+  def account_link_to: (untyped account, ?String button, ?path: nil) -> untyped
+  def obscured_counter: (untyped count) -> String
+  def custom_field_classes: (untyped field) -> String
+  def sign_up_message: -> nil
+end

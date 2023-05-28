@@ -1,0 +1,23 @@
+# TypeProf 0.21.7
+
+# Classes
+class EmojiFormatter
+  DISALLOWED_BOUNDING_REGEX: Regexp
+  @emoji_map: untyped
+
+  attr_reader html: untyped
+  attr_reader custom_emojis: untyped
+  attr_reader options: Hash[untyped, untyped]
+  def initialize: (untyped html, untyped custom_emojis, ?Hash[untyped, untyped] options) -> void
+  def to_s: -> untyped
+
+  private
+  def emoji_map: -> untyped
+  def count_tag_nesting: (untyped tag) -> Integer
+  def image_for_emoji: (untyped shortcode, untyped emoji) -> untyped
+  def image_attributes: -> {rel: String, draggable: false, width: Integer, height: Integer, class: String, style: nil}
+  def image_data_attributes: (untyped original_url, untyped static_url) -> {original: untyped, static: untyped}?
+  def image_class_names: -> String
+  def image_style: -> nil
+  def animate?: -> bool
+end

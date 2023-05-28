@@ -1,0 +1,12 @@
+# TypeProf 0.21.7
+
+# Classes
+class SiteUpload
+  STYLES: {thumbnail: Hash[untyped, untyped], mascot: Hash[untyped, untyped]}
+
+  def cache_key: -> String
+
+  private
+  def set_meta: -> {width: untyped, height: untyped}?
+  def clear_cache: -> untyped
+end

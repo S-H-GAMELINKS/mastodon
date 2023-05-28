@@ -1,0 +1,18 @@
+# TypeProf 0.21.7
+
+# Classes
+class InvitesController
+  @invites: untyped
+  @invite: untyped
+  @body_classes: String
+
+  def index: -> untyped
+  def create: -> untyped
+  def destroy: -> untyped
+
+  private
+  def invites: -> untyped
+  def resource_params: -> untyped
+  def set_body_classes: -> String
+  def set_cache_headers: -> untyped
+end

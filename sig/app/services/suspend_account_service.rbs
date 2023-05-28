@@ -1,0 +1,17 @@
+# TypeProf 0.21.7
+
+# Classes
+class SuspendAccountService
+  @account: untyped
+  @signed_activity_json: untyped
+
+  def call: (untyped account) -> nil
+
+  private
+  def reject_remote_follows!: -> nil
+  def distribute_update_actor!: -> nil
+  def unmerge_from_home_timelines!: -> untyped
+  def unmerge_from_list_timelines!: -> untyped
+  def privatize_media_attachments!: -> untyped
+  def signed_activity_json: -> untyped
+end

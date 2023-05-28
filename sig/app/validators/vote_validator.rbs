@@ -1,0 +1,16 @@
+# TypeProf 0.21.7
+
+# Classes
+class VoteValidator
+  def validate: (untyped vote) -> nil
+
+  private
+  def additional_voting_not_allowed?: (untyped vote) -> untyped
+  def poll_multiple_and_already_voted?: (untyped vote) -> untyped
+  def poll_non_multiple_and_already_voted?: (untyped vote) -> untyped
+  def invalid_choice?: (untyped vote) -> untyped
+  def self_vote?: (untyped vote) -> untyped
+  def already_voted_for_same_choice_on_multiple_poll?: (untyped vote) -> untyped
+  def already_voted_on_non_multiple_poll?: (untyped vote) -> untyped
+  def account_votes_on_same_poll: (untyped vote) -> untyped
+end

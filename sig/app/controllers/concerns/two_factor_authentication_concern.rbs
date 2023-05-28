@@ -1,0 +1,16 @@
+# TypeProf 0.21.7
+
+# Classes
+module TwoFactorAuthenticationConcern
+  @body_classes: String
+  @webauthn_enabled: untyped
+  @scheme_type: String
+
+  def two_factor_enabled?: -> untyped
+  def valid_webauthn_credential?: (untyped user, untyped webauthn_credential) -> false
+  def valid_otp_attempt?: (untyped user) -> false
+  def authenticate_with_two_factor: -> nil
+  def authenticate_with_two_factor_via_webauthn: (untyped user) -> untyped
+  def authenticate_with_two_factor_via_otp: (untyped user) -> untyped
+  def prompt_for_two_factor: (untyped user) -> untyped
+end

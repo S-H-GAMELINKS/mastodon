@@ -1,0 +1,43 @@
+# TypeProf 0.21.7
+
+# Classes
+module CacheConcern
+  def enforce_cache_control!: -> nil
+  def render_with_cache: (**untyped) -> untyped
+  def cache_collection: (untyped raw, untyped klass) -> Array[untyped]
+  def cache_collection_paginated_by_id: (untyped raw, untyped klass, untyped limit, untyped options) -> Array[untyped]
+  def vary_by: (untyped value, **untyped) -> untyped
+
+  module ActiveRecordCoder
+    EMPTY_HASH: Hash[untyped, untyped]
+
+    def self.dump: (untyped record) -> (Array[(Array[Integer | true] | Integer)?])
+    def self.load: (untyped payload) -> nil
+    def self.serialize_associations: (untyped record, InstanceTracker instances) -> ((Integer | [Integer, untyped])?)
+    def self.deserialize_associations: (untyped payload, InstanceTracker instances) -> nil
+    def self.serialize_record: (untyped record) -> Array[true]
+    def self.attributes_for_database: (untyped record) -> untyped
+                                    | (untyped record) -> untyped
+    def self.deserialize_record: (untyped class_name, untyped attributes_from_database, ?false new_record) -> untyped
+
+    class Error < StandardError
+    end
+
+    class ClassMissingError < Error
+    end
+
+    class AssociationMissingError < Error
+    end
+
+    class InstanceTracker
+      @instances: Array[untyped]
+      @ids: Hash[untyped, Integer]
+
+      def initialize: -> void
+      def map: { (untyped) -> Array[true] } -> Array[Array[true]]
+      def fetch: (*untyped noname) -> untyped
+      def push: (untyped `instance`) -> Integer
+      def lookup: (untyped `instance`) -> Integer?
+    end
+  end
+end

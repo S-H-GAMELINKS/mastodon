@@ -1,0 +1,6 @@
+# TypeProf 0.21.7
+
+# Classes
+class HealthController
+  def show: -> untyped
+end

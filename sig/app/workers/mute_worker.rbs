@@ -1,0 +1,6 @@
+# TypeProf 0.21.7
+
+# Classes
+class MuteWorker
+  def perform: (untyped account_id, untyped target_account_id) -> true
+end

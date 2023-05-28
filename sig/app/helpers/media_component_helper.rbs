@@ -1,0 +1,16 @@
+# TypeProf 0.21.7
+
+# Classes
+module MediaComponentHelper
+  def render_video_component: (untyped status, **untyped) -> untyped
+  def render_audio_component: (untyped status, **untyped) -> untyped
+  def render_media_gallery_component: (untyped status, **untyped) -> untyped
+  def render_card_component: (untyped status, **untyped) -> untyped
+  def render_poll_component: (untyped status, **untyped) -> untyped
+
+  private
+  def serialize_media_attachment: (untyped attachment) -> untyped
+  def serialize_status_card: (untyped status) -> untyped
+  def serialize_status_poll: (untyped status) -> untyped
+  def sensitive_viewer?: (untyped status, untyped account) -> untyped
+end

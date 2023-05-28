@@ -1,0 +1,16 @@
+# TypeProf 0.21.7
+
+# Classes
+module Settings
+  module TwoFactorAuthentication
+    class OtpAuthenticationController
+      @confirmation: untyped
+
+      def show: -> untyped
+      def create: -> untyped
+
+      private
+      def verify_otp_not_enabled: -> nil
+    end
+  end
+end

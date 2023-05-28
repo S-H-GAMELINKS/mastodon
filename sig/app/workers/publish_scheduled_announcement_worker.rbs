@@ -1,0 +1,11 @@
+# TypeProf 0.21.7
+
+# Classes
+class PublishScheduledAnnouncementWorker
+  @announcement: untyped
+
+  def perform: (untyped announcement_id) -> untyped
+
+  private
+  def refresh_status_ids!: -> untyped
+end

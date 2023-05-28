@@ -1,0 +1,41 @@
+# TypeProf 0.21.7
+
+# Classes
+class NotifyService
+  NON_EMAIL_TYPES: [:"admin.report", :"admin.sign_up", :update, :poll]
+  @recipient: untyped
+  @activity: untyped
+  @notification: untyped
+  @following_sender: untyped
+  @web_push_subscriptions: untyped
+
+  def call: (untyped recipient, untyped `type`, untyped activity) -> nil
+
+  private
+  def blocked_mention?: -> untyped
+  def following_sender?: -> nil
+  def optional_non_follower?: -> untyped
+  def optional_non_following?: -> true
+  def message?: -> untyped
+  def direct_message?: -> untyped
+  def response_to_recipient?: -> false
+  def from_staff?: -> untyped
+  def optional_non_following_and_direct?: -> true
+  def hellbanned?: -> true
+  def from_self?: -> untyped
+  def domain_blocking?: -> true
+  def blocked?: -> bool
+  def conversation_muted?: -> false
+  def push_notification!: -> untyped
+  def push_to_streaming_api!: -> untyped
+  def subscribed_to_streaming_api?: -> untyped
+  def push_to_conversation!: -> untyped
+  def push_to_web_push_subscriptions!: -> untyped
+  def web_push_subscriptions: -> untyped
+  def subscribed_to_web_push?: -> untyped
+  def send_email!: -> nil
+  def email_needed?: -> untyped
+  def recipient_online?: -> untyped
+  def always_send_emails?: -> untyped
+  def send_email_for_notification_type?: -> untyped
+end

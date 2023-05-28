@@ -1,0 +1,27 @@
+# TypeProf 0.21.7
+
+# Classes
+class Poll
+  @emojis: untyped
+
+  def loaded_options: -> untyped
+  def possibly_stale?: -> untyped
+  def voted?: (untyped account) -> untyped
+  def own_votes: (untyped account) -> untyped
+  def remote?: -> untyped
+  def emojis: -> untyped
+  def reset_votes!: -> nil
+
+  private
+  def prepare_cached_tallies: -> nil
+  def prepare_votes_count: -> nil
+  def prepare_options: -> untyped
+  def reset_parent_cache: -> nil
+  def last_fetched_before_expiration?: -> untyped
+  def time_passed_since_last_fetch?: -> untyped
+  def show_totals_now?: -> untyped
+
+  class Option
+    def initialize: (Poll poll, untyped id, untyped title, Integer? votes_count) -> void
+  end
+end

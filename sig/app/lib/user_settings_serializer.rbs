@@ -1,0 +1,7 @@
+# TypeProf 0.21.7
+
+# Classes
+class UserSettingsSerializer
+  def self.load: (untyped value) -> untyped
+  def self.dump: (untyped value) -> untyped
+end

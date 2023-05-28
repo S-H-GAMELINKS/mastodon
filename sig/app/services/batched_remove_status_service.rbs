@@ -1,0 +1,13 @@
+# TypeProf 0.21.7
+
+# Classes
+class BatchedRemoveStatusService
+  @status_id_cutoff: untyped
+
+  def call: (untyped statuses, **untyped) -> nil
+
+  private
+  def unpush_from_home_timelines: (untyped account, untyped statuses) -> untyped
+  def unpush_from_list_timelines: (untyped account, untyped statuses) -> untyped
+  def unpush_from_public_timelines: (untyped status, untyped pipeline) -> nil
+end

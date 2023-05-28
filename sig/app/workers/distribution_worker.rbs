@@ -1,0 +1,6 @@
+# TypeProf 0.21.7
+
+# Classes
+class DistributionWorker
+  def perform: (untyped status_id, ?Hash[untyped, untyped] options) -> true
+end

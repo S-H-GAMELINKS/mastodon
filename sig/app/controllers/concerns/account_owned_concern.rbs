@@ -1,0 +1,17 @@
+# TypeProf 0.21.7
+
+# Classes
+module AccountOwnedConcern
+  @account: untyped
+
+  private
+  def account_required?: -> true
+  def set_account: -> untyped
+  def username_param: -> untyped
+  def check_account_approval: -> nil
+  def check_account_confirmation: -> nil
+  def check_account_suspension: -> nil
+  def skip_temporary_suspension_response?: -> false
+  def permanent_suspension_response: -> untyped
+  def temporary_suspension_response: -> untyped
+end

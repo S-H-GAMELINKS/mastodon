@@ -1,0 +1,19 @@
+# TypeProf 0.21.7
+
+# Classes
+class ScopeTransformer
+  class Scope
+    DEFAULT_TERM: String
+    DEFAULT_ACCESS: [String, String]
+    @access: Array[String]
+    @key: String
+
+    attr_reader namespace: untyped
+    attr_reader term: String
+    def initialize: (untyped scope) -> void
+    def key: -> String
+    def access: -> String
+    def merge: (untyped other_scope) -> Scope
+    def merge!: (untyped other_scope) -> Scope
+  end
+end

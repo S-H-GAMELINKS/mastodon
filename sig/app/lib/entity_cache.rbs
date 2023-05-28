@@ -1,0 +1,12 @@
+# TypeProf 0.21.7
+
+# Classes
+class EntityCache
+  MAX_EXPIRATION: untyped
+  include Singleton
+
+  def status: (untyped url) -> untyped
+  def mention: (untyped username, untyped domain) -> untyped
+  def emoji: (untyped shortcodes, untyped domain) -> Array[untyped]
+  def to_key: (:emoji | :mention | :status `type`, *untyped ids) -> String
+end

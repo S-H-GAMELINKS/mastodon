@@ -1,0 +1,13 @@
+# TypeProf 0.21.7
+
+# Classes
+class AccountAlias
+  def acct=: (untyped val) -> untyped
+  def pretty_acct: -> String
+
+  private
+  def set_uri: -> nil
+  def add_to_account: -> untyped
+  def remove_from_account: -> untyped
+  def validate_target_account: -> nil
+end

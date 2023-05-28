@@ -1,0 +1,8 @@
+# TypeProf 0.21.7
+
+# Classes
+class ResponseWithLimit
+  def initialize: (untyped response, untyped limit) -> void
+  attr_reader response: untyped
+  attr_reader limit: untyped
+end

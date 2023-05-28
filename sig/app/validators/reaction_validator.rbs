@@ -1,0 +1,14 @@
+# TypeProf 0.21.7
+
+# Classes
+class ReactionValidator
+  SUPPORTED_EMOJIS: untyped
+  LIMIT: Integer
+
+  def validate: (untyped reaction) -> nil
+
+  private
+  def unicode_emoji?: (untyped name) -> untyped
+  def new_reaction?: (untyped reaction) -> untyped
+  def limit_reached?: (untyped reaction) -> untyped
+end

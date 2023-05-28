@@ -1,0 +1,7 @@
+# TypeProf 0.21.7
+
+# Classes
+module DomainControlHelper
+  def domain_not_allowed?: (untyped uri_or_domain) -> nil
+  def whitelist_mode?: -> untyped
+end

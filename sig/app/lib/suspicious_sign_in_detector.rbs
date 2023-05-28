@@ -1,0 +1,17 @@
+# TypeProf 0.21.7
+
+# Classes
+class SuspiciousSignInDetector
+  IPV6_TOLERANCE_MASK: Integer
+  IPV4_TOLERANCE_MASK: Integer
+  @user: untyped
+
+  def initialize: (untyped user) -> void
+  def suspicious?: (untyped request) -> untyped
+
+  private
+  def sufficient_security_measures?: -> untyped
+  def previously_seen_ip?: (untyped request) -> untyped
+  def freshly_signed_up?: -> untyped
+  def masked_ip: (untyped request) -> String
+end

@@ -1,0 +1,13 @@
+# TypeProf 0.21.7
+
+# Classes
+module InstanceHelper
+  @site_hostname: untyped
+
+  def site_title: -> untyped
+  def site_hostname: -> untyped
+  def description_for_sign_up: (?nil invite) -> untyped
+
+  private
+  def description_prefix: (nil invite) -> untyped
+end

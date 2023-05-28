@@ -1,0 +1,13 @@
+# TypeProf 0.21.7
+
+# Classes
+module FormattingHelper
+  def html_aware_format: (untyped text, untyped local, ?Hash[untyped, untyped] options) -> untyped
+  def linkify: (untyped text, ?Hash[untyped, untyped] options) -> untyped
+  def extract_status_plain_text: (untyped status) -> untyped
+  def self.extract_status_plain_text: (untyped status) -> untyped
+  def status_content_format: (untyped status) -> untyped
+  def rss_status_content_format: (untyped status) -> untyped
+  def account_bio_format: (untyped account) -> untyped
+  def account_field_value_format: (untyped field, ?with_rel_me: true) -> untyped
+end

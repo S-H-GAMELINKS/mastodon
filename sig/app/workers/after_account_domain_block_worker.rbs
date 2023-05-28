@@ -1,0 +1,6 @@
+# TypeProf 0.21.7
+
+# Classes
+class AfterAccountDomainBlockWorker
+  def perform: (untyped account_id, untyped domain) -> true
+end

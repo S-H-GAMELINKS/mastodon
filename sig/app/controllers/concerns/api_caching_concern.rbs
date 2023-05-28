@@ -1,0 +1,7 @@
+# TypeProf 0.21.7
+
+# Classes
+module ApiCachingConcern
+  def cache_if_unauthenticated!: -> nil
+  def cache_even_if_authenticated!: -> nil
+end

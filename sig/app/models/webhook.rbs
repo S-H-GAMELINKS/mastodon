@@ -1,0 +1,15 @@
+# TypeProf 0.21.7
+
+# Classes
+class Webhook
+  EVENTS: [String, String, String, String, String, String]
+
+  def rotate_secret!: -> untyped
+  def enable!: -> untyped
+  def disable!: -> untyped
+
+  private
+  def validate_events: -> nil
+  def strip_events: -> nil
+  def generate_secret: -> nil
+end

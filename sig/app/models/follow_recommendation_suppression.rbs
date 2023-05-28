@@ -1,0 +1,7 @@
+# TypeProf 0.21.7
+
+# Classes
+class FollowRecommendationSuppression
+  private
+  def remove_follow_recommendations: -> untyped
+end

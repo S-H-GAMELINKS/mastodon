@@ -1,0 +1,29 @@
+# TypeProf 0.21.7
+
+# Classes
+class InstancePresenter
+  @thumbnail: untyped
+  @mascot: untyped
+
+  def contact: -> ContactPresenter
+  def description: -> untyped
+  def extended_description: -> untyped
+  def status_page_url: -> untyped
+  def domain: -> untyped
+  def title: -> untyped
+  def languages: -> [untyped]
+  def rules: -> untyped
+  def user_count: -> untyped
+  def active_user_count: (?Integer num_weeks) -> untyped
+  def status_count: -> untyped
+  def domain_count: -> untyped
+  def version: -> untyped
+  def source_url: -> untyped
+  def thumbnail: -> untyped
+  def mascot: -> untyped
+
+  class ContactPresenter
+    def email: -> untyped
+    def account: -> nil
+  end
+end

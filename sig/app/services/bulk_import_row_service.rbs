@@ -1,0 +1,14 @@
+# TypeProf 0.21.7
+
+# Classes
+class BulkImportRowService
+  @account: untyped
+  @data: untyped
+  @type: untyped
+  @target_status: untyped
+  @target_account: untyped
+
+  def call: (untyped row) -> bool
+  def domain: (untyped uri) -> nil
+  def stoplight_wrap_request: (nil domain) { -> untyped } -> untyped
+end

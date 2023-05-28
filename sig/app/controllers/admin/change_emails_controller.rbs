@@ -1,0 +1,17 @@
+# TypeProf 0.21.7
+
+# Classes
+module Admin
+  class ChangeEmailsController
+    @user: untyped
+    @account: untyped
+
+    def show: -> untyped
+    def update: -> untyped
+
+    private
+    def set_account: -> untyped
+    def require_local_account!: -> nil
+    def resource_params: -> untyped
+  end
+end

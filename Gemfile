@@ -188,6 +188,15 @@ group :development do
 
   # For debug
   gem 'debug', '>= 1.0.0'
+
+  # For generate type signature
+  gem 'typeprof'
+
+  # For Rails type signature
+  gem 'rbs_rails'
+
+  # For type signature lsp
+  gem 'steep'
 end
 
 group :production do

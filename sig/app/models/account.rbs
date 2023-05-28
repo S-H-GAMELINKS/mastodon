@@ -1,0 +1,80 @@
+# TypeProf 0.21.7
+
+# Classes
+class Account
+  USERNAME_RE: Regexp
+  MENTION_RE: Regexp
+  URL_PREFIX_RE: Regexp
+  USERNAME_ONLY_RE: Regexp
+  DEFAULT_FIELDS_SIZE: Integer
+  @keypair: untyped
+  @synchronization_uri_prefix: String
+  @emojis: untyped
+
+  def local?: -> untyped
+  def moved?: -> untyped
+  def bot?: -> bool
+  def instance_actor?: -> untyped
+  alias bot bot?
+  def bot=: (untyped val) -> String
+  def group?: -> untyped
+  alias group group?
+  def acct: -> String
+  def pretty_acct: -> String
+  def local_username_and_domain: -> String
+  def local_followers_count: -> untyped
+  def to_webfinger_s: -> String
+  def possibly_stale?: -> untyped
+  def refresh!: -> nil
+  def silenced?: -> untyped
+  def silence!: (?Time date) -> untyped
+  def unsilence!: -> untyped
+  def suspended?: -> untyped
+  def suspended_permanently?: -> untyped
+  def suspended_temporarily?: -> untyped
+  def suspend!: (?date: Time, ?origin: :local, ?block_email: true) -> untyped
+  def unsuspend!: -> untyped
+  def sensitized?: -> untyped
+  def sensitize!: (?Time date) -> untyped
+  def unsensitize!: -> untyped
+  def memorialize!: -> untyped
+  def trendable?: -> untyped
+  def sign?: -> true
+  def previous_strikes_count: -> untyped
+  def keypair: -> untyped
+  def tags_as_strings=: (untyped tag_names) -> untyped
+  def also_known_as: -> Array[untyped]
+  def fields: -> Array[nil]
+  def fields_attributes=: (untyped attributes) -> Array[untyped]
+  def build_fields: -> Array[{name: String, value: String}]?
+  def save_with_optional_media!: -> untyped
+  def hides_followers?: -> untyped
+  def hides_following?: -> untyped
+  def object_type: -> :person
+  def to_param: -> untyped
+  def to_log_human_identifier: -> String
+  def excluded_from_timeline_account_ids: -> untyped
+  def excluded_from_timeline_domains: -> untyped
+  def preferred_inbox_url: -> untyped
+  def synchronization_uri_prefix: -> String
+  def requires_review?: -> untyped
+  def reviewed?: -> untyped
+  def requested_review?: -> untyped
+  def requires_review_notification?: -> untyped
+  def self.readonly_attributes: -> untyped
+  def self.inboxes: -> untyped
+  def self.from_text: (untyped text) -> Array[untyped]
+  def emojis: -> untyped
+  def ensure_keys!: -> nil
+
+  private
+  def prepare_contents: -> untyped
+  def prepare_username: -> untyped
+  def generate_keys: -> nil
+  def normalize_domain: -> nil
+  def emojifiable_text: -> String
+  def clean_feed_manager: -> untyped
+  def create_canonical_email_block!: -> nil
+  def destroy_canonical_email_block!: -> nil
+  def trigger_update_webhooks: -> nil
+end

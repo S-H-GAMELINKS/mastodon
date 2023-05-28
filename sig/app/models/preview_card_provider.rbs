@@ -1,0 +1,13 @@
+# TypeProf 0.21.7
+
+# Classes
+class PreviewCardProvider
+  ICON_MIME_TYPES: [String, String, String]
+  LIMIT: untyped
+
+  def requires_review?: -> untyped
+  def reviewed?: -> untyped
+  def requested_review?: -> untyped
+  def requires_review_notification?: -> untyped
+  def self.matching_domain: (untyped domain) -> untyped
+end

@@ -1,0 +1,16 @@
+# TypeProf 0.21.7
+
+# Classes
+class TagFeed
+  LIMIT_PER_MODE: Integer
+  @tag: untyped
+
+  def initialize: (untyped tag, untyped account, ?Hash[untyped, untyped] options) -> void
+  def get: (untyped limit, ?nil max_id, ?nil since_id, ?nil min_id) -> untyped
+
+  private
+  def tagged_with_any_scope: -> untyped
+  def tagged_with_all_scope: -> untyped
+  def tagged_with_none_scope: -> untyped
+  def tags_for: (Array[untyped] names) -> nil
+end

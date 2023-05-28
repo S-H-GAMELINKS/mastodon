@@ -1,0 +1,7 @@
+# TypeProf 0.21.7
+
+# Classes
+module Payloadable
+  def serialize_payload: (untyped record, untyped serializer, ?Hash[untyped, untyped] options) -> untyped
+  def signing_enabled?: -> false
+end

@@ -1,0 +1,10 @@
+# TypeProf 0.21.7
+
+# Classes
+module ReactComponentHelper
+  def react_component: (untyped name, ?Hash[untyped, untyped] props) -> untyped
+  def react_admin_component: (untyped name, ?Hash[untyped, untyped] props) -> untyped
+
+  private
+  def div_tag_with_data: (Hash[untyped, untyped] data) -> untyped
+end

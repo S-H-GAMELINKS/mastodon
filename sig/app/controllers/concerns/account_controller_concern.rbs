@@ -1,0 +1,15 @@
+# TypeProf 0.21.7
+
+# Classes
+module AccountControllerConcern
+  FOLLOW_PER_PAGE: Integer
+  @instance_presenter: untyped
+  @account: bot
+
+  private
+  def set_instance_presenter: -> untyped
+  def set_link_headers: -> untyped
+  def webfinger_account_link: -> [untyped, [[String, String], [String, String]]]
+  def actor_url_link: -> [untyped, [[String, String], [String, String]]]
+  def webfinger_account_url: -> untyped
+end

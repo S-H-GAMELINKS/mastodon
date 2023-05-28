@@ -1,0 +1,7 @@
+# TypeProf 0.21.7
+
+# Classes
+class TagRelationshipsPresenter
+  attr_reader following_map: Hash[untyped, untyped]
+  def initialize: (untyped tags, ?nil current_account_id, **untyped) -> void
+end

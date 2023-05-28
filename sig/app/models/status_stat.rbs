@@ -1,0 +1,11 @@
+# TypeProf 0.21.7
+
+# Classes
+class StatusStat
+  def replies_count: -> Integer?
+  def reblogs_count: -> Integer?
+  def favourites_count: -> Integer?
+
+  private
+  def reset_parent_cache: -> untyped
+end

@@ -1,0 +1,17 @@
+# TypeProf 0.21.7
+
+# Classes
+class Appeal
+  MAX_STRIKE_AGE: untyped
+
+  def pending?: -> untyped
+  def approved?: -> untyped
+  def rejected?: -> untyped
+  def approve!: (untyped current_account) -> untyped
+  def reject!: (untyped current_account) -> untyped
+  def to_log_human_identifier: -> untyped
+  def to_log_route_param: -> untyped
+
+  private
+  def validate_time_frame: -> nil
+end

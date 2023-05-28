@@ -1,0 +1,19 @@
+# TypeProf 0.21.7
+
+# Classes
+class FollowMigrationService
+  @old_target_account: untyped
+  @original_follow: untyped
+  @source_account: bot
+  @target_account: bot
+  @options: bot
+
+  def call: (untyped source_account, untyped target_account, untyped old_target_account, ?bypass_locked: false) -> untyped
+
+  private
+  def request_follow!: -> untyped
+  def change_follow_options!: -> untyped
+  def change_follow_request_options!: -> untyped
+  def direct_follow!: -> untyped
+  def migrate_list_accounts!: -> untyped
+end

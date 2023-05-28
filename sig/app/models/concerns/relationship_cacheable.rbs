@@ -1,0 +1,7 @@
+# TypeProf 0.21.7
+
+# Classes
+module RelationshipCacheable
+  private
+  def remove_relationship_cache: -> untyped
+end

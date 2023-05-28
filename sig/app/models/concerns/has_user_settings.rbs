@@ -1,0 +1,42 @@
+# TypeProf 0.21.7
+
+# Classes
+module HasUserSettings
+  def settings_attributes=: (untyped attributes) -> untyped
+  def prefers_noindex?: -> untyped
+  def preferred_posting_language: -> untyped
+  def setting_auto_play_gif: -> untyped
+  def setting_default_sensitive: -> untyped
+  def setting_unfollow_modal: -> untyped
+  def setting_boost_modal: -> untyped
+  def setting_delete_modal: -> untyped
+  def setting_reduce_motion: -> untyped
+  def setting_system_font_ui: -> untyped
+  def setting_noindex: -> untyped
+  def setting_theme: -> untyped
+  def setting_display_media: -> untyped
+  def setting_expand_spoilers: -> untyped
+  def setting_default_language: -> untyped
+  def setting_aggregate_reblogs: -> untyped
+  def setting_show_application: -> untyped
+  def setting_advanced_layout: -> untyped
+  def setting_use_blurhash: -> untyped
+  def setting_use_pending_items: -> untyped
+  def setting_trends: -> untyped
+  def setting_crop_images: -> untyped
+  def setting_disable_swiping: -> untyped
+  def setting_always_send_emails: -> untyped
+  def setting_default_privacy: -> String
+  def allows_report_emails?: -> untyped
+  def allows_pending_account_emails?: -> untyped
+  def allows_appeal_emails?: -> untyped
+  def allows_trends_review_emails?: -> untyped
+  def aggregates_reblogs?: -> untyped
+  def shows_application?: -> untyped
+  def show_all_media?: -> untyped
+  def hide_all_media?: -> untyped
+  def resized_custom_emoji: -> untyped
+  def portfolio_default_hashtag_flag: -> untyped
+  def portfolio_default_hashtag: -> untyped
+  def unfollow_all_when_migrate: -> untyped
+end

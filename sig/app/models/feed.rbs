@@ -1,0 +1,12 @@
+# TypeProf 0.21.7
+
+# Classes
+class Feed
+  @type: untyped
+  @id: untyped
+
+  def initialize: (untyped `type`, untyped id) -> void
+  def get: (untyped limit, ?nil max_id, ?nil since_id, ?nil min_id) -> untyped
+  def from_redis: (untyped limit, Integer? max_id, Integer? since_id, Integer? min_id) -> untyped
+  def key: -> untyped
+end

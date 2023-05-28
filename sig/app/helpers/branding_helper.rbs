@@ -1,0 +1,10 @@
+# TypeProf 0.21.7
+
+# Classes
+module BrandingHelper
+  def logo_as_symbol: (?:icon version) -> nil
+  def _logo_as_symbol_wordmark: -> untyped
+  def _logo_as_symbol_icon: -> untyped
+  def render_logo: -> untyped
+  def render_symbol: (?:icon version) -> untyped
+end

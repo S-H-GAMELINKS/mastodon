@@ -1,0 +1,9 @@
+# TypeProf 0.21.7
+
+# Classes
+module WellKnown
+  class NodeInfoController
+    def index: -> untyped
+    def show: -> untyped
+  end
+end

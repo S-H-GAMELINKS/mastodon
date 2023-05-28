@@ -1,0 +1,6 @@
+# TypeProf 0.21.7
+
+# Classes
+class RefollowWorker
+  def perform: (untyped target_account_id) -> nil
+end

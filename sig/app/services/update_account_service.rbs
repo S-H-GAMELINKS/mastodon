@@ -1,0 +1,11 @@
+# TypeProf 0.21.7
+
+# Classes
+class UpdateAccountService
+  def call: (untyped account, untyped params, ?raise_error: false) -> false
+
+  private
+  def authorize_all_follow_requests: (untyped account) -> untyped
+  def check_links: (untyped account) -> nil
+  def process_hashtags: (untyped account) -> untyped
+end

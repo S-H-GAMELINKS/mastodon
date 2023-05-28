@@ -1,0 +1,23 @@
+# TypeProf 0.21.7
+
+# Classes
+class ApproveAppealService
+  @appeal: untyped
+  @strike: untyped
+  @current_account: untyped
+
+  def call: (untyped appeal, untyped current_account) -> untyped
+
+  private
+  def target_account: -> untyped
+  def undo_strike_action!: -> nil
+  def mark_strike_as_appealed!: -> untyped
+  def undo_disable!: -> untyped
+  def undo_delete_statuses!: -> nil
+  def undo_mark_statuses_as_sensitive!: -> untyped
+  def undo_sensitive!: -> untyped
+  def undo_silence!: -> untyped
+  def undo_suspend!: -> untyped
+  def queue_workers!: -> nil
+  def notify_target_account!: -> untyped
+end

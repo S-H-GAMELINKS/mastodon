@@ -1,0 +1,15 @@
+# TypeProf 0.21.7
+
+# Classes
+class ValidationErrorFormatter
+  @error: untyped
+  @aliases: Hash[untyped, untyped]
+  @errors: untyped
+
+  def initialize: (untyped error, ?Hash[untyped, untyped] aliases) -> void
+  def as_json: -> {error: untyped, details: Hash[untyped, untyped]}
+
+  private
+  def details: -> Hash[untyped, untyped]
+  def errors: -> untyped
+end

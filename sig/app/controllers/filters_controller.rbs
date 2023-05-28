@@ -1,0 +1,21 @@
+# TypeProf 0.21.7
+
+# Classes
+class FiltersController
+  @filters: untyped
+  @filter: untyped
+  @body_classes: String
+
+  def index: -> untyped
+  def new: -> untyped
+  def edit: -> nil
+  def create: -> untyped
+  def update: -> untyped
+  def destroy: -> untyped
+
+  private
+  def set_filter: -> untyped
+  def resource_params: -> untyped
+  def set_body_classes: -> String
+  def set_cache_headers: -> untyped
+end

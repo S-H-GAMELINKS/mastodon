@@ -1,0 +1,24 @@
+# TypeProf 0.21.7
+
+# Classes
+class TranslationService
+  def self.configured: -> untyped
+  def self.configured?: -> untyped
+  def languages: -> Hash[untyped, untyped]
+  def translate: (untyped _text, untyped _source_language, untyped _target_language) -> untyped
+
+  class Error < StandardError
+  end
+
+  class NotConfiguredError < Error
+  end
+
+  class TooManyRequestsError < Error
+  end
+
+  class QuotaExceededError < Error
+  end
+
+  class UnexpectedResponseError < Error
+  end
+end

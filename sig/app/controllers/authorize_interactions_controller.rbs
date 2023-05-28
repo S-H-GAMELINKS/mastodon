@@ -1,0 +1,19 @@
+# TypeProf 0.21.7
+
+# Classes
+class AuthorizeInteractionsController
+  @resource: untyped
+  @body_classes: String
+
+  def show: -> untyped
+  def create: -> untyped
+
+  private
+  def set_resource: -> nil
+  def located_resource: -> untyped
+  def account_from_remote_follow: -> untyped
+  def uri_param_is_url?: -> bool
+  def parsed_uri: -> untyped
+  def uri_param: -> untyped
+  def set_body_classes: -> String
+end

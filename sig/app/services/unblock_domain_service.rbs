@@ -1,0 +1,8 @@
+# TypeProf 0.21.7
+
+# Classes
+class UnblockDomainService
+  attr_accessor domain_block: untyped
+  def call: (untyped domain_block) -> untyped
+  def process_retroactive_updates: -> nil
+end

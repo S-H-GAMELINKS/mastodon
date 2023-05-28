@@ -1,0 +1,16 @@
+# TypeProf 0.21.7
+
+# Classes
+class PlainTextFormatter
+  NEWLINE_TAGS_RE: Regexp
+
+  attr_reader text: untyped
+  attr_reader local: untyped
+  alias local? local
+  def initialize: (untyped text, untyped local) -> void
+  def to_s: -> untyped
+
+  private
+  def insert_newlines: -> untyped
+  def html_entities: -> untyped
+end

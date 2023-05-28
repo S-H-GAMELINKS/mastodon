@@ -1,0 +1,11 @@
+# TypeProf 0.21.7
+
+# Classes
+class FollowRecommendationFilter
+  KEYS: [:language, :status]
+
+  attr_reader params: untyped
+  attr_reader language: untyped
+  def initialize: (untyped params) -> void
+  def results: -> untyped
+end

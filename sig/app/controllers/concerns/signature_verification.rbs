@@ -1,0 +1,49 @@
+# TypeProf 0.21.7
+
+# Classes
+module SignatureVerification
+  EXPIRATION_WINDOW_LIMIT: untyped
+  CLOCK_SKEW_MARGIN: untyped
+  @signed_request_actor: nil
+  @signature_verification_failure_reason: {signed_string: String, signature: String, error: String}
+  @signature_verification_failure_code: Integer
+  @signature_params: untyped
+  @body_digest: untyped
+  @request_body: untyped
+
+  def require_account_signature!: -> nil
+  def require_actor_signature!: -> nil
+  def signed_request?: -> untyped
+  def signature_verification_failure_reason: -> {signed_string: String, signature: String, error: String}?
+  def signature_verification_failure_code: -> Integer
+  def signature_key_id: -> nil
+  def signed_request_account: -> nil
+  def signed_request_actor: -> nil
+  def request_body: -> untyped
+
+  private
+  def fail_with!: (String message, **untyped) -> nil
+  def signature_params: -> untyped
+  def signature_algorithm: -> untyped
+  def signed_headers: -> untyped
+  def verify_signature_strength!: -> nil
+  def verify_body_digest!: -> nil
+  def verify_signature: (nil actor, untyped signature, untyped compare_signed_string) -> nil
+  def build_signed_string: -> untyped
+  def matches_time_window?: -> bool
+  def body_digest: -> untyped
+  def to_header_name: (untyped name) -> untyped
+  def missing_required_signature_parameters?: -> untyped
+  def actor_from_key_id: (untyped key_id) -> nil
+  def stoplight_wrap_request: { -> nil } -> untyped
+  def actor_refresh_key!: (nil actor) -> nil
+
+  class SignatureVerificationError < StandardError
+  end
+
+  class SignatureParamsParser
+  end
+
+  class SignatureParamsTransformer
+  end
+end

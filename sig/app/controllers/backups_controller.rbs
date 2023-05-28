@@ -1,0 +1,11 @@
+# TypeProf 0.21.7
+
+# Classes
+class BackupsController
+  @backup: untyped
+
+  def download: -> nil
+
+  private
+  def set_backup: -> untyped
+end

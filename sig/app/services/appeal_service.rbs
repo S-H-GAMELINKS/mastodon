@@ -1,0 +1,14 @@
+# TypeProf 0.21.7
+
+# Classes
+class AppealService
+  @strike: untyped
+  @text: untyped
+  @appeal: untyped
+
+  def call: (untyped strike, untyped text) -> untyped
+
+  private
+  def create_appeal!: -> untyped
+  def notify_staff!: -> untyped
+end

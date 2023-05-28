@@ -1,0 +1,45 @@
+# TypeProf 0.21.7
+
+# Classes
+class AccountSearchService
+  MENTION_ONLY_RE: Regexp
+  MIN_QUERY_LENGTH: Integer
+  @acct_hint: untyped
+  @search_results: Array[untyped]
+  @domain_is_local: untyped
+  @query_domain: nil
+  @split_query_string: untyped
+  @query_username: String
+  @exact_match: untyped
+  @following_ids: untyped
+
+  attr_reader query: untyped
+  attr_reader limit: Integer
+  attr_reader offset: Integer
+  attr_reader options: Hash[untyped, untyped]
+  attr_reader account: nil
+  def call: (untyped query, ?nil account, ?Hash[untyped, untyped] options) -> Array[nil]
+
+  private
+  def search_service_results: -> Array[nil]
+  def exact_match: -> nil
+  def search_results: -> Array[untyped]
+  def from_database: -> untyped
+  def advanced_search_results: -> untyped
+  def simple_search_results: -> untyped
+  def from_elasticsearch: -> Array[untyped]?
+  def reputation_score_function: -> {script_score: {script: {source: String}}}
+  def followers_score_function: -> {script_score: {script: {source: String}}}
+  def time_distance_function: -> {gauss: {last_status_at: {scale: String, offset: String, decay: Float}}}
+  def following_ids: -> untyped
+  def limit_for_non_exact_results: -> Integer
+  def terms_for_query: -> String
+  def split_query_string: -> untyped
+  def query_username: -> String
+  def query_domain: -> nil
+  def query_without_split?: -> untyped
+  def domain_is_local?: -> untyped
+  def exact_match?: -> untyped
+  def username_complete?: -> bool
+  def likely_acct?: -> bool
+end

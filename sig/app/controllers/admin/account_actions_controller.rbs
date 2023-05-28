@@ -1,0 +1,17 @@
+# TypeProf 0.21.7
+
+# Classes
+module Admin
+  class AccountActionsController
+    @account: untyped
+    @account_action: untyped
+    @warning_presets: untyped
+
+    def new: -> untyped
+    def create: -> untyped
+
+    private
+    def set_account: -> untyped
+    def resource_params: -> untyped
+  end
+end

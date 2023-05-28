@@ -1,0 +1,18 @@
+# TypeProf 0.21.7
+
+# Classes
+class PushUpdateWorker
+  @status: untyped
+  @account_id: untyped
+  @timeline_id: String
+  @options: untyped
+  @payload: untyped
+
+  def perform: (untyped account_id, untyped status_id, ?nil timeline_id, ?Hash[untyped, untyped] options) -> true
+
+  private
+  def render_payload!: -> untyped
+  def message: -> untyped
+  def publish!: -> untyped
+  def update?: -> untyped
+end

@@ -1,0 +1,11 @@
+# TypeProf 0.21.7
+
+# Classes
+class SharesController
+  @body_classes: String
+
+  def show: -> nil
+
+  private
+  def set_body_classes: -> String
+end

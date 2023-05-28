@@ -1,0 +1,14 @@
+# TypeProf 0.21.7
+
+# Classes
+module Localized
+  @content_locale: untyped
+
+  def set_locale: -> untyped
+
+  private
+  def requested_locale: -> nil
+  def http_accept_language: -> nil
+  def available_locale_or_nil: (untyped locale_name) -> nil
+  def content_locale: -> untyped
+end

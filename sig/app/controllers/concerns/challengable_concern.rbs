@@ -1,0 +1,15 @@
+# TypeProf 0.21.7
+
+# Classes
+module ChallengableConcern
+  CHALLENGE_TIMEOUT: untyped
+  @challenge: untyped
+  @body_classes: String
+
+  def require_challenge!: -> Time?
+  def render_challenge: -> untyped
+  def challenge_passed?: -> untyped
+  def skip_challenge?: -> untyped
+  def challenge_passed_recently?: -> untyped
+  def challenge_params: -> untyped
+end

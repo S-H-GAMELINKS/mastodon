@@ -1,0 +1,8 @@
+# TypeProf 0.21.7
+
+# Classes
+class CanonicalEmailBlock
+  def to_log_human_identifier: -> untyped
+  def email=: (untyped email) -> untyped
+  def self.block?: (untyped email) -> untyped
+end

@@ -1,0 +1,16 @@
+# TypeProf 0.21.7
+
+# Classes
+class ProcessMentionsService
+  @status: untyped
+  @save_records: true
+  @previous_mentions: untyped
+  @current_mentions: Array[untyped]
+
+  def call: (untyped status, ?save_records: true) -> nil
+
+  private
+  def scan_text!: -> nil
+  def assign_mentions!: -> nil
+  def mention_undeliverable?: (nil mentioned_account) -> true
+end

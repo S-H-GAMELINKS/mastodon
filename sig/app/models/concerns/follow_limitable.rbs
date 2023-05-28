@@ -1,0 +1,9 @@
+# TypeProf 0.21.7
+
+# Classes
+module FollowLimitable
+  @bypass_follow_limit: untyped
+
+  def bypass_follow_limit=: (untyped value) -> untyped
+  def bypass_follow_limit?: -> untyped
+end

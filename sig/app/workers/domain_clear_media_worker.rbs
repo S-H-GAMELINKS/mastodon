@@ -1,0 +1,6 @@
+# TypeProf 0.21.7
+
+# Classes
+class DomainClearMediaWorker
+  def perform: (untyped domain_block_id) -> true
+end

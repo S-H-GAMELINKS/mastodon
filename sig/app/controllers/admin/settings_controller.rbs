@@ -1,0 +1,15 @@
+# TypeProf 0.21.7
+
+# Classes
+module Admin
+  class SettingsController
+    @admin_settings: untyped
+
+    def show: -> untyped
+    def update: -> untyped
+
+    private
+    def after_update_redirect_path: -> untyped
+    def settings_params: -> untyped
+  end
+end

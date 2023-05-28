@@ -1,0 +1,40 @@
+# TypeProf 0.21.7
+
+# Classes
+module ApplicationHelper
+  DANGEROUS_SCOPES: [String, String, String]
+  RTL_LOCALES: [:ar, :ckb, :fa, :he]
+
+  def friendly_number_to_human: (untyped number, **untyped) -> untyped
+  def active_nav_class: (*untyped paths) -> String
+  def show_landing_strip?: -> untyped
+  def open_registrations?: -> untyped
+  def approved_registrations?: -> untyped
+  def closed_registrations?: -> untyped
+  def available_sign_up_path: -> String?
+  def omniauth_only?: -> bool
+  def link_to_login: (?nil name, ?nil html_options) -> untyped
+  def provider_sign_in_link: (untyped provider) -> untyped
+  def locale_direction: -> String
+  def title: -> String
+  def class_for_scope: (untyped scope) -> String?
+  def can?: (untyped action, untyped record) -> false
+  def fa_icon: (untyped icon, ?Hash[untyped, untyped] attributes) -> untyped
+  def check_icon: -> untyped
+  def visibility_icon: (untyped status) -> nil
+  def interrelationships_icon: (untyped relationships, untyped account_id) -> nil
+  def custom_emoji_tag: (untyped custom_emoji) -> untyped
+  def opengraph: (untyped property, untyped content) -> untyped
+  def body_classes: -> untyped
+  def cdn_host: -> untyped
+  def cdn_host?: -> untyped
+  def storage_host: -> untyped
+  def storage_host?: -> untyped
+  def quote_wrap: (untyped text, ?line_width: Integer, ?break_sequence: String) -> untyped
+  def render_initial_state: -> untyped
+  def grouped_scopes: (untyped scopes) -> untyped
+  def prerender_custom_emojis: (untyped html, untyped custom_emojis, ?Hash[untyped, untyped] other_options) -> untyped
+
+  private
+  def storage_host_name: -> String?
+end

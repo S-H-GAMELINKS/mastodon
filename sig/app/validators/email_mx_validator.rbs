@@ -1,0 +1,12 @@
+# TypeProf 0.21.7
+
+# Classes
+class EmailMxValidator
+  def validate: (untyped user) -> nil
+
+  private
+  def get_domain: (untyped value) -> nil
+  def on_allowlist?: (nil domain) -> false
+  def resolve_mx: (nil domain) -> [Array[untyped], Array[untyped]]
+  def on_blacklist?: (Array[untyped] domains, untyped attempt_ip) -> untyped
+end

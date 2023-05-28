@@ -1,0 +1,22 @@
+# TypeProf 0.21.7
+
+# Classes
+module RateLimitHeaders
+  @_request_time: Time
+
+  private
+  def set_rate_limit_headers: -> untyped
+  def rate_limited_request?: -> untyped
+  def apply_header_limit: -> untyped
+  def rate_limit_limit: -> untyped
+  def apply_header_remaining: -> untyped
+  def rate_limit_remaining: -> untyped
+  def apply_header_reset: -> untyped
+  def rate_limit_reset: -> untyped
+  def api_throttle_data: -> untyped
+  def request_time: -> Time
+  def reset_period_offset: -> untyped
+
+  public
+  def override_rate_limit_headers: (untyped method_name, ?Hash[untyped, untyped] options) -> untyped
+end

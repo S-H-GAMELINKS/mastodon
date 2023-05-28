@@ -1,0 +1,11 @@
+# TypeProf 0.21.7
+
+# Classes
+class RemoveFeaturedTagService
+  @account: untyped
+
+  def call: (untyped account, untyped featured_tag) -> nil
+
+  private
+  def build_json: (untyped featured_tag) -> untyped
+end

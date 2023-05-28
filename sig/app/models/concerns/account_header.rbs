@@ -1,0 +1,14 @@
+# TypeProf 0.21.7
+
+# Classes
+module AccountHeader
+  IMAGE_MIME_TYPES: [String, String, String, String]
+  LIMIT: untyped
+  MAX_PIXELS: Integer
+
+  def header_original_url: -> untyped
+  def header_static_url: -> untyped
+
+  private
+  def header_styles: (untyped file) -> {original: {pixels: Integer, file_geometry_parser: untyped}, static: {format: String, convert_options: String, file_geometry_parser: untyped}}
+end

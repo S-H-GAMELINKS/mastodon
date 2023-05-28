@@ -1,0 +1,10 @@
+# TypeProf 0.21.7
+
+# Classes
+module Settings
+  module Extend
+    @settings: untyped
+
+    def settings: -> untyped
+  end
+end

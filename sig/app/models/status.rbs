@@ -1,0 +1,70 @@
+# TypeProf 0.21.7
+
+# Classes
+class Status
+  REAL_TIME_WINDOW: untyped
+  @reported: untyped
+  @emojis: untyped
+
+  attr_accessor override_timestamps: untyped
+  def cache_key: -> String
+  def searchable_by: (?nil preloaded) -> Array[untyped]
+  def searchable_text: -> String
+  def to_log_human_identifier: -> untyped
+  def to_log_permalink: -> untyped
+  def reply?: -> untyped
+  def local?: -> untyped
+  def in_reply_to_local_account?: -> untyped
+  def reblog?: -> untyped
+  def within_realtime_window?: -> untyped
+  def verb: -> (:delete | :post | :share)
+  def object_type: -> (:comment | :note)
+  def proper: -> Status
+  def content: -> untyped
+  def target: -> untyped
+  def preview_card: -> untyped
+  def hidden?: -> untyped
+  def distributable?: -> untyped
+  alias sign? distributable?
+  def with_media?: -> untyped
+  def with_preview_card?: -> untyped
+  def non_sensitive_with_media?: -> untyped
+  def reported?: -> untyped
+  def emojis: -> nil
+  def ordered_media_attachments: -> untyped
+  def replies_count: -> Integer
+  def reblogs_count: -> Integer
+  def favourites_count: -> Integer
+  def increment_count!: (untyped key) -> untyped
+  def decrement_count!: (untyped key) -> untyped
+  def trendable?: -> untyped
+  def requires_review?: -> untyped
+  def requires_review_notification?: -> untyped
+  def self.selectable_visibilities: -> [String, String, String, String]
+  def self.favourites_map: (untyped status_ids, untyped account_id) -> untyped
+  def self.bookmarks_map: (untyped status_ids, untyped account_id) -> untyped
+  def self.reblogs_map: (untyped status_ids, untyped account_id) -> untyped
+  def self.mutes_map: (untyped conversation_ids, untyped account_id) -> untyped
+  def self.pins_map: (untyped status_ids, untyped account_id) -> untyped
+  def self.reload_stale_associations!: (untyped cached_items) -> nil
+  def self.from_text: (untyped text) -> Array[untyped]
+  def status_stat: -> untyped
+  def discard_with_reblogs: -> untyped
+  def unlink_from_conversations!: -> nil
+
+  private
+  def update_status_stat!: (untyped attrs) -> nil
+  def store_uri: -> nil
+  def prepare_contents: -> untyped
+  def set_reblog: -> nil
+  def set_poll_id: -> nil
+  def set_visibility: -> false?
+  def set_conversation: -> nil
+  def carried_over_reply_to_account_id: -> untyped
+  def set_local: -> untyped
+  def update_statistics: -> nil
+  def increment_counter_caches: -> nil
+  def decrement_counter_caches: -> nil
+  def trigger_create_webhooks: -> nil
+  def trigger_update_webhooks: -> nil
+end

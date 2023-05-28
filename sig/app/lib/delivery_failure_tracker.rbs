@@ -1,0 +1,28 @@
+# TypeProf 0.21.7
+
+# Classes
+class DeliveryFailureTracker
+  FAILURE_DAYS_THRESHOLD: Integer
+  @host: untyped
+  @exhausted_deliveries_days: untyped
+
+  def initialize: (untyped url_or_host) -> void
+  def track_failure!: -> nil
+  def track_success!: -> untyped
+  def clear_failures!: -> untyped
+  def days: -> Integer
+  def available?: -> untyped
+  def exhausted_deliveries_days: -> untyped
+  alias reset! track_success!
+  def self.without_unavailable: (untyped urls) -> untyped
+  def self.available?: (untyped url) -> untyped
+  def self.reset!: (untyped url) -> untyped
+  def self.warning_domains: -> untyped
+  def self.warning_domains_map: (?nil domains) -> untyped
+  def self.exhausted_deliveries_key_by: (String host) -> String
+
+  private
+  def exhausted_deliveries_key: -> String
+  def today: -> String
+  def reached_failure_threshold?: -> bool
+end

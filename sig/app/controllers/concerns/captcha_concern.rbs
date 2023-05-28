@@ -1,0 +1,12 @@
+# TypeProf 0.21.7
+
+# Classes
+module CaptchaConcern
+  def captcha_available?: -> untyped
+  def captcha_enabled?: -> untyped
+  def captcha_user_bypass?: -> false
+  def captcha_required?: -> true
+  def check_captcha!: -> bool
+  def extend_csp_for_captcha!: -> [String, String, String, String]?
+  def render_captcha: -> nil
+end

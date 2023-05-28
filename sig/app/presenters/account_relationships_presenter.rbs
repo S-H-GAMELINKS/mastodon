@@ -1,0 +1,25 @@
+# TypeProf 0.21.7
+
+# Classes
+class AccountRelationshipsPresenter
+  @account_ids: untyped
+  @current_account_id: untyped
+  @cached: {following: Hash[untyped, untyped], followed_by: Hash[untyped, untyped], blocking: Hash[untyped, untyped], blocked_by: Hash[untyped, untyped], muting: Hash[untyped, untyped], requested: Hash[untyped, untyped], requested_by: Hash[untyped, untyped], domain_blocking: Hash[untyped, untyped], endorsed: Hash[untyped, untyped], account_note: Hash[untyped, untyped]}
+  @uncached_account_ids: Array[untyped]
+
+  attr_reader following: Hash[untyped, untyped]
+  attr_reader followed_by: Hash[untyped, untyped]
+  attr_reader blocking: Hash[untyped, untyped]
+  attr_reader blocked_by: Hash[untyped, untyped]
+  attr_reader muting: Hash[untyped, untyped]
+  attr_reader requested: Hash[untyped, untyped]
+  attr_reader requested_by: Hash[untyped, untyped]
+  attr_reader domain_blocking: Hash[untyped, untyped]
+  attr_reader endorsed: Hash[untyped, untyped]
+  attr_reader account_note: Hash[untyped, untyped]
+  def initialize: (untyped account_ids, untyped current_account_id, **untyped) -> void
+
+  private
+  def cached: -> {following: Hash[untyped, untyped], followed_by: Hash[untyped, untyped], blocking: Hash[untyped, untyped], blocked_by: Hash[untyped, untyped], muting: Hash[untyped, untyped], requested: Hash[untyped, untyped], requested_by: Hash[untyped, untyped], domain_blocking: Hash[untyped, untyped], endorsed: Hash[untyped, untyped], account_note: Hash[untyped, untyped]}?
+  def cache_uncached!: -> Array[untyped]
+end

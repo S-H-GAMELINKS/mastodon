@@ -1,0 +1,21 @@
+# TypeProf 0.21.7
+
+# Classes
+class FeedInsertWorker
+  @type: Symbol
+  @status: untyped
+  @options: untyped
+  @follower: untyped
+  @list: untyped
+
+  def perform: (untyped status_id, untyped id, ?String `type`, ?Hash[untyped, untyped] options) -> true?
+
+  private
+  def check_and_insert: -> nil
+  def feed_filtered?: -> nil
+  def notify?: -> false
+  def perform_push: -> nil
+  def perform_unpush: -> nil
+  def perform_notify: -> untyped
+  def update?: -> untyped
+end

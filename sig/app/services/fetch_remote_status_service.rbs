@@ -1,0 +1,6 @@
+# TypeProf 0.21.7
+
+# Classes
+class FetchRemoteStatusService
+  def call: (untyped url, ?prefetched_body: nil, ?request_id: nil) -> nil
+end

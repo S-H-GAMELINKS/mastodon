@@ -1,0 +1,6 @@
+# TypeProf 0.21.7
+
+# Classes
+class RemoveFeaturedTagWorker
+  def perform: (untyped account_id, untyped featured_tag_id) -> true
+end

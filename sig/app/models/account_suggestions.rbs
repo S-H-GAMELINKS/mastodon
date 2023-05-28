@@ -1,0 +1,9 @@
+# TypeProf 0.21.7
+
+# Classes
+class AccountSuggestions
+  SOURCES: [untyped, untyped, untyped]
+
+  def self.get: (untyped account, untyped limit) -> Array[untyped]
+  def self.remove: (untyped account, untyped target_account_id) -> [untyped, untyped, untyped]
+end

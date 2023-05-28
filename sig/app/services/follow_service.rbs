@@ -1,0 +1,21 @@
+# TypeProf 0.21.7
+
+# Classes
+class FollowService
+  @source_account: untyped
+  @target_account: untyped
+  @options: untyped
+
+  def call: (untyped source_account, untyped target_account, ?Hash[untyped, untyped] options) -> nil
+
+  private
+  def mark_home_feed_as_partial!: -> untyped
+  def following_not_possible?: -> untyped
+  def following_not_allowed?: -> untyped
+  def change_follow_options!: -> untyped
+  def change_follow_request_options!: -> untyped
+  def request_follow!: -> untyped
+  def direct_follow!: -> untyped
+  def build_json: (untyped follow_request) -> untyped
+  def follow_options: -> untyped
+end

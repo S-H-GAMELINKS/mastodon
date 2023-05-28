@@ -1,0 +1,18 @@
+# TypeProf 0.21.7
+
+# Classes
+class MoveWorker
+  @source_account: untyped
+  @target_account: untyped
+  @deferred_error: nil
+
+  def perform: (untyped source_account_id, untyped target_account_id) -> true?
+
+  private
+  def rewrite_follows!: -> Integer
+  def queue_follow_unfollows!: -> untyped
+  def copy_account_notes!: -> untyped
+  def carry_blocks_over!: -> untyped
+  def carry_mutes_over!: -> untyped
+  def add_account_note_if_needed!: (untyped account, String id) -> nil
+end

@@ -1,0 +1,20 @@
+# TypeProf 0.21.7
+
+# Classes
+class SessionActivation
+  @detection: untyped
+
+  def detection: -> untyped
+  def browser: -> untyped
+  def platform: -> untyped
+  def self.active?: (untyped id) -> untyped
+  def self.activate: (**untyped) -> untyped
+  def self.deactivate: (untyped id) -> nil
+  def self.purge_old: -> untyped
+  def self.exclusive: (untyped id) -> untyped
+
+  private
+  def assign_user_agent: -> String?
+  def assign_access_token: -> untyped
+  def access_token_attributes: -> {application_id: untyped, resource_owner_id: untyped, scopes: String, expires_in: untyped, use_refresh_token: untyped}
+end

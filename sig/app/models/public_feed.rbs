@@ -1,0 +1,25 @@
+# TypeProf 0.21.7
+
+# Classes
+class PublicFeed
+  def initialize: (untyped account, ?Hash[untyped, untyped] options) -> void
+  def get: (untyped limit, ?nil max_id, ?nil since_id, ?nil min_id) -> untyped
+
+  private
+  attr_reader account: untyped
+  attr_reader options: Hash[untyped, untyped]
+  def with_reblogs?: -> nil
+  def with_replies?: -> nil
+  def local_only?: -> nil
+  def remote_only?: -> nil
+  def account?: -> untyped
+  def media_only?: -> nil
+  def public_scope: -> untyped
+  def local_only_scope: -> untyped
+  def remote_only_scope: -> untyped
+  def without_replies_scope: -> untyped
+  def without_reblogs_scope: -> untyped
+  def media_only_scope: -> untyped
+  def language_scope: -> untyped
+  def account_filters_scope: -> untyped
+end

@@ -1,0 +1,24 @@
+# TypeProf 0.21.7
+
+# Classes
+class PermalinkRedirector
+  @path: untyped
+  @path_segments: untyped
+
+  def initialize: (untyped path) -> void
+  def redirect_path: -> nil
+
+  private
+  def at_username_status_request?: -> untyped
+  def statuses_status_request?: -> untyped
+  def at_username_request?: -> untyped
+  def statuses_request?: -> untyped
+  def accounts_request?: -> untyped
+  def record_integer_id_request?: -> untyped
+  def first_segment: -> untyped
+  def second_segment: -> untyped
+  def path_segments: -> untyped
+  def find_status_url_by_id: (untyped id) -> nil
+  def find_account_url_by_id: (untyped id) -> nil
+  def find_account_url_by_name: (untyped name) -> nil
+end

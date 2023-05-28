@@ -1,0 +1,73 @@
+# TypeProf 0.21.7
+
+# Classes
+class LinkDetailsExtractor
+  CDATA_JUNK_PATTERN: Regexp
+  @original_url: untyped
+  @html: untyped
+  @html_charset: untyped
+  @html_entities: untyped
+  @structured_data: untyped
+  @document: untyped
+  @encoding: nil
+  @detector: untyped
+
+  def initialize: (untyped original_url, untyped html, untyped html_charset) -> void
+  def to_preview_card_attributes: -> ({title: String, description: String, image_remote_url: nil, type: :link | :video, link_type: :article | :unknown, width: Integer, height: Integer, html: String, provider_name: String, provider_url: String, author_name: String, author_url: String, embed_url: String, language: untyped})
+  def type: -> (:link | :video)
+  def link_type: -> (:article | :unknown)
+  def html: -> nil
+  def width: -> untyped
+  def height: -> untyped
+  def title: -> untyped
+  def description: -> untyped
+  def image: -> nil
+  def canonical_url: -> untyped
+  def provider_name: -> untyped
+  def provider_url: -> nil
+  def author_name: -> untyped
+  def author_url: -> untyped
+  def embed_url: -> nil
+  def language: -> untyped
+  def icon: -> nil
+
+  private
+  def player_url: -> nil
+  def host_to_url: (untyped str) -> String?
+  def valid_url_or_nil: (String? str, ?same_origin_only: bool) -> nil
+  def link_tag: (String name) -> untyped
+  def opengraph_tag: (String name) -> untyped
+  def meta_tag: (String name) -> untyped
+  def structured_data: -> untyped
+  def document: -> untyped
+  def encoding: -> nil
+  def detector: -> untyped
+  def html_entities: -> untyped
+
+  class StructuredData
+    SUPPORTED_TYPES: [String, String]
+    @data: untyped
+    @json: Hash[untyped, untyped]
+
+    def initialize: (untyped data) -> void
+    def headline: -> nil
+    def description: -> nil
+    def language: -> nil
+    def type: -> nil
+    def image: -> nil
+    def date_published: -> nil
+    def date_modified: -> nil
+    def author_name: -> nil
+    def author_url: -> nil
+    def publisher_name: -> nil
+    def publisher_logo: -> untyped
+    def valid?: -> untyped
+
+    private
+    def author: -> Hash[untyped, untyped]
+    def publisher: -> Hash[untyped, untyped]
+    def first_of_value: (nil arr) -> nil
+    def root_array: (untyped root) -> [untyped]
+    def json: -> Hash[untyped, untyped]
+  end
+end

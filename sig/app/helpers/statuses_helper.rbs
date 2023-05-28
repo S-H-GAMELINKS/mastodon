@@ -1,0 +1,22 @@
+# TypeProf 0.21.7
+
+# Classes
+module StatusesHelper
+  EMBEDDED_CONTROLLER: String
+  EMBEDDED_ACTION: String
+
+  def link_to_newer: (untyped url) -> untyped
+  def link_to_older: (untyped url) -> untyped
+  def nothing_here: (?String extra_classes) -> untyped
+  def media_summary: (untyped status) -> nil
+  def status_text_summary: (untyped status) -> nil
+  def poll_summary: (untyped status) -> nil
+  def status_description: (untyped status) -> untyped
+  def stream_link_target: -> String?
+  def style_classes: (untyped status, untyped is_predecessor, untyped is_successor, untyped include_threads) -> String
+  def microformats_classes: (untyped status, untyped is_direct_parent, untyped is_direct_child) -> String
+  def microformats_h_class: (untyped status, untyped is_predecessor, untyped is_successor, untyped include_threads) -> String
+  def fa_visibility_icon: (untyped status) -> nil
+  def embedded_view?: -> untyped
+  def prefers_autoplay?: -> untyped
+end

@@ -1,0 +1,15 @@
+# TypeProf 0.21.7
+
+# Classes
+module StatusThreadingConcern
+  def ancestors: (untyped limit, ?nil account) -> untyped
+  def descendants: (untyped limit, ?nil account, ?nil depth) -> untyped
+  def self_replies: (untyped limit) -> untyped
+
+  private
+  def ancestor_ids: (untyped limit) -> untyped
+  def ancestor_statuses: (untyped limit) -> untyped
+  def descendant_ids: (untyped limit, nil depth) -> untyped
+  def find_statuses_from_tree_path: (untyped ids, nil account, ?promote: bool) -> untyped
+  def promote_by!: (untyped arr) { -> untyped } -> untyped
+end

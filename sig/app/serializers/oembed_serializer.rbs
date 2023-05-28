@@ -1,0 +1,15 @@
+# TypeProf 0.21.7
+
+# Classes
+class OEmbedSerializer
+  def type: -> String
+  def version: -> String
+  def author_name: -> untyped
+  def author_url: -> untyped
+  def provider_name: -> untyped
+  def provider_url: -> untyped
+  def cache_age: -> Integer
+  def html: -> untyped
+  def width: -> untyped
+  def height: -> untyped
+end

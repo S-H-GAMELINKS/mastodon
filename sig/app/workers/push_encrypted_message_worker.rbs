@@ -1,0 +1,6 @@
+# TypeProf 0.21.7
+
+# Classes
+class PushEncryptedMessageWorker
+  def perform: (untyped encrypted_message_id) -> true
+end

@@ -1,0 +1,6 @@
+# TypeProf 0.21.7
+
+# Classes
+class UnpublishAnnouncementWorker
+  def perform: (untyped announcement_id) -> untyped
+end

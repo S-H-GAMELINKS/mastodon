@@ -1,0 +1,6 @@
+# TypeProf 0.21.7
+
+# Classes
+class PostProcessMediaWorker
+  def perform: (untyped media_attachment_id) -> true
+end

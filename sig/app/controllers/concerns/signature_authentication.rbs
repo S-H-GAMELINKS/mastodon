@@ -1,0 +1,6 @@
+# TypeProf 0.21.7
+
+# Classes
+module SignatureAuthentication
+  def current_account: -> untyped
+end

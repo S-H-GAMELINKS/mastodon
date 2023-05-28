@@ -1,0 +1,27 @@
+# TypeProf 0.21.7
+
+# Classes
+class AccountsController
+  PAGE_SIZE: Integer
+  PAGE_SIZE_MAX: Integer
+  @account: bot
+  @rss_url: untyped
+  @statuses: untyped
+
+  def show: -> untyped
+
+  private
+  def filtered_statuses: -> untyped
+  def default_statuses: -> untyped
+  def only_media_scope: -> untyped
+  def no_replies_scope: -> untyped
+  def hashtag_scope: -> untyped
+  def username_param: -> untyped
+  def skip_temporary_suspension_response?: -> untyped
+  def rss_url: -> untyped
+  def media_requested?: -> untyped
+  def replies_requested?: -> untyped
+  def tag_requested?: -> untyped
+  def cached_filtered_status_page: -> untyped
+  def params_slice: (*:max_id | :min_id | :since_id keys) -> untyped
+end

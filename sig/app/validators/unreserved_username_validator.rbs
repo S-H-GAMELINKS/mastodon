@@ -1,0 +1,12 @@
+# TypeProf 0.21.7
+
+# Classes
+class UnreservedUsernameValidator
+  @username: untyped
+
+  def validate: (untyped account) -> nil
+
+  private
+  def pam_controlled?: -> false
+  def reserved_username?: -> bool
+end

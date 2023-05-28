@@ -1,0 +1,40 @@
+# TypeProf 0.21.7
+
+# Classes
+module Admin
+  class AccountsController
+    @accounts: untyped
+    @form: untyped
+    @account: untyped
+    @deletion_request: untyped
+    @account_moderation_note: untyped
+    @moderation_notes: untyped
+    @warnings: untyped
+    @domain_block: untyped
+
+    def index: -> untyped
+    def batch: -> untyped
+    def show: -> untyped
+    def memorialize: -> untyped
+    def enable: -> untyped
+    def approve: -> untyped
+    def reject: -> untyped
+    def destroy: -> untyped
+    def unsensitive: -> untyped
+    def unsilence: -> untyped
+    def unsuspend: -> untyped
+    def redownload: -> untyped
+    def remove_avatar: -> untyped
+    def remove_header: -> untyped
+    def unblock_email: -> untyped
+
+    private
+    def set_account: -> untyped
+    def require_remote_account!: -> nil
+    def require_local_account!: -> nil
+    def filtered_accounts: -> untyped
+    def filter_params: -> untyped
+    def form_account_batch_params: -> untyped
+    def action_from_button: -> String?
+  end
+end

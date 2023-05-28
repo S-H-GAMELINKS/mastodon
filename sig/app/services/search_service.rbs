@@ -1,0 +1,31 @@
+# TypeProf 0.21.7
+
+# Classes
+class SearchService
+  @query: untyped
+  @account: untyped
+  @options: Hash[untyped, untyped]
+  @limit: untyped
+  @offset: Integer
+  @resolve: false
+  @_url_resource: untyped
+
+  def call: (untyped query, untyped account, untyped limit, ?Hash[untyped, untyped] options) -> {accounts: Array[untyped], hashtags: Array[untyped], statuses: Array[untyped]}
+
+  private
+  def perform_accounts_search!: -> untyped
+  def perform_statuses_search!: -> Array[untyped]
+  def perform_hashtags_search!: -> untyped
+  def default_results: -> {accounts: Array[untyped], hashtags: Array[untyped], statuses: Array[untyped]}
+  def url_query?: -> false
+  def url_resource_results: -> Hash[untyped, [untyped]]
+  def url_resource: -> untyped
+  def url_resource_symbol: -> untyped
+  def full_text_searchable?: -> false
+  def account_searchable?: -> false
+  def hashtag_searchable?: -> false
+  def account_search?: -> bool
+  def hashtag_search?: -> bool
+  def statuses_search?: -> bool
+  def parsed_query: -> untyped
+end

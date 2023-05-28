@@ -1,0 +1,20 @@
+# TypeProf 0.21.7
+
+# Classes
+class StatusesController
+  @status: untyped
+  @body_classes: String
+  @account: bot
+  @instance_presenter: untyped
+
+  def show: -> untyped
+  def activity: -> untyped
+  def embed: -> untyped
+
+  private
+  def set_body_classes: -> String
+  def set_link_headers: -> untyped
+  def set_status: -> untyped
+  def set_instance_presenter: -> untyped
+  def redirect_to_original: -> nil
+end

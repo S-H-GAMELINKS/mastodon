@@ -1,0 +1,12 @@
+# TypeProf 0.21.7
+
+# Classes
+class InstanceActorsController
+  @account: untyped
+
+  def show: -> untyped
+
+  private
+  def set_account: -> untyped
+  def restrict_fields_to: -> [:id, :type, :preferred_username, :inbox, :outbox, :public_key, :endpoints, :url, :manually_approves_followers]
+end

@@ -1,0 +1,17 @@
+# TypeProf 0.21.7
+
+# Classes
+module Extractor
+  MAX_DOMAIN_LENGTH: Integer
+
+  def extract_entities_with_indices: (untyped text, ?Hash[untyped, untyped] options) -> Array[untyped]
+  def self.extract_entities_with_indices: (untyped text, ?Hash[untyped, untyped] options) -> Array[untyped]
+  def extract_mentions_or_lists_with_indices: (untyped text) -> Array[untyped]
+  def self.extract_mentions_or_lists_with_indices: (untyped text) -> Array[untyped]
+  def extract_hashtags_with_indices: (untyped text, ?Hash[untyped, untyped] _options) -> Array[untyped]
+  def self.extract_hashtags_with_indices: (untyped text, ?Hash[untyped, untyped] _options) -> Array[untyped]
+  def extract_cashtags_with_indices: (untyped _text) -> Array[untyped]
+  def self.extract_cashtags_with_indices: (untyped _text) -> Array[untyped]
+  def extract_extra_uris_with_indices: (untyped text) -> Array[untyped]
+  def self.extract_extra_uris_with_indices: (untyped text) -> Array[untyped]
+end

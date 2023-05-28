@@ -1,0 +1,34 @@
+# TypeProf 0.21.7
+
+# Classes
+class AccountStatusesFilter
+  KEYS: [:pinned, :tagged, :only_media, :exclude_replies, :exclude_reblogs]
+
+  attr_reader params: Hash[untyped, untyped]
+  attr_reader account: untyped
+  attr_reader current_account: untyped
+  def initialize: (untyped account, untyped current_account, ?Hash[untyped, untyped] params) -> void
+  def results: -> untyped
+
+  private
+  def initial_scope: -> untyped
+  def filtered_scope: -> untyped
+  def filtered_reblogs_scope: -> untyped
+  def only_media_scope: -> untyped
+  def no_replies_scope: -> untyped
+  def no_reblogs_scope: -> untyped
+  def pinned_scope: -> untyped
+  def hashtag_scope: -> untyped
+  def suspended?: -> untyped
+  def anonymous?: -> untyped
+  def author?: -> untyped
+  def blocked?: -> untyped
+  def follower?: -> untyped
+  def reblogs_may_occur?: -> untyped
+  def pinned?: -> untyped
+  def only_media?: -> untyped
+  def exclude_replies?: -> untyped
+  def exclude_reblogs?: -> untyped
+  def tagged?: -> untyped
+  def truthy_param?: (:exclude_reblogs | :exclude_replies | :only_media | :pinned key) -> untyped
+end

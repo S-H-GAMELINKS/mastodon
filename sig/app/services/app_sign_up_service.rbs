@@ -1,0 +1,24 @@
+# TypeProf 0.21.7
+
+# Classes
+class AppSignUpService
+  @app: untyped
+  @remote_ip: untyped
+  @params: untyped
+  @access_token: untyped
+  @user: untyped
+
+  def call: (untyped app, untyped remote_ip, untyped params) -> nil
+
+  private
+  def create_user!: -> untyped
+  def create_access_token!: -> untyped
+  def user_params: -> untyped
+  def account_params: -> untyped
+  def invite_request_params: -> {text: untyped}
+  def allowed_registrations?: -> false
+  def registrations_open?: -> untyped
+  def single_user_mode?: -> untyped
+  def omniauth_only?: -> bool
+  def ip_blocked?: -> untyped
+end

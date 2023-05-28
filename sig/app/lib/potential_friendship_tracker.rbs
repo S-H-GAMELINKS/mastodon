@@ -1,0 +1,11 @@
+# TypeProf 0.21.7
+
+# Classes
+class PotentialFriendshipTracker
+  EXPIRE_AFTER: untyped
+  MAX_ITEMS: Integer
+  WEIGHTS: {reply: Integer, favourite: Integer, reblog: Integer}
+
+  def self.record: (untyped account_id, untyped target_account_id, untyped action) -> nil
+  def self.remove: (untyped account_id, untyped target_account_id) -> untyped
+end

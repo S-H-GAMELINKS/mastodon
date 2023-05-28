@@ -1,0 +1,11 @@
+# TypeProf 0.21.7
+
+# Classes
+class HomeController
+  @instance_presenter: untyped
+
+  def index: -> nil
+
+  private
+  def set_instance_presenter: -> untyped
+end

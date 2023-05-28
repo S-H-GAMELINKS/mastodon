@@ -1,0 +1,15 @@
+# TypeProf 0.21.7
+
+# Classes
+class BlockDomainService
+  attr_reader domain_block: untyped
+  def call: (untyped domain_block, ?false update) -> nil
+
+  private
+  def process_retroactive_updates!: -> nil
+  def process_domain_block!: -> nil
+  def silence_accounts!: -> untyped
+  def suspend_accounts!: -> untyped
+  def blocked_domain: -> untyped
+  def blocked_domain_accounts: -> untyped
+end

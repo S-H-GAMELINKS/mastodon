@@ -1,0 +1,12 @@
+# TypeProf 0.21.7
+
+# Classes
+class ContentRetentionPolicy
+  def self.current: -> ContentRetentionPolicy
+  def media_cache_retention_period: -> nil
+  def content_cache_retention_period: -> nil
+  def backups_retention_period: -> nil
+
+  private
+  def retention_period: (untyped value) -> nil
+end

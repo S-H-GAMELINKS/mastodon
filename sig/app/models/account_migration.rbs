@@ -1,0 +1,18 @@
+# TypeProf 0.21.7
+
+# Classes
+class AccountMigration
+  COOLDOWN_PERIOD: untyped
+
+  attr_accessor current_password: bot
+  attr_accessor current_username: bot
+  def save_with_challenge: (untyped current_user) -> false
+  def cooldown_at: -> untyped
+  def acct=: (untyped val) -> untyped
+
+  private
+  def set_target_account: -> nil
+  def set_followers_count: -> untyped
+  def validate_target_account: -> nil
+  def validate_migration_cooldown: -> nil
+end

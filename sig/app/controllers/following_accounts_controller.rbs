@@ -1,0 +1,18 @@
+# TypeProf 0.21.7
+
+# Classes
+class FollowingAccountsController
+  @follows: untyped
+  @account: bot
+
+  def index: -> untyped
+
+  private
+  def follows: -> nil
+  def page_requested?: -> untyped
+  def page_url: (Integer page) -> nil
+  def next_page_url: -> nil
+  def prev_page_url: -> nil
+  def collection_presenter: -> untyped
+  def restrict_fields_to: -> [:id, :type, :total_items]?
+end

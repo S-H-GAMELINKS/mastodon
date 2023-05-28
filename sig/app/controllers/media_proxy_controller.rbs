@@ -1,0 +1,13 @@
+# TypeProf 0.21.7
+
+# Classes
+class MediaProxyController
+  @media_attachment: untyped
+
+  def show: -> untyped
+
+  private
+  def redownload!: -> untyped
+  def version: -> (:original | :small)
+  def reject_media?: -> untyped
+end

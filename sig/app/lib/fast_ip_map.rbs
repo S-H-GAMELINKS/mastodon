@@ -1,0 +1,12 @@
+# TypeProf 0.21.7
+
+# Classes
+class FastIpMap
+  MAX_IPV4_PREFIX: Integer
+  MAX_IPV6_PREFIX: Integer
+  @fast_lookup: Hash[untyped, untyped]
+  @ranges: Array[untyped]
+
+  def initialize: (untyped addresses) -> void
+  def include?: (untyped address) -> bool
+end

@@ -1,0 +1,12 @@
+# TypeProf 0.21.7
+
+# Classes
+class BootstrapTimelineService
+  @source_account: untyped
+
+  def call: (untyped source_account) -> untyped
+
+  private
+  def autofollow_inviter!: -> nil
+  def notify_staff!: -> untyped
+end

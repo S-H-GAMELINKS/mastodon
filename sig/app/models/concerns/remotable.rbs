@@ -1,0 +1,6 @@
+# TypeProf 0.21.7
+
+# Classes
+module Remotable
+  def remotable_attachment: (untyped attachment_name, untyped limit, ?suppress_errors: true, ?download_on_assign: true, ?attribute_name: nil) -> nil
+end

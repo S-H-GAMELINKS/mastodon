@@ -1,0 +1,26 @@
+# TypeProf 0.21.7
+
+# Classes
+class ResolveURLService
+  USERNAME_STATUS_RE: Regexp
+  @url: untyped
+  @on_behalf_of: nil
+  @fetched_resource: untyped
+  @_fetch_resource_service: untyped
+  @json_data: untyped
+
+  def call: (untyped url, ?on_behalf_of: nil) -> nil
+
+  private
+  def process_url: -> nil
+  def process_url_from_db: -> nil
+  def fetched_resource: -> untyped
+  def fetch_resource_service: -> untyped
+  def resource_url: -> untyped
+  def body: -> untyped
+  def type: -> untyped
+  def json_data: -> untyped
+  def local_url?: -> untyped
+  def process_local_url: -> nil
+  def check_local_status: (untyped status) -> nil
+end

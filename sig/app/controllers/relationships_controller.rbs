@@ -1,0 +1,24 @@
+# TypeProf 0.21.7
+
+# Classes
+class RelationshipsController
+  @form: untyped
+  @accounts: untyped
+  @relationships: untyped
+  @body_classes: String
+
+  def show: -> untyped
+  def update: -> nil
+
+  private
+  def set_accounts: -> untyped
+  def set_relationships: -> untyped
+  def form_account_batch_params: -> untyped
+  def following_relationship?: -> untyped
+  def mutual_relationship?: -> untyped
+  def followed_by_relationship?: -> untyped
+  def filter_params: -> untyped
+  def action_from_button: -> String?
+  def set_body_classes: -> String
+  def set_cache_headers: -> untyped
+end

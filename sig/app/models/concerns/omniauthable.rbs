@@ -1,0 +1,17 @@
+# TypeProf 0.21.7
+
+# Classes
+module Omniauthable
+  TEMP_EMAIL_PREFIX: String
+  TEMP_EMAIL_REGEX: Regexp
+
+  def omniauth_providers: -> untyped
+  def email_present?: -> untyped
+  def find_for_oauth: (untyped auth, ?nil signed_in_resource) -> nil
+  def create_for_oauth: (untyped auth) -> nil
+
+  private
+  def user_params_from_auth: (untyped email, untyped auth) -> {email: String, agreement: true, external: true, account_attributes: {username: String, display_name: String}}
+  def ensure_unique_username: (untyped starting_username) -> String
+  def ensure_valid_username: (untyped starting_username) -> untyped
+end

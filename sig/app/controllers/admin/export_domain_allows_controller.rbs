@@ -1,0 +1,17 @@
+# TypeProf 0.21.7
+
+# Classes
+module Admin
+  class ExportDomainAllowsController
+    @import: untyped
+
+    def new: -> untyped
+    def export: -> untyped
+    def import: -> untyped
+
+    private
+    def export_filename: -> String
+    def export_headers: -> [String]
+    def export_data: -> String
+  end
+end

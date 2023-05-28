@@ -1,0 +1,6 @@
+# TypeProf 0.21.7
+
+# Classes
+class LinkCrawlWorker
+  def perform: (untyped status_id) -> true
+end

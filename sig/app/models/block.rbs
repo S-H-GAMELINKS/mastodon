@@ -1,0 +1,10 @@
+# TypeProf 0.21.7
+
+# Classes
+class Block
+  def local?: -> false
+
+  private
+  def remove_blocking_cache: -> untyped
+  def set_uri: -> nil
+end

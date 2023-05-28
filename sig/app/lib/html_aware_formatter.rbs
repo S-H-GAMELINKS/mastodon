@@ -1,0 +1,15 @@
+# TypeProf 0.21.7
+
+# Classes
+class HtmlAwareFormatter
+  attr_reader text: untyped
+  attr_reader local: untyped
+  attr_reader options: Hash[untyped, untyped]
+  alias local? local
+  def initialize: (untyped text, untyped local, ?Hash[untyped, untyped] options) -> void
+  def to_s: -> untyped
+
+  private
+  def reformat: -> untyped
+  def linkify: -> untyped
+end

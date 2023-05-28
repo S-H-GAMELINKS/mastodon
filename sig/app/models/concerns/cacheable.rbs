@@ -1,0 +1,13 @@
+# TypeProf 0.21.7
+
+# Classes
+module Cacheable
+  module ClassMethods
+    self.@cache_associated: Array[untyped]
+    @cache_associated: untyped
+
+    def cache_associated: (*untyped associations) -> untyped
+    def with_includes: -> untyped
+    def cache_ids: -> untyped
+  end
+end

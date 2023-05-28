@@ -1,0 +1,6 @@
+# TypeProf 0.21.7
+
+# Classes
+class AfterUnallowDomainService
+  def call: (untyped domain) -> untyped
+end

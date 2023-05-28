@@ -1,0 +1,6 @@
+# TypeProf 0.21.7
+
+# Classes
+class UniqueUsernameValidator
+  def validate: (untyped account) -> nil
+end

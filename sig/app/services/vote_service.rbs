@@ -1,0 +1,18 @@
+# TypeProf 0.21.7
+
+# Classes
+class VoteService
+  @account: untyped
+  @poll: untyped
+  @choices: untyped
+  @votes: Array[untyped]
+
+  def call: (untyped account, untyped poll, untyped choices) -> nil
+
+  private
+  def distribute_poll!: -> nil
+  def queue_final_poll_check!: -> nil
+  def deliver_votes!: -> Array[untyped]
+  def build_json: (bot vote) -> untyped
+  def increment_voters_count!: -> nil
+end

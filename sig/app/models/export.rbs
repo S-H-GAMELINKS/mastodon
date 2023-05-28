@@ -1,0 +1,26 @@
+# TypeProf 0.21.7
+
+# Classes
+class Export
+  attr_reader account: untyped
+  def initialize: (untyped account) -> void
+  def to_bookmarks_csv: -> String
+  def to_blocked_accounts_csv: -> String
+  def to_muted_accounts_csv: -> String
+  def to_following_accounts_csv: -> String
+  def to_lists_csv: -> String
+  def to_blocked_domains_csv: -> String
+  def total_storage: -> untyped
+  def total_statuses: -> untyped
+  def total_bookmarks: -> untyped
+  def total_follows: -> untyped
+  def total_lists: -> untyped
+  def total_followers: -> untyped
+  def total_blocks: -> untyped
+  def total_mutes: -> untyped
+  def total_domain_blocks: -> untyped
+
+  private
+  def to_csv: (untyped accounts) -> String
+  def acct: (untyped account) -> untyped
+end

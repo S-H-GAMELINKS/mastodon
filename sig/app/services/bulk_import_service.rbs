@@ -1,0 +1,17 @@
+# TypeProf 0.21.7
+
+# Classes
+class BulkImportService
+  @import: untyped
+  @account: untyped
+
+  def call: (untyped import) -> nil
+
+  private
+  def extract_rows_by_acct: -> untyped
+  def import_follows!: -> untyped
+  def import_blocks!: -> untyped
+  def import_mutes!: -> untyped
+  def import_domain_blocks!: -> untyped
+  def import_bookmarks!: -> untyped
+end

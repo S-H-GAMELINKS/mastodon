@@ -1,0 +1,22 @@
+# TypeProf 0.21.7
+
+# Classes
+module Admin
+  class FollowRecommendationsController
+    @form: untyped
+    @follow_recommendation_filter: untyped
+    @accounts: untyped
+    @language: untyped
+
+    def show: -> untyped
+    def update: -> nil
+
+    private
+    def set_language: -> untyped
+    def filtered_follow_recommendations: -> untyped
+    def follow_recommendation_filter: -> untyped
+    def form_account_batch_params: -> untyped
+    def filter_params: -> untyped
+    def action_from_button: -> String?
+  end
+end

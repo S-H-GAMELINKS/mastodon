@@ -1,0 +1,19 @@
+# TypeProf 0.21.7
+
+# Classes
+module Admin
+  class DashboardController
+    @system_checks: untyped
+    @time_period: Range
+    @pending_users_count: untyped
+    @pending_reports_count: untyped
+    @pending_tags_count: untyped
+    @pending_appeals_count: untyped
+    @redis_info: untyped
+
+    def index: -> untyped
+
+    private
+    def redis_info: -> untyped
+  end
+end

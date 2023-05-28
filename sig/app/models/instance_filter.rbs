@@ -1,0 +1,14 @@
+# TypeProf 0.21.7
+
+# Classes
+class InstanceFilter
+  KEYS: [:limited, :by_domain, :availability]
+
+  attr_reader params: untyped
+  def initialize: (untyped params) -> void
+  def results: -> untyped
+
+  private
+  def scope_for: (untyped key, untyped value) -> untyped
+  def availability_scope: (untyped value) -> untyped
+end

@@ -1,0 +1,17 @@
+# TypeProf 0.21.7
+
+# Classes
+class PostStatusUpdatedWithVisibilityService
+  @account: untyped
+  @options: Hash[untyped, untyped]
+  @text: String?
+  @visibility: String?
+  @spoiler_text: String?
+
+  def call: (untyped user, ?Hash[untyped, untyped] options) -> [String?, String?, String?]
+
+  class UnexpectedMentionsError < StandardError
+    attr_reader accounts: untyped
+    def initialize: (untyped message, untyped accounts) -> void
+  end
+end

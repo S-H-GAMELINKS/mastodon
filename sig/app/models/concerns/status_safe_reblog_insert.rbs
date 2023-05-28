@@ -1,0 +1,7 @@
+# TypeProf 0.21.7
+
+# Classes
+module StatusSafeReblogInsert
+  def _insert_record: (untyped values) -> untyped
+  def _compile_reblog_insert: (untyped values) -> untyped
+end

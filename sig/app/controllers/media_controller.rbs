@@ -1,0 +1,16 @@
+# TypeProf 0.21.7
+
+# Classes
+class MediaController
+  @media_attachment: untyped
+  @body_classes: String
+
+  def show: -> untyped
+  def player: -> String
+
+  private
+  def set_media_attachment: -> nil
+  def verify_permitted_status!: -> untyped
+  def check_playable: -> nil
+  def allow_iframing: -> untyped
+end

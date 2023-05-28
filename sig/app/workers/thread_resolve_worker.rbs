@@ -1,0 +1,6 @@
+# TypeProf 0.21.7
+
+# Classes
+class ThreadResolveWorker
+  def perform: (untyped child_status_id, untyped parent_url, ?Hash[untyped, untyped] options) -> true?
+end

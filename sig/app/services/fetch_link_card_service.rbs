@@ -1,0 +1,25 @@
+# TypeProf 0.21.7
+
+# Classes
+class FetchLinkCardService
+  URL_PATTERN: Regexp
+  @status: untyped
+  @original_url: untyped
+  @url: untyped
+  @card: untyped
+  @html: nil
+  @html_charset: nil
+
+  def call: (untyped status) -> nil
+
+  private
+  def process_url: -> nil
+  def html: -> nil
+  def attach_card: -> untyped
+  def parse_urls: -> untyped
+  def bad_url?: (untyped uri) -> bool
+  def mention_link?: (untyped anchor) -> untyped
+  def skip_link?: (untyped anchor) -> untyped
+  def attempt_oembed: -> false
+  def attempt_opengraph: -> nil
+end

@@ -1,0 +1,9 @@
+# TypeProf 0.21.7
+
+# Classes
+class Setting
+  def to_param: -> untyped
+  def self.[]: (untyped key) -> untyped
+  def self.all_as_records: -> untyped
+  def self.default_settings: -> Hash[untyped, untyped]
+end

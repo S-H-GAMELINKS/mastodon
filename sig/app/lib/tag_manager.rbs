@@ -1,0 +1,11 @@
+# TypeProf 0.21.7
+
+# Classes
+class TagManager
+  include Singleton
+
+  def web_domain?: (untyped domain) -> untyped
+  def local_domain?: (untyped domain) -> untyped
+  def normalize_domain: (untyped domain) -> nil
+  def local_url?: (untyped url) -> false
+end

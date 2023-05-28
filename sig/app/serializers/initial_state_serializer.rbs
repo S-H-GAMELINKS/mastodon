@@ -1,0 +1,15 @@
+# TypeProf 0.21.7
+
+# Classes
+class InitialStateSerializer
+  @instance_presenter: untyped
+
+  def meta: -> {streaming_api_base_url: untyped, access_token: untyped, locale: untyped, domain: untyped, title: untyped, admin: untyped, search_enabled: untyped, repository: untyped, source_url: untyped, version: untyped, limited_federation_mode: untyped, mascot: untyped, profile_directory: untyped, trends: untyped, registrations_open: untyped, timeline_preview: untyped, activity_api_enabled: untyped, single_user_mode: untyped, trends_as_landing_page: untyped, status_page_url: untyped, me: untyped, unfollow_modal: untyped, boost_modal: untyped, delete_modal: untyped, auto_play_gif: untyped, display_media: untyped, expand_spoilers: untyped, reduce_motion: untyped, disable_swiping: untyped, advanced_layout: untyped, use_blurhash: untyped, use_pending_items: untyped, crop_images: untyped, resized_custom_emoji: untyped, portfolio_default_hashtag_flag: untyped, portfolio_default_hashtag: untyped, unfollow_all_when_migrate: untyped, disabled_account_id: untyped, moved_to_account_id: untyped, owner: untyped}
+  def compose: -> {me: untyped, default_privacy: untyped, default_sensitive: untyped, default_language: untyped, text: untyped}
+  def accounts: -> Hash[untyped, untyped]
+  def media_attachments: -> {accept_content_types: untyped}
+  def languages: -> untyped
+
+  private
+  def instance_presenter: -> untyped
+end

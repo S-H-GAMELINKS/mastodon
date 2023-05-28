@@ -1,0 +1,62 @@
+# TypeProf 0.21.7
+
+# Classes
+class MediaAttachment
+  MAX_DESCRIPTION_LENGTH: Integer
+  IMAGE_LIMIT: untyped
+  VIDEO_LIMIT: untyped
+  MAX_VIDEO_MATRIX_LIMIT: Integer
+  MAX_VIDEO_FRAME_RATE: Integer
+  IMAGE_FILE_EXTENSIONS: [String, String, String, String, String, String, String, String]
+  VIDEO_FILE_EXTENSIONS: [String, String, String, String]
+  AUDIO_FILE_EXTENSIONS: [String, String, String, String, String, String, String, String, String, String]
+  META_KEYS: [:focus, :colors, :original, :small]
+  IMAGE_MIME_TYPES: [String, String, String, String, String, String, String]
+  IMAGE_CONVERTIBLE_MIME_TYPES: [String, String]
+  VIDEO_MIME_TYPES: [String, String, String, String]
+  VIDEO_CONVERTIBLE_MIME_TYPES: [String, String]
+  AUDIO_MIME_TYPES: [String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String]
+  BLURHASH_OPTIONS: {x_comp: Integer, y_comp: Integer}
+  IMAGE_STYLES: {original: {pixels: Integer, file_geometry_parser: untyped}, small: {pixels: Integer, file_geometry_parser: untyped, blurhash: {x_comp: Integer, y_comp: Integer}}}
+  IMAGE_CONVERTED_STYLES: {original: {pixels: Integer | String, file_geometry_parser: Integer | String, format: Integer | String, content_type: Integer | String}, small: {pixels: Integer | String | {x_comp: Integer, y_comp: Integer}, file_geometry_parser: Integer | String | {x_comp: Integer, y_comp: Integer}, blurhash: Integer | String | {x_comp: Integer, y_comp: Integer}, format: Integer | String | {x_comp: Integer, y_comp: Integer}}}
+  VIDEO_FORMAT: {format: String, content_type: String, vfr_frame_rate_threshold: Integer, convert_options: {output: Hash[String, Integer | String]}}
+  VIDEO_PASSTHROUGH_OPTIONS: {video_codecs: [String], audio_codecs: [String, nil], colorspaces: [String], options: {format: String, convert_options: {output: Hash[String, String]}}}
+  VIDEO_STYLES: {small: {convert_options: {output: Hash[:vf | String, String]}, format: String, time: Integer, file_geometry_parser: untyped, blurhash: {x_comp: Integer, y_comp: Integer}}, original: Hash[:content_type | :convert_options | :format | :vfr_frame_rate_threshold, Integer | String | {output: Hash[String, untyped]}]}
+  AUDIO_STYLES: {original: {format: String, content_type: String, convert_options: {output: Hash[String, Integer | String]}}}
+  VIDEO_CONVERTED_STYLES: {small: {convert_options: {output: Hash[:vf | String, String]}, format: String, time: Integer, file_geometry_parser: untyped, blurhash: {x_comp: Integer, y_comp: Integer}}, original: {format: String, content_type: String, vfr_frame_rate_threshold: Integer, convert_options: {output: Hash[String, Integer | String]}}}
+  THUMBNAIL_STYLES: {original: {pixels: Integer, file_geometry_parser: untyped, blurhash: {x_comp: Integer, y_comp: Integer}}}
+  DEFAULT_STYLES: [:original]
+  GLOBAL_CONVERT_OPTIONS: {all: String}
+  @ffmpeg_data: untyped
+
+  attr_accessor skip_download: untyped
+  def local?: -> untyped
+  def not_processed?: -> untyped
+  def needs_redownload?: -> untyped
+  def significantly_changed?: -> untyped
+  def larger_media_format?: -> untyped
+  def audio_or_video?: -> untyped
+  def to_param: -> untyped
+  def focus=: (untyped point) -> nil
+  def focus: -> String?
+  attr_writer delay_processing: bot
+  def delay_processing?: -> nil
+  def delay_processing_for_attachment?: (untyped attachment_name) -> nil
+  def self.supported_mime_types: -> Array[String]
+  def self.supported_file_extensions: -> Array[String]
+  def self.file_styles: (untyped attachment) -> ({small: {convert_options: {output: Hash[:vf | String, String]}, format: Integer | String | {x_comp: Integer, y_comp: Integer}, time: Integer, file_geometry_parser: Integer | String | {x_comp: Integer, y_comp: Integer}, blurhash: Integer | String | {x_comp: Integer, y_comp: Integer}, pixels: Integer | String | {x_comp: Integer, y_comp: Integer}}, original: Hash[:content_type | :convert_options | :file_geometry_parser | :format | :pixels | :vfr_frame_rate_threshold, Integer | String | {output: Hash[String, untyped]}]})
+  def self.file_processors: (untyped `instance`) -> (Array[:blurhash_transcoder | :gif_transcoder | :image_extractor | :lazy_thumbnail | :transcoder | :type_corrector])
+
+  private
+  def set_unknown_type: -> :unknown?
+  def set_type_and_extension: -> (:audio | :image | :video)
+  def set_processing: -> (:complete | :queued)
+  def check_video_dimensions: -> nil
+  def set_meta: -> untyped
+  def populate_meta: -> untyped
+  def image_geometry: (untyped file) -> {width: untyped, height: untyped, size: String, aspect: untyped}
+  def video_metadata: (untyped file) -> {width: untyped, height: untyped, frame_rate: untyped, duration: untyped, bitrate: untyped}
+  def ffmpeg_data: (?nil path) -> untyped
+  def enqueue_processing: -> nil
+  def reset_parent_cache: -> nil
+end

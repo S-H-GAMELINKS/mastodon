@@ -1,0 +1,6 @@
+# TypeProf 0.21.7
+
+# Classes
+class FetchReplyWorker
+  def perform: (untyped child_url, ?Hash[untyped, untyped] options) -> untyped
+end

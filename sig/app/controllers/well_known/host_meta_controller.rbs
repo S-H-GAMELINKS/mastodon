@@ -1,0 +1,10 @@
+# TypeProf 0.21.7
+
+# Classes
+module WellKnown
+  class HostMetaController
+    @webfinger_template: String
+
+    def show: -> untyped
+  end
+end

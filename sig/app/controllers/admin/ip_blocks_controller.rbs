@@ -1,0 +1,20 @@
+# TypeProf 0.21.7
+
+# Classes
+module Admin
+  class IpBlocksController
+    @ip_blocks: untyped
+    @form: untyped
+    @ip_block: untyped
+
+    def index: -> untyped
+    def new: -> untyped
+    def create: -> untyped
+    def batch: -> untyped
+
+    private
+    def resource_params: -> untyped
+    def action_from_button: -> String?
+    def form_ip_block_batch_params: -> untyped
+  end
+end

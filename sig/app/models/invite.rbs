@@ -1,0 +1,9 @@
+# TypeProf 0.21.7
+
+# Classes
+class Invite
+  def valid_for_use?: -> untyped
+
+  private
+  def set_code: -> nil
+end

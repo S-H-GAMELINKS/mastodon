@@ -1,0 +1,8 @@
+# TypeProf 0.21.7
+
+# Classes
+class AccountDeletionRequest
+  DELAY_TO_DELETION: untyped
+
+  def due_at: -> untyped
+end

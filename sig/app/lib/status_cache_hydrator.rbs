@@ -1,0 +1,9 @@
+# TypeProf 0.21.7
+
+# Classes
+class StatusCacheHydrator
+  @status: untyped
+
+  def initialize: (untyped status) -> void
+  def hydrate: (untyped account_id) -> untyped
+end

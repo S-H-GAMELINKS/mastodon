@@ -1,0 +1,17 @@
+# TypeProf 0.21.7
+
+# Classes
+class ManifestSerializer
+  ICON_SIZES: [String, String, String, String, String, String, String, String, String]
+
+  def name: -> untyped
+  def short_name: -> untyped
+  def icons: -> Array[{src: untyped, sizes: String, type: String, purpose: String}]
+  def theme_color: -> String
+  def background_color: -> String
+  def display: -> String
+  def start_url: -> String
+  def scope: -> String
+  def share_target: -> {url_template: String, action: String, method: String, enctype: String, params: {title: String, text: String, url: String}}
+  def shortcuts: -> [{name: String, url: String}, {name: String, url: String}]
+end

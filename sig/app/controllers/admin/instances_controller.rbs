@@ -1,0 +1,24 @@
+# TypeProf 0.21.7
+
+# Classes
+module Admin
+  class InstancesController
+    @instances: untyped
+    @time_period: Range
+    @instance: untyped
+
+    def index: -> untyped
+    def show: -> Range
+    def destroy: -> untyped
+    def clear_delivery_errors: -> untyped
+    def restart_delivery: -> untyped
+    def stop_delivery: -> untyped
+
+    private
+    def set_instance: -> untyped
+    def set_instances: -> untyped
+    def preload_delivery_failures!: -> untyped
+    def filtered_instances: -> untyped
+    def filter_params: -> untyped
+  end
+end

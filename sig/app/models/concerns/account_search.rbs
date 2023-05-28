@@ -1,0 +1,20 @@
+# TypeProf 0.21.7
+
+# Classes
+module AccountSearch
+  DISALLOWED_TSQUERY_CHARACTERS: Regexp
+  TEXT_SEARCH_RANKS: untyped
+  REPUTATION_SCORE_FUNCTION: untyped
+  FOLLOWERS_SCORE_FUNCTION: untyped
+  TIME_DISTANCE_FUNCTION: untyped
+  BOOST: untyped
+  BASIC_SEARCH_SQL: untyped
+  ADVANCED_SEARCH_WITH_FOLLOWING: untyped
+  ADVANCED_SEARCH_WITHOUT_FOLLOWING: untyped
+
+  def search_for: (untyped terms, ?limit: Integer, ?offset: Integer) -> untyped
+  def advanced_search_for: (untyped terms, untyped account, ?limit: Integer, ?following: false, ?offset: Integer) -> untyped
+
+  private
+  def generate_query_for_search: (untyped unsanitized_terms) -> String
+end

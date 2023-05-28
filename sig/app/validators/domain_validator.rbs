@@ -1,0 +1,9 @@
+# TypeProf 0.21.7
+
+# Classes
+class DomainValidator
+  def validate_each: (untyped record, untyped attribute, untyped value) -> nil
+
+  private
+  def compliant?: (untyped value) -> false
+end

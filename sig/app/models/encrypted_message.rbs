@@ -1,0 +1,9 @@
+# TypeProf 0.21.7
+
+# Classes
+class EncryptedMessage
+  private
+  def push_to_streaming_api: -> nil
+  def subscribed_to_timeline?: -> untyped
+  def streaming_channel: -> String
+end

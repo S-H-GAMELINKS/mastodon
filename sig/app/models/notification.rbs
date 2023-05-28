@@ -1,0 +1,17 @@
+# TypeProf 0.21.7
+
+# Classes
+class Notification
+  LEGACY_TYPE_CLASS_MAP: Hash[String, :favourite | :follow | :follow_request | :mention | :poll | :reblog]
+  TYPES: [:mention, :status, :reblog, :follow, :follow_request, :favourite, :poll, :update, :"admin.sign_up", :"admin.report"]
+  TARGET_STATUS_INCLUDES_BY_TYPE: {status: :status, reblog: [{status: :reblog}], mention: [{mention: :status}], favourite: [{favourite: :status}], poll: [{poll: :status}], update: :status, report: [{report: :target_account}]}
+  @type: Symbol
+
+  def type: -> Symbol
+  def target_status: -> nil
+  def self.browserable: (?types: Array[untyped], ?exclude_types: Array[untyped], ?from_account_id: nil) -> untyped
+  def self.preload_cache_collection_target_statuses: (untyped notifications) -> untyped
+
+  private
+  def set_from_account: -> nil
+end

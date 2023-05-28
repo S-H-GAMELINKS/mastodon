@@ -1,0 +1,8 @@
+# TypeProf 0.21.7
+
+# Classes
+class AnnouncementReaction
+  private
+  def set_custom_emoji: -> nil
+  def queue_publish: -> nil
+end

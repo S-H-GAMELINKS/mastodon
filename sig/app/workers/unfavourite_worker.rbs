@@ -1,0 +1,6 @@
+# TypeProf 0.21.7
+
+# Classes
+class UnfavouriteWorker
+  def perform: (untyped account_id, untyped status_id) -> true
+end

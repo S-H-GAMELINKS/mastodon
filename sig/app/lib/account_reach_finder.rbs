@@ -1,0 +1,15 @@
+# TypeProf 0.21.7
+
+# Classes
+class AccountReachFinder
+  @account: untyped
+
+  def initialize: (untyped account) -> void
+  def inboxes: -> untyped
+
+  private
+  def followers_inboxes: -> untyped
+  def reporters_inboxes: -> untyped
+  def recently_mentioned_inboxes: -> untyped
+  def relay_inboxes: -> untyped
+end

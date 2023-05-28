@@ -1,0 +1,8 @@
+# TypeProf 0.21.7
+
+# Classes
+class CustomFilterKeyword
+  private
+  def prepare_cache_invalidation!: -> untyped
+  def invalidate_cache!: -> untyped
+end

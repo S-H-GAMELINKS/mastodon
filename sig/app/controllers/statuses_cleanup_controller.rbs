@@ -1,0 +1,17 @@
+# TypeProf 0.21.7
+
+# Classes
+class StatusesCleanupController
+  @policy: untyped
+  @body_classes: String
+
+  def show: -> nil
+  def update: -> nil
+  def require_functional!: -> nil
+
+  private
+  def set_policy: -> untyped
+  def resource_params: -> untyped
+  def set_body_classes: -> String
+  def set_cache_headers: -> untyped
+end

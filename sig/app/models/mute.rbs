@@ -1,0 +1,7 @@
+# TypeProf 0.21.7
+
+# Classes
+class Mute
+  private
+  def remove_blocking_cache: -> untyped
+end

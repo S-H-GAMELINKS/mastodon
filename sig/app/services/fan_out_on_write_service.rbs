@@ -1,0 +1,33 @@
+# TypeProf 0.21.7
+
+# Classes
+class FanOutOnWriteService
+  @status: untyped
+  @account: untyped
+  @options: Hash[untyped, untyped]
+  @rendered_status: untyped
+  @anonymous_payload: untyped
+
+  def call: (untyped status, ?Hash[untyped, untyped] options) -> nil
+
+  private
+  def check_race_condition!: -> nil
+  def fan_out_to_local_recipients!: -> nil
+  def fan_out_to_public_recipients!: -> untyped
+  def fan_out_to_public_streams!: -> nil
+  def deliver_to_self!: -> nil
+  def notify_mentioned_accounts!: -> untyped
+  def notify_about_update!: -> untyped
+  def deliver_to_all_followers!: -> untyped
+  def deliver_to_hashtag_followers!: -> untyped
+  def deliver_to_lists!: -> untyped
+  def deliver_to_mentioned_followers!: -> untyped
+  def broadcast_to_hashtag_streams!: -> untyped
+  def broadcast_to_public_streams!: -> nil
+  def deliver_to_conversation!: -> nil
+  def warm_payload_cache!: -> untyped
+  def anonymous_payload: -> untyped
+  def rendered_status: -> untyped
+  def update?: -> nil
+  def broadcastable?: -> untyped
+end

@@ -1,0 +1,13 @@
+# TypeProf 0.21.7
+
+# Classes
+class AnnouncementFilter
+  KEYS: [:published, :unpublished]
+
+  attr_reader params: untyped
+  def initialize: (untyped params) -> void
+  def results: -> untyped
+
+  private
+  def scope_for: (untyped key, untyped _value) -> untyped
+end

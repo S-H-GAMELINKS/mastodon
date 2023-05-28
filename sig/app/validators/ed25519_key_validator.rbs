@@ -1,0 +1,9 @@
+# TypeProf 0.21.7
+
+# Classes
+class Ed25519KeyValidator
+  def validate_each: (untyped record, untyped attribute, untyped value) -> nil
+
+  private
+  def verified?: (untyped key) -> false
+end

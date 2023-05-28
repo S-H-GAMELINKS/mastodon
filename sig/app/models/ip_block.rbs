@@ -1,0 +1,12 @@
+# TypeProf 0.21.7
+
+# Classes
+class IpBlock
+  CACHE_KEY: String
+
+  def to_log_human_identifier: -> String
+  def self.blocked?: (untyped remote_ip) -> untyped
+
+  private
+  def reset_cache: -> untyped
+end

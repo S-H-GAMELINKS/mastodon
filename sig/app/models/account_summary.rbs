@@ -1,0 +1,7 @@
+# TypeProf 0.21.7
+
+# Classes
+class AccountSummary
+  def self.refresh: -> untyped
+  def readonly?: -> true
+end
