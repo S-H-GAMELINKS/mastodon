@@ -566,6 +566,7 @@ GEM
       thor (~> 1.0)
     rainbow (3.1.1)
     rake (13.0.6)
+    rbs (3.1.0)
     rdf (3.2.10)
       link_header (~> 0.0, >= 0.0.8)
     rdf-normalize (0.5.1)
@@ -730,6 +731,8 @@ GEM
     twitter-text (3.1.0)
       idn-ruby
       unf (~> 0.1.0)
+    typeprof (0.21.7)
+      rbs (>= 1.8.1)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     tzinfo-data (1.2023.3)
@@ -909,6 +912,7 @@ DEPENDENCIES
   thor (~> 1.2)
   tty-prompt (~> 0.23)
   twitter-text (~> 3.1.0)
+  typeprof
   tzinfo-data (~> 1.2023)
   webauthn (~> 3.0)
   webmock (~> 3.18)
