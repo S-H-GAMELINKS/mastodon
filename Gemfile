@@ -185,6 +185,9 @@ group :development do
   # Profiling tools
   gem 'memory_profiler', require: false
   gem 'stackprof', require: false
+
+  # For debug
+  gem 'debug', '>= 1.0.0'
 end
 
 group :production do
