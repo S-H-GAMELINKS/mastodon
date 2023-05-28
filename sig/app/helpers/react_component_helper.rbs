@@ -6,5 +6,5 @@ module ReactComponentHelper
   def react_admin_component: (untyped name, ?Hash[untyped, untyped] props) -> untyped
 
   private
-  def div_tag_with_data: ({admin-component: untyped, props: untyped, component: untyped} data) -> untyped
+  def div_tag_with_data: (Hash[untyped, untyped] data) -> untyped
 end

@@ -5,7 +5,7 @@ module LanguagesHelper
   ISO_639_1: untyped
   ISO_639_3: {ast: [String, String], ckb: [String, String], cnr: [String, String], jbo: [String, String], kab: [String, String], kmr: [String, String], ldn: [String, String], lfn: [String, String], sco: [String, String], sma: [String, String], smj: [String, String], szl: [String, String], tok: [String, String], zba: [String, String], zgh: [String, String]}
   SUPPORTED_LOCALES: Hash[:ast | :ckb | :cnr | :jbo | :kab | :kmr | :ldn | :lfn | :sco | :sma | :smj | :szl | :tok | :zba | :zgh, [String, String]]
-  REGIONAL_LOCALE_NAMES: {en-GB: String, es-AR: String, es-MX: String, fr-QC: String, pt-BR: String, pt-PT: String, sr-Latn: String, zh-CN: String, zh-HK: String, zh-TW: String}
+  REGIONAL_LOCALE_NAMES: Hash[untyped, untyped]
 
   def native_locale_name: (untyped locale) -> String
   def standard_locale_name: (untyped locale) -> String

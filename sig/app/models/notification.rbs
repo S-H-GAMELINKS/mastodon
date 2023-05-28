@@ -4,7 +4,7 @@
 class Notification
   LEGACY_TYPE_CLASS_MAP: Hash[String, :favourite | :follow | :follow_request | :mention | :poll | :reblog]
   TYPES: [:mention, :status, :reblog, :follow, :follow_request, :favourite, :poll, :update, :"admin.sign_up", :"admin.report"]
-  TARGET_STATUS_INCLUDES_BY_TYPE: {status: :status, reblog: [{status: :reblog}], mention: [{mention: :status}], favourite: [{favourite: :status}], poll: [{poll: :status}], update: :status, admin.report: [{report: :target_account}]}
+  TARGET_STATUS_INCLUDES_BY_TYPE: {status: :status, reblog: [{status: :reblog}], mention: [{mention: :status}], favourite: [{favourite: :status}], poll: [{poll: :status}], update: :status, report: [{report: :target_account}]}
   @type: Symbol
 
   def type: -> Symbol

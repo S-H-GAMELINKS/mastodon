@@ -8,8 +8,8 @@ class Relay
   def disable!: -> untyped
 
   private
-  def follow_activity: (untyped activity_id) -> {@context: untyped, id: untyped, type: String, actor: untyped, object: untyped}
-  def unfollow_activity: (untyped activity_id) -> {@context: untyped, id: untyped, type: String, actor: untyped, object: {id: untyped, type: String, actor: untyped, object: untyped}}
+  def follow_activity: (untyped activity_id) -> Hash[untyped, untyped]
+  def unfollow_activity: (untyped activity_id) -> Hash[untyped, untyped]
   def some_local_account: -> untyped
   def ensure_disabled: -> nil
   def strip_url: -> untyped

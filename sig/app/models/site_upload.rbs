@@ -2,7 +2,7 @@
 
 # Classes
 class SiteUpload
-  STYLES: {thumbnail: {@1x: {format: String, geometry: String, file_geometry_parser: untyped, blurhash: {x_comp: Integer, y_comp: Integer}}, @2x: {format: String, geometry: String, file_geometry_parser: untyped}}, mascot: Hash[untyped, untyped]}
+  STYLES: {thumbnail: Hash[untyped, untyped], mascot: Hash[untyped, untyped]}
 
   def cache_key: -> String
 
