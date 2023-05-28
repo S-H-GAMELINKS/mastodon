@@ -115,10 +115,6 @@ gems:
       revision: 28208148c7e64a25e9b86b9723b4c3a2cef14e81
       remote: https://github.com/ruby/gem_rbs_collection.git
       repo_dir: gems
-  - name: csv
-    version: '0'
-    source:
-      type: stdlib
   - name: date
     version: '0'
     source:
@@ -139,10 +135,6 @@ gems:
       revision: 28208148c7e64a25e9b86b9723b4c3a2cef14e81
       remote: https://github.com/ruby/gem_rbs_collection.git
       repo_dir: gems
-  - name: fileutils
-    version: '0'
-    source:
-      type: stdlib
   - name: forwardable
     version: '0'
     source:
@@ -183,6 +175,10 @@ gems:
     version: '0'
     source:
       type: stdlib
+  - name: ipaddr
+    version: '0'
+    source:
+      type: stdlib
   - name: json
     version: '0'
     source:
@@ -197,14 +193,6 @@ gems:
       repo_dir: gems
   - name: kaminari-core
     version: '1.2'
-    source:
-      type: git
-      name: ruby/gem_rbs_collection
-      revision: 28208148c7e64a25e9b86b9723b4c3a2cef14e81
-      remote: https://github.com/ruby/gem_rbs_collection.git
-      repo_dir: gems
-  - name: listen
-    version: '3.2'
     source:
       type: git
       name: ruby/gem_rbs_collection
@@ -315,10 +303,6 @@ gems:
       revision: 28208148c7e64a25e9b86b9723b4c3a2cef14e81
       remote: https://github.com/ruby/gem_rbs_collection.git
       repo_dir: gems
-  - name: securerandom
-    version: '0'
-    source:
-      type: stdlib
   - name: sidekiq
     version: '6.2'
     source:
@@ -332,14 +316,6 @@ gems:
     source:
       type: stdlib
   - name: socket
-    version: '0'
-    source:
-      type: stdlib
-  - name: steep
-    version: 1.4.0
-    source:
-      type: rubygems
-  - name: strscan
     version: '0'
     source:
       type: stdlib
