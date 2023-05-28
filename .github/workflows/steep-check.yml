@@ -1,4 +1,4 @@
-name: Ruby Testing
+name: Type Check
 
 on:
   push:

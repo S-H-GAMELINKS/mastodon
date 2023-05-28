@@ -7,6 +7,7 @@
 [![GitHub release](https://img.shields.io/github/release/mastodon/mastodon.svg)][releases]
 [![Ruby Testing](https://github.com/S-H-GAMELINKS/mastodon/actions/workflows/test-ruby.yml/badge.svg)](https://github.com/S-H-GAMELINKS/mastodon/actions/workflows/test-ruby.yml)
 [![E2E Testting](https://github.com/S-H-GAMELINKS/mastodon/actions/workflows/test-e2e.yml/badge.svg)](https://github.com/S-H-GAMELINKS/mastodon/actions/workflows/test-e2e.yml)
+[![Type Check](https://github.com/S-H-GAMELINKS/mastodon/actions/workflows/steep-check.yml/badge.svg)](https://github.com/S-H-GAMELINKS/mastodon/actions/workflows/steep-check.yml)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/mastodon/localized.svg)][crowdin]
 
 [releases]: https://github.com/mastodon/mastodon/releases
