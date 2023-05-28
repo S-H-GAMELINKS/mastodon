@@ -16,9 +16,9 @@ using(Module.new do
 
         dir_name = File.dirname(file)
 
-        FileUtils.mkdir_p("type/#{dir_name}")
+        FileUtils.mkdir_p("sig/#{dir_name}")
 
-        File.write("type/#{file}s", result)
+        File.write("sig/#{file}s", result)
       end
     end
   end

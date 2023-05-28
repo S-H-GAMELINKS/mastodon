@@ -29,5 +29,5 @@
 target :app do
   check 'app/models'
 
-  signature 'signature'
+  signature 'sig'
 end
