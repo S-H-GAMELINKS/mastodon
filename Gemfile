@@ -191,6 +191,9 @@ group :development do
 
   # For generate type signature
   gem 'typeprof'
+
+  # For type signature lsp
+  gem 'steep'
 end
 
 group :production do
