@@ -192,6 +192,9 @@ group :development do
   # For generate type signature
   gem 'typeprof'
 
+  # For Rails type signature
+  gem 'rbs_rails'
+
   # For type signature lsp
   gem 'steep'
 end
