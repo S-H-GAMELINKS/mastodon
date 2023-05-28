@@ -1,0 +1,37 @@
+# TypeProf 0.21.7
+
+# Classes
+class FeedManager
+  MAX_ITEMS: Integer
+  REBLOG_FALLOFF: Integer
+  include Singleton
+
+  def with_active_accounts: -> untyped
+  def key: (:home | :list `type`, untyped id, ?String? subtype) -> String
+  def filter?: (untyped timeline_type, untyped status, untyped receiver) -> bool
+  def push_to_home: (untyped account, untyped status, ?update: false) -> bool
+  def unpush_from_home: (untyped account, untyped status, ?update: false) -> bool
+  def push_to_list: (untyped list, untyped status, ?update: false) -> bool
+  def unpush_from_list: (untyped list, untyped status, ?update: false) -> bool
+  def merge_into_home: (untyped from_account, untyped into_account) -> nil
+  def merge_into_list: (untyped from_account, untyped list) -> nil
+  def unmerge_from_home: (untyped from_account, untyped into_account) -> untyped
+  def unmerge_from_list: (untyped from_account, untyped list) -> untyped
+  def clear_from_home: (untyped account, untyped target_account) -> untyped
+  def clear_from_list: (untyped list, untyped target_account) -> untyped
+  def clear_from_lists: (untyped account, untyped target_account) -> untyped
+  def populate_home: (untyped account) -> untyped
+  def clean_feeds!: (untyped `type`, untyped ids) -> nil
+
+  private
+  def trim: (:home | :list `type`, untyped timeline_id) -> nil
+  def push_update_required?: (String timeline_key) -> untyped
+  def blocks_or_mutes?: (untyped receiver_id, untyped account_ids, :mentions context) -> untyped
+  def filter_from_home?: (untyped status, untyped receiver_id, {active_mentions: untyped, following: untyped, languages: untyped, hiding_reblogs: untyped, blocking: untyped, muting: untyped, domain_blocking: untyped, blocked_by: untyped} crutches) -> bool
+  def filter_from_mentions?: (untyped status, untyped receiver_id) -> true
+  def filter_from_list?: (untyped status, untyped list) -> false
+  def filter_from_tags?: (untyped status, untyped receiver_id, {active_mentions: untyped, following: untyped, languages: untyped, hiding_reblogs: untyped, blocking: untyped, muting: untyped, domain_blocking: untyped, blocked_by: untyped} crutches) -> true
+  def add_to_feed: (:home | :list timeline_type, untyped account_id, untyped status, ?aggregate_reblogs: true) -> bool
+  def remove_from_feed: (:home | :list timeline_type, untyped account_id, untyped status, ?aggregate_reblogs: true) -> false
+  def build_crutches: (untyped receiver_id, [untyped] statuses) -> {active_mentions: untyped, following: untyped, languages: untyped, hiding_reblogs: untyped, blocking: untyped, muting: untyped, domain_blocking: untyped, blocked_by: untyped}
+end

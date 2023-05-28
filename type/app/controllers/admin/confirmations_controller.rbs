@@ -1,0 +1,14 @@
+# TypeProf 0.21.7
+
+# Classes
+module Admin
+  class ConfirmationsController
+    @user: bot
+
+    def create: -> untyped
+    def resend: -> untyped
+
+    private
+    def check_confirmation: -> nil
+  end
+end

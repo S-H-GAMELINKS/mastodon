@@ -1,0 +1,6 @@
+# TypeProf 0.21.7
+
+# Classes
+class AccountStatusesCleanupService
+  def call: (untyped account_policy, ?Integer budget) -> Integer
+end

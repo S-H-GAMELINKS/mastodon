@@ -1,0 +1,17 @@
+# TypeProf 0.21.7
+
+# Classes
+class RedisConfiguration
+  self.@pool: untyped
+
+  def self.establish_pool: (Integer | String new_pool_size) -> untyped
+  def self.pool: -> untyped
+  def self.pool_size: -> (Integer | String)
+  def connection: -> untyped
+  def namespace?: -> untyped
+  def namespace: -> String?
+  def url: -> String?
+
+  private
+  def raw_connection: -> untyped
+end

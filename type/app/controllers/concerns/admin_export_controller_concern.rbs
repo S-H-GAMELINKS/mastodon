@@ -1,0 +1,13 @@
+# TypeProf 0.21.7
+
+# Classes
+module AdminExportControllerConcern
+  @import: untyped
+
+  private
+  def send_export_file: -> untyped
+  def export_data: -> untyped
+  def export_filename: -> untyped
+  def set_dummy_import!: -> untyped
+  def import_params: -> untyped
+end

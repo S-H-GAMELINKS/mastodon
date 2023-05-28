@@ -1,0 +1,26 @@
+# TypeProf 0.21.7
+
+# Classes
+module Admin
+  class StatusesController
+    PER_PAGE: Integer
+    @status_batch_action: untyped
+    @status: untyped
+    @account: untyped
+    @statuses: untyped
+
+    def index: -> untyped
+    def show: -> untyped
+    def batch: -> untyped
+
+    private
+    def admin_status_batch_action_params: -> untyped
+    def after_create_redirect_path: -> untyped
+    def set_account: -> untyped
+    def set_status: -> untyped
+    def set_statuses: -> untyped
+    def filter_params: -> untyped
+    def current_params: -> untyped
+    def action_from_button: -> String?
+  end
+end

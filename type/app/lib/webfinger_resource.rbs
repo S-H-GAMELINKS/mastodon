@@ -1,0 +1,23 @@
+# TypeProf 0.21.7
+
+# Classes
+class WebfingerResource
+  attr_reader resource: untyped
+  def initialize: (untyped resource) -> void
+  def username: -> untyped
+
+  private
+  def username_from_url: -> untyped
+  def instance_actor_page?: -> untyped
+  def account_show_page?: -> untyped
+  def path_params: -> untyped
+  def username_from_acct: -> untyped
+  def split_acct: -> untyped
+  def resource_without_acct_string: -> untyped
+  def local_username: -> untyped
+  def local_domain: -> untyped
+  def domain_matches_local?: -> untyped
+
+  class InvalidRequest < StandardError
+  end
+end

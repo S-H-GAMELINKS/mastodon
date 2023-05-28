@@ -1,0 +1,10 @@
+# TypeProf 0.21.7
+
+# Classes
+module RoutingHelper
+  def full_asset_url: (untyped source, **untyped) -> untyped
+  def asset_host: -> untyped
+  def full_pack_url: (untyped source, **untyped) -> untyped
+  def use_storage?: -> untyped
+  def default_url_options: -> untyped
+end

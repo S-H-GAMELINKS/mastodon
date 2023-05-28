@@ -1,0 +1,10 @@
+# TypeProf 0.21.7
+
+# Classes
+module UserTrackingConcern
+  SIGN_IN_UPDATE_FREQUENCY: untyped
+
+  private
+  def update_user_sign_in: -> nil
+  def user_needs_sign_in_update?: -> untyped
+end

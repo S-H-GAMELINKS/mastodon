@@ -1,0 +1,6 @@
+# TypeProf 0.21.7
+
+# Classes
+class Identity
+  def self.find_for_oauth: (untyped auth) -> untyped
+end

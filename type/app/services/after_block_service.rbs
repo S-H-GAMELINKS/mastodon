@@ -1,0 +1,15 @@
+# TypeProf 0.21.7
+
+# Classes
+class AfterBlockService
+  @account: untyped
+  @target_account: untyped
+
+  def call: (untyped account, untyped target_account) -> untyped
+
+  private
+  def clear_home_feed!: -> untyped
+  def clear_list_feeds!: -> untyped
+  def clear_conversations!: -> untyped
+  def clear_notifications!: -> untyped
+end

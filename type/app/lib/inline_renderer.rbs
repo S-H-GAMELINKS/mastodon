@@ -1,0 +1,16 @@
+# TypeProf 0.21.7
+
+# Classes
+class InlineRenderer
+  @object: untyped
+  @current_account: untyped
+  @template: untyped
+
+  def initialize: (untyped object, untyped current_account, untyped template) -> void
+  def render: -> nil
+  def self.render: (untyped object, untyped current_account, untyped template) -> nil
+
+  private
+  def preload_associations_for_status: -> untyped
+  def current_user: -> untyped
+end

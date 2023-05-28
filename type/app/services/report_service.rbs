@@ -1,0 +1,25 @@
+# TypeProf 0.21.7
+
+# Classes
+class ReportService
+  @source_account: untyped
+  @target_account: untyped
+  @status_ids: Array[untyped]
+  @comment: String
+  @category: String
+  @rule_ids: untyped
+  @options: Hash[untyped, untyped]
+  @report: untyped
+  @some_local_account: untyped
+
+  def call: (untyped source_account, untyped target_account, ?Hash[untyped, untyped] options) -> untyped
+
+  private
+  def create_report!: -> untyped
+  def notify_staff!: -> nil
+  def forward_to_origin!: -> untyped
+  def forward?: -> untyped
+  def reported_status_ids: -> untyped
+  def payload: -> untyped
+  def some_local_account: -> untyped
+end

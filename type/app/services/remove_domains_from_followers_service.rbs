@@ -1,0 +1,10 @@
+# TypeProf 0.21.7
+
+# Classes
+class RemoveDomainsFromFollowersService
+  def call: (untyped source_account, untyped target_domains) -> untyped
+
+  private
+  def create_notification: (untyped follow) -> untyped
+  def build_json: (untyped follow) -> untyped
+end

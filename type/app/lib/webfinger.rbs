@@ -1,0 +1,42 @@
+# TypeProf 0.21.7
+
+# Classes
+class Webfinger
+  @domain: untyped
+  @uri: untyped
+
+  def initialize: (untyped uri) -> void
+  def perform: -> Response
+
+  private
+  def body_from_webfinger: (?String url, ?bool use_fallback) -> untyped
+  def body_from_host_meta: -> untyped
+  def url_from_template: (untyped str) -> untyped
+  def host_meta_request: -> untyped
+  def webfinger_request: (String url) -> untyped
+  def standard_url: -> String
+  def host_meta_url: -> String
+
+  class Error < StandardError
+  end
+
+  class GoneError < Error
+  end
+
+  class RedirectError < Error
+  end
+
+  class Response
+    @json: untyped
+    @links: untyped
+
+    attr_reader uri: untyped
+    def initialize: (untyped uri, untyped body) -> void
+    def subject: -> untyped
+    def link: (untyped rel, untyped attribute) -> untyped
+
+    private
+    def links: -> untyped
+    def validate_response!: -> nil
+  end
+end

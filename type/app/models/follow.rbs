@@ -1,0 +1,14 @@
+# TypeProf 0.21.7
+
+# Classes
+class Follow
+  def local?: -> false
+  def revoke_request!: -> untyped
+
+  private
+  def set_uri: -> nil
+  def remove_endorsements: -> untyped
+  def increment_cache_counters: -> untyped
+  def decrement_cache_counters: -> untyped
+  def invalidate_hash_cache: -> nil
+end

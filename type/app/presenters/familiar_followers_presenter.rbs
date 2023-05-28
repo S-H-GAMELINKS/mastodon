@@ -1,0 +1,13 @@
+# TypeProf 0.21.7
+
+# Classes
+class FamiliarFollowersPresenter
+  @accounts: untyped
+  @current_account_id: untyped
+
+  def initialize: (untyped accounts, untyped current_account_id) -> void
+  def accounts: -> untyped
+
+  class Result
+  end
+end

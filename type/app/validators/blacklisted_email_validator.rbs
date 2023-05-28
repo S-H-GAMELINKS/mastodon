@@ -1,0 +1,13 @@
+# TypeProf 0.21.7
+
+# Classes
+class BlacklistedEmailValidator
+  def validate: (untyped user) -> nil
+
+  private
+  def blocked_email_provider?: (untyped email, untyped ip) -> bool
+  def blocked_canonical_email?: (untyped email) -> untyped
+  def disallowed_through_email_domain_block?: (untyped email, untyped ip) -> untyped
+  def not_allowed_through_configuration?: (untyped email) -> false
+  def disallowed_through_configuration?: (untyped email) -> bool
+end

@@ -1,0 +1,26 @@
+# TypeProf 0.21.7
+
+# Classes
+module Admin
+  class ReportsController
+    @reports: untyped
+    @report: untyped
+    @report_note: untyped
+    @report_notes: untyped
+    @action_logs: untyped
+    @form: untyped
+    @statuses: untyped
+
+    def index: -> untyped
+    def show: -> untyped
+    def assign_to_self: -> untyped
+    def unassign: -> untyped
+    def reopen: -> untyped
+    def resolve: -> untyped
+
+    private
+    def filtered_reports: -> untyped
+    def filter_params: -> untyped
+    def set_report: -> untyped
+  end
+end

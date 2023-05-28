@@ -1,0 +1,21 @@
+# TypeProf 0.21.7
+
+# Classes
+module Admin
+  class RelaysController
+    @relays: untyped
+    @relay: untyped
+
+    def index: -> untyped
+    def new: -> untyped
+    def create: -> untyped
+    def destroy: -> untyped
+    def enable: -> untyped
+    def disable: -> untyped
+
+    private
+    def set_relay: -> untyped
+    def resource_params: -> untyped
+    def warn_signatures_not_enabled!: -> nil
+  end
+end

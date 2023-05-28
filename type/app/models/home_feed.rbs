@@ -1,0 +1,9 @@
+# TypeProf 0.21.7
+
+# Classes
+class HomeFeed
+  @account: untyped
+
+  def initialize: (untyped account) -> void
+  def regenerating?: -> untyped
+end

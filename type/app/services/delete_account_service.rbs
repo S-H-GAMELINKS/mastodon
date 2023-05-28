@@ -1,0 +1,44 @@
+# TypeProf 0.21.7
+
+# Classes
+class DeleteAccountService
+  ASSOCIATIONS_ON_SUSPEND: [String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String]
+  ASSOCIATIONS_WITHOUT_SIDE_EFFECTS: [String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String]
+  ASSOCIATIONS_ON_DESTROY: [String, String, String]
+  @account: untyped
+  @options: Hash[:reserve_email | :reserve_username | :skip_activitypub | :skip_side_effects, bool]
+  @delivery_inboxes: untyped
+  @reported_status_ids: untyped
+  @delete_actor_json: untyped
+
+  def call: (untyped account, **untyped) -> untyped
+
+  private
+  def distribute_activities!: -> nil
+  def reject_follows!: -> untyped
+  def undo_follows!: -> untyped
+  def purge_user!: -> nil
+  def purge_content!: -> nil
+  def purge_statuses!: -> untyped
+  def purge_mentions!: -> untyped
+  def purge_media_attachments!: -> untyped
+  def purge_polls!: -> untyped
+  def purge_generated_notifications!: -> untyped
+  def purge_favourites!: -> untyped
+  def purge_bookmarks!: -> untyped
+  def purge_other_associations!: -> Array[String]
+  def purge_feeds!: -> nil
+  def purge_profile!: -> nil
+  def fulfill_deletion_request!: -> untyped
+  def purge_association: (String association_name) -> untyped
+  def delete_actor!: -> untyped
+  def delete_actor_json: -> untyped
+  def delivery_inboxes: -> untyped
+  def low_priority_delivery_inboxes: -> untyped
+  def reported_status_ids: -> untyped
+  def associations_for_destruction: -> Array[String]
+  def keep_user_record?: -> bool
+  def keep_account_record?: -> bool
+  def skip_side_effects?: -> true
+  def skip_activitypub?: -> true
+end

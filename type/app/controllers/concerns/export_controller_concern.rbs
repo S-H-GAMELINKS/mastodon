@@ -1,0 +1,12 @@
+# TypeProf 0.21.7
+
+# Classes
+module ExportControllerConcern
+  @export: untyped
+
+  private
+  def load_export: -> untyped
+  def send_export_file: -> untyped
+  def export_data: -> untyped
+  def export_filename: -> String
+end

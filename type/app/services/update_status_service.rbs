@@ -1,0 +1,29 @@
+# TypeProf 0.21.7
+
+# Classes
+class UpdateStatusService
+  @status: untyped
+  @options: Hash[untyped, untyped]
+  @account_id: untyped
+  @media_attachments_changed: false
+  @poll_changed: bool
+  @previous_expires_at: untyped
+
+  def call: (untyped status, untyped account_id, ?Hash[untyped, untyped] options) -> untyped
+
+  private
+  def update_media_attachments!: -> untyped
+  def validate_media!: -> Array[untyped]
+  def update_poll!: -> true?
+  def update_immediate_attributes!: -> untyped
+  def reset_preview_card!: -> nil
+  def update_metadata!: -> untyped
+  def broadcast_updates!: -> untyped
+  def queue_poll_notifications!: -> nil
+  def create_previous_edit!: -> nil
+  def create_edit!: -> untyped
+  def significant_changes?: -> bool
+
+  class NoChangesSubmittedError < StandardError
+  end
+end

@@ -1,0 +1,18 @@
+# TypeProf 0.21.7
+
+# Classes
+class UnfollowService
+  @source_account: untyped
+  @target_account: untyped
+  @options: Hash[untyped, untyped]
+
+  def call: (untyped source_account, untyped target_account, ?Hash[untyped, untyped] options) -> untyped
+
+  private
+  def unfollow!: -> nil
+  def undo_follow_request!: -> nil
+  def create_notification: (untyped follow) -> untyped
+  def create_reject_notification: (untyped follow) -> untyped
+  def build_json: (untyped follow) -> untyped
+  def build_reject_json: (untyped follow) -> untyped
+end

@@ -1,0 +1,40 @@
+# TypeProf 0.21.7
+
+# Classes
+class Tag
+  HASHTAG_SEPARATORS: String
+  HASHTAG_FIRST_SEQUENCE_CHUNK_ONE: String
+  HASHTAG_FIRST_SEQUENCE_CHUNK_TWO: String
+  HASHTAG_FIRST_SEQUENCE: String
+  HASHTAG_LAST_SEQUENCE: String
+  HASHTAG_NAME_PAT: String
+  HASHTAG_RE: Regexp
+  HASHTAG_NAME_RE: Regexp
+  HASHTAG_INVALID_CHARS_RE: Regexp
+  @history: untyped
+
+  def to_param: -> untyped
+  def display_name: -> untyped
+  def usable: -> untyped
+  alias usable? usable
+  def listable: -> untyped
+  alias listable? listable
+  def trendable: -> untyped
+  alias trendable? trendable
+  def requires_review?: -> untyped
+  def reviewed?: -> untyped
+  def requested_review?: -> untyped
+  def requires_review_notification?: -> untyped
+  def decaying?: -> untyped
+  def history: -> untyped
+  def self.find_or_create_by_names: (untyped name_or_names) -> Array[untyped]
+  def self.search_for: (untyped term, ?Integer limit, ?Integer offset, ?Hash[untyped, untyped] options) -> untyped
+  def self.find_normalized: (untyped name) -> untyped
+  def self.find_normalized!: (untyped name) -> untyped
+  def self.matching_name: (untyped name_or_names) -> untyped
+  def self.normalize: (untyped str) -> untyped
+
+  private
+  def validate_name_change: -> nil
+  def validate_display_name_change: -> nil
+end

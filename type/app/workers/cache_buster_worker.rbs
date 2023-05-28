@@ -1,0 +1,9 @@
+# TypeProf 0.21.7
+
+# Classes
+class CacheBusterWorker
+  def perform: (untyped path) -> untyped
+
+  private
+  def cache_buster: -> untyped
+end

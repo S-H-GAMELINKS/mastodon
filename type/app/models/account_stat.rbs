@@ -1,0 +1,8 @@
+# TypeProf 0.21.7
+
+# Classes
+class AccountStat
+  def following_count: -> Integer?
+  def followers_count: -> Integer?
+  def statuses_count: -> Integer?
+end

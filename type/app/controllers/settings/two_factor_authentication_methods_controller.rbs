@@ -1,0 +1,12 @@
+# TypeProf 0.21.7
+
+# Classes
+module Settings
+  class TwoFactorAuthenticationMethodsController
+    def index: -> nil
+    def disable: -> untyped
+
+    private
+    def require_otp_enabled: -> nil
+  end
+end

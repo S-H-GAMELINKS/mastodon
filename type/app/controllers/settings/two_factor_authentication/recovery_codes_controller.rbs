@@ -1,0 +1,12 @@
+# TypeProf 0.21.7
+
+# Classes
+module Settings
+  module TwoFactorAuthentication
+    class RecoveryCodesController
+      @recovery_codes: untyped
+
+      def create: -> untyped
+    end
+  end
+end

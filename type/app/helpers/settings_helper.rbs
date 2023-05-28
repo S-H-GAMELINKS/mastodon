@@ -1,0 +1,10 @@
+# TypeProf 0.21.7
+
+# Classes
+module SettingsHelper
+  def filterable_languages: -> untyped
+  def hash_to_object: (untyped hash) -> untyped
+  def session_device_icon: (untyped session) -> String
+  def compact_account_link_to: (untyped account) -> nil
+  def picture_hint: (untyped hint, untyped picture) -> untyped
+end

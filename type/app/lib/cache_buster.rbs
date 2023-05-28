@@ -1,0 +1,14 @@
+# TypeProf 0.21.7
+
+# Classes
+class CacheBuster
+  @secret_header: String
+  @secret: String
+
+  def initialize: (?Hash[untyped, untyped] options) -> void
+  def bust: (untyped url) -> untyped
+
+  private
+  def request_pool: -> untyped
+  def build_request: (untyped url, untyped http_client) -> untyped
+end

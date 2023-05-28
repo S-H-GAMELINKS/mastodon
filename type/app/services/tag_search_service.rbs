@@ -1,0 +1,16 @@
+# TypeProf 0.21.7
+
+# Classes
+class TagSearchService
+  @query: untyped
+  @offset: Integer
+  @limit: Integer
+  @options: Hash[untyped, untyped]
+
+  def call: (untyped query, ?Hash[untyped, untyped] options) -> Array[untyped]
+
+  private
+  def from_elasticsearch: -> Array[untyped]?
+  def ensure_exact_match: (untyped results) -> Array[untyped]
+  def from_database: -> untyped
+end

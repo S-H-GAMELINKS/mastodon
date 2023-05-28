@@ -1,0 +1,17 @@
+# TypeProf 0.21.7
+
+# Classes
+class MoveService
+  @migration: untyped
+  @source_account: untyped
+  @target_account: untyped
+
+  def call: (untyped migration) -> nil
+
+  private
+  def update_redirect!: -> untyped
+  def process_local_relationships!: -> untyped
+  def distribute_update!: -> untyped
+  def distribute_move!: -> untyped
+  def unfollow_all: -> untyped
+end

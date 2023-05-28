@@ -1,0 +1,22 @@
+# TypeProf 0.21.7
+
+# Classes
+class AccountFilter
+  KEYS: [:origin, :status, :role_ids, :username, :by_domain, :display_name, :email, :ip, :invited_by, :order]
+
+  attr_reader params: untyped
+  def initialize: (untyped params) -> void
+  def results: -> untyped
+
+  private
+  def relevant_params: -> untyped
+  def origin_is_remote_and_domain_present?: -> untyped
+  def scope_for: (untyped key, untyped value) -> untyped
+  def origin_scope: (untyped value) -> untyped
+  def status_scope: (untyped value) -> untyped
+  def order_scope: (untyped value) -> untyped
+  def invited_by_scope: (untyped value) -> untyped
+  def role_scope: (untyped value) -> untyped
+  def accounts_with_users: -> untyped
+  def valid_ip?: (untyped value) -> bool
+end

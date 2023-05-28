@@ -1,0 +1,9 @@
+# TypeProf 0.21.7
+
+# Classes
+class List
+  PER_ACCOUNT_LIMIT: Integer
+
+  private
+  def clean_feed_manager: -> untyped
+end

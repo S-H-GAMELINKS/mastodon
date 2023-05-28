@@ -1,0 +1,22 @@
+# TypeProf 0.21.7
+
+# Classes
+module Settings
+  module TwoFactorAuthentication
+    class ConfirmationsController
+      @confirmation: untyped
+      @new_otp_secret: untyped
+      @provision_url: untyped
+      @qrcode: untyped
+      @recovery_codes: untyped
+
+      def new: -> untyped
+      def create: -> untyped
+
+      private
+      def confirmation_params: -> untyped
+      def prepare_two_factor_form: -> untyped
+      def ensure_otp_secret: -> nil
+    end
+  end
+end

@@ -1,0 +1,7 @@
+# TypeProf 0.21.7
+
+# Classes
+class PublishScheduledStatusWorker
+  def perform: (untyped scheduled_status_id) -> true
+  def options_with_objects: (untyped options) -> untyped
+end

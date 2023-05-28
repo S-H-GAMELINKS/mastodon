@@ -1,0 +1,17 @@
+# TypeProf 0.21.7
+
+# Classes
+class StatusLengthValidator
+  MAX_CHARS: Integer
+  URL_PLACEHOLDER_CHARS: Integer
+  URL_PLACEHOLDER: String
+
+  def validate: (untyped status) -> nil
+
+  private
+  def too_long?: (untyped status) -> untyped
+  def countable_length: (String str) -> untyped
+  def combined_text: (untyped status) -> String
+  def countable_text: (untyped str) -> String
+  def rewrite_entities: (untyped str, untyped entities) { -> String? } -> String
+end

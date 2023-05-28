@@ -1,0 +1,8 @@
+# TypeProf 0.21.7
+
+# Classes
+class ListAccount
+  private
+  def set_follow: -> nil
+  def validate_relationship: -> nil
+end

@@ -1,0 +1,12 @@
+# TypeProf 0.21.7
+
+# Classes
+class ScheduledStatus
+  TOTAL_LIMIT: Integer
+  DAILY_LIMIT: Integer
+
+  private
+  def validate_future_date: -> nil
+  def validate_total_limit: -> nil
+  def validate_daily_limit: -> nil
+end

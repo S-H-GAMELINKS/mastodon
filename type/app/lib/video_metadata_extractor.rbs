@@ -1,0 +1,24 @@
+# TypeProf 0.21.7
+
+# Classes
+class VideoMetadataExtractor
+  @path: untyped
+  @invalid: true
+  @metadata: untyped
+
+  attr_reader duration: untyped
+  attr_reader bitrate: untyped
+  attr_reader video_codec: untyped
+  attr_reader audio_codec: untyped
+  attr_reader colorspace: untyped
+  attr_reader width: untyped
+  attr_reader height: untyped
+  attr_reader frame_rate: Rational?
+  attr_reader r_frame_rate: Rational?
+  def initialize: (untyped path) -> void
+  def valid?: -> false
+
+  private
+  def ffmpeg_command_output: -> untyped
+  def parse_metadata: -> true?
+end

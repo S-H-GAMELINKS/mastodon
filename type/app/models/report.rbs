@@ -1,0 +1,24 @@
+# TypeProf 0.21.7
+
+# Classes
+class Report
+  def object_type: -> :flag
+  def statuses: -> untyped
+  def media_attachments_count: -> (Complex | Float | Integer | Rational)
+  def rules: -> untyped
+  def assign_to_self!: (untyped current_account) -> untyped
+  def unassign!: -> untyped
+  def resolve!: (untyped acting_account) -> untyped
+  def unresolve!: -> untyped
+  def action_taken?: -> untyped
+  alias action_taken action_taken?
+  def unresolved?: -> untyped
+  def unresolved_siblings?: -> untyped
+  def to_log_human_identifier: -> untyped
+  def history: -> untyped
+
+  private
+  def set_uri: -> nil
+  def validate_rule_ids: -> nil
+  def trigger_webhooks: -> untyped
+end

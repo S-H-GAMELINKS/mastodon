@@ -1,0 +1,13 @@
+# TypeProf 0.21.7
+
+# Classes
+module Admin
+  class SiteUploadsController
+    @site_upload: untyped
+
+    def destroy: -> untyped
+
+    private
+    def set_site_upload: -> untyped
+  end
+end

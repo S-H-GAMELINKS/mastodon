@@ -1,0 +1,10 @@
+# TypeProf 0.21.7
+
+# Classes
+class AuthorizeFollowService
+  def call: (untyped source_account, untyped target_account, **untyped) -> untyped
+
+  private
+  def create_notification: (untyped follow_request) -> untyped
+  def build_json: (untyped follow_request) -> untyped
+end

@@ -1,0 +1,9 @@
+# TypeProf 0.21.7
+
+# Classes
+class Favourite
+  private
+  def increment_cache_counters: -> untyped
+  def decrement_cache_counters: -> nil
+  def invalidate_cleanup_info: -> nil
+end

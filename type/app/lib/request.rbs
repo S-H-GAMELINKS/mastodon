@@ -1,0 +1,54 @@
+# TypeProf 0.21.7
+
+# Classes
+class Request
+  REQUEST_TARGET: String
+  TIMEOUT: {connect: Integer, read: Integer, write: Integer}
+  @verb: untyped
+  @url: untyped
+  @http_client: untyped
+  @allow_local: untyped
+  @options: untyped
+  @headers: Hash[String, String]
+  @actor: untyped
+  @keypair: untyped
+
+  def initialize: (untyped verb, untyped url, **untyped) -> void
+  def on_behalf_of: (untyped actor, ?sign_with: nil) -> Request
+  def add_headers: (untyped new_headers) -> Request
+  def perform: -> nil
+  def headers: -> untyped
+  def self.valid_url?: (untyped url) -> false
+  def self.http_client: -> untyped
+
+  private
+  def set_common_headers!: -> String?
+  def set_digest!: -> String
+  def signature: -> String
+  def signed_string: -> untyped
+  def signed_headers: -> untyped
+  def key_id: -> untyped
+  def http_client: -> untyped
+  def use_proxy?: -> untyped
+  def proxy_url: -> untyped
+  def block_hidden_service?: -> bool
+  def hidden_service?: -> bool
+
+  module ClientLimit
+    def truncated_body: (?untyped limit) -> String
+    def body_with_limit: (?untyped limit) -> String
+  end
+
+  class Socket < TCPSocket
+    self.@private_address_exceptions: Array[IPAddr]
+
+    def self.open: (untyped host, *untyped args) -> Socket
+    alias self.new self.open
+    def self.check_private_address: (IPAddr address, untyped host) -> nil
+    def self.private_address_exceptions: -> Array[IPAddr]
+  end
+
+  class ProxySocket < Socket
+    def self.check_private_address: (untyped _address, untyped _host) -> nil
+  end
+end

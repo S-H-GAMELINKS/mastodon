@@ -1,0 +1,27 @@
+# TypeProf 0.21.7
+
+# Classes
+class PreviewCard
+  IMAGE_MIME_TYPES: [String, String, String, String]
+  LIMIT: untyped
+  BLURHASH_OPTIONS: {x_comp: Integer, y_comp: Integer}
+  @domain: untyped
+  @history: untyped
+
+  def appropriate_for_trends?: -> untyped
+  def domain: -> untyped
+  def provider: -> untyped
+  def trendable?: -> untyped
+  def requires_review?: -> untyped
+  def requires_review_notification?: -> untyped
+  def decaying?: -> untyped
+  attr_writer provider: untyped
+  def local?: -> false
+  def missing_image?: -> untyped
+  def save_with_optional_image!: -> untyped
+  def history: -> untyped
+  def self.image_styles: (untyped file) -> {original: {pixels: Integer, file_geometry_parser: untyped, convert_options: String, blurhash: {x_comp: Integer, y_comp: Integer}, format: String}}
+
+  private
+  def extract_dimensions: -> nil
+end

@@ -1,0 +1,9 @@
+# TypeProf 0.21.7
+
+# Classes
+class URLValidator
+  def validate_each: (untyped record, untyped attribute, untyped value) -> nil
+
+  private
+  def compliant?: (untyped url) -> false
+end

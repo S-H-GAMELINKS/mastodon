@@ -1,0 +1,13 @@
+# TypeProf 0.21.7
+
+# Classes
+module RateLimitable
+  @rate_limit: untyped
+  @rate_limiter: untyped
+  @rate_limit_recorded: true
+
+  def rate_limit=: (untyped value) -> untyped
+  def rate_limit?: -> untyped
+  def rate_limiter: (untyped by, ?Hash[untyped, untyped] options) -> nil
+  def rate_limit: (?Hash[untyped, untyped] options) -> untyped
+end

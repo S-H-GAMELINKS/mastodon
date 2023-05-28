@@ -1,0 +1,6 @@
+# TypeProf 0.21.7
+
+# Classes
+class LocalNotificationWorker
+  def perform: (untyped receiver_account_id, ?nil activity_id, ?nil activity_class_name, ?nil `type`) -> true?
+end

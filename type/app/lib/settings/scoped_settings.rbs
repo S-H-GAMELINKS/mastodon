@@ -1,0 +1,18 @@
+# TypeProf 0.21.7
+
+# Classes
+module Settings
+  class ScopedSettings
+    DEFAULTING_TO_UNSCOPED: [String, String]
+    @object: untyped
+
+    def initialize: (untyped object) -> void
+    def method_missing: (untyped method, *untyped args) -> untyped
+    def respond_to_missing?: (*untyped noname) -> true
+    def all_as_records: -> untyped
+    def []=: (untyped key, untyped value) -> untyped
+    def []: (untyped key) -> untyped
+    def self.default_settings: -> untyped
+    def thing_scoped: -> untyped
+  end
+end

@@ -1,0 +1,12 @@
+# TypeProf 0.21.7
+
+# Classes
+class HashtagNormalizer
+  def normalize: (untyped str) -> untyped
+
+  private
+  def remove_invalid_characters: (untyped str) -> untyped
+  def ascii_folding: (untyped str) -> untyped
+  def lowercase: (untyped str) -> untyped
+  def cjk_width: (untyped str) -> untyped
+end

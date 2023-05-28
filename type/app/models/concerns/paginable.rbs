@@ -1,0 +1,6 @@
+# TypeProf 0.21.7
+
+# Classes
+module Paginable
+  def self.to_a_paginated_by_id: (untyped limit, ?Hash[untyped, untyped] options) -> untyped
+end

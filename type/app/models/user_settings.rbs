@@ -1,0 +1,18 @@
+# TypeProf 0.21.7
+
+# Classes
+class UserSettings
+  @original_hash: Hash[untyped, untyped]
+
+  def initialize: (untyped original_hash) -> void
+  def []: (untyped key) -> nil
+  def []=: (untyped key, untyped value) -> nil
+  def update: (untyped params) -> untyped
+  def as_json: -> Hash[untyped, untyped]
+
+  class Error < StandardError
+  end
+
+  class KeyError < Error
+  end
+end

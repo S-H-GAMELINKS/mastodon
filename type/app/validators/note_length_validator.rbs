@@ -1,0 +1,10 @@
+# TypeProf 0.21.7
+
+# Classes
+class NoteLengthValidator
+  def validate_each: (untyped record, untyped attribute, untyped value) -> nil
+
+  private
+  def too_long?: (untyped value) -> untyped
+  def countable_text: (untyped value) -> String
+end

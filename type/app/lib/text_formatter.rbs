@@ -1,0 +1,30 @@
+# TypeProf 0.21.7
+
+# Classes
+class TextFormatter
+  URL_PREFIX_REGEX: Regexp
+  DEFAULT_REL: [String, String, String]
+  DEFAULT_OPTIONS: {multiline: true}
+  @entities: untyped
+  @entity_cache: untyped
+  @tag_manager: untyped
+
+  attr_reader text: untyped
+  attr_reader options: untyped
+  def initialize: (untyped text, ?Hash[untyped, untyped] options) -> void
+  def entities: -> untyped
+  def to_s: -> untyped
+
+  private
+  def rewrite: { -> String? } -> String
+  def link_to_url: (untyped entity) -> untyped
+  def link_to_hashtag: (untyped entity) -> untyped
+  def link_to_mention: (untyped entity) -> String
+  def entity_cache: -> untyped
+  def tag_manager: -> untyped
+  def multiline?: -> untyped
+  def with_domains?: -> untyped
+  def with_rel_me?: -> untyped
+  def preloaded_accounts: -> untyped
+  def preloaded_accounts?: -> untyped
+end

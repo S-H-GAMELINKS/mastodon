@@ -1,0 +1,8 @@
+# TypeProf 0.21.7
+
+# Classes
+class AccountDomainBlock
+  private
+  def remove_blocking_cache: -> untyped
+  def remove_relationship_cache: -> untyped
+end

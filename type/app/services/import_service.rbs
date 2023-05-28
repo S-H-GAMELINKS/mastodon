@@ -1,0 +1,21 @@
+# TypeProf 0.21.7
+
+# Classes
+class ImportService
+  ROWS_PROCESSING_LIMIT: Integer
+  @import: untyped
+  @account: untyped
+  @data: untyped
+
+  def call: (untyped import) -> nil
+
+  private
+  def import_follows!: -> untyped
+  def import_blocks!: -> untyped
+  def import_mutes!: -> untyped
+  def import_domain_blocks!: -> untyped
+  def import_relationships!: (String action, String undo_action, untyped overwrite_scope, Integer limit, ?Hash[untyped, untyped] extra_fields) -> untyped
+  def import_bookmarks!: -> untyped
+  def parse_import_data!: ([String] default_headers) -> untyped
+  def import_data: -> untyped
+end

@@ -1,0 +1,10 @@
+# TypeProf 0.21.7
+
+# Classes
+module WebAppControllerConcern
+  @body_classes: String
+
+  def skip_csrf_meta_tags?: -> untyped
+  def set_app_body_class: -> String
+  def redirect_unauthenticated_to_permalinks!: -> nil
+end

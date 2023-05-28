@@ -1,0 +1,9 @@
+# TypeProf 0.21.7
+
+# Classes
+class DomainAllow
+  def to_log_human_identifier: -> untyped
+  def self.allowed?: (untyped domain) -> false
+  def self.allowed_domains: -> untyped
+  def self.rule_for: (untyped domain) -> nil
+end

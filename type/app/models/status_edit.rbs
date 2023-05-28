@@ -1,0 +1,15 @@
+# TypeProf 0.21.7
+
+# Classes
+class StatusEdit
+  @emojis: untyped
+  @ordered_media_attachments: Array[untyped]
+
+  def emojis: -> nil
+  def ordered_media_attachments: -> Array[untyped]?
+  def proper: -> StatusEdit
+  def reblog?: -> false
+
+  class PreservedMediaAttachment
+  end
+end

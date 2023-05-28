@@ -1,0 +1,20 @@
+# TypeProf 0.21.7
+
+# Classes
+class FetchResourceService
+  ACCEPT_HEADER: String
+  ACTIVITY_STREAM_LINK_TYPES: [String, String]
+  @url: untyped
+
+  attr_reader response_code: untyped
+  def call: (untyped url) -> nil
+
+  private
+  def process: (untyped url, ?false terminal) -> untyped
+  def perform_request: { -> [untyped, {prefetched_body: untyped, id: true}]? } -> untyped
+  def process_response: (untyped response, ?false terminal) -> [untyped, {prefetched_body: untyped, id: true}]?
+  def expected_type?: (untyped json) -> untyped
+  def process_html: (untyped response) -> nil
+  def process_link_headers: (untyped link_header) -> nil
+  def parse_link_header: (untyped response) -> untyped
+end

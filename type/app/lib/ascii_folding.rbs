@@ -1,0 +1,9 @@
+# TypeProf 0.21.7
+
+# Classes
+class ASCIIFolding
+  NON_ASCII_CHARS: String
+  EQUIVALENT_ASCII_CHARS: String
+
+  def fold: (untyped str) -> untyped
+end

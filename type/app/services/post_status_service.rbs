@@ -1,0 +1,44 @@
+# TypeProf 0.21.7
+
+# Classes
+class PostStatusService
+  MIN_SCHEDULE_OFFSET: untyped
+  @account: untyped
+  @options: Hash[untyped, untyped]
+  @text: String?
+  @in_reply_to: nil
+  @media: Array[untyped]
+  @sensitive: untyped
+  @visibility: :unlisted
+  @scheduled_at: nil
+  @idempotency_duplicate: untyped
+  @status: untyped
+
+  def call: (untyped account, ?Hash[untyped, untyped] options) -> untyped
+
+  private
+  def preprocess_attributes!: -> nil
+  def process_status!: -> untyped
+  def safeguard_mentions!: (untyped status) -> nil
+  def schedule_status!: -> untyped
+  def postprocess_status!: -> nil
+  def validate_media!: -> nil
+  def process_mentions_service: -> untyped
+  def process_hashtags_service: -> untyped
+  def scheduled?: -> untyped
+  def idempotency_key: -> String
+  def idempotency_given?: -> untyped
+  def idempotency_duplicate: -> untyped
+  def idempotency_duplicate?: -> untyped
+  def scheduled_in_the_past?: -> untyped
+  def bump_potential_friendship!: -> nil
+  def status_attributes: -> ({text: (:unlisted | Array[untyped] | String)?, media_attachments: (:unlisted | Array[untyped] | String)?, ordered_media_attachment_ids: (:unlisted | Array[untyped] | String)?, thread: (:unlisted | Array[untyped] | String)?, poll_attributes: (:unlisted | Array[untyped] | String)?, sensitive: (:unlisted | Array[untyped] | String)?, spoiler_text: (:unlisted | Array[untyped] | String)?, visibility: (:unlisted | Array[untyped] | String)?, language: (:unlisted | Array[untyped] | String)?, application: (:unlisted | Array[untyped] | String)?, rate_limit: (:unlisted | Array[untyped] | String)?})
+  def scheduled_status_attributes: -> {scheduled_at: nil, media_attachments: Array[untyped], params: Hash[untyped, untyped]}
+  def poll_attributes: -> nil
+  def scheduled_options: -> Hash[untyped, untyped]
+
+  class UnexpectedMentionsError < StandardError
+    attr_reader accounts: untyped
+    def initialize: (untyped message, untyped accounts) -> void
+  end
+end

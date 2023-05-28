@@ -1,0 +1,18 @@
+# TypeProf 0.21.7
+
+# Classes
+class FeaturedTag
+  LIMIT: Integer
+
+  def sign?: -> true
+  def display_name: -> untyped
+  def increment: (untyped timestamp) -> untyped
+  def decrement: (untyped deleted_status_id) -> untyped
+
+  private
+  def strip_name: -> untyped
+  def set_tag: -> untyped
+  def reset_data: -> untyped
+  def validate_featured_tags_limit: -> nil
+  def validate_tag_uniqueness: -> nil
+end

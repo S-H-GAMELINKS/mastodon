@@ -1,0 +1,13 @@
+# TypeProf 0.21.7
+
+# Classes
+class WebhookService
+  @event: untyped
+  @body: untyped
+
+  def call: (untyped event, untyped object) -> untyped
+
+  private
+  def webhooks_for_event: -> untyped
+  def serialize_event: -> untyped
+end

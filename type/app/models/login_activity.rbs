@@ -1,0 +1,10 @@
+# TypeProf 0.21.7
+
+# Classes
+class LoginActivity
+  @detection: untyped
+
+  def detection: -> untyped
+  def browser: -> untyped
+  def platform: -> untyped
+end

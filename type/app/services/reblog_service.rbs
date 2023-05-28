@@ -1,0 +1,11 @@
+# TypeProf 0.21.7
+
+# Classes
+class ReblogService
+  def call: (untyped account, untyped reblogged_status, ?Hash[untyped, untyped] options) -> untyped
+
+  private
+  def create_notification: (untyped reblog) -> nil
+  def bump_potential_friendship: (untyped account, untyped reblog) -> nil
+  def build_json: (untyped reblog) -> untyped
+end

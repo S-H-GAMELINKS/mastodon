@@ -1,0 +1,39 @@
+# TypeProf 0.21.7
+
+# Classes
+class ApplicationController
+  @single_user_mode: untyped
+  @current_account: untyped
+  @current_session: untyped
+  @body_classes: bot
+
+  def raise_not_found: -> bot
+
+  private
+  def authorized_fetch_mode?: -> true
+  def public_fetch_mode?: -> false
+  def store_referrer: -> nil
+  def require_functional!: -> nil
+  def skip_csrf_meta_tags?: -> false
+  def after_sign_out_path_for: (untyped _resource_or_scope) -> String
+  def truthy_param?: (untyped key) -> untyped
+  def forbidden: -> untyped
+  def not_found: -> untyped
+  def gone: -> untyped
+  def unprocessable_entity: -> untyped
+  def not_acceptable: -> untyped
+  def bad_request: -> untyped
+  def internal_server_error: -> untyped
+  def service_unavailable: -> untyped
+  def too_many_requests: -> untyped
+  def single_user_mode?: -> untyped
+  def use_seamless_external_login?: -> untyped
+  def omniauth_only?: -> bool
+  def sso_account_settings: -> String?
+  def current_account: -> nil
+  def current_session: -> nil
+  def current_theme: -> untyped
+  def body_class_string: -> String
+  def respond_with_error: (Integer code) -> untyped
+  def set_cache_control_defaults: -> untyped
+end

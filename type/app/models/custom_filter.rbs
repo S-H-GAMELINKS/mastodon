@@ -1,0 +1,20 @@
+# TypeProf 0.21.7
+
+# Classes
+class CustomFilter
+  VALID_CONTEXTS: [String, String, String, String, String]
+  @expires_in: bot
+  @should_invalidate_cache: bool
+
+  def expires_in: -> nil
+  def irreversible=: (untyped value) -> (:hide | :warn)
+  def irreversible?: -> untyped
+  def self.cached_filters_for: (untyped account_id) -> untyped
+  def self.apply_cached_filters: (untyped cached_filters, untyped status) -> untyped
+  def prepare_cache_invalidation!: -> true
+  def invalidate_cache!: -> nil
+
+  private
+  def clean_up_contexts: -> Array[untyped]
+  def context_must_be_valid: -> nil
+end

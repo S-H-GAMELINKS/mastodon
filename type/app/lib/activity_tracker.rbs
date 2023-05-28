@@ -1,0 +1,19 @@
+# TypeProf 0.21.7
+
+# Classes
+class ActivityTracker
+  EXPIRE_AFTER: untyped
+  @prefix: untyped
+  @type: :basic | :unique
+
+  def initialize: (untyped prefix, :basic | :unique `type`) -> void
+  def add: (?Integer value, ?Time at_time) -> untyped
+  def get: (untyped start_at, ?Time end_at) -> Array[[untyped, nil]]
+  def sum: (untyped start_at, ?Time end_at) -> nil
+  def self.increment: (untyped prefix) -> untyped
+  def self.record: (untyped prefix, untyped value) -> untyped
+
+  private
+  def key_at: (Time at_time) -> String
+  def legacy_key_at: (untyped at_time) -> String
+end

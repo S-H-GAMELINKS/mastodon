@@ -1,0 +1,20 @@
+# TypeProf 0.21.7
+
+# Classes
+class RemoteFollow
+  @acct_resource: untyped
+
+  attr_accessor acct: String?
+  attr_accessor addressable_template: untyped
+  def initialize: (?Hash[untyped, untyped] attrs) -> void
+  def valid?: -> false
+  def subscribe_address_for: (untyped account) -> untyped
+  def interact_address_for: (untyped status) -> untyped
+
+  private
+  def normalize_acct: (nil value) -> String?
+  def fetch_template!: -> untyped
+  def redirect_uri_template: -> nil
+  def acct_resource: -> nil
+  def missing_resource_error: -> untyped
+end

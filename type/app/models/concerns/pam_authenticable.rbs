@@ -1,0 +1,11 @@
+# TypeProf 0.21.7
+
+# Classes
+module PamAuthenticable
+  def pam_conflict: (untyped _attributes) -> nil
+  def pam_conflict?: -> false
+  def pam_get_name: -> untyped
+  def pam_setup: (untyped _attributes) -> nil
+  def self.pam_get_user: (?Hash[untyped, untyped] attributes) -> nil
+  def self.authenticate_with_pam: (?Hash[untyped, untyped] attributes) -> nil
+end

@@ -1,0 +1,16 @@
+# TypeProf 0.21.7
+
+# Classes
+class PollExpirationNotifyWorker
+  @poll: untyped
+
+  def perform: (untyped poll_id) -> true?
+  def self.remove_from_scheduled: (untyped poll_id) -> untyped
+
+  private
+  def does_not_expire?: -> untyped
+  def not_due_yet?: -> untyped
+  def requeue!: -> untyped
+  def notify_remote_voters_and_owner!: -> untyped
+  def notify_local_voters!: -> untyped
+end

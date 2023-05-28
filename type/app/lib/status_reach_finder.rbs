@@ -1,0 +1,24 @@
+# TypeProf 0.21.7
+
+# Classes
+class StatusReachFinder
+  @status: untyped
+  @options: Hash[untyped, untyped]
+
+  def initialize: (untyped status, ?Hash[untyped, untyped] options) -> void
+  def inboxes: -> Array[untyped]
+
+  private
+  def reached_account_inboxes: -> Array[untyped]
+  def reached_account_ids: -> [nil, nil, untyped, nil, nil, nil]
+  def replied_to_account_id: -> nil
+  def reblog_of_account_id: -> nil
+  def mentioned_account_ids: -> untyped
+  def reblogs_account_ids: -> nil
+  def favourites_account_ids: -> nil
+  def replies_account_ids: -> nil
+  def followers_inboxes: -> Array[untyped]
+  def relay_inboxes: -> Array[untyped]
+  def distributable?: -> untyped
+  def unsafe?: -> nil
+end

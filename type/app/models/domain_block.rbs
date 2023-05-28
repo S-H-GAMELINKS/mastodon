@@ -1,0 +1,17 @@
+# TypeProf 0.21.7
+
+# Classes
+class DomainBlock
+  def to_log_human_identifier: -> untyped
+  def policies: -> (Array[(:reject_media | :reject_reports | :suspend)?])
+  def self.suspend?: (untyped domain) -> false
+  def self.silence?: (untyped domain) -> false
+  def self.reject_media?: (untyped domain) -> false
+  def self.reject_reports?: (untyped domain) -> false
+  alias self.blocked? self.suspend?
+  def self.rule_for: (untyped domain) -> nil
+  def stricter_than?: (untyped other_block) -> bool
+  def affected_accounts_count: -> untyped
+  def public_domain: -> untyped
+  def domain_digest: -> untyped
+end

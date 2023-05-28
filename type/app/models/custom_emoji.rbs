@@ -1,0 +1,21 @@
+# TypeProf 0.21.7
+
+# Classes
+class CustomEmoji
+  LIMIT: untyped
+  SHORTCODE_RE_FRAGMENT: String
+  SCAN_RE: Regexp
+  SHORTCODE_ONLY_RE: Regexp
+  IMAGE_MIME_TYPES: [String, String, String]
+
+  def local?: -> untyped
+  def object_type: -> :emoji
+  def copy!: -> untyped
+  def to_log_human_identifier: -> untyped
+  def self.from_text: (untyped text, ?nil domain) -> Array[untyped]
+  def self.search: (untyped shortcode) -> untyped
+
+  private
+  def remove_entity_cache: -> untyped
+  def downcase_domain: -> nil
+end

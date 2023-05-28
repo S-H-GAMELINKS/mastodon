@@ -1,0 +1,10 @@
+# TypeProf 0.21.7
+
+# Classes
+module AccessTokenTrackingConcern
+  ACCESS_TOKEN_UPDATE_FREQUENCY: untyped
+
+  private
+  def update_access_token_last_used: -> nil
+  def access_token_needs_update?: -> untyped
+end

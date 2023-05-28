@@ -1,0 +1,27 @@
+# TypeProf 0.21.7
+
+# Classes
+class ResolveAccountService
+  @options: untyped
+  @account: untyped
+  @username: untyped
+  @domain: nil
+  @uri: String
+  @webfinger: untyped
+  @gone: true
+  @actor_url: untyped
+
+  def call: (untyped uri, ?Hash[untyped, untyped] options) -> nil
+
+  private
+  def process_options!: (untyped uri, Hash[untyped, untyped] options) -> String
+  def process_webfinger!: (String uri) -> true?
+  def split_acct: (untyped acct) -> untyped
+  def fetch_account!: -> nil
+  def webfinger_update_due?: -> false
+  def activitypub_ready?: -> bool
+  def actor_url: -> untyped
+  def gone_from_origin?: -> true
+  def not_yet_deleted?: -> untyped
+  def queue_deletion!: -> untyped
+end

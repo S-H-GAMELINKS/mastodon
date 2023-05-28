@@ -1,0 +1,23 @@
+# TypeProf 0.21.7
+
+# Classes
+class FetchOEmbedService
+  ENDPOINT_CACHE_EXPIRES_IN: untyped
+  URL_REGEX: Regexp
+  @html: untyped
+
+  attr_reader url: untyped
+  attr_reader options: Hash[untyped, untyped]
+  attr_reader format: (:json | :xml)?
+  attr_reader endpoint_url: nil
+  def call: (untyped url, ?Hash[untyped, untyped] options) -> nil
+
+  private
+  def discover_endpoint!: -> nil
+  def parse_cached_endpoint!: -> nil
+  def cache_endpoint!: -> nil
+  def fetch!: -> nil
+  def parse_for_format: (untyped body) -> nil
+  def validate: (nil oembed) -> nil
+  def html: -> nil
+end

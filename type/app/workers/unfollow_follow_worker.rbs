@@ -1,0 +1,6 @@
+# TypeProf 0.21.7
+
+# Classes
+class UnfollowFollowWorker
+  def perform: (untyped follower_account_id, untyped old_target_account_id, untyped new_target_account_id, ?false bypass_locked) -> true
+end

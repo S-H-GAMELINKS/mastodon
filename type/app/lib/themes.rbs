@@ -1,0 +1,10 @@
+# TypeProf 0.21.7
+
+# Classes
+class Themes
+  include Singleton
+  @conf: untyped
+
+  def initialize: -> void
+  def names: -> untyped
+end

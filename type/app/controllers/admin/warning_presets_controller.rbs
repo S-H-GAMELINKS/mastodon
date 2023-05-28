@@ -1,0 +1,19 @@
+# TypeProf 0.21.7
+
+# Classes
+module Admin
+  class WarningPresetsController
+    @warning_presets: untyped
+    @warning_preset: untyped
+
+    def index: -> untyped
+    def edit: -> untyped
+    def create: -> untyped
+    def update: -> untyped
+    def destroy: -> untyped
+
+    private
+    def set_warning_preset: -> untyped
+    def warning_preset_params: -> untyped
+  end
+end

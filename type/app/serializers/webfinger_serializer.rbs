@@ -1,0 +1,8 @@
+# TypeProf 0.21.7
+
+# Classes
+class WebfingerSerializer
+  def subject: -> untyped
+  def aliases: -> Array[untyped]
+  def links: -> Array[{rel: String, template: String, type: String, href: untyped}]
+end

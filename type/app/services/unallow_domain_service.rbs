@@ -1,0 +1,9 @@
+# TypeProf 0.21.7
+
+# Classes
+class UnallowDomainService
+  def call: (untyped domain_allow) -> untyped
+
+  private
+  def suspend_accounts!: (untyped domain) -> untyped
+end

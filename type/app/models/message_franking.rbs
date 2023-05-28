@@ -1,0 +1,12 @@
+# TypeProf 0.21.7
+
+# Classes
+class MessageFranking
+  attr_reader hmac: nil
+  attr_reader source_account_id: nil
+  attr_reader target_account_id: nil
+  attr_reader timestamp: nil
+  attr_reader original_franking: nil
+  def initialize: (?Hash[untyped, untyped] attributes) -> void
+  def to_token: -> untyped
+end

@@ -1,0 +1,23 @@
+# TypeProf 0.21.7
+
+# Classes
+class StatusFilter
+  @preloaded_relations: Hash[untyped, untyped]
+
+  attr_reader status: untyped
+  attr_reader account: untyped
+  def initialize: (untyped status, untyped account, ?Hash[untyped, untyped] preloaded_relations) -> void
+  def filtered?: -> false
+
+  private
+  def account_present?: -> untyped
+  def filtered_status?: -> untyped
+  def blocking_account?: -> untyped
+  def blocking_domain?: -> untyped
+  def muting_account?: -> untyped
+  def silenced_account?: -> untyped
+  def status_account_silenced?: -> untyped
+  def account_following_status_account?: -> untyped
+  def blocked_by_policy?: -> untyped
+  def policy_allows_show?: -> untyped
+end

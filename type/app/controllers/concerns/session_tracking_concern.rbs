@@ -1,0 +1,10 @@
+# TypeProf 0.21.7
+
+# Classes
+module SessionTrackingConcern
+  SESSION_UPDATE_FREQUENCY: untyped
+
+  private
+  def set_session_activity: -> nil
+  def session_needs_update?: -> untyped
+end

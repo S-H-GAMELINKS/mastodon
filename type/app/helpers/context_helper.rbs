@@ -1,0 +1,10 @@
+# TypeProf 0.21.7
+
+# Classes
+module ContextHelper
+  NAMED_CONTEXT_MAP: {activitystreams: String, security: String}
+  CONTEXT_EXTENSION_MAP: {manually_approves_followers: Hash[String, String], sensitive: Hash[String, String], hashtag: Hash[String, String], moved_to: Hash[String, Hash[String, String]], also_known_as: Hash[String, Hash[String, String]], emoji: Hash[String, String], featured: Hash[String, Hash[String, String] | String], property_value: Hash[String, String], atom_uri: Hash[String, String], conversation: Hash[String, String], focal_point: Hash[String, Hash[String, String] | String], blurhash: Hash[String, String], discoverable: Hash[String, String], voters_count: Hash[String, String], olm: Hash[String, Hash[String, String] | String], suspended: Hash[String, String]}
+
+  def full_context: -> ((Array[Hash[untyped, untyped] | String] | Hash[untyped, untyped] | String)?)
+  def serialized_context: ({activitystreams: String, security: String} named_contexts_map, {manually_approves_followers: Hash[String, String], sensitive: Hash[String, String], hashtag: Hash[String, String], moved_to: Hash[String, Hash[String, String]], also_known_as: Hash[String, Hash[String, String]], emoji: Hash[String, String], featured: Hash[String, Hash[String, String] | String], property_value: Hash[String, String], atom_uri: Hash[String, String], conversation: Hash[String, String], focal_point: Hash[String, Hash[String, String] | String], blurhash: Hash[String, String], discoverable: Hash[String, String], voters_count: Hash[String, String], olm: Hash[String, Hash[String, String] | String], suspended: Hash[String, String]} context_extensions_map) -> ((Array[Hash[untyped, untyped] | String] | Hash[untyped, untyped] | String)?)
+end

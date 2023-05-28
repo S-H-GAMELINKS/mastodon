@@ -1,0 +1,42 @@
+# TypeProf 0.21.7
+
+# Classes
+class SearchQueryTransformer
+  class Query
+    attr_reader should_clauses: untyped
+    attr_reader must_not_clauses: untyped
+    attr_reader must_clauses: untyped
+    attr_reader filter_clauses: untyped
+    def initialize: (untyped clauses) -> void
+    def apply: (untyped search) -> untyped
+
+    private
+    def clause_to_query: (untyped clause) -> {multi_match: {type: String, query: untyped, fields: [String, String]}, match_phrase: {text: {query: untyped}}}
+    def clause_to_filter: (untyped clause) -> {term: Hash[untyped, untyped]}
+  end
+
+  class Operator
+    def self.symbol: (untyped str) -> (:must | :must_not | :should)
+  end
+
+  class TermClause
+    attr_reader prefix: untyped
+    attr_reader operator: :must | :must_not | :should
+    attr_reader term: String
+    def initialize: (untyped prefix, untyped operator, String term) -> void
+  end
+
+  class PhraseClause
+    attr_reader prefix: untyped
+    attr_reader operator: :must | :must_not | :should
+    attr_reader phrase: untyped
+    def initialize: (untyped prefix, untyped operator, untyped phrase) -> void
+  end
+
+  class PrefixClause
+    attr_reader filter: :account_id
+    attr_reader operator: :filter
+    attr_reader term: untyped
+    def initialize: (untyped prefix, untyped term) -> void
+  end
+end

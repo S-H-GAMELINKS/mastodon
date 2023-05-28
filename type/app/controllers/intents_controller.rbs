@@ -1,0 +1,13 @@
+# TypeProf 0.21.7
+
+# Classes
+class IntentsController
+  @uri: untyped
+
+  def show: -> untyped
+
+  private
+  def check_uri: -> nil
+  def handle_invalid_uri: -> untyped
+  def uri: -> untyped
+end

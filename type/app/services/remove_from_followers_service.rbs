@@ -1,0 +1,10 @@
+# TypeProf 0.21.7
+
+# Classes
+class RemoveFromFollowersService
+  def call: (untyped source_account, untyped target_accounts) -> untyped
+
+  private
+  def create_notification: (untyped follow) -> untyped
+  def build_json: (untyped follow) -> untyped
+end

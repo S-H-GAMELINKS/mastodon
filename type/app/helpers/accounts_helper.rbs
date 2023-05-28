@@ -1,0 +1,9 @@
+# TypeProf 0.21.7
+
+# Classes
+module AccountsHelper
+  def display_name: (untyped account, **untyped) -> untyped
+  def acct: (untyped account) -> String
+  def account_action_button: (untyped account) -> nil
+  def account_description: (untyped account) -> String
+end

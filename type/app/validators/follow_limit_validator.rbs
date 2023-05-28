@@ -1,0 +1,13 @@
+# TypeProf 0.21.7
+
+# Classes
+class FollowLimitValidator
+  LIMIT: Integer
+  RATIO: Float
+
+  def validate: (untyped follow) -> nil
+  def self.limit_for_account: (untyped account) -> Integer?
+
+  private
+  def limit_reached?: (untyped account) -> untyped
+end

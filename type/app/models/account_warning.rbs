@@ -1,0 +1,11 @@
+# TypeProf 0.21.7
+
+# Classes
+class AccountWarning
+  def statuses: -> untyped
+  def overruled?: -> untyped
+  def to_log_human_identifier: -> untyped
+
+  private
+  def before_validate: -> String?
+end

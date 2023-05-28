@@ -1,0 +1,11 @@
+# TypeProf 0.21.7
+
+# Classes
+class FavouriteService
+  def call: (untyped account, untyped status) -> untyped
+
+  private
+  def create_notification: (untyped favourite) -> nil
+  def bump_potential_friendship: (untyped account, untyped status) -> nil
+  def build_json: (untyped favourite) -> untyped
+end

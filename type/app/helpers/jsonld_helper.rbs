@@ -1,0 +1,27 @@
+# TypeProf 0.21.7
+
+# Classes
+module JsonLdHelper
+  def equals_or_includes?: (untyped haystack, untyped needle) -> untyped
+  def equals_or_includes_any?: (untyped haystack, untyped needles) -> untyped
+  def first_of_value: (untyped value) -> untyped
+  def uri_from_bearcap: (untyped str) -> untyped
+  def url_to_href: (untyped value, ?nil preferred_type) -> untyped
+  def as_array: (untyped value) -> Array[untyped]
+  def value_or_id: (untyped value) -> untyped
+  def supported_context?: (untyped json) -> untyped
+  def unsupported_uri_scheme?: (untyped uri) -> untyped
+  def non_matching_uri_hosts?: (untyped base_url, untyped comparison_url) -> true
+  def canonicalize: (untyped json) -> untyped
+  def compact: (untyped json) -> untyped
+  def patch_for_forwarding!: (untyped original, untyped compacted) -> nil
+  def safe_for_forwarding?: (untyped original, untyped compacted) -> false
+  def fetch_resource: (untyped uri, untyped id, ?nil on_behalf_of) -> nil
+  def fetch_resource_without_id_validation: (untyped uri, ?nil on_behalf_of, ?false raise_on_temporary_error) -> untyped
+  def body_to_json: (untyped body, ?compare_id: nil) -> nil
+  def merge_context: (untyped context, untyped new_context) -> [untyped, untyped]
+  def response_successful?: (untyped response) -> bool
+  def response_error_unsalvageable?: (untyped response) -> bool
+  def build_request: (untyped uri, ?nil on_behalf_of) -> untyped
+  def load_jsonld_context: (untyped url, ?Hash[untyped, untyped] _options) -> untyped
+end

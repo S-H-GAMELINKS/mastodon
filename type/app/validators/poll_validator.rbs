@@ -1,0 +1,11 @@
+# TypeProf 0.21.7
+
+# Classes
+class PollValidator
+  MAX_OPTIONS: Integer
+  MAX_OPTION_CHARS: Integer
+  MAX_EXPIRATION: untyped
+  MIN_EXPIRATION: untyped
+
+  def validate: (untyped poll) -> nil
+end

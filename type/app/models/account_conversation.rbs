@@ -1,0 +1,19 @@
+# TypeProf 0.21.7
+
+# Classes
+class AccountConversation
+  def participant_account_ids=: (untyped arr) -> untyped
+  def participant_accounts: -> [untyped]
+  def self.to_a_paginated_by_id: (untyped limit, ?Hash[untyped, untyped] options) -> untyped
+  def self.paginate_by_min_id: (untyped limit, ?nil min_id, ?nil max_id) -> untyped
+  def self.paginate_by_max_id: (untyped limit, ?nil max_id, ?nil since_id) -> untyped
+  def self.add_status: (untyped recipient, untyped status) -> untyped
+  def self.remove_status: (untyped recipient, untyped status) -> nil
+  def self.participants_from_status: (untyped recipient, untyped status) -> untyped
+
+  private
+  def set_last_status: -> untyped
+  def push_to_streaming_api: -> nil
+  def subscribed_to_timeline?: -> untyped
+  def streaming_channel: -> String
+end

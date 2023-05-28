@@ -1,0 +1,11 @@
+# TypeProf 0.21.7
+
+# Classes
+class SystemKey
+  ROTATION_PERIOD: untyped
+
+  def self.current_key: -> untyped
+
+  private
+  def set_key: -> nil
+end

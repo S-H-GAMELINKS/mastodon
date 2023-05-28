@@ -1,0 +1,22 @@
+# TypeProf 0.21.7
+
+# Classes
+module Admin
+  class CustomEmojisController
+    @custom_emojis: untyped
+    @form: untyped
+    @custom_emoji: untyped
+
+    def index: -> untyped
+    def new: -> untyped
+    def create: -> untyped
+    def batch: -> untyped
+
+    private
+    def resource_params: -> untyped
+    def filtered_custom_emojis: -> untyped
+    def filter_params: -> untyped
+    def action_from_button: -> String?
+    def form_custom_emoji_batch_params: -> untyped
+  end
+end

@@ -1,0 +1,6 @@
+# TypeProf 0.21.7
+
+# Classes
+class ListFeed
+  def initialize: (untyped list) -> void
+end

@@ -1,0 +1,19 @@
+# TypeProf 0.21.7
+
+# Classes
+module Admin
+  class InvitesController
+    @invites: untyped
+    @invite: untyped
+
+    def index: -> untyped
+    def create: -> untyped
+    def destroy: -> untyped
+    def deactivate_all: -> untyped
+
+    private
+    def resource_params: -> untyped
+    def filtered_invites: -> untyped
+    def filter_params: -> untyped
+  end
+end

@@ -1,0 +1,21 @@
+# TypeProf 0.21.7
+
+# Classes
+module Admin
+  class ExportDomainBlocksController
+    @import: untyped
+    @global_private_comment: untyped
+    @form: untyped
+    @domain_blocks: untyped
+    @warning_domains: untyped
+
+    def new: -> untyped
+    def export: -> untyped
+    def import: -> untyped
+
+    private
+    def export_filename: -> String
+    def export_headers: -> [String, String, String, String, String, String]
+    def export_data: -> String
+  end
+end

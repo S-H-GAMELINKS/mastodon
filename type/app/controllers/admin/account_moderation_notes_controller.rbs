@@ -1,0 +1,18 @@
+# TypeProf 0.21.7
+
+# Classes
+module Admin
+  class AccountModerationNotesController
+    @account_moderation_note: untyped
+    @account: untyped
+    @moderation_notes: untyped
+    @warnings: untyped
+
+    def create: -> untyped
+    def destroy: -> untyped
+
+    private
+    def resource_params: -> untyped
+    def set_account_moderation_note: -> untyped
+  end
+end

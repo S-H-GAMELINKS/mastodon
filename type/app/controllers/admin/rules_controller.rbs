@@ -1,0 +1,19 @@
+# TypeProf 0.21.7
+
+# Classes
+module Admin
+  class RulesController
+    @rules: untyped
+    @rule: untyped
+
+    def index: -> untyped
+    def edit: -> untyped
+    def create: -> untyped
+    def update: -> untyped
+    def destroy: -> untyped
+
+    private
+    def set_rule: -> untyped
+    def resource_params: -> untyped
+  end
+end

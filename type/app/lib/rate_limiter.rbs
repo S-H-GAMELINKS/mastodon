@@ -1,0 +1,21 @@
+# TypeProf 0.21.7
+
+# Classes
+class RateLimiter
+  FAMILIES: {follows: {limit: Integer, period: untyped}, statuses: {limit: Integer, period: untyped}, reports: {limit: Integer, period: untyped}}
+  @by: untyped
+  @family: nil
+  @limit: untyped
+  @period: untyped
+  @key: String
+  @last_epoch_time: Integer
+
+  def initialize: (untyped by, ?Hash[untyped, untyped] options) -> void
+  def record!: -> untyped
+  def rollback!: -> untyped
+  def to_headers: (?Time now) -> Hash[String, untyped]
+
+  private
+  def key: -> String
+  def last_epoch_time: -> Integer
+end

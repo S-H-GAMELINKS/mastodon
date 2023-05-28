@@ -1,0 +1,17 @@
+# TypeProf 0.21.7
+
+# Classes
+class Instance
+  @delivery_failure_tracker: untyped
+
+  attr_accessor failure_days: bot
+  def self.refresh: -> untyped
+  def readonly?: -> true
+  def delivery_failure_tracker: -> untyped
+  def purgeable?: -> untyped
+  def unavailable?: -> untyped
+  def failing?: -> untyped
+  def to_param: -> untyped
+  alias to_log_human_identifier to_param
+  def availability_over_days: (untyped num_days, ?untyped end_date) -> Array[[untyped, untyped]]
+end

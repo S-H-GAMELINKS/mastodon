@@ -1,0 +1,10 @@
+# TypeProf 0.21.7
+
+# Classes
+class Import
+  FILE_TYPES: [String, String, String]
+  MODES: [:merge, :overwrite]
+
+  def mode: -> (:merge | :overwrite)
+  def mode=: (untyped str) -> untyped
+end

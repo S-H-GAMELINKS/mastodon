@@ -1,0 +1,7 @@
+# TypeProf 0.21.7
+
+# Classes
+module DomainMaterializable
+  def refresh_instances_view: -> nil
+  def count_unique_subdomains!: -> untyped
+end

@@ -1,0 +1,10 @@
+# TypeProf 0.21.7
+
+# Classes
+class FollowRequest
+  def authorize!: -> untyped
+  def local?: -> false
+
+  private
+  def set_uri: -> nil
+end

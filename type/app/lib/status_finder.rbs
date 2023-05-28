@@ -1,0 +1,12 @@
+# TypeProf 0.21.7
+
+# Classes
+class StatusFinder
+  attr_reader url: untyped
+  def initialize: (untyped url) -> void
+  def status: -> untyped
+
+  private
+  def recognized_params: -> untyped
+  def verify_action!: -> nil
+end

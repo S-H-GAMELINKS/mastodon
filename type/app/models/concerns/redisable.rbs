@@ -1,0 +1,7 @@
+# TypeProf 0.21.7
+
+# Classes
+module Redisable
+  def redis: -> untyped
+  def with_redis: -> untyped
+end

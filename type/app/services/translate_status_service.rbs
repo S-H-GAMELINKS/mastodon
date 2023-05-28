@@ -1,0 +1,18 @@
+# TypeProf 0.21.7
+
+# Classes
+class TranslateStatusService
+  CACHE_TTL: untyped
+  @status: untyped
+  @content: untyped
+  @target_language: untyped
+  @translation_backend: untyped
+
+  def call: (untyped status, untyped target_language) -> untyped
+
+  private
+  def translation_backend: -> untyped
+  def permitted?: -> false
+  def languages: -> untyped
+  def content_hash: -> untyped
+end

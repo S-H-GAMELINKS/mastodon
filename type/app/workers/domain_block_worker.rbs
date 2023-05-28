@@ -1,0 +1,6 @@
+# TypeProf 0.21.7
+
+# Classes
+class DomainBlockWorker
+  def perform: (untyped domain_block_id, ?false update) -> true
+end

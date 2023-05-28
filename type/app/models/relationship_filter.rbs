@@ -1,0 +1,22 @@
+# TypeProf 0.21.7
+
+# Classes
+class RelationshipFilter
+  KEYS: [:relationship, :status, :by_domain, :activity, :order, :location]
+  IGNORED_PARAMS: [String, String]
+
+  attr_reader params: untyped
+  attr_reader account: untyped
+  def initialize: (untyped account, untyped params) -> void
+  def results: -> untyped
+
+  private
+  def set_defaults!: -> String?
+  def scope_for: (String key, untyped value) -> untyped
+  def relationship_scope: (untyped value) -> untyped
+  def by_domain_scope: (untyped value) -> untyped
+  def location_scope: (untyped value) -> untyped
+  def status_scope: (untyped value) -> untyped
+  def order_scope: (untyped value) -> untyped
+  def activity_scope: (untyped value) -> untyped
+end

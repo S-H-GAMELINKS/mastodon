@@ -1,0 +1,20 @@
+# TypeProf 0.21.7
+
+# Classes
+module Trends
+  self.@links: untyped
+  self.@tags: untyped
+  self.@statuses: untyped
+  self.@available_locales: untyped
+
+  def self.table_name_prefix: -> String
+  def self.links: -> untyped
+  def self.tags: -> untyped
+  def self.statuses: -> untyped
+  def self.register!: (untyped status) -> [untyped, untyped, untyped]
+  def self.refresh!: -> [untyped, untyped, untyped]
+  def self.request_review!: -> nil
+  def self.enabled?: -> untyped
+  def self.skip_review?: -> untyped
+  def self.available_locales: -> untyped
+end

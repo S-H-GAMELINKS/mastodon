@@ -1,0 +1,9 @@
+# TypeProf 0.21.7
+
+# Classes
+class CustomFilterStatus
+  private
+  def validate_status_access: -> nil
+  def prepare_cache_invalidation!: -> untyped
+  def invalidate_cache!: -> untyped
+end

@@ -1,0 +1,6 @@
+# TypeProf 0.21.7
+
+# Classes
+class StatusPin
+  def invalidate_cleanup_info: -> nil
+end

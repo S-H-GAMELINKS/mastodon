@@ -1,0 +1,6 @@
+# TypeProf 0.21.7
+
+# Classes
+module Lockable
+  def with_redis_lock: (untyped lock_name, ?autorelease: untyped, ?raise_on_failure: true) -> untyped
+end

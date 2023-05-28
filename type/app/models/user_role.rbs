@@ -1,0 +1,36 @@
+# TypeProf 0.21.7
+
+# Classes
+class UserRole
+  FLAGS: {administrator: Integer, view_devops: Integer, view_audit_log: Integer, view_dashboard: Integer, manage_reports: Integer, manage_federation: Integer, manage_settings: Integer, manage_blocks: Integer, manage_taxonomies: Integer, manage_appeals: Integer, manage_users: Integer, manage_invites: Integer, manage_rules: Integer, manage_announcements: Integer, manage_custom_emojis: Integer, manage_webhooks: Integer, invite_users: Integer, manage_roles: Integer, manage_user_access: Integer, delete_user_data: Integer}
+  self.@nobody: UserRole
+  @computed_permissions: Integer
+
+  attr_writer current_account: bot
+  def self.nobody: -> UserRole
+  def self.everyone: -> untyped
+  def self.that_can: (*untyped any_of_privileges) -> untyped
+  def everyone?: -> untyped
+  def nobody?: -> untyped
+  def permissions_as_keys: -> Array[String]
+  def permissions_as_keys=: (untyped value) -> untyped
+  def can?: (*untyped any_of_privileges) -> untyped
+  def overrides?: (untyped other_role) -> untyped
+  def computed_permissions: -> Integer
+  def to_log_human_identifier: -> untyped
+
+  private
+  def in_permissions?: (untyped privilege) -> bool
+  def set_position: -> Integer?
+  def validate_own_role_edition: -> nil
+  def validate_permissions_elevation: -> nil
+  def validate_position_elevation: -> nil
+  def validate_dangerous_permissions: -> nil
+
+  module Flags
+    NONE: Integer
+    ALL: Integer
+    DEFAULT: Integer
+    CATEGORIES: {invites: [:invite_users], moderation: [String, String, String, String, String, String, String, String, String, String, String], administration: [String, String, String, String, String, String], devops: [String], special: [:administrator]}
+  end
+end

@@ -1,0 +1,6 @@
+# TypeProf 0.21.7
+
+# Classes
+module AccountMerging
+  def merge_with!: (untyped other_account) -> untyped
+end

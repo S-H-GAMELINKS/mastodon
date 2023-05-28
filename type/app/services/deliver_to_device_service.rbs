@@ -1,0 +1,25 @@
+# TypeProf 0.21.7
+
+# Classes
+class DeliverToDeviceService
+  @source_account: untyped
+  @source_device: untyped
+  @target_account: untyped
+  @target_device_id: nil
+  @body: nil
+  @type: nil
+  @hmac: nil
+  @message_franking: untyped
+
+  def call: (untyped source_account, untyped source_device, ?Hash[untyped, untyped] options) -> untyped
+
+  private
+  def set_message_franking!: -> untyped
+  def deliver_to_local!: -> untyped
+  def deliver_to_remote!: -> untyped
+  def message_franking: -> untyped
+  def encrypted_message: -> EncryptedMessage
+
+  class EncryptedMessage
+  end
+end

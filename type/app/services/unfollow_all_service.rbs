@@ -1,0 +1,11 @@
+# TypeProf 0.21.7
+
+# Classes
+class UnfollowAllService
+  @source_account: untyped
+
+  def call: (untyped source_account_id) -> untyped
+
+  private
+  def unfollow_all: -> untyped
+end

@@ -1,0 +1,11 @@
+# TypeProf 0.21.7
+
+# Classes
+class AboutController
+  @instance_presenter: untyped
+
+  def show: -> nil
+
+  private
+  def set_instance_presenter: -> untyped
+end

@@ -1,0 +1,6 @@
+# TypeProf 0.21.7
+
+# Classes
+module RegistrationSpamConcern
+  def set_registration_form_time: -> Time
+end

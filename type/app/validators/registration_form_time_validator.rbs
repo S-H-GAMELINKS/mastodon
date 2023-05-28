@@ -1,0 +1,8 @@
+# TypeProf 0.21.7
+
+# Classes
+class RegistrationFormTimeValidator
+  REGISTRATION_FORM_MIN_TIME: untyped
+
+  def validate: (untyped user) -> nil
+end

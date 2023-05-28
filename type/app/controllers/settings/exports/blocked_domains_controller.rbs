@@ -1,0 +1,15 @@
+# TypeProf 0.21.7
+
+# Classes
+module Settings
+  module Exports
+    class BlockedDomainsController
+      @export: bot
+
+      def index: -> untyped
+
+      private
+      def export_data: -> untyped
+    end
+  end
+end

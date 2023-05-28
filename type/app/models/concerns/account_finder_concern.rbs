@@ -1,0 +1,23 @@
+# TypeProf 0.21.7
+
+# Classes
+module AccountFinderConcern
+  def find_local!: (untyped username) -> untyped
+  def find_remote!: (untyped username, untyped domain) -> untyped
+  def representative: -> untyped
+  def find_local: (untyped username) -> untyped
+  def find_remote: (untyped username, nil domain) -> untyped
+
+  class AccountFinder
+    attr_reader username: untyped
+    attr_reader domain: nil
+    def initialize: (untyped username, nil domain) -> void
+    def account: -> untyped
+
+    private
+    def scoped_accounts: -> untyped
+    def with_usernames: -> untyped
+    def matching_username: -> untyped
+    def matching_domain: -> untyped
+  end
+end

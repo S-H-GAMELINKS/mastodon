@@ -1,0 +1,21 @@
+# TypeProf 0.21.7
+
+# Classes
+class TagsController
+  PAGE_SIZE: Integer
+  PAGE_SIZE_MAX: Integer
+  @tag: untyped
+  @local: untyped
+  @statuses: untyped
+  @instance_presenter: untyped
+
+  def show: -> untyped
+
+  private
+  def set_tag: -> untyped
+  def set_local: -> untyped
+  def set_statuses: -> untyped
+  def set_instance_presenter: -> untyped
+  def limit_param: -> Integer?
+  def collection_presenter: -> untyped
+end

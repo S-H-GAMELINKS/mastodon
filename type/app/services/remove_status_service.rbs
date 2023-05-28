@@ -1,0 +1,26 @@
+# TypeProf 0.21.7
+
+# Classes
+class RemoveStatusService
+  @payload: untyped
+  @status: untyped
+  @account: untyped
+  @options: {original_removed: true}
+  @signed_activity_json: untyped
+
+  def call: (untyped status, **true) -> untyped
+
+  private
+  def remove_from_self: -> untyped
+  def remove_from_followers: -> untyped
+  def remove_from_lists: -> untyped
+  def remove_from_mentions: -> untyped
+  def remove_from_remote_reach: -> untyped
+  def signed_activity_json: -> untyped
+  def remove_reblogs: -> untyped
+  def remove_from_hashtags: -> nil
+  def remove_from_public: -> nil
+  def remove_from_media: -> nil
+  def remove_media: -> nil
+  def permanently?: -> untyped
+end

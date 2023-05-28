@@ -1,0 +1,15 @@
+# TypeProf 0.21.7
+
+# Classes
+class VerifyLinkService
+  @link_back: untyped
+  @url: untyped
+  @body: untyped
+
+  def call: (untyped field) -> nil
+
+  private
+  def perform_request!: -> untyped
+  def link_back_present?: -> bool
+  def link_redirects_back?: (untyped test_url) -> false
+end

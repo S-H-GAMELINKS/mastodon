@@ -1,0 +1,8 @@
+# TypeProf 0.21.7
+
+# Classes
+module LdapAuthenticable
+  def authenticate_with_ldap: (?Hash[untyped, untyped] params) -> nil
+  def ldap_get_user: (?Hash[untyped, untyped] attributes) -> untyped
+  def ldap_options: -> {host: untyped, port: untyped, base: untyped, auth: {method: :simple, username: untyped, password: untyped}, connect_timeout: Integer, encryption: {method: untyped, tls_options: untyped}}
+end

@@ -1,0 +1,22 @@
+# TypeProf 0.21.7
+
+# Classes
+module Admin
+  class EmailDomainBlocksController
+    @email_domain_blocks: untyped
+    @form: untyped
+    @email_domain_block: untyped
+    @resolved_records: untyped
+
+    def index: -> untyped
+    def batch: -> untyped
+    def new: -> untyped
+    def create: -> untyped
+
+    private
+    def set_resolved_records: -> untyped
+    def resource_params: -> untyped
+    def form_email_domain_block_batch_params: -> untyped
+    def action_from_button: -> String?
+  end
+end

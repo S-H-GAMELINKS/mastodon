@@ -1,0 +1,19 @@
+# TypeProf 0.21.7
+
+# Classes
+module Attachmentable
+  MAX_MATRIX_LIMIT: Integer
+  GIF_MATRIX_LIMIT: Integer
+  INCORRECT_CONTENT_TYPES: [String, String, String]
+
+  private
+  def set_file_content_type: (untyped attachment) -> nil
+  def set_file_extension: (untyped attachment) -> nil
+  def check_image_dimension: (untyped attachment) -> nil
+  def appropriate_extension: (untyped attachment) -> String
+  def calculated_content_type: (untyped attachment) -> String
+  def obfuscate_file_name: (untyped attachment) -> nil
+
+  public
+  def self.has_attached_file: (untyped name, ?Hash[untyped, untyped] options) -> untyped
+end

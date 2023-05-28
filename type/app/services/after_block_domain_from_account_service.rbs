@@ -1,0 +1,16 @@
+# TypeProf 0.21.7
+
+# Classes
+class AfterBlockDomainFromAccountService
+  @account: untyped
+  @domain: untyped
+
+  def call: (untyped account, untyped domain) -> untyped
+
+  private
+  def remove_follows!: -> untyped
+  def clear_notifications!: -> untyped
+  def reject_existing_followers!: -> untyped
+  def reject_pending_follow_requests!: -> untyped
+  def reject_follow!: (untyped follow) -> nil
+end

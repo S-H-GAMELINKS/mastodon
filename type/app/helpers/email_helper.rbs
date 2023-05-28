@@ -1,0 +1,8 @@
+# TypeProf 0.21.7
+
+# Classes
+module EmailHelper
+  def self.included: (untyped base) -> untyped
+  def email_to_canonical_email: (untyped str) -> String
+  def email_to_canonical_email_hash: (untyped str) -> untyped
+end

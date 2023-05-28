@@ -1,0 +1,9 @@
+# TypeProf 0.21.7
+
+# Classes
+class PrivacyPolicy
+  DEFAULT_PRIVACY_POLICY: String
+  DEFAULT_UPDATED_AT: untyped
+
+  def self.current: -> PrivacyPolicy
+end

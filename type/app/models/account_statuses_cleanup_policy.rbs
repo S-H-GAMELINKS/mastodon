@@ -1,0 +1,28 @@
+# TypeProf 0.21.7
+
+# Classes
+class AccountStatusesCleanupPolicy
+  ALLOWED_MIN_STATUS_AGE: [untyped, untyped, untyped, untyped, untyped, untyped, untyped, untyped]
+  EXCEPTION_BOOLS: [String, String, String, String, String, String]
+  EXCEPTION_THRESHOLDS: [String, String]
+  EARLY_SEARCH_CUTOFF: Integer
+
+  def statuses_to_delete: (?Integer limit, ?nil max_id, ?nil min_id) -> untyped
+  def compute_cutoff_id: -> untyped
+  def record_last_inspected: (untyped last_id) -> untyped
+  def last_inspected: -> untyped
+  def invalidate_last_inspected: (untyped status, untyped action) -> nil
+
+  private
+  def update_last_inspected: -> nil
+  def validate_local_account: -> nil
+  def without_direct_scope: -> untyped
+  def old_enough_scope: (?nil max_id) -> untyped
+  def without_self_fav_scope: -> untyped
+  def without_self_bookmark_scope: -> untyped
+  def without_pinned_scope: -> untyped
+  def without_media_scope: -> untyped
+  def without_poll_scope: -> untyped
+  def without_popular_scope: -> untyped
+  def account_statuses: -> untyped
+end

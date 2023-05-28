@@ -1,0 +1,11 @@
+# TypeProf 0.21.7
+
+# Classes
+module MascotHelper
+  @instance_presenter: untyped
+
+  def mascot_url: -> untyped
+
+  private
+  def instance_presenter: -> untyped
+end

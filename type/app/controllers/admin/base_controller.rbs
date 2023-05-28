@@ -1,0 +1,14 @@
+# TypeProf 0.21.7
+
+# Classes
+module Admin
+  class BaseController
+    @body_classes: String
+    @user: untyped
+
+    private
+    def set_body_classes: -> String
+    def set_cache_headers: -> untyped
+    def set_user: -> untyped
+  end
+end

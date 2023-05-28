@@ -1,0 +1,57 @@
+# TypeProf 0.21.7
+
+# Classes
+module AccountInteractions
+  def follow!: (untyped other_account, ?reblogs: nil, ?notify: nil, ?languages: nil, ?uri: nil, ?rate_limit: false, ?bypass_limit: false) -> untyped
+  def request_follow!: (untyped other_account, ?reblogs: nil, ?notify: nil, ?languages: nil, ?uri: nil, ?rate_limit: false, ?bypass_limit: false) -> untyped
+  def block!: (untyped other_account, ?uri: nil) -> untyped
+  def mute!: (untyped other_account, ?notifications: nil, ?duration: Integer) -> untyped
+  def mute_conversation!: (untyped conversation) -> untyped
+  def block_domain!: (untyped other_domain) -> untyped
+  def unfollow!: (untyped other_account) -> untyped
+  def unblock!: (untyped other_account) -> untyped
+  def unmute!: (untyped other_account) -> untyped
+  def unmute_conversation!: (untyped conversation) -> untyped
+  def unblock_domain!: (untyped other_domain) -> untyped
+  def following?: (untyped other_account) -> untyped
+  def following_anyone?: -> untyped
+  def not_following_anyone?: -> untyped
+  def followed_by?: (untyped other_account) -> untyped
+  def blocking?: (untyped other_account) -> untyped
+  def domain_blocking?: (untyped other_domain) -> untyped
+  def muting?: (untyped other_account) -> untyped
+  def muting_conversation?: (untyped conversation) -> untyped
+  def muting_notifications?: (untyped other_account) -> untyped
+  def muting_reblogs?: (untyped other_account) -> untyped
+  def requested?: (untyped other_account) -> untyped
+  def favourited?: (untyped status) -> untyped
+  def bookmarked?: (untyped status) -> untyped
+  def reblogged?: (untyped status) -> untyped
+  def pinned?: (untyped status) -> untyped
+  def endorsed?: (untyped account) -> untyped
+  def status_matches_filters: (untyped status) -> untyped
+  def followers_for_local_distribution: -> untyped
+  def lists_for_local_distribution: -> untyped
+  def remote_followers_hash: (untyped url) -> nil
+  def local_followers_hash: -> untyped
+  def relations_map: (untyped account_ids, ?nil domains, **untyped) -> {blocked_by: untyped, following: untyped}
+
+  private
+  def remove_potential_friendship: (untyped other_account) -> untyped
+
+  public
+  def following_map: (untyped target_account_ids, untyped account_id) -> untyped
+  def followed_by_map: (untyped target_account_ids, untyped account_id) -> untyped
+  def blocking_map: (untyped target_account_ids, untyped account_id) -> untyped
+  def blocked_by_map: (untyped target_account_ids, untyped account_id) -> untyped
+  def muting_map: (untyped target_account_ids, untyped account_id) -> untyped
+  def requested_map: (untyped target_account_ids, untyped account_id) -> untyped
+  def requested_by_map: (untyped target_account_ids, untyped account_id) -> untyped
+  def endorsed_map: (untyped target_account_ids, untyped account_id) -> untyped
+  def account_note_map: (untyped target_account_ids, untyped account_id) -> untyped
+  def domain_blocking_map: (untyped target_account_ids, untyped account_id) -> untyped
+  def domain_blocking_map_by_domain: (untyped target_domains, untyped account_id) -> untyped
+
+  private
+  def follow_mapping: (untyped query, :account_id | :domain | :target_account_id field) -> untyped
+end

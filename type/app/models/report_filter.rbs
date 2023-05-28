@@ -1,0 +1,12 @@
+# TypeProf 0.21.7
+
+# Classes
+class ReportFilter
+  KEYS: [:resolved, :account_id, :target_account_id, :by_target_domain, :target_origin]
+
+  attr_reader params: untyped
+  def initialize: (untyped params) -> void
+  def results: -> untyped
+  def scope_for: (untyped key, untyped value) -> untyped
+  def target_origin_scope: (untyped value) -> untyped
+end

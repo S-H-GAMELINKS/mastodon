@@ -1,0 +1,72 @@
+# TypeProf 0.21.7
+
+# Classes
+class User
+  ACTIVE_DURATION: untyped
+  @pending_devise_notifications: Array[untyped]
+
+  attr_accessor registration_form_time: untyped
+  attr_accessor website: untyped
+  attr_accessor confirm_password: untyped
+  attr_reader invite_code: untyped
+  attr_writer external: bot
+  attr_writer bypass_invite_request_check: bot
+  attr_writer current_account: bot
+  def self.those_who_can: (*:manage_users any_of_privileges) -> untyped
+  def role: -> untyped
+  def confirmed?: -> untyped
+  def invited?: -> untyped
+  def valid_invitation?: -> untyped
+  def disable!: -> untyped
+  def enable!: -> untyped
+  def to_log_human_identifier: -> untyped
+  def to_log_route_param: -> untyped
+  def confirm: -> nil
+  def confirm!: -> nil
+  def update_sign_in!: (?new_sign_in: false) -> nil
+  def pending?: -> untyped
+  def active_for_authentication?: -> untyped
+  def functional?: -> untyped
+  def functional_or_moved?: -> untyped
+  def unconfirmed?: -> untyped
+  def unconfirmed_or_pending?: -> untyped
+  def inactive_message: -> :pending
+  def approve!: -> nil
+  def otp_enabled?: -> untyped
+  def webauthn_enabled?: -> untyped
+  def two_factor_enabled?: -> untyped
+  def disable_two_factor!: -> untyped
+  def token_for_app: (untyped app) -> nil
+  def activate_session: (untyped request) -> untyped
+  def clear_other_sessions: (untyped id) -> untyped
+  def web_push_subscription: (untyped session) -> nil
+  def invite_code=: (untyped code) -> untyped
+  def password_required?: -> untyped
+  def external_or_valid_password?: (untyped compare_password) -> untyped
+  def send_reset_password_instructions: -> false
+  def reset_password: (untyped new_password, untyped new_password_confirmation) -> false
+  def revoke_access!: -> untyped
+  def reset_password!: -> false
+  def send_devise_notification: (untyped notification, *untyped args, **untyped) -> Array[untyped]
+
+  private
+  def send_pending_devise_notifications: -> Array[untyped]
+  def pending_devise_notifications: -> Array[untyped]
+  def render_and_send_devise_message: (untyped notification, *untyped args, **untyped) -> untyped
+  def set_approved: -> false
+  def sign_up_from_ip_requires_approval?: -> untyped
+  def open_registrations?: -> untyped
+  def external?: -> false
+  def bypass_invite_request_check?: -> nil
+  def sanitize_languages: -> nil
+  def sanitize_role: -> nil
+  def prepare_new_user!: -> untyped
+  def prepare_returning_user!: -> nil
+  def notify_staff_about_pending_account!: -> untyped
+  def regenerate_feed!: -> nil
+  def needs_feed_update?: -> untyped
+  def validate_email_dns?: -> untyped
+  def validate_role_elevation: -> nil
+  def invite_text_required?: -> true
+  def trigger_webhooks: -> untyped
+end

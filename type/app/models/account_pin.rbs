@@ -1,0 +1,7 @@
+# TypeProf 0.21.7
+
+# Classes
+class AccountPin
+  private
+  def validate_follow_relationship: -> nil
+end

@@ -1,0 +1,9 @@
+# TypeProf 0.21.7
+
+# Classes
+class PollVote
+  def object_type: -> :vote
+
+  private
+  def increment_counter_cache: -> untyped
+end

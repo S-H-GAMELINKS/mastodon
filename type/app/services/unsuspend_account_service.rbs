@@ -1,0 +1,17 @@
+# TypeProf 0.21.7
+
+# Classes
+class UnsuspendAccountService
+  @account: untyped
+  @signed_activity_json: untyped
+
+  def call: (untyped account) -> nil
+
+  private
+  def refresh_remote_account!: -> nil
+  def distribute_update_actor!: -> nil
+  def merge_into_home_timelines!: -> untyped
+  def merge_into_list_timelines!: -> untyped
+  def publish_media_attachments!: -> untyped
+  def signed_activity_json: -> untyped
+end

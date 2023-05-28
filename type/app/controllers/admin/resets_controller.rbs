@@ -1,0 +1,10 @@
+# TypeProf 0.21.7
+
+# Classes
+module Admin
+  class ResetsController
+    @user: bot
+
+    def create: -> untyped
+  end
+end

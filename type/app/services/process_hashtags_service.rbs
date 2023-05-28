@@ -1,0 +1,16 @@
+# TypeProf 0.21.7
+
+# Classes
+class ProcessHashtagsService
+  @status: untyped
+  @account: untyped
+  @raw_tags: Array[untyped]
+  @previous_tags: untyped
+  @current_tags: Array[untyped]
+
+  def call: (untyped status, ?Array[untyped] raw_tags) -> nil
+
+  private
+  def assign_tags!: -> untyped
+  def update_featured_tags!: -> nil
+end
