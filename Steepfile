@@ -28,8 +28,38 @@
 #   # library "pathname", "set"       # Standard libraries
 # end
 
+IGNORE = [
+  Steep::Diagnostic::Ruby::MethodDefinitionMissing,
+  Steep::Diagnostic::Ruby::UnknownConstant,
+  Steep::Diagnostic::Ruby::NoMethod,
+  Steep::Diagnostic::Ruby::UnexpectedBlockGiven,
+  Steep::Diagnostic::Ruby::IncompatibleAssignment,
+  Steep::Diagnostic::Ruby::UnknownInstanceVariable,
+  Steep::Diagnostic::Ruby::UnexpectedPositionalArgument,
+  Steep::Diagnostic::Ruby::UnresolvedOverloading,
+  Steep::Diagnostic::Ruby::InsufficientPositionalArguments,
+  Steep::Diagnostic::Ruby::UnknownGlobalVariable,
+  Steep::Diagnostic::Ruby::UnexpectedError,
+  Steep::Diagnostic::Ruby::MethodBodyTypeMismatch,
+  Steep::Diagnostic::Ruby::ArgumentTypeMismatch,
+  Steep::Diagnostic::Ruby::UnsupportedSyntax,
+  Steep::Diagnostic::Ruby::UnsupportedSyntax,
+  Steep::Diagnostic::Ruby::UnexpectedSuper,
+  Steep::Diagnostic::Ruby::UnexpectedYield,
+  Steep::Diagnostic::Ruby::BreakTypeMismatch,
+  Steep::Diagnostic::Ruby::RequiredBlockMissing,
+  Steep::Diagnostic::Ruby::ReturnTypeMismatch,
+  Steep::Diagnostic::Ruby::ImplicitBreakValueMismatch,
+]
+
 target :app do
   check 'app'
 
   signature 'sig'
+
+  configure_code_diagnostics do |hash|
+    IGNORE.each do |ignore|
+      hash[ignore] = :information
+    end
+  end
 end
