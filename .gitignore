@@ -73,3 +73,4 @@ cypress/videos
 
 # ignore rails type signature
 .gem_rbs_collection
+sig/rbs_rails/**
