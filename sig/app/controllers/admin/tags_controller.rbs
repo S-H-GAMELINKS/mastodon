@@ -4,9 +4,9 @@
 module Admin
   class TagsController
     @tag: untyped
-    @time_period: Range
+    @time_period: untyped
 
-    def show: -> Range
+    def show: -> untyped
     def update: -> untyped
 
     private

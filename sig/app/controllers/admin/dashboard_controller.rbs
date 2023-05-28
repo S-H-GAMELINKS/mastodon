@@ -4,7 +4,7 @@
 module Admin
   class DashboardController
     @system_checks: untyped
-    @time_period: Range
+    @time_period: untyped
     @pending_users_count: untyped
     @pending_reports_count: untyped
     @pending_tags_count: untyped

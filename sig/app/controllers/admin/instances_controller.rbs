@@ -4,11 +4,11 @@
 module Admin
   class InstancesController
     @instances: untyped
-    @time_period: Range
+    @time_period: untyped
     @instance: untyped
 
     def index: -> untyped
-    def show: -> Range
+    def show: -> untyped
     def destroy: -> untyped
     def clear_delivery_errors: -> untyped
     def restart_delivery: -> untyped
