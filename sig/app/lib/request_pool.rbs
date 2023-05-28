@@ -29,7 +29,7 @@ class ConnectionPool
   end
 
   class SharedConnectionPool < ConnectionPool
-    @available: SharedTimedStack | TimedStack
+    @available: untyped
 
     def initialize: (?Hash[untyped, untyped] options) -> void
     def with: (untyped preferred_tag, ?Hash[untyped, untyped] options) ?{ -> untyped } -> untyped
