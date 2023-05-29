@@ -42,7 +42,7 @@ class Request
   class Socket < TCPSocket
     self.@private_address_exceptions: Array[IPAddr]
 
-    def self.open: (untyped host, *untyped args) -> Socket
+    def self.open: (untyped host, *untyped args) -> ::Socket
     alias self.new self.open
     def self.check_private_address: (IPAddr address, untyped host) -> nil
     def self.private_address_exceptions: -> Array[IPAddr]

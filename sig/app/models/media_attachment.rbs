@@ -54,7 +54,7 @@ class MediaAttachment
   def check_video_dimensions: -> nil
   def set_meta: -> untyped
   def populate_meta: -> untyped
-  def image_geometry: (untyped file) -> {width: untyped, height: untyped, size: String, aspect: untyped}
+  def image_geometry: (untyped file) -> Hash[Symbol, untyped]
   def video_metadata: (untyped file) -> {width: untyped, height: untyped, frame_rate: untyped, duration: untyped, bitrate: untyped}
   def ffmpeg_data: (?nil path) -> untyped
   def enqueue_processing: -> nil
