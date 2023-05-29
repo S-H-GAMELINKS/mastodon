@@ -28,7 +28,7 @@
 #   # library "pathname", "set"       # Standard libraries
 # end
 
-IGNORE = [
+ignores = [
   Steep::Diagnostic::Ruby::MethodDefinitionMissing,
   Steep::Diagnostic::Ruby::UnknownConstant,
   Steep::Diagnostic::Ruby::NoMethod,
@@ -58,7 +58,7 @@ target :app do
   signature 'sig'
 
   configure_code_diagnostics do |hash|
-    IGNORE.each do |ignore|
+    ignores.each do |ignore|
       hash[ignore] = :information
     end
   end
