@@ -34,7 +34,7 @@ module AccountInteractions
   def lists_for_local_distribution: -> untyped
   def remote_followers_hash: (untyped url) -> nil
   def local_followers_hash: -> untyped
-  def relations_map: (untyped account_ids, ?nil domains, **untyped) -> {blocked_by: untyped, following: untyped}
+  def relations_map: (untyped account_ids, ?nil domains, **untyped) -> Hash[Symbol, untyped]
 
   private
   def remove_potential_friendship: (untyped other_account) -> untyped

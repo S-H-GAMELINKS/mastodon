@@ -48,7 +48,6 @@ ignores = [
   Steep::Diagnostic::Ruby::UnexpectedYield,
   Steep::Diagnostic::Ruby::BreakTypeMismatch,
   Steep::Diagnostic::Ruby::RequiredBlockMissing,
-  Steep::Diagnostic::Ruby::ReturnTypeMismatch,
   Steep::Diagnostic::Ruby::ImplicitBreakValueMismatch,
 ]
 
