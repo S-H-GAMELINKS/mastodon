@@ -1126,15 +1126,6 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
-"@babel/types@^7.22.3":
-  version "7.22.3"
-  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.22.3.tgz#0cc6af178b91490acaeb4a2f70dcbf27cdf3d8f3"
-  integrity sha512-P3na3xIQHTKY4L0YOG7pM8M8uoUIB910WQaSiiMCZUC2Cy8XFEQONGABFnHWBa2gpGKODTAJcNhi5Zk0sLRrzg==
-  dependencies:
-    "@babel/helper-string-parser" "^7.21.5"
-    "@babel/helper-validator-identifier" "^7.19.1"
-    to-fast-properties "^2.0.0"
-
 "@bcoe/v8-coverage@^0.2.3":
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
@@ -12836,13 +12827,21 @@ workbox-core@6.6.0:
   resolved "https://registry.yarnpkg.com/workbox-core/-/workbox-core-6.6.0.tgz#d0f6929e338e0025d412291390e7462a5f879576"
   integrity sha512-GDtFRF7Yg3DD859PMbPAYPeJyg5gJYXuBQAC+wyrWuuXgpfoOrIQIvFRZnQ7+czTIQjIr1DhLEGFzZanAT/3bQ==
 
-workbox-expiration@6.5.4, workbox-expiration@^6.5.4:
+workbox-expiration@6.5.4:
   version "6.5.4"
   resolved "https://registry.yarnpkg.com/workbox-expiration/-/workbox-expiration-6.5.4.tgz#501056f81e87e1d296c76570bb483ce5e29b4539"
   integrity sha512-jUP5qPOpH1nXtjGGh1fRBa1wJL2QlIb5mGpct3NzepjGG2uFFBn4iiEBiI9GUmfAFR2ApuRhDydjcRmYXddiEQ==
   dependencies:
     idb "^7.0.1"
     workbox-core "6.5.4"
+
+workbox-expiration@^6.6.0:
+  version "6.6.0"
+  resolved "https://registry.yarnpkg.com/workbox-expiration/-/workbox-expiration-6.6.0.tgz#2299c86a9c9dcca17eec48f68ac88b8652bc8e4e"
+  integrity sha512-baplYXcDHbe8vAo7GYvyAmlS4f6998Jff513L4XvlzAOxcl8F620O91guoJ5EOf5qeXG4cGdNZHkkVAPouFCpw==
+  dependencies:
+    idb "^7.0.1"
+    workbox-core "6.6.0"
 
 workbox-google-analytics@6.5.4:
   version "6.5.4"
