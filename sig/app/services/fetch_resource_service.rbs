@@ -10,7 +10,7 @@ class FetchResourceService
   def call: (untyped url) -> nil
 
   private
-  def process: (untyped url, ?false terminal) -> untyped
+  def process: (untyped url, ?terminal: bool ) -> untyped
   def perform_request: { -> [untyped, {prefetched_body: untyped, id: true}]? } -> untyped
   def process_response: (untyped response, ?false terminal) -> [untyped, {prefetched_body: untyped, id: true}]?
   def expected_type?: (untyped json) -> untyped
