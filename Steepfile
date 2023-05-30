@@ -42,7 +42,6 @@ ignores = [
   Steep::Diagnostic::Ruby::UnexpectedError,
   Steep::Diagnostic::Ruby::MethodBodyTypeMismatch,
   Steep::Diagnostic::Ruby::ArgumentTypeMismatch,
-  Steep::Diagnostic::Ruby::UnsupportedSyntax,
   Steep::Diagnostic::Ruby::UnexpectedSuper,
   Steep::Diagnostic::Ruby::UnexpectedYield,
   Steep::Diagnostic::Ruby::BreakTypeMismatch,
