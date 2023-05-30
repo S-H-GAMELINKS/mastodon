@@ -2,6 +2,8 @@
 
 # Classes
 module AccountCounters
+  extend ActiveSupport::Concern
+
   ALLOWED_COUNTER_KEYS: [:statuses_count, :following_count, :followers_count]
 
   def increment_count!: (untyped key) -> nil

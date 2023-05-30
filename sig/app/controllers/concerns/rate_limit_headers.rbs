@@ -2,6 +2,8 @@
 
 # Classes
 module RateLimitHeaders
+  extend ActiveSupport::Concern
+
   @_request_time: Time
 
   private

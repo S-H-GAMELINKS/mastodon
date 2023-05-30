@@ -2,6 +2,8 @@
 
 # Classes
 module TwoFactorAuthenticationConcern
+  extend ActiveSupport::Concern
+
   @body_classes: String
   @webauthn_enabled: untyped
   @scheme_type: String

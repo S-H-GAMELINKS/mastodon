@@ -2,6 +2,8 @@
 
 # Classes
 module JsonLdHelper
+  extend ActiveSupport::Concern
+
   def equals_or_includes?: (untyped haystack, untyped needle) -> untyped
   def equals_or_includes_any?: (untyped haystack, untyped needles) -> untyped
   def first_of_value: (untyped value) -> untyped

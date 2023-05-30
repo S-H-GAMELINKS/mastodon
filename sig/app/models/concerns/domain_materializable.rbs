@@ -2,6 +2,8 @@
 
 # Classes
 module DomainMaterializable
+  extend ActiveSupport::Concern
+
   def refresh_instances_view: -> nil
   def count_unique_subdomains!: -> untyped
 end

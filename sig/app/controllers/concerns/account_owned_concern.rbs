@@ -2,6 +2,8 @@
 
 # Classes
 module AccountOwnedConcern
+  extend ActiveSupport::Concern
+
   @account: untyped
 
   private

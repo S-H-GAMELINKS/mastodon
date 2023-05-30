@@ -2,6 +2,8 @@
 
 # Classes
 module Expireable
+  extend ActiveSupport::Concern
+
   @expires_in: untyped
 
   def expires_in: -> nil

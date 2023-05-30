@@ -2,6 +2,8 @@
 
 # Classes
 module HasUserSettings
+  extend ActiveSupport::Concern
+
   def settings_attributes=: (untyped attributes) -> untyped
   def prefers_noindex?: -> untyped
   def preferred_posting_language: -> untyped

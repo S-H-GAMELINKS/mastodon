@@ -2,6 +2,8 @@
 
 # Classes
 module AccountHeader
+  extend ActiveSupport::Concern
+
   IMAGE_MIME_TYPES: [String, String, String, String]
   LIMIT: untyped
   MAX_PIXELS: Integer

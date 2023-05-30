@@ -21,3 +21,4 @@ gems:
   - name: steep
     ignore: true
   - name: ipaddr
+  - name: activesupport

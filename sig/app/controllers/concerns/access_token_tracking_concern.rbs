@@ -2,6 +2,8 @@
 
 # Classes
 module AccessTokenTrackingConcern
+  extend ActiveSupport::Concern
+
   ACCESS_TOKEN_UPDATE_FREQUENCY: untyped
 
   private

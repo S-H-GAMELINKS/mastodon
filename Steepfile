@@ -54,6 +54,8 @@ target :app do
 
   signature 'sig'
 
+  library 'activesupport'
+
   configure_code_diagnostics do |hash|
     ignores.each do |ignore|
       hash[ignore] = :information

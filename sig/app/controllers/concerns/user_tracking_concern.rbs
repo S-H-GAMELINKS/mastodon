@@ -2,6 +2,8 @@
 
 # Classes
 module UserTrackingConcern
+  extend ActiveSupport::Concern
+
   SIGN_IN_UPDATE_FREQUENCY: untyped
 
   private

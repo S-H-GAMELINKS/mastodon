@@ -2,6 +2,8 @@
 
 # Classes
 module RoutingHelper
+  extend ActiveSupport::Concern
+
   def full_asset_url: (untyped source, **untyped) -> untyped
   def asset_host: -> untyped
   def full_pack_url: (untyped source, **untyped) -> untyped

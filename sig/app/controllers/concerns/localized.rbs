@@ -2,6 +2,8 @@
 
 # Classes
 module Localized
+  extend ActiveSupport::Concern
+
   @content_locale: untyped
 
   def set_locale: -> untyped

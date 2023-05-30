@@ -2,6 +2,8 @@
 
 # Classes
 module AccessTokenExtension
+  extend ActiveSupport::Concern
+
   def revoke: (?singleton(Time) clock) -> untyped
   def update_last_used: (untyped request, ?singleton(Time) clock) -> untyped
   def push_to_streaming_api: -> nil

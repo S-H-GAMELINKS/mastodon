@@ -2,6 +2,8 @@
 
 # Classes
 module AccountInteractions
+  extend ActiveSupport::Concern
+
   def follow!: (untyped other_account, ?reblogs: nil, ?notify: nil, ?languages: nil, ?uri: nil, ?rate_limit: false, ?bypass_limit: false) -> untyped
   def request_follow!: (untyped other_account, ?reblogs: nil, ?notify: nil, ?languages: nil, ?uri: nil, ?rate_limit: false, ?bypass_limit: false) -> untyped
   def block!: (untyped other_account, ?uri: nil) -> untyped

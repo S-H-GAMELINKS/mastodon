@@ -1,3 +1,10 @@
 # TypeProf 0.21.7
 
 # Classes
+class ActivityPub
+  class Activity
+    class Create < ActivityPub::Activity
+      include FormattingHelper
+    end
+  end
+end

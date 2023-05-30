@@ -2,6 +2,8 @@
 
 # Classes
 module FollowLimitable
+  extend ActiveSupport::Concern
+
   @bypass_follow_limit: untyped
 
   def bypass_follow_limit=: (untyped value) -> untyped

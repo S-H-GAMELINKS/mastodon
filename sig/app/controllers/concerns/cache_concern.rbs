@@ -2,6 +2,8 @@
 
 # Classes
 module CacheConcern
+  extend ActiveSupport::Concern
+
   def enforce_cache_control!: -> nil
   def render_with_cache: (**untyped) -> untyped
   def cache_collection: (untyped raw, untyped klass) -> Array[untyped]

@@ -1,3 +1,8 @@
 # TypeProf 0.21.7
 
 # Classes
+class ActivityPub
+  class Activity
+    def initialize: (untyped json, untyped account, **untyped options) -> ActivityPub::Activity
+  end
+end

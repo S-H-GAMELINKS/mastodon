@@ -2,6 +2,8 @@
 
 # Classes
 module ExportControllerConcern
+  extend ActiveSupport::Concern
+
   @export: untyped
 
   private
