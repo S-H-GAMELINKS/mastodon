@@ -27,7 +27,7 @@ class Tag
   def requires_review_notification?: -> untyped
   def decaying?: -> untyped
   def history: -> untyped
-  def self.find_or_create_by_names: (untyped name_or_names) -> Array[untyped]
+  def self.find_or_create_by_names: (untyped name_or_names) ?{ () -> nil } -> Array[untyped]
   def self.search_for: (untyped term, ?Integer limit, ?Integer offset, ?Hash[untyped, untyped] options) -> untyped
   def self.find_normalized: (untyped name) -> untyped
   def self.find_normalized!: (untyped name) -> untyped

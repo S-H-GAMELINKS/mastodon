@@ -16,7 +16,7 @@ class Request
   def initialize: (untyped verb, untyped url, **untyped) -> void
   def on_behalf_of: (untyped actor, ?sign_with: nil) -> Request
   def add_headers: (untyped new_headers) -> Request
-  def perform: -> nil
+  def perform: () ?{ (*untyped) -> untyped } -> nil
   def headers: -> untyped
   def self.valid_url?: (untyped url) -> false
   def self.http_client: -> untyped

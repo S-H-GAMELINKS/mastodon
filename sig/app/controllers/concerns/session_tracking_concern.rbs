@@ -2,6 +2,8 @@
 
 # Classes
 module SessionTrackingConcern
+  extend ActiveSupport::Concern
+
   SESSION_UPDATE_FREQUENCY: untyped
 
   private

@@ -2,5 +2,7 @@
 
 # Classes
 module ApplicationExtension
+  extend ActiveSupport::Concern
+
   def confirmation_redirect_uri: -> untyped
 end

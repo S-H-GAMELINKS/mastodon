@@ -2,6 +2,8 @@
 
 # Classes
 module Omniauthable
+  extend ActiveSupport::Concern
+
   TEMP_EMAIL_PREFIX: String
   TEMP_EMAIL_REGEX: Regexp
 

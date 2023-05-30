@@ -2,6 +2,8 @@
 
 # Classes
 module AccountControllerConcern
+  extend ActiveSupport::Concern
+
   FOLLOW_PER_PAGE: Integer
   @instance_presenter: untyped
   @account: bot

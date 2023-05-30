@@ -2,4 +2,5 @@
 
 # Classes
 module AccountAssociations
+  extend ActiveSupport::Concern
 end

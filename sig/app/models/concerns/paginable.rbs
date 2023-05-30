@@ -2,5 +2,7 @@
 
 # Classes
 module Paginable
+  extend ActiveSupport::Concern
+
   def self.to_a_paginated_by_id: (untyped limit, ?Hash[untyped, untyped] options) -> untyped
 end

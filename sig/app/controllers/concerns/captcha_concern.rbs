@@ -2,6 +2,8 @@
 
 # Classes
 module CaptchaConcern
+  extend ActiveSupport::Concern
+
   def captcha_available?: -> untyped
   def captcha_enabled?: -> untyped
   def captcha_user_bypass?: -> false

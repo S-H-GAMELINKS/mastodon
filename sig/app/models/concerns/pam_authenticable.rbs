@@ -2,6 +2,8 @@
 
 # Classes
 module PamAuthenticable
+  extend ActiveSupport::Concern
+
   def pam_conflict: (untyped _attributes) -> nil
   def pam_conflict?: -> false
   def pam_get_name: -> untyped

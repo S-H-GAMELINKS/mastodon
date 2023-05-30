@@ -2,6 +2,8 @@
 
 # Classes
 module WebAppControllerConcern
+  extend ActiveSupport::Concern
+
   @body_classes: String
 
   def skip_csrf_meta_tags?: -> untyped

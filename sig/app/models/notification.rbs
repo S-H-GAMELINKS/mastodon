@@ -10,7 +10,7 @@ class Notification
   def type: -> Symbol
   def target_status: -> nil
   def self.browserable: (?types: Array[untyped], ?exclude_types: Array[untyped], ?from_account_id: nil) -> untyped
-  def self.preload_cache_collection_target_statuses: (untyped notifications) -> untyped
+  def self.preload_cache_collection_target_statuses: (untyped notifications) ?{ () -> nil } -> untyped
 
   private
   def set_from_account: -> nil

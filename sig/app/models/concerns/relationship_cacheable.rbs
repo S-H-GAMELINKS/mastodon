@@ -2,6 +2,8 @@
 
 # Classes
 module RelationshipCacheable
+  extend ActiveSupport::Concern
+
   private
   def remove_relationship_cache: -> untyped
 end

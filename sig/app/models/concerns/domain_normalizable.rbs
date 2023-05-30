@@ -2,6 +2,8 @@
 
 # Classes
 module DomainNormalizable
+  extend ActiveSupport::Concern
+
   private
   def normalize_domain: -> untyped
 end

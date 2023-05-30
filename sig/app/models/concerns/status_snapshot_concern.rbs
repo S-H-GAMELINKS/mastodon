@@ -2,6 +2,8 @@
 
 # Classes
 module StatusSnapshotConcern
+  extend ActiveSupport::Concern
+
   def edited?: -> untyped
   def build_snapshot: (?account_id: nil, ?at_time: nil, ?rate_limit: true) -> untyped
   def snapshot!: (**untyped) -> untyped
