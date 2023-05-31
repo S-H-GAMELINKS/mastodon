@@ -445,4 +445,221 @@ describe Mastodon::CLI::Accounts do
       end
     end
   end
+
+  describe '#approve' do
+    let(:total_users) { 10 }
+
+    before do
+      Form::AdminSettings.new(registrations_mode: 'approved').save
+      Fabricate.times(total_users, :user)
+    end
+
+    context 'with --all option' do
+      it 'approves all pending registrations' do
+        cli.invoke(:approve, nil, all: true)
+
+        expect(User.pluck(:approved).all?(true)).to be(true)
+      end
+    end
+
+    context 'with --number option' do
+      context 'when the number is positive' do
+        let(:options) { { number: 3 } }
+
+        it 'approves the earliest n pending registrations' do
+          cli.invoke(:approve, nil, options)
+
+          n_earliest_pending_registrations = User.order(created_at: :asc).first(options[:number])
+
+          expect(n_earliest_pending_registrations.all?(&:approved?)).to be(true)
+        end
+
+        it 'does not approve the remaining pending registrations' do
+          cli.invoke(:approve, nil, options)
+
+          pending_registrations = User.order(created_at: :asc).last(total_users - options[:number])
+
+          expect(pending_registrations.all?(&:approved?)).to be(false)
+        end
+      end
+
+      context 'when the number is negative' do
+        it 'exits with an error message indicating that the number must be positive' do
+          expect { cli.invoke(:approve, nil, number: -1) }.to output(
+            a_string_including('Number must be positive')
+          ).to_stdout
+            .and raise_error(SystemExit)
+        end
+      end
+
+      context 'when the given number is greater than the number of users' do
+        let(:options) { { number: total_users * 2 } }
+
+        it 'approves all users' do
+          cli.invoke(:approve, nil, options)
+
+          expect(User.pluck(:approved).all?(true)).to be(true)
+        end
+
+        it 'does not raise any error' do
+          expect { cli.invoke(:approve, nil, options) }
+            .to_not raise_error
+        end
+      end
+    end
+
+    context 'with username argument' do
+      context 'when the given username is found' do
+        let(:user) { User.last }
+        let(:arguments) { [user.account.username] }
+
+        it 'approves the specified user successfully' do
+          cli.invoke(:approve, arguments)
+
+          expect(user.reload.approved?).to be(true)
+        end
+      end
+
+      context 'when the given username is not found' do
+        let(:arguments) { ['non_existent_username'] }
+
+        it 'exits with an error message indicating that no such account was found' do
+          expect { cli.invoke(:approve, arguments) }.to output(
+            a_string_including('No such account')
+          ).to_stdout
+            .and raise_error(SystemExit)
+        end
+      end
+    end
+  end
+
+  describe '#follow' do
+    context 'when the given username is not found' do
+      let(:arguments) { ['non_existent_username'] }
+
+      it 'exits with an error message indicating that no account with the given username was found' do
+        expect { cli.invoke(:follow, arguments) }.to output(
+          a_string_including('No such account')
+        ).to_stdout
+          .and raise_error(SystemExit)
+      end
+    end
+
+    context 'when the given username is found' do
+      let!(:target_account)   { Fabricate(:account) }
+      let!(:follower_bob)     { Fabricate(:account, username: 'bob') }
+      let!(:follower_rony)    { Fabricate(:account, username: 'rony') }
+      let!(:follower_charles) { Fabricate(:account, username: 'charles') }
+      let(:follow_service)    { instance_double(FollowService, call: nil) }
+      let(:scope)             { Account.local.without_suspended }
+
+      before do
+        allow(cli).to receive(:parallelize_with_progress).and_yield(follower_bob)
+                                                         .and_yield(follower_rony)
+                                                         .and_yield(follower_charles)
+                                                         .and_return([3, nil])
+        allow(FollowService).to receive(:new).and_return(follow_service)
+      end
+
+      it 'makes all local accounts follow the target account' do
+        cli.follow(target_account.username)
+
+        expect(cli).to have_received(:parallelize_with_progress).with(scope).once
+        expect(follow_service).to have_received(:call).with(follower_bob, target_account, any_args).once
+        expect(follow_service).to have_received(:call).with(follower_rony, target_account, any_args).once
+        expect(follow_service).to have_received(:call).with(follower_charles, target_account, any_args).once
+      end
+
+      it 'displays a successful message' do
+        expect { cli.follow(target_account.username) }.to output(
+          a_string_including('OK, followed target from 3 accounts')
+        ).to_stdout
+      end
+    end
+  end
+
+  describe '#unfollow' do
+    context 'when the given username is not found' do
+      let(:arguments) { ['non_existent_username'] }
+
+      it 'exits with an error message indicating that no account with the given username was found' do
+        expect { cli.invoke(:unfollow, arguments) }.to output(
+          a_string_including('No such account')
+        ).to_stdout
+          .and raise_error(SystemExit)
+      end
+    end
+
+    context 'when the given username is found' do
+      let!(:target_account)  { Fabricate(:account) }
+      let!(:follower_chris)  { Fabricate(:account, username: 'chris') }
+      let!(:follower_rambo)  { Fabricate(:account, username: 'rambo') }
+      let!(:follower_ana)    { Fabricate(:account, username: 'ana') }
+      let(:unfollow_service) { instance_double(UnfollowService, call: nil) }
+      let(:scope)            { target_account.followers.local }
+
+      before do
+        accounts = [follower_chris, follower_rambo, follower_ana]
+        accounts.each { |account| target_account.follow!(account) }
+        allow(cli).to receive(:parallelize_with_progress).and_yield(follower_chris)
+                                                         .and_yield(follower_rambo)
+                                                         .and_yield(follower_ana)
+                                                         .and_return([3, nil])
+        allow(UnfollowService).to receive(:new).and_return(unfollow_service)
+      end
+
+      it 'makes all local accounts unfollow the target account' do
+        cli.unfollow(target_account.username)
+
+        expect(cli).to have_received(:parallelize_with_progress).with(scope).once
+        expect(unfollow_service).to have_received(:call).with(follower_chris, target_account).once
+        expect(unfollow_service).to have_received(:call).with(follower_rambo, target_account).once
+        expect(unfollow_service).to have_received(:call).with(follower_ana, target_account).once
+      end
+
+      it 'displays a successful message' do
+        expect { cli.unfollow(target_account.username) }.to output(
+          a_string_including('OK, unfollowed target from 3 accounts')
+        ).to_stdout
+      end
+    end
+  end
+
+  describe '#backup' do
+    context 'when the given username is not found' do
+      let(:arguments) { ['non_existent_username'] }
+
+      it 'exits with an error message indicating that there is no such account' do
+        expect { cli.invoke(:backup, arguments) }.to output(
+          a_string_including('No user with such username')
+        ).to_stdout
+          .and raise_error(SystemExit)
+      end
+    end
+
+    context 'when the given username is found' do
+      let(:account) { Fabricate(:account) }
+      let(:user) { account.user }
+      let(:arguments) { [account.username] }
+
+      it 'creates a new backup for the specified user' do
+        expect { cli.invoke(:backup, arguments) }.to change { user.backups.count }.by(1)
+      end
+
+      it 'creates a backup job' do
+        allow(BackupWorker).to receive(:perform_async)
+
+        cli.invoke(:backup, arguments)
+        latest_backup = user.backups.last
+
+        expect(BackupWorker).to have_received(:perform_async).with(latest_backup.id).once
+      end
+
+      it 'displays a successful message' do
+        expect { cli.invoke(:backup, arguments) }.to output(
+          a_string_including('OK')
+        ).to_stdout
+      end
+    end
+  end
 end
