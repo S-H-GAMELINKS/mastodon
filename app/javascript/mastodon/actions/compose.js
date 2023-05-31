@@ -71,6 +71,11 @@ export const COMPOSE_POLL_OPTION_CHANGE   = 'COMPOSE_POLL_OPTION_CHANGE';
 export const COMPOSE_POLL_OPTION_REMOVE   = 'COMPOSE_POLL_OPTION_REMOVE';
 export const COMPOSE_POLL_SETTINGS_CHANGE = 'COMPOSE_POLL_SETTINGS_CHANGE';
 
+export const COMPOSE_SCHEDULED_AT_ADD = 'COMPOSE_SCHEDULED_AT_ADD';
+export const COMPOSE_SCHEDULED_AT_REMOVE = 'COMPOSE_SCHEDULED_AT_REMOVE';
+export const COMPOSE_SCHEDULE_CHANGE = 'COMPOSE_SCHEDULE_CHANGE';
+export const SCHEDULED_STATUS_SUBMIT_SUCCESS = 'SCHEDULED_STATUS_SUBMIT_SUCCESS';
+
 export const INIT_MEDIA_EDIT_MODAL = 'INIT_MEDIA_EDIT_MODAL';
 
 export const COMPOSE_CHANGE_MEDIA_DESCRIPTION = 'COMPOSE_CHANGE_MEDIA_DESCRIPTION';
@@ -165,6 +170,15 @@ export function submitCompose(routerHistory) {
     const status   = getState().getIn(['compose', 'text'], '');
     const media    = getState().getIn(['compose', 'media_attachments']);
     const statusId = getState().getIn(['compose', 'id'], null);
+    const scheduledAt = getState().getIn(['compose', 'scheduledAt']);
+    const schedule = getState().getIn(['compose', 'scheduledAt', 'schedule']);
+
+    let postScheduledAt = null;
+
+    if (scheduledAt !== null && scheduledAt !== undefined) {
+      const now = new Date();
+      postScheduledAt = new Date(now.getTime() + schedule * 1000).toISOString();
+    }
 
     if ((!status || !status.length) && media.size === 0) {
       return;
@@ -205,11 +219,16 @@ export function submitCompose(routerHistory) {
         visibility: getState().getIn(['compose', 'privacy']),
         poll: getState().getIn(['compose', 'poll'], null),
         language: getState().getIn(['compose', 'language']),
+        scheduled_at: postScheduledAt,
       },
       headers: {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
       },
     }).then(function (response) {
+      if (response.data.scheduled_at !== null && response.data.scheduled_at !== undefined) {
+        dispatch(submitScheduledStatusSuccess({ ...response.data }));
+        return;
+      }
       if (routerHistory && (routerHistory.location.pathname === '/publish' || routerHistory.location.pathname === '/statuses/new') && window.history.state) {
         routerHistory.goBack();
       }
@@ -797,3 +816,29 @@ export function changePollSettings(expiresIn, isMultiple) {
     isMultiple,
   };
 }
+
+export function addScheduledAt() {
+  return {
+    type: COMPOSE_SCHEDULED_AT_ADD,
+  };
+}
+
+export function removeScheduledAt() {
+  return {
+    type: COMPOSE_SCHEDULED_AT_REMOVE,
+  };
+}
+
+export function changeSchedule(schedule) {
+  return {
+    type: COMPOSE_SCHEDULE_CHANGE,
+    schedule,
+  };
+}
+
+export function submitScheduledStatusSuccess(status) {
+  return {
+    type: SCHEDULED_STATUS_SUBMIT_SUCCESS,
+    scheduled_status: status,
+  };
+};
