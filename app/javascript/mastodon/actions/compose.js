@@ -71,6 +71,7 @@ export const COMPOSE_POLL_OPTION_CHANGE   = 'COMPOSE_POLL_OPTION_CHANGE';
 export const COMPOSE_POLL_OPTION_REMOVE   = 'COMPOSE_POLL_OPTION_REMOVE';
 export const COMPOSE_POLL_SETTINGS_CHANGE = 'COMPOSE_POLL_SETTINGS_CHANGE';
 
+// 予約投稿用
 export const COMPOSE_SCHEDULED_AT_ADD = 'COMPOSE_SCHEDULED_AT_ADD';
 export const COMPOSE_SCHEDULED_AT_REMOVE = 'COMPOSE_SCHEDULED_AT_REMOVE';
 export const COMPOSE_SCHEDULE_CHANGE = 'COMPOSE_SCHEDULE_CHANGE';
@@ -170,9 +171,12 @@ export function submitCompose(routerHistory) {
     const status   = getState().getIn(['compose', 'text'], '');
     const media    = getState().getIn(['compose', 'media_attachments']);
     const statusId = getState().getIn(['compose', 'id'], null);
+
+    // 予約投稿関連の設定を取得
     const scheduledAt = getState().getIn(['compose', 'scheduledAt']);
     const schedule = getState().getIn(['compose', 'scheduledAt', 'schedule']);
 
+    // 予約投稿関連の設定があれば投稿時間をセット
     let postScheduledAt = null;
 
     if (scheduledAt !== null && scheduledAt !== undefined) {
@@ -225,6 +229,7 @@ export function submitCompose(routerHistory) {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
       },
     }).then(function (response) {
+      // 予約投稿の場合は別処理で投稿内容などをクリア
       if (response.data.scheduled_at !== null && response.data.scheduled_at !== undefined) {
         dispatch(submitScheduledStatusSuccess({ ...response.data }));
         return;
@@ -817,6 +822,7 @@ export function changePollSettings(expiresIn, isMultiple) {
   };
 }
 
+// 以下、予約投稿関連の処理用
 export function addScheduledAt() {
   return {
     type: COMPOSE_SCHEDULED_AT_ADD,

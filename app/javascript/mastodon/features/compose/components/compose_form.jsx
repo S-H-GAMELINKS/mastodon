@@ -20,8 +20,8 @@ import PollButtonContainer from '../containers/poll_button_container';
 import PollFormContainer from '../containers/poll_form_container';
 import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
 import ReplyIndicatorContainer from '../containers/reply_indicator_container';
-import ScheduleButtonContainer from '../containers/schedule_button_container';
-import ScheduleFormContainer from '../containers/schedule_form_container';
+import ScheduleButtonContainer from '../containers/schedule_button_container'; // 予約投稿の日時表示切替のボタン
+import ScheduleFormContainer from '../containers/schedule_form_container'; // 予約投稿の日時選択のフォーム
 import SpoilerButtonContainer from '../containers/spoiler_button_container';
 import UploadButtonContainer from '../containers/upload_button_container';
 import UploadFormContainer from '../containers/upload_form_container';
