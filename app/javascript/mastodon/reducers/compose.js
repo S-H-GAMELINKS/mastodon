@@ -44,6 +44,10 @@ import {
   COMPOSE_POLL_OPTION_CHANGE,
   COMPOSE_POLL_OPTION_REMOVE,
   COMPOSE_POLL_SETTINGS_CHANGE,
+  COMPOSE_SCHEDULED_AT_ADD,
+  COMPOSE_SCHEDULED_AT_REMOVE,
+  COMPOSE_SCHEDULE_CHANGE,
+  SCHEDULED_STATUS_SUBMIT_SUCCESS,
   INIT_MEDIA_EDIT_MODAL,
   COMPOSE_CHANGE_MEDIA_DESCRIPTION,
   COMPOSE_CHANGE_MEDIA_FOCUS,
@@ -79,6 +83,7 @@ const initialState = ImmutableMap({
   media_attachments: ImmutableList(),
   pending_media_attachments: 0,
   poll: null,
+  scheduledAt: null,
   suggestion_token: null,
   suggestions: ImmutableList(),
   default_privacy: 'public',
@@ -101,6 +106,10 @@ const initialPoll = ImmutableMap({
   expires_in: 24 * 3600,
   multiple: false,
 });
+
+const initialSchedule = ImmutableMap({
+  schedule: 24 * 3600,
+})
 
 function statusToTextMentions(state, status) {
   let set = ImmutableOrderedSet([]);
@@ -126,6 +135,7 @@ function clearAll(state) {
     map.set('language', state.get('default_language'));
     map.update('media_attachments', list => list.clear());
     map.set('poll', null);
+    map.set('scheduledAt', null);
     map.set('idempotencyKey', uuid());
   });
 }
@@ -526,6 +536,14 @@ export default function compose(state = initialState, action) {
     return state.updateIn(['poll', 'options'], options => options.delete(action.index));
   case COMPOSE_POLL_SETTINGS_CHANGE:
     return state.update('poll', poll => poll.set('expires_in', action.expiresIn).set('multiple', action.isMultiple));
+  case COMPOSE_SCHEDULED_AT_ADD:
+    return state.set('scheduledAt', initialSchedule);
+  case COMPOSE_SCHEDULED_AT_REMOVE:
+    return state.set('scheduledAt', null);
+  case COMPOSE_SCHEDULE_CHANGE:
+    return state.update('scheduledAt', scheduledAt => scheduledAt.set('schedule', action.schedule));
+  case SCHEDULED_STATUS_SUBMIT_SUCCESS:
+    return clearAll(state);
   case COMPOSE_LANGUAGE_CHANGE:
     return state.set('language', action.language);
   case COMPOSE_FOCUS:
