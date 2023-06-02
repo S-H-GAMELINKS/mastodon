@@ -162,7 +162,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           start: |
-            bundle exec foreman start -f Procfile.dev
+            bundle exec foreman start -f Procfile.test
           wait-on: 'http://localhost:3000'
           record: false
           wait-on-timeout: 300
