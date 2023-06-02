@@ -29,6 +29,7 @@
   "account.featured_tags.last_status_at": "最終投稿 {date}",
   "account.featured_tags.last_status_never": "投稿がありません",
   "account.featured_tags.title": "{name}の注目ハッシュタグ",
+  "account.featured_tags": "{tagName}",
   "account.follow": "フォロー",
   "account.followers": "フォロワー",
   "account.followers.empty": "まだ誰もフォローしていません。",
@@ -695,5 +696,7 @@
   "video.mute": "ミュート",
   "video.pause": "一時停止",
   "video.play": "再生",
-  "video.unmute": "ミュートを解除する"
+  "video.unmute": "ミュートを解除する",
+  "schedule_button.add_schedule": "予約投稿を追加",
+  "schedule_button.remove_schedule": "予約投稿を削除"
 }
