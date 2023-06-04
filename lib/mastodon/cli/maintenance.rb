@@ -554,7 +554,7 @@ module Mastodon::CLI
           username: account.username,
           created_at: account.created_at,
           updated_at: account.updated_at,
-          last_log_in_at: account.user&.last_sign_in_at&.to_s || 'N/A',
+          last_log_in_at: account.user&.last_sign_in_at.try(:to_s) || 'N/A',
           status_count: account.account_stat&.statuses_count || 0,
           last_status_at: account.account_stat&.last_status_at || 'N/A'
         )

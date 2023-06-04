@@ -20,7 +20,7 @@ module StatusSnapshotConcern
       text: text,
       spoiler_text: spoiler_text,
       sensitive: sensitive,
-      ordered_media_attachment_ids: ordered_media_attachment_ids&.dup || media_attachments.pluck(:id),
+      ordered_media_attachment_ids: ordered_media_attachment_ids.try(:dup) || media_attachments.pluck(:id),
       media_descriptions: ordered_media_attachments.map(&:description),
       poll_options: preloadable_poll&.options&.dup,
       account_id: account_id || self.account_id,

@@ -240,7 +240,7 @@ class MediaAttachment < ApplicationRecord
   end
 
   def to_param
-    shortcode.presence || id&.to_s
+    shortcode.presence || id.try(:to_s)
   end
 
   def focus=(point)
