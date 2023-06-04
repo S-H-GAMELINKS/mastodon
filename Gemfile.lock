@@ -542,6 +542,7 @@ GEM
       nio4r (~> 2.0)
     pundit (2.3.0)
       activesupport (>= 3.0.0)
+    pycall (1.4.2)
     raabro (1.4.0)
     racc (1.6.2)
     rack (2.2.7)
@@ -909,6 +910,7 @@ DEPENDENCIES
   public_suffix (~> 5.0)
   puma (~> 6.3)
   pundit (~> 2.3)
+  pycall
   rack (~> 2.2.7)
   rack-attack (~> 6.6)
   rack-cors (~> 2.0)
