@@ -8,8 +8,8 @@ class MediaNsfwCheckService < BaseService
     # チェックする画像を取得
     medias = MediaAttachment.find(media_ids)
 
-    medias.map do |media|
-      n2.predict_image(media.file.path) > 0.9
-    end.count(true).positive?
+    images_path = medias.map { |media| media.file.path }
+
+    n2.predict_images(images_path).max > 0.9
   end
 end
