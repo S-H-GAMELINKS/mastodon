@@ -30,8 +30,8 @@ module Paperclip
       destination = Tempfile.new([@basename, @format ? ".#{@format}" : ''])
       destination.binmode
 
-      @output_options = @convert_options[:output]&.dup || {}
-      @input_options  = @convert_options[:input]&.dup  || {}
+      @output_options = @convert_options[:output].try(:dup) || {}
+      @input_options  = @convert_options[:input].try(:dup)  || {}
 
       case @format.to_s
       when /jpg$/, /jpeg$/, /png$/, /gif$/

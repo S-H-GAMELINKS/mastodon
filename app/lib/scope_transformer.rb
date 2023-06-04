@@ -10,7 +10,7 @@ class ScopeTransformer < Parslet::Transform
     def initialize(scope)
       @namespace = scope[:namespace]&.to_s
       @access    = scope[:access] ? [scope[:access].to_s] : DEFAULT_ACCESS.dup
-      @term      = scope[:term]&.to_s || DEFAULT_TERM
+      @term      = scope[:term].try(:to_s) || DEFAULT_TERM
     end
 
     def key
