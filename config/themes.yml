@@ -8,6 +8,4 @@ mastodon-light: styles/mastodon-light.scss
 mean-of-amber: styles/application_mean_of_amber.scss
 meteor-trail: styles/application_meteor_trail.scss
 mirroring: styles/application_mirroring.scss
-frc-takaya-green: styles/application_frc_takaya_green.scss
-frc-tooka-blue: styles/application_frc_tooka_blue.scss
 twitter: styles/application_twitter.scss
