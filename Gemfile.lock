@@ -220,6 +220,9 @@ GEM
     css_parser (1.14.0)
       addressable
     csv (3.2.6)
+    cypress-rails (0.6.0)
+      puma (>= 3.8.0)
+      railties (>= 5.2.0)
     date (3.3.3)
     debug (1.8.0)
       irb (>= 1.5.0)
@@ -312,7 +315,6 @@ GEM
       fog-core (>= 1.45, <= 2.1.0)
       fog-json (>= 1.0)
       ipaddress (>= 0.8)
-    foreman (0.87.2)
     formatador (0.3.0)
     fugit (1.8.1)
       et-orbi (~> 1, >= 1.2.7)
@@ -844,6 +846,7 @@ DEPENDENCIES
   color_diff (~> 0.1)
   concurrent-ruby
   connection_pool
+  cypress-rails
   debug (>= 1.0.0)
   devise (~> 4.9)
   devise-two-factor (~> 4.1)
@@ -858,7 +861,6 @@ DEPENDENCIES
   fastimage
   fog-core (<= 2.4.0)
   fog-openstack (~> 0.3)
-  foreman
   fuubar (~> 2.5)
   haml-rails (~> 2.0)
   haml_lint

@@ -47,10 +47,9 @@ jobs:
       DB_USER: postgres
       DB_PASS: postgres
       DISABLE_SIMPLECOV: true
-      RAILS_ENV: development
+      RAILS_ENV: test
       ALLOW_NOPAM: true
-      BUNDLE_WITH: development
-      WEBPACKER_DEV_BUILD: false
+      BUNDLE_WITH: test
       CI_JOBS: ${{ matrix.ci_job }}/4
       E2E: true
 
@@ -100,15 +99,13 @@ jobs:
       - name: Load database schema
         run: 'bundle exec rails db:create db:schema:load db:seed'
 
+      - name: Load User data
+        run: bundle exec rails r db/seeds/e2e/user.rb
+
       - name: Cypress run with env
-        uses: cypress-io/github-action@v5
+        run: bundle exec rake cypress:run
         env:
           CYPRESS_email: gamelinks007@gmail.com
           CYPRESS_password: MasterChief117
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          start: |
-            bundle exec foreman start -f Procfile.e2e
-          wait-on: 'http://localhost:3000'
-          wait-on-timeout: 300
-          command: yarn run cypress run --config-file cypress.config.ts
+          CYPRESS_RAILS_HOST: localhost
+          CYPRESS_RAILS_PORT: 3000

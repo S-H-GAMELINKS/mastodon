@@ -12,7 +12,7 @@ describe('access to login page', () => {
 
   // ログイン画面内にあるテキストのチェック
   it('include login page text', () => {
-    cy.contains('localhostにログイン');
+    cy.contains('ログイン');
     cy.contains('メールアドレス');
     cy.contains('パスワード');
   });

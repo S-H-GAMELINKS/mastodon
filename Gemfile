@@ -141,7 +141,8 @@ group :test do
   # Stub web requests for specs
   gem 'webmock', '~> 3.18'
 
-  gem 'foreman'
+  # for E2E test framework Cypress
+  gem 'cypress-rails'
 
   # for parallel test for GitHub Actions
   gem 'parallel_tests'
