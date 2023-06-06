@@ -53,7 +53,7 @@ default: &default
 development:
   <<: *default
 
-  compile: <%= ENV.fetch('WEBPACKER_DEV_BUILD', true) %>
+  compile: true
 
   # Reference: https://webpack.js.org/configuration/dev-server/
   dev_server:
