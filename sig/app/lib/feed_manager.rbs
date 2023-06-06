@@ -27,7 +27,7 @@ class FeedManager
   def trim: (:home | :list `type`, untyped timeline_id) -> nil
   def push_update_required?: (String timeline_key) -> untyped
   def blocks_or_mutes?: (untyped receiver_id, untyped account_ids, :mentions context) -> untyped
-  def filter_from_home?: (untyped status, untyped receiver_id, {active_mentions: untyped, following: untyped, languages: untyped, hiding_reblogs: untyped, blocking: untyped, muting: untyped, domain_blocking: untyped, blocked_by: untyped} crutches) -> bool
+  def filter_from_home?: (untyped status, untyped receiver_id, Hash[Symbol, untyped] crutches, ?Symbol timeline_type) -> bool
   def filter_from_mentions?: (untyped status, untyped receiver_id) -> true
   def filter_from_list?: (untyped status, untyped list) -> false
   def filter_from_tags?: (untyped status, untyped receiver_id, {active_mentions: untyped, following: untyped, languages: untyped, hiding_reblogs: untyped, blocking: untyped, muting: untyped, domain_blocking: untyped, blocked_by: untyped} crutches) -> true
