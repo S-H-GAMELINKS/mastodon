@@ -107,3 +107,5 @@ jobs:
         env:
           CYPRESS_email: gamelinks007@gmail.com
           CYPRESS_password: MasterChief117
+          CYPRESS_RAILS_HOST: localhost
+          CYPRESS_RAILS_PORT: 3000
