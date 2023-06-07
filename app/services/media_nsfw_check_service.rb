@@ -4,6 +4,8 @@ require 'nsfw'
 
 class MediaNsfwCheckService < BaseService
   def call(media_ids)
+    return false if media_ids.empty?
+
     # チェックする画像を取得
     medias = MediaAttachment.find(media_ids)
 
