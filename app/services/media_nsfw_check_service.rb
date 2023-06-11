@@ -7,7 +7,7 @@ class MediaNsfwCheckService < BaseService
     return false if media_ids.nil?
 
     # チェックする画像を取得
-    medias = MediaAttachment.find(media_ids)
+    medias = MediaAttachment.where(id: media_ids, type: :image)
 
     medias.map do |media|
       ::NSFW::Image.unsafe?(media.file.path)
