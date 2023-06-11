@@ -9,8 +9,8 @@ GIT
 
 GIT
   remote: https://github.com/S-H-GAMELINKS/nsfw-rb.git
-  revision: 096edc76a0e1e2bf722d4ee7f6789c35abd11b37
-  branch: fix/model-path
+  revision: 5691d95a4e566e2b2205980fc5452bb8d77dcbf4
+  ref: 5691d95a4e566e2b2205980fc5452bb8d77dcbf4
   specs:
     nsfw-rb (0.1.0)
       mini_magick (~> 4.11)
