@@ -219,4 +219,4 @@ gem 'sassc'
 gem 'hcaptcha', '~> 7.1'
 
 # Auto NSFW masking
-gem 'nsfw-rb', github: 'S-H-GAMELINKS/nsfw-rb', ref: '5691d95a4e566e2b2205980fc5452bb8d77dcbf4'
+gem 'nsfw-rb', github: 'S-H-GAMELINKS/nsfw-rb', ref: 'f8114814dfd4200641a11f24dfbba0f32fe4fcdb'
