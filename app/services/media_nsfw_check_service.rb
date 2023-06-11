@@ -10,7 +10,11 @@ class MediaNsfwCheckService < BaseService
     medias = MediaAttachment.where(id: media_ids, type: :image)
 
     medias.map do |media|
-      ::NSFW::Image.unsafe?(media.file.path)
+      if Rails.env.production?
+        ::NSFW::Image.unsafe?(media.file.url)
+      else
+        ::NSFW::Image.unsafe?("http://localhost:3000#{media.file.url}")
+      end
     end.count(true).positive?
   end
 end
