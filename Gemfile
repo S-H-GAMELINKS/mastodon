@@ -217,3 +217,6 @@ gem 'rubyzip', '~> 2.3'
 gem 'sassc'
 
 gem 'hcaptcha', '~> 7.1'
+
+# Auto NSFW masking
+gem 'nsfw-rb', git: 'https://github.com/S-H-GAMELINKS/nsfw-rb.git', branch: 'fix/model-path'
