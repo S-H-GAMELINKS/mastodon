@@ -4,7 +4,7 @@
 class AccountConversation
   def participant_account_ids=: (untyped arr) -> untyped
   def participant_accounts: -> [untyped]
-  def self.to_a_paginated_by_id: (untyped limit, ?min_id: untyped, ?max_id: untyped, ?since_id: untyped, ?preload_participants: bool) -> untyped
+  def self.to_a_paginated_by_id: (untyped limit, ?Hash[untyped, untyped] options) -> untyped
   def self.paginate_by_min_id: (untyped limit, ?nil min_id, ?nil max_id) -> untyped
   def self.paginate_by_max_id: (untyped limit, ?nil max_id, ?nil since_id) -> untyped
   def self.add_status: (untyped recipient, untyped status) -> untyped
