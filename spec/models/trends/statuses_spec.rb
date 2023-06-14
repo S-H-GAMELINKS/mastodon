@@ -15,8 +15,8 @@ RSpec.describe Trends::Statuses do
     let!(:second_status) { Fabricate(:status, text: 'Bar', language: 'en', trendable: true, created_at: today) }
 
     before do
-      15.times { reblog(first_status, today) }
-      12.times { reblog(second_status, today) }
+      default_threshold_value.times { reblog(first_status, today) }
+      default_threshold_value.times { reblog(second_status, today) }
 
       subject.refresh(today)
     end
@@ -76,9 +76,9 @@ RSpec.describe Trends::Statuses do
     let!(:third_status) { Fabricate(:status, text: 'Baz', language: 'en', trendable: true, created_at: today) }
 
     before do
-      13.times { reblog(first_status, today) }
-      13.times { reblog(second_status, today) }
-      4.times { reblog(third_status, today) }
+      default_threshold_value.times { reblog(first_status, today) }
+      default_threshold_value.times { reblog(second_status, today) }
+      default_threshold_value.times { reblog(third_status, today) }
     end
 
     context 'when status trends are refreshed' do
@@ -86,12 +86,11 @@ RSpec.describe Trends::Statuses do
         subject.refresh(today)
       end
 
-      it 'calculates and re-calculates scores' do
-        expect(subject.query.limit(10).to_a).to eq [second_status, first_status]
-      end
+      it 'returns correct statuses from query' do
+        results = subject.query.limit(10).to_a
 
-      it 'omits statuses below threshold' do
-        expect(subject.query.limit(10).to_a).to_not include(third_status)
+        expect(results).to eq [second_status, first_status]
+        expect(results).to_not include(third_status)
       end
     end
 
@@ -108,5 +107,9 @@ RSpec.describe Trends::Statuses do
   def reblog(status, at_time)
     reblog = Fabricate(:status, reblog: status, created_at: at_time)
     subject.add(status, reblog.account_id, at_time)
+  end
+
+  def default_threshold_value
+    described_class.default_options[:threshold]
   end
 end
