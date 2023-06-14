@@ -78,7 +78,7 @@ RSpec.describe Trends::Statuses do
     before do
       default_threshold_value.times { reblog(first_status, today) }
       default_threshold_value.times { reblog(second_status, today) }
-      default_threshold_value.times { reblog(third_status, today) }
+      (default_threshold_value - 1).times { reblog(third_status, today) }
     end
 
     context 'when status trends are refreshed' do
