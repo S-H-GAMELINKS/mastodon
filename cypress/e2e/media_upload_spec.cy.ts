@@ -11,9 +11,13 @@ describe('media upload test', () => {
   it('can post with image', () => {
     cy.visit('/settings/profile');
 
-    cy.get('#account_header').attachFile('header.png');
-    cy.get('#account_avatar').attachFile('icon.png');
+    cy.get('#account_header').attachFile('header.png', {
+      subjectType: 'drag-n-drop',
+    });
+    cy.get('#account_avatar').attachFile('icon.png', {
+      subjectType: 'drag-n-drop',
+    });
 
-    cy.get('.button').click();
+    cy.get('button.btn').click();
   });
 });
