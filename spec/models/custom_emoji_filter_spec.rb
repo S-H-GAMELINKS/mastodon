@@ -6,9 +6,9 @@ RSpec.describe CustomEmojiFilter do
   describe '#results' do
     subject { described_class.new(params).results }
 
-    let!(:first_custom_emoji) { Fabricate(:custom_emoji, domain: 'a') }
-    let!(:second_custom_emoji) { Fabricate(:custom_emoji, domain: 'b') }
-    let!(:third_custom_emoji) { Fabricate(:custom_emoji, domain: nil, shortcode: 'hoge') }
+    let!(:custom_emoji_domain_a) { Fabricate(:custom_emoji, domain: 'a') }
+    let!(:custom_emoji_domain_b) { Fabricate(:custom_emoji, domain: 'b') }
+    let!(:custom_emoji_domain_nil) { Fabricate(:custom_emoji, domain: nil, shortcode: 'hoge') }
 
     context 'when params have values' do
       context 'when local' do
@@ -16,7 +16,7 @@ RSpec.describe CustomEmojiFilter do
 
         it 'returns ActiveRecord::Relation' do
           expect(subject).to be_a(ActiveRecord::Relation)
-          expect(subject).to contain_exactly(third_custom_emoji)
+          expect(subject).to contain_exactly(custom_emoji_domain_nil)
         end
       end
 
@@ -25,7 +25,7 @@ RSpec.describe CustomEmojiFilter do
 
         it 'returns ActiveRecord::Relation' do
           expect(subject).to be_a(ActiveRecord::Relation)
-          expect(subject).to contain_exactly(first_custom_emoji, second_custom_emoji)
+          expect(subject).to contain_exactly(custom_emoji_domain_a, custom_emoji_domain_b)
         end
       end
 
@@ -34,7 +34,7 @@ RSpec.describe CustomEmojiFilter do
 
         it 'returns ActiveRecord::Relation' do
           expect(subject).to be_a(ActiveRecord::Relation)
-          expect(subject).to contain_exactly(first_custom_emoji)
+          expect(subject).to contain_exactly(custom_emoji_domain_a)
         end
       end
 
@@ -43,7 +43,7 @@ RSpec.describe CustomEmojiFilter do
 
         it 'returns ActiveRecord::Relation' do
           expect(subject).to be_a(ActiveRecord::Relation)
-          expect(subject).to contain_exactly(third_custom_emoji)
+          expect(subject).to contain_exactly(custom_emoji_domain_nil)
         end
       end
 
@@ -63,7 +63,7 @@ RSpec.describe CustomEmojiFilter do
 
       it 'returns ActiveRecord::Relation' do
         expect(subject).to be_a(ActiveRecord::Relation)
-        expect(subject).to contain_exactly(first_custom_emoji, second_custom_emoji, third_custom_emoji)
+        expect(subject).to contain_exactly(custom_emoji_domain_a, custom_emoji_domain_b, custom_emoji_domain_nil)
       end
     end
   end

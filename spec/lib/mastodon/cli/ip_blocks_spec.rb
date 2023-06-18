@@ -189,22 +189,22 @@ describe Mastodon::CLI::IpBlocks do
     end
 
     context 'with --force option' do
-      let!(:first_block) { IpBlock.create(ip: '192.168.0.0/24', severity: :no_access) }
-      let!(:second_block) { IpBlock.create(ip: '10.0.0.0/16', severity: :no_access) }
-      let!(:third_block) { IpBlock.create(ip: '172.16.0.0/20', severity: :no_access) }
+      let!(:first_ip_range_block) { IpBlock.create(ip: '192.168.0.0/24', severity: :no_access) }
+      let!(:second_ip_range_block) { IpBlock.create(ip: '10.0.0.0/16', severity: :no_access) }
+      let!(:third_ip_range_block) { IpBlock.create(ip: '172.16.0.0/20', severity: :no_access) }
       let(:arguments) { ['192.168.0.5', '10.0.1.50'] }
       let(:options) { { force: true } }
 
       it 'removes blocks for IP ranges that cover given IP(s)' do
         cli.invoke(:remove, arguments, options)
 
-        expect(IpBlock.where(id: [first_block.id, second_block.id])).to_not exist
+        expect(IpBlock.where(id: [first_ip_range_block.id, second_ip_range_block.id])).to_not exist
       end
 
       it 'does not remove other IP ranges' do
         cli.invoke(:remove, arguments, options)
 
-        expect(IpBlock.where(id: third_block.id)).to exist
+        expect(IpBlock.where(id: third_ip_range_block.id)).to exist
       end
     end
 
@@ -251,22 +251,22 @@ describe Mastodon::CLI::IpBlocks do
   end
 
   describe '#export' do
-    let(:first_block) { IpBlock.create(ip: '192.168.0.0/24', severity: :no_access) }
-    let(:second_block) { IpBlock.create(ip: '10.0.0.0/16', severity: :no_access) }
-    let(:third_block) { IpBlock.create(ip: '127.0.0.1', severity: :sign_up_block) }
+    let(:first_ip_range_block) { IpBlock.create(ip: '192.168.0.0/24', severity: :no_access) }
+    let(:second_ip_range_block) { IpBlock.create(ip: '10.0.0.0/16', severity: :no_access) }
+    let(:third_ip_range_block) { IpBlock.create(ip: '127.0.0.1', severity: :sign_up_block) }
 
     context 'when --format option is set to "plain"' do
       let(:options) { { format: 'plain' } }
 
       it 'exports blocked IPs with "no_access" severity in plain format' do
         expect { cli.invoke(:export, nil, options) }.to output(
-          a_string_including("#{first_block.ip}/#{first_block.ip.prefix}\n#{second_block.ip}/#{second_block.ip.prefix}")
+          a_string_including("#{first_ip_range_block.ip}/#{first_ip_range_block.ip.prefix}\n#{second_ip_range_block.ip}/#{second_ip_range_block.ip.prefix}")
         ).to_stdout
       end
 
       it 'does not export bloked IPs with different severities' do
         expect { cli.invoke(:export, nil, options) }.to_not output(
-          a_string_including("#{third_block.ip}/#{first_block.ip.prefix}")
+          a_string_including("#{third_ip_range_block.ip}/#{first_ip_range_block.ip.prefix}")
         ).to_stdout
       end
     end
@@ -276,13 +276,13 @@ describe Mastodon::CLI::IpBlocks do
 
       it 'exports blocked IPs with "no_access" severity in plain format' do
         expect { cli.invoke(:export, nil, options) }.to output(
-          a_string_including("deny #{first_block.ip}/#{first_block.ip.prefix};\ndeny #{second_block.ip}/#{second_block.ip.prefix};")
+          a_string_including("deny #{first_ip_range_block.ip}/#{first_ip_range_block.ip.prefix};\ndeny #{second_ip_range_block.ip}/#{second_ip_range_block.ip.prefix};")
         ).to_stdout
       end
 
       it 'does not export bloked IPs with different severities' do
         expect { cli.invoke(:export, nil, options) }.to_not output(
-          a_string_including("deny #{third_block.ip}/#{first_block.ip.prefix};")
+          a_string_including("deny #{third_ip_range_block.ip}/#{first_ip_range_block.ip.prefix};")
         ).to_stdout
       end
     end
@@ -290,7 +290,7 @@ describe Mastodon::CLI::IpBlocks do
     context 'when --format option is not provided' do
       it 'exports blocked IPs in plain format by default' do
         expect { cli.export }.to output(
-          a_string_including("#{first_block.ip}/#{first_block.ip.prefix}\n#{second_block.ip}/#{second_block.ip.prefix}")
+          a_string_including("#{first_ip_range_block.ip}/#{first_ip_range_block.ip.prefix}\n#{second_ip_range_block.ip}/#{second_ip_range_block.ip.prefix}")
         ).to_stdout
       end
     end

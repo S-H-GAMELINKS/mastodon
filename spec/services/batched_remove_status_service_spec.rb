@@ -10,8 +10,8 @@ RSpec.describe BatchedRemoveStatusService, type: :service do
   let!(:jeff)   { Fabricate(:account) }
   let!(:hank)   { Fabricate(:account, username: 'hank', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
 
-  let(:first_status) { PostStatusService.new.call(alice, text: 'Hello @bob@example.com') }
-  let(:second_status) { PostStatusService.new.call(alice, text: 'Another status') }
+  let(:status_alice_hello) { PostStatusService.new.call(alice, text: 'Hello @bob@example.com') }
+  let(:status_alice_other) { PostStatusService.new.call(alice, text: 'Another status') }
 
   before do
     allow(redis).to receive_messages(publish: nil)
@@ -22,23 +22,23 @@ RSpec.describe BatchedRemoveStatusService, type: :service do
     jeff.follow!(alice)
     hank.follow!(alice)
 
-    first_status
-    second_status
+    status_alice_hello
+    status_alice_other
 
-    subject.call([first_status, second_status])
+    subject.call([status_alice_hello, status_alice_other])
   end
 
   it 'removes statuses' do
-    expect { Status.find(first_status.id) }.to raise_error ActiveRecord::RecordNotFound
-    expect { Status.find(second_status.id) }.to raise_error ActiveRecord::RecordNotFound
+    expect { Status.find(status_alice_hello.id) }.to raise_error ActiveRecord::RecordNotFound
+    expect { Status.find(status_alice_other.id) }.to raise_error ActiveRecord::RecordNotFound
   end
 
   it 'removes statuses from author\'s home feed' do
-    expect(HomeFeed.new(alice).get(10)).to_not include([first_status.id, second_status.id])
+    expect(HomeFeed.new(alice).get(10)).to_not include([status_alice_hello.id, status_alice_other.id])
   end
 
   it 'removes statuses from local follower\'s home feed' do
-    expect(HomeFeed.new(jeff).get(10)).to_not include([first_status.id, second_status.id])
+    expect(HomeFeed.new(jeff).get(10)).to_not include([status_alice_hello.id, status_alice_other.id])
   end
 
   it 'notifies streaming API of followers' do
