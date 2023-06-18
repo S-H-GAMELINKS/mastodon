@@ -11,12 +11,12 @@ RSpec.describe Trends::Statuses do
     let!(:query) { subject.query }
     let!(:today) { at_time }
 
-    let!(:first_status) { Fabricate(:status, text: 'Foo', language: 'en', trendable: true, created_at: today) }
-    let!(:second_status) { Fabricate(:status, text: 'Bar', language: 'en', trendable: true, created_at: today) }
+    let!(:status_foo) { Fabricate(:status, text: 'Foo', language: 'en', trendable: true, created_at: today) }
+    let!(:status_bar) { Fabricate(:status, text: 'Bar', language: 'en', trendable: true, created_at: today) }
 
     before do
-      default_threshold_value.times { reblog(first_status, today) }
-      default_threshold_value.times { reblog(second_status, today) }
+      default_threshold_value.times { reblog(status_foo, today) }
+      default_threshold_value.times { reblog(status_bar, today) }
 
       subject.refresh(today)
     end
@@ -29,18 +29,18 @@ RSpec.describe Trends::Statuses do
       end
 
       it 'filters out blocked accounts' do
-        account.block!(first_status.account)
-        expect(query.filtered_for(account).to_a).to eq [second_status]
+        account.block!(status_foo.account)
+        expect(query.filtered_for(account).to_a).to eq [status_bar]
       end
 
       it 'filters out muted accounts' do
-        account.mute!(second_status.account)
-        expect(query.filtered_for(account).to_a).to eq [first_status]
+        account.mute!(status_bar.account)
+        expect(query.filtered_for(account).to_a).to eq [status_foo]
       end
 
       it 'filters out blocked-by accounts' do
-        first_status.account.block!(account)
-        expect(query.filtered_for(account).to_a).to eq [second_status]
+        status_foo.account.block!(account)
+        expect(query.filtered_for(account).to_a).to eq [status_bar]
       end
     end
   end
@@ -71,14 +71,14 @@ RSpec.describe Trends::Statuses do
     let!(:today) { at_time }
     let!(:yesterday) { today - 1.day }
 
-    let!(:first_status) { Fabricate(:status, text: 'Foo', language: 'en', trendable: true, created_at: yesterday) }
-    let!(:second_status) { Fabricate(:status, text: 'Bar', language: 'en', trendable: true, created_at: today) }
-    let!(:third_status) { Fabricate(:status, text: 'Baz', language: 'en', trendable: true, created_at: today) }
+    let!(:status_foo) { Fabricate(:status, text: 'Foo', language: 'en', trendable: true, created_at: yesterday) }
+    let!(:status_bar) { Fabricate(:status, text: 'Bar', language: 'en', trendable: true, created_at: today) }
+    let!(:status_baz) { Fabricate(:status, text: 'Baz', language: 'en', trendable: true, created_at: today) }
 
     before do
-      default_threshold_value.times { reblog(first_status, today) }
-      default_threshold_value.times { reblog(second_status, today) }
-      (default_threshold_value - 1).times { reblog(third_status, today) }
+      default_threshold_value.times { reblog(status_foo, today) }
+      default_threshold_value.times { reblog(status_bar, today) }
+      (default_threshold_value - 1).times { reblog(status_baz, today) }
     end
 
     context 'when status trends are refreshed' do
@@ -89,17 +89,17 @@ RSpec.describe Trends::Statuses do
       it 'returns correct statuses from query' do
         results = subject.query.limit(10).to_a
 
-        expect(results).to eq [second_status, first_status]
-        expect(results).to_not include(third_status)
+        expect(results).to eq [status_bar, status_foo]
+        expect(results).to_not include(status_baz)
       end
     end
 
     it 'decays scores' do
       subject.refresh(today)
-      original_score = second_status.trend.score
+      original_score = status_bar.trend.score
       expect(original_score).to be_a Float
       subject.refresh(today + subject.options[:score_halflife])
-      decayed_score = second_status.trend.reload.score
+      decayed_score = status_bar.trend.reload.score
       expect(decayed_score).to be <= original_score / 2
     end
   end

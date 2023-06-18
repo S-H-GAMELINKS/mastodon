@@ -526,19 +526,25 @@ RSpec.describe FeedManager do
   end
 
   describe '#clear_from_home' do
-    let(:account)          { Fabricate(:account) }
+    let(:account) { Fabricate(:account) }
     let(:followed_account) { Fabricate(:account) }
-    let(:target_account)   { Fabricate(:account) }
-    let(:first_status) { Fabricate(:status, account: followed_account) }
-    let(:second_status) { Fabricate(:status, account: target_account) }
-    let(:third_status) { Fabricate(:status, account: followed_account, mentions: [Fabricate(:mention, account: target_account)]) }
-    let(:fourth_status) { Fabricate(:status, mentions: [Fabricate(:mention, account: target_account)]) }
-    let(:fifth_status)         { Fabricate(:status, account: followed_account, reblog: fourth_status) }
-    let(:sixth_status)         { Fabricate(:status, account: followed_account, reblog: second_status) }
-    let(:seventh_status)         { Fabricate(:status, account: followed_account) }
+    let(:target_account) { Fabricate(:account) }
+    let(:status_from_followed_account_first) { Fabricate(:status, account: followed_account) }
+    let(:status_from_target_account) { Fabricate(:status, account: target_account) }
+    let(:status_from_followed_account_mentions_target_account) { Fabricate(:status, account: followed_account, mentions: [Fabricate(:mention, account: target_account)]) }
+    let(:status_mentions_target_account) { Fabricate(:status, mentions: [Fabricate(:mention, account: target_account)]) }
+    let(:status_from_followed_account_reblogs_status_mentions_target_account) { Fabricate(:status, account: followed_account, reblog: status_mentions_target_account) }
+    let(:status_from_followed_account_reblogs_status_from_target_account) { Fabricate(:status, account: followed_account, reblog: status_from_target_account) }
+    let(:status_from_followed_account_next) { Fabricate(:status, account: followed_account) }
 
     before do
-      [first_status, third_status, fifth_status, sixth_status, seventh_status].each do |status|
+      [
+        status_from_followed_account_first,
+        status_from_followed_account_mentions_target_account,
+        status_from_followed_account_reblogs_status_mentions_target_account,
+        status_from_followed_account_reblogs_status_from_target_account,
+        status_from_followed_account_next,
+      ].each do |status|
         redis.zadd("feed:home:#{account.id}", status.id, status.id)
       end
     end
@@ -546,7 +552,7 @@ RSpec.describe FeedManager do
     it 'correctly cleans the home timeline' do
       described_class.instance.clear_from_home(account, target_account)
 
-      expect(redis.zrange("feed:home:#{account.id}", 0, -1)).to eq [first_status.id.to_s, seventh_status.id.to_s]
+      expect(redis.zrange("feed:home:#{account.id}", 0, -1)).to eq [status_from_followed_account_first.id.to_s, status_from_followed_account_next.id.to_s]
     end
   end
 end
