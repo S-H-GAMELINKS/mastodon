@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ ! -f .env.production ]
+if [ -f .env.production ]
 then
   `ruby revision.rb`
   `gem install bundler`
