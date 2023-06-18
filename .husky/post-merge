@@ -1,3 +1,10 @@
 #!/bin/sh
 
-`ruby revision.rb`
+if [ ! -f .env.production ]
+then
+  `ruby revision.rb`
+  `gem install bundler`
+  `bundle install`
+  `yarn install --lock-file`
+  `NODE_OPTIONS=--openssl-legacy-provider RAILS_ENV=production bundle exec rails assets:precompile`
+fi
