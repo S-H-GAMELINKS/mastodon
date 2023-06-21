@@ -66,6 +66,11 @@
   .fields-group
     = f.input :setting_resized_custom_emoji_stamp, collection: ['default', 'same_as_emoji', 'fixed_x2'],label_method: lambda { |item| t("simple_form.hints.defaults.setting_display_local_emoji_stamp_#{item}") }, hint: false, as: :radio_buttons, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li', wrapper: :with_floating_label
 
+  %h4= t '横に長い絵文字'
+
+  .fields-group
+    = f.input :setting_display_wide_emoji, as: :boolean, wrapper: :with_label, recommended: true
+
   %h4= t 'appearance.discovery'
 
   .fields-group
