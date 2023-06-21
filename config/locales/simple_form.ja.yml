@@ -62,6 +62,7 @@ ja:
         setting_display_local_emoji_stamp_default: デフォルトのサイズで表示する
         setting_display_local_emoji_stamp_same_as_emoji: 絵文字と同じサイズで表示する
         setting_display_local_emoji_stamp_fixed_x2: 拡大して表示する
+        setting_display_wide_emoji: 横に長い絵文字を正しい比率で表示する
         setting_hide_network: フォローとフォロワーの情報がプロフィールページで見られないようにします
         setting_noindex: 公開プロフィールおよび各投稿ページに影響します
         setting_show_application: 投稿するのに使用したアプリが投稿の詳細ビューに表示されるようになります

@@ -1,6 +1,6 @@
-import { autoPlayGif, resizedCustomEmoji, resizedCustomEmojiStamp } from '../../initial_state';
+import {autoPlayGif, resizedCustomEmoji, resizedCustomEmojiStamp, displayWideEmoji} from '../../initial_state';
 import unicodeMapping from './emoji_unicode_mapping_light';
-import { assetHost } from 'mastodon/utils/config';
+import {assetHost} from 'mastodon/utils/config';
 import Trie from 'substring-trie';
 
 const trie = new Trie(Object.keys(unicodeMapping));
@@ -24,7 +24,7 @@ const emojifyTextNode = (node, customEmojis) => {
 
   const fragment = new DocumentFragment();
 
-  for (;;) {
+  for (; ;) {
     let match, i = 0;
 
     if (customEmojis === null) {
@@ -62,7 +62,7 @@ const emojifyTextNode = (node, customEmojis) => {
         return false;
       })()) rend = ++i;
     } else { // matched to unicode emoji
-      const { filename, shortCode } = unicodeMapping[match];
+      const {filename, shortCode} = unicodeMapping[match];
       const title = shortCode ? `:${shortCode}:` : '';
       replacement = document.createElement('img');
       replacement.setAttribute('draggable', false);
@@ -93,7 +93,7 @@ const emojifyTextNodeForLocal = (isLocalCustomEmoji, node, customEmojis) => {
 
   const fragment = new DocumentFragment();
 
-  for (;;) {
+  for (; ;) {
     let match, i = 0;
 
     if (customEmojis === null) {
@@ -151,7 +151,11 @@ const emojifyTextNodeForLocal = (isLocalCustomEmoji, node, customEmojis) => {
               }
             }
           } else {
-            replacement.setAttribute('class', 'emojione custom-emoji');
+            if (displayWideEmoji) {
+              replacement.setAttribute('class', 'emojione-wide custom-emoji');
+            } else {
+              replacement.setAttribute('class', 'emojione custom-emoji');
+            }
           }
 
           replacement.setAttribute('alt', shortname);
@@ -164,7 +168,7 @@ const emojifyTextNodeForLocal = (isLocalCustomEmoji, node, customEmojis) => {
         return false;
       })()) rend = ++i;
     } else { // matched to unicode emoji
-      const { filename, shortCode } = unicodeMapping[match];
+      const {filename, shortCode} = unicodeMapping[match];
       const title = shortCode ? `:${shortCode}:` : '';
       replacement = document.createElement('img');
       replacement.setAttribute('draggable', false);
@@ -192,21 +196,21 @@ const emojifyTextNodeForLocal = (isLocalCustomEmoji, node, customEmojis) => {
 
 const emojifyNode = (node, customEmojis) => {
   for (const child of node.childNodes) {
-    switch(child.nodeType) {
-    case Node.TEXT_NODE:
-      emojifyTextNode(child, customEmojis);
-      break;
-    case Node.ELEMENT_NODE:
-      if (!child.classList.contains('invisible'))
-        emojifyNode(child, customEmojis);
-      break;
+    switch (child.nodeType) {
+      case Node.TEXT_NODE:
+        emojifyTextNode(child, customEmojis);
+        break;
+      case Node.ELEMENT_NODE:
+        if (!child.classList.contains('invisible'))
+          emojifyNode(child, customEmojis);
+        break;
     }
   }
 };
 
 const emojifyNodeForLocal = (isLocalCustomEmoji, node, customEmojis) => {
   for (const child of node.childNodes) {
-    switch(child.nodeType) {
+    switch (child.nodeType) {
       case Node.TEXT_NODE:
         emojifyTextNodeForLocal(isLocalCustomEmoji, child, customEmojis);
         break;
@@ -249,8 +253,8 @@ export const buildCustomEmojis = (customEmojis) => {
 
   customEmojis.forEach(emoji => {
     const shortcode = emoji.get('shortcode');
-    const url       = autoPlayGif ? emoji.get('url') : emoji.get('static_url');
-    const name      = shortcode.replace(':', '');
+    const url = autoPlayGif ? emoji.get('url') : emoji.get('static_url');
+    const name = shortcode.replace(':', '');
 
     emojis.push({
       id: name,
