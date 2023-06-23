@@ -220,3 +220,5 @@ gem 'hcaptcha', '~> 7.1'
 
 # Auto NSFW masking
 gem 'nsfw-rb', github: 'S-H-GAMELINKS/nsfw-rb', ref: 'f8114814dfd4200641a11f24dfbba0f32fe4fcdb'
+
+gem 'jsbundling-rails'
