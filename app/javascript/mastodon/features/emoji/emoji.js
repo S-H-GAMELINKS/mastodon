@@ -132,22 +132,42 @@ const emojifyTextNodeForLocal = (isLocalCustomEmoji, node, customEmojis) => {
                   break;
               }
             } else {
-              switch (resizedCustomEmoji) {
-                case 'hover':
-                  replacement.setAttribute('class', 'emojione local-custom-emoji');
-                  break;
-                case 'best':
-                  replacement.setAttribute('class', 'emojione local-custom-emoji-the-best');
-                  break;
-                case 'fixed_x2':
-                  replacement.setAttribute('class', 'emojione local-custom-emoji-fixed');
-                  break;
-                case 'fixed_x3':
-                  replacement.setAttribute('class', 'emojione local-custom-emoji-fixed-big');
-                  break;
-                default:
-                  replacement.setAttribute('class', 'emojione custom-emoji');
-                  break;
+              if (displayWideEmoji) {
+                switch (resizedCustomEmoji) {
+                  case 'hover':
+                    replacement.setAttribute('class', 'emojione local-custom-emoji');
+                    break;
+                  case 'best':
+                    replacement.setAttribute('class', 'emojione local-custom-emoji-wide-the-best');
+                    break;
+                  case 'fixed_x2':
+                    replacement.setAttribute('class', 'emojione local-custom-emoji-wide-fixed');
+                    break;
+                  case 'fixed_x3':
+                    replacement.setAttribute('class', 'emojione local-custom-emoji-wide-fixed-big');
+                    break;
+                  default:
+                    replacement.setAttribute('class', 'emojione-wide custom-emoji');
+                    break;
+                }
+              } else {
+                switch (resizedCustomEmoji) {
+                  case 'hover':
+                    replacement.setAttribute('class', 'emojione local-custom-emoji');
+                    break;
+                  case 'best':
+                    replacement.setAttribute('class', 'emojione local-custom-emoji-the-best');
+                    break;
+                  case 'fixed_x2':
+                    replacement.setAttribute('class', 'emojione local-custom-emoji-fixed');
+                    break;
+                  case 'fixed_x3':
+                    replacement.setAttribute('class', 'emojione local-custom-emoji-fixed-big');
+                    break;
+                  default:
+                    replacement.setAttribute('class', 'emojione custom-emoji');
+                    break;
+                }
               }
             }
           } else {
