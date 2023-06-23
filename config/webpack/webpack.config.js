@@ -5,6 +5,15 @@ const webpack = require("webpack")
 module.exports = {
   mode: "production",
   devtool: "source-map",
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx|ts|tsx|)$/,
+        exclude: /node_modules/,
+        use: ['babel-loader'],
+      },
+    ],
+  },
   entry: {
     application: "./app/javascript/application.js"
   },
