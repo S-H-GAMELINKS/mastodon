@@ -887,8 +887,10 @@ body > [data-popper-placement] {
   }
 
   .emojione-wide {
+    max-width: 100%;
     width: auto;
     height: 20px;
+    max-height: 20px;
     margin: -3px 0 0;
   }
 
@@ -909,13 +911,35 @@ body > [data-popper-placement] {
   }
 
   .local-custom-emoji-fixed {
-    width: 70px;
-    height: 70px;
+    width: 50px;
+    height: 50px;
   }
 
   .local-custom-emoji-fixed-big {
-    width: 90px;
-    height: 90px;
+    width: 75px;
+    height: 75px;
+    padding: 3px;
+  }
+
+  .local-custom-emoji-wide-the-best {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 35px;
+  }
+
+  .local-custom-emoji-wide-fixed {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 50px;
+  }
+
+  .local-custom-emoji-wide-fixed-big {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 75px;
     padding: 3px;
   }
 
@@ -1348,7 +1372,9 @@ body > [data-popper-placement] {
 
     .emojione-wide {
       width: auto;
-      height: 24px;
+      max-width: 100%;
+      height: auto;
+      max-height: 24px;
       margin: -1px 0 0;
     }
 
@@ -1369,13 +1395,35 @@ body > [data-popper-placement] {
     }
 
     .local-custom-emoji-fixed {
-      width: 70px;
-      height: 70px;
+      width: 50px;
+      height: 50px;
     }
 
     .local-custom-emoji-fixed-big {
-      width: 90px;
-      height: 90px;
+      width: 70px;
+      height: 70px;
+      padding: 3px;
+    }
+
+    .local-custom-emoji-wide-the-best {
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      max-height: 35px;
+    }
+
+    .local-custom-emoji-wide-fixed {
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      max-height: 50px;
+    }
+
+    .local-custom-emoji-wide-fixed-big {
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      max-height: 70px;
       padding: 3px;
     }
 
