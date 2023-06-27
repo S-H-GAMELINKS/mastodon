@@ -55,7 +55,7 @@ describe('portfolio visibility default hashtag setting spec', () => {
 
     // 公開範囲「ポートフォリオ」で投稿
     cy.get('.autosuggest-textarea__textarea').type('HALOやりたい');
-    cy.get('.button').click();
+    cy.get('button.button.button--block').click();
 
     // ホームタイムラインへ遷移し、リロード
     cy.visit('/home');
@@ -101,7 +101,7 @@ describe('portfolio visibility default hashtag setting spec', () => {
 
     // 公開範囲「ポートフォリオ」で投稿
     cy.get('.autosuggest-textarea__textarea').type('HALOやりたい');
-    cy.get('.button').click();
+    cy.get('button.button.button--block').click();
 
     // ホームタイムラインへ遷移し、リロード
     cy.visit('/home');
@@ -147,7 +147,7 @@ describe('portfolio visibility default hashtag setting spec', () => {
 
     // 公開範囲「ポートフォリオ」で投稿
     cy.get('.autosuggest-textarea__textarea').type('HALOやりたい');
-    cy.get('.button').click();
+    cy.get('button.button.button--block').click();
 
     // ホームタイムラインへ遷移し、リロード
     cy.visit('/home');

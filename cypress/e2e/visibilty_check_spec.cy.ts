@@ -53,7 +53,7 @@ describe('custom theme change test', () => {
 
     // 公開範囲「ポートフォリオ」で投稿
     cy.get('.autosuggest-textarea__textarea').type('HALOやりたい');
-    cy.get('.button').click();
+    cy.get('button.button.button--block').click();
 
     // ホームタイムラインへ遷移し、リロード
     cy.visit('/home');
@@ -101,7 +101,7 @@ describe('custom theme change test', () => {
 
     // 公開範囲「にゃーん」で投稿
     cy.get('.autosuggest-textarea__textarea').type('HALOやりたい');
-    cy.get('.button').click();
+    cy.get('button.button.button--block').click();
 
     // ホームタイムラインへ遷移し、リロード
     cy.visit('/home');
@@ -134,7 +134,7 @@ describe('custom theme change test', () => {
 
     // 公開範囲「にゃーん」で投稿
     cy.get('.autosuggest-textarea__textarea').type('HALOやりたい');
-    cy.get('.button').click();
+    cy.get('button.button.button--block').click();
 
     // ホームタイムラインへ遷移し、リロード
     cy.visit('/home');
