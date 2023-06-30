@@ -14,6 +14,8 @@ import { Icon }  from 'mastodon/components/icon';
 import AutosuggestInput from '../../../components/autosuggest_input';
 import AutosuggestTextarea from '../../../components/autosuggest_textarea';
 import Button from '../../../components/button';
+import DeleteScheduleButtonContainer from '../containers/delete_schedule_button_container'; // 投稿自動削除の日時表示切替のボタン
+import DeleteScheduleFormContainer from '../containers/delete_schedule_form_container'; // 投稿自動削除の日時選択のフォーム
 import EmojiPickerDropdown from '../containers/emoji_picker_dropdown_container';
 import LanguageDropdown from '../containers/language_dropdown_container';
 import PollButtonContainer from '../containers/poll_button_container';
@@ -305,6 +307,7 @@ class ComposeForm extends ImmutablePureComponent {
               <UploadFormContainer />
               <PollFormContainer />
               <ScheduleFormContainer />
+              <DeleteScheduleFormContainer />
             </div>
           </AutosuggestTextarea>
 
@@ -313,6 +316,7 @@ class ComposeForm extends ImmutablePureComponent {
               <UploadButtonContainer />
               <PollButtonContainer />
               <ScheduleButtonContainer />
+              <DeleteScheduleButtonContainer />
               <PrivacyDropdownContainer disabled={this.props.isEditing} />
               <SpoilerButtonContainer />
               <LanguageDropdown />

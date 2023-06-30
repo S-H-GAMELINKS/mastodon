@@ -4,6 +4,7 @@ import { addScheduledAt, removeScheduledAt } from '../../../actions/compose';
 import ScheduleButton from '../components/schedule_button';
 
 const mapStateToProps = state => ({
+  unavailable: state.getIn(['compose', 'deleteSchedule']) !== null,
   active: state.getIn(['compose', 'scheduledAt']) !== null,
 });
 
