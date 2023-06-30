@@ -77,6 +77,11 @@ export const COMPOSE_SCHEDULED_AT_REMOVE = 'COMPOSE_SCHEDULED_AT_REMOVE';
 export const COMPOSE_SCHEDULE_CHANGE = 'COMPOSE_SCHEDULE_CHANGE';
 export const SCHEDULED_STATUS_SUBMIT_SUCCESS = 'SCHEDULED_STATUS_SUBMIT_SUCCESS';
 
+// 投稿自動削除用
+export const COMPOSE_DELETE_SCHEDULE_ADD = 'COMPOSE_DELETE_SCHEDULE_ADD';
+export const COMPOSE_DELETE_SCHEDULE_REMOVE = 'COMPOSE_DELETE_SCHEDULE_REMOVE';
+export const COMPOSE_DELETE_SCHEDULE_CHANGE = 'COMPOSE_DELETE_SCHEDULE_CHANGE';
+
 export const INIT_MEDIA_EDIT_MODAL = 'INIT_MEDIA_EDIT_MODAL';
 
 export const COMPOSE_CHANGE_MEDIA_DESCRIPTION = 'COMPOSE_CHANGE_MEDIA_DESCRIPTION';
@@ -224,6 +229,7 @@ export function submitCompose(routerHistory) {
         poll: getState().getIn(['compose', 'poll'], null),
         language: getState().getIn(['compose', 'language']),
         scheduled_at: postScheduledAt,
+        expires_at: getState().getIn(['compose', 'deleteSchedule', 'expires_at']),
       },
       headers: {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
@@ -848,3 +854,23 @@ export function submitScheduledStatusSuccess(status) {
     scheduled_status: status,
   };
 };
+
+// 以下、投稿自動削除関連の処理用
+export function addDeleteSchedule() {
+  return {
+    type: COMPOSE_DELETE_SCHEDULE_ADD,
+  };
+}
+
+export function removeDeleteSchedule() {
+  return {
+    type: COMPOSE_DELETE_SCHEDULE_REMOVE,
+  };
+}
+
+export function changeDeleteSchedule(expires_at) {
+  return {
+    type: COMPOSE_DELETE_SCHEDULE_CHANGE,
+    expires_at,
+  };
+}

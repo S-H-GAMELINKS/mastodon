@@ -47,6 +47,9 @@ import {
   COMPOSE_SCHEDULED_AT_ADD,
   COMPOSE_SCHEDULED_AT_REMOVE,
   COMPOSE_SCHEDULE_CHANGE,
+  COMPOSE_DELETE_SCHEDULE_ADD,
+  COMPOSE_DELETE_SCHEDULE_REMOVE,
+  COMPOSE_DELETE_SCHEDULE_CHANGE,
   SCHEDULED_STATUS_SUBMIT_SUCCESS,
   INIT_MEDIA_EDIT_MODAL,
   COMPOSE_CHANGE_MEDIA_DESCRIPTION,
@@ -84,6 +87,7 @@ const initialState = ImmutableMap({
   pending_media_attachments: 0,
   poll: null,
   scheduledAt: null,
+  deleteSchedule: null,
   suggestion_token: null,
   suggestions: ImmutableList(),
   default_privacy: 'public',
@@ -109,6 +113,10 @@ const initialPoll = ImmutableMap({
 
 const initialSchedule = ImmutableMap({
   schedule: 24 * 3600,
+})
+
+const initialDeleteSchedule = ImmutableMap({
+  expires_at: 24 * 3600,
 })
 
 function statusToTextMentions(state, status) {
@@ -542,6 +550,12 @@ export default function compose(state = initialState, action) {
     return state.set('scheduledAt', null);
   case COMPOSE_SCHEDULE_CHANGE:
     return state.update('scheduledAt', scheduledAt => scheduledAt.set('schedule', action.schedule));
+  case COMPOSE_DELETE_SCHEDULE_ADD:
+    return state.set('deleteSchedule', initialDeleteSchedule);
+  case COMPOSE_DELETE_SCHEDULE_REMOVE:
+    return state.set('deleteSchedule', null);
+  case COMPOSE_DELETE_SCHEDULE_CHANGE:
+    return state.update('deleteSchedule', deleteSchedule => deleteSchedule.set('expires_at', action.expires_at));
   case SCHEDULED_STATUS_SUBMIT_SUCCESS:
     return clearAll(state);
   case COMPOSE_LANGUAGE_CHANGE:
