@@ -1219,7 +1219,7 @@ ja:
     invited_by: '次の人に招待されました:'
     max_uses:
       other: "%{count}"
-    max_uses_prompt: 無制限
+    max_uses_prompt: 選択してください
     prompt: リンクを生成・共有してこのサーバーへの新規登録を受け付けることができます
     table:
       expires_at: 有効期限
