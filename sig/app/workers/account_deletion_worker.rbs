@@ -2,5 +2,5 @@
 
 # Classes
 class AccountDeletionWorker
-  def perform: (untyped account_id, ?Hash[untyped, untyped] options) -> true
+  def perform: (untyped account_id, ?Hash[untyped, untyped] options) -> untyped
 end
