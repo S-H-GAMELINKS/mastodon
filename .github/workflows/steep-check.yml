@@ -21,10 +21,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libicu-dev libidn11-dev
+
       - name: Set up bundler cache
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: .ruby-version
+          ruby-version: head
           bundler-cache: true
 
       - name: Install rbs collection

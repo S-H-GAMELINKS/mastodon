@@ -80,7 +80,7 @@ jobs:
       - name: Set up bundler cache
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: .ruby-version
+          ruby-version: head
           bundler-cache: true
 
       - name: Create database
