@@ -86,7 +86,7 @@ jobs:
           cache: yarn
           node-version-file: '.nvmrc'
 
-      - run: yarn --frozen-lockfile --production
+      - run: yarn --frozen-lockfile
 
       - name: Set up bundler cache
         uses: ruby/setup-ruby@v1
