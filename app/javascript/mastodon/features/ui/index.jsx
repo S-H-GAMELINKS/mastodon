@@ -156,11 +156,11 @@ class SwitchingColumnsArea extends PureComponent {
   static propTypes = {
     children: PropTypes.node,
     location: PropTypes.object,
-    mobile: PropTypes.bool,
+    singleColumn: PropTypes.bool,
   };
 
   UNSAFE_componentWillMount () {
-    if (this.props.mobile) {
+    if (this.props.singleColumn) {
       document.body.classList.toggle('layout-single-column', true);
       document.body.classList.toggle('layout-multiple-columns', false);
     } else {
@@ -174,9 +174,9 @@ class SwitchingColumnsArea extends PureComponent {
       this.node.handleChildrenContentChange();
     }
 
-    if (prevProps.mobile !== this.props.mobile) {
-      document.body.classList.toggle('layout-single-column', this.props.mobile);
-      document.body.classList.toggle('layout-multiple-columns', !this.props.mobile);
+    if (prevProps.singleColumn !== this.props.singleColumn) {
+      document.body.classList.toggle('layout-single-column', this.props.singleColumn);
+      document.body.classList.toggle('layout-multiple-columns', !this.props.singleColumn);
     }
   }
 
@@ -187,16 +187,17 @@ class SwitchingColumnsArea extends PureComponent {
   };
 
   render () {
-    const { children, mobile } = this.props;
+    const { children, singleColumn } = this.props;
     const { signedIn } = this.context.identity;
+    const pathName = this.props.location.pathname;
 
     let redirect;
 
     if (signedIn) {
-      if (mobile) {
+      if (singleColumn) {
         redirect = <Redirect from='/' to='/home' exact />;
       } else {
-        redirect = <Redirect from='/' to='/getting-started' exact />;
+        redirect = <Redirect from='/' to='/deck/getting-started' exact />;
       }
       checkRevision();
     } else if (singleUserMode && owner && initialState?.accounts[owner]) {
@@ -208,9 +209,12 @@ class SwitchingColumnsArea extends PureComponent {
     }
 
     return (
-      <ColumnsAreaContainer ref={this.setRef} singleColumn={mobile}>
+      <ColumnsAreaContainer ref={this.setRef} singleColumn={singleColumn}>
         <WrappedSwitch>
           {redirect}
+
+          {singleColumn ? <Redirect from='/deck' to='/home' exact /> : null}
+          {singleColumn && pathName.startsWith('/deck/') ? <Redirect from={pathName} to={pathName.slice(5)} /> : null}
 
           <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
           <WrappedRoute path='/keyboard-shortcuts' component={KeyboardShortcuts} content={children} />
@@ -604,7 +608,7 @@ class UI extends PureComponent {
         <div className={classNames('ui', { 'is-composing': isComposing })} ref={this.setRef} style={{ pointerEvents: dropdownMenuIsOpen ? 'none' : null }}>
           <Header />
 
-          <SwitchingColumnsArea location={location} mobile={layout === 'mobile' || layout === 'single-column'}>
+          <SwitchingColumnsArea location={location} singleColumn={layout === 'mobile' || layout === 'single-column'}>
             {children}
           </SwitchingColumnsArea>
 
