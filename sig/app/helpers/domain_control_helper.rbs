@@ -2,6 +2,6 @@
 
 # Classes
 module DomainControlHelper
-  def domain_not_allowed?: (untyped uri_or_domain) -> nil
+  def domain_not_allowed?: (untyped uri_or_domain) -> bool
   def whitelist_mode?: -> untyped
 end

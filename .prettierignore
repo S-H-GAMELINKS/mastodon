@@ -80,6 +80,8 @@ AUTHORS.md
 # Ignore gallery
 public/creatodon-folio/asset-manifest.json
 public/gallery/asset-manifest.json
+public/creatodon-folio/static/css/*.css
+public/gallery/static/css/*.css
 
 # Ignore Twitetr theme json
 app/javascript/styles/twitter/package.json
