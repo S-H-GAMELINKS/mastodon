@@ -62,15 +62,17 @@ class Api::V1::StatusesController < Api::BaseController
       spoiler_text: status_params[:spoiler_text]
     )
 
+    sensitive = status_params[:sensitive]
+
     # 画像をチェックし、NSFWな画像が含まれている場合はNSFWを付与する
-    sensitive = MediaNsfwCheckService.new.call(status_params[:media_ids])
+    sensitive = MediaNsfwCheckService.new.call(status_params[:media_ids]) if ENV['AUTO_NSFW'] == 'true'
 
     @status = PostStatusService.new.call(
       current_user.account,
       text: text,
       thread: @thread,
       media_ids: status_params[:media_ids],
-      sensitive: status_params[:sensitive] || sensitive,
+      sensitive: sensitive,
       spoiler_text: spoiler_text,
       visibility: visibility,
       language: status_params[:language],
