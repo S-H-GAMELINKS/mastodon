@@ -55,16 +55,16 @@ describe('custom theme change test', () => {
     cy.get('.autosuggest-textarea__textarea').type('HALOやりたい');
     cy.get('button.button.button--block').click();
 
-    // ホームタイムラインへ遷移し、リロード
-    cy.visit('/home');
+    // ローカルタイムラインへ遷移し、リロード
+    cy.visit('/deck/public/local');
     cy.reload();
 
     // タイムライン上に投稿した内容が表示されている
     cy.get(
-      '[aria-posinset="1"] > [tabindex="-1"] > .status__wrapper > .status'
+      '[aria-posinset="1"] > [tabindex="-1"] > .status__wrapper > .status',
     ).contains('HALOやりたい');
     cy.get(
-      '[aria-posinset="1"] > [tabindex="-1"] > .status__wrapper > .status'
+      '[aria-posinset="1"] > [tabindex="-1"] > .status__wrapper > .status',
     ).contains('CreatodonFolio');
   });
 
@@ -103,13 +103,13 @@ describe('custom theme change test', () => {
     cy.get('.autosuggest-textarea__textarea').type('HALOやりたい');
     cy.get('button.button.button--block').click();
 
-    // ホームタイムラインへ遷移し、リロード
-    cy.visit('/home');
+    // ローカルタイムラインへ遷移し、リロード
+    cy.visit('/deck/public/local');
     cy.reload();
 
     // タイムライン上に投稿した内容が表示されている
     cy.get(
-      '[aria-posinset="1"] > [tabindex="-1"] > .status__wrapper > .status'
+      '[aria-posinset="1"] > [tabindex="-1"] > .status__wrapper > .status',
     ).contains('にゃーん');
   });
 
@@ -136,16 +136,16 @@ describe('custom theme change test', () => {
     cy.get('.autosuggest-textarea__textarea').type('HALOやりたい');
     cy.get('button.button.button--block').click();
 
-    // ホームタイムラインへ遷移し、リロード
-    cy.visit('/home');
+    // ローカルタイムラインへ遷移し、リロード
+    cy.visit('/deck/public/local');
     cy.reload();
 
     // タイムライン上に投稿した内容が表示されている
     cy.get(
-      '[aria-posinset="1"] > [tabindex="-1"] > .status__wrapper > .status'
+      '[aria-posinset="1"] > [tabindex="-1"] > .status__wrapper > .status',
     ).contains('にゃーん');
     cy.get(
-      '[aria-posinset="1"] > [tabindex="-1"] > .status__wrapper > .status'
+      '[aria-posinset="1"] > [tabindex="-1"] > .status__wrapper > .status',
     ).contains('もっと見る');
   });
 });
