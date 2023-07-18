@@ -14,7 +14,7 @@ describe('portfolio visibility default hashtag setting spec', () => {
 
     // 公開範囲「ポートフォリオ」でデフォルトハッシュタグを利用するフラグをOn
     cy.get(
-      '#user_settings_attributes_portfolio_default_hashtag_flag'
+      '#user_settings_attributes_portfolio_default_hashtag_flag',
     ).uncheck();
 
     // 公開範囲「ポートフォリオ」で利用するハッシュタグを空に
@@ -34,7 +34,7 @@ describe('portfolio visibility default hashtag setting spec', () => {
 
     // 公開範囲「ポートフォリオ」で利用するハッシュタグを設定
     cy.get('#user_settings_attributes_portfolio_default_hashtag').type(
-      '#HALO_Infinite'
+      '#HALO_Infinite',
     );
 
     // 変更した設定を保存
@@ -58,18 +58,18 @@ describe('portfolio visibility default hashtag setting spec', () => {
     cy.get('button.button.button--block').click();
 
     // ホームタイムラインへ遷移し、リロード
-    cy.visit('/home');
+    cy.visit('/deck/public/local');
     cy.reload();
 
     // タイムライン上に投稿した内容が表示されている
     cy.get(
-      '[aria-posinset="1"] > [tabindex="-1"] > .status__wrapper > .status'
+      '[aria-posinset="1"] > [tabindex="-1"] > .status__wrapper > .status',
     ).contains('HALOやりたい');
     cy.get(
-      '[aria-posinset="1"] > [tabindex="-1"] > .status__wrapper > .status'
+      '[aria-posinset="1"] > [tabindex="-1"] > .status__wrapper > .status',
     ).contains('CreatodonFolio');
     cy.get(
-      '[aria-posinset="1"] > [tabindex="-1"] > .status__wrapper > .status'
+      '[aria-posinset="1"] > [tabindex="-1"] > .status__wrapper > .status',
     ).contains('HALO_Infinite');
   });
 
@@ -80,7 +80,7 @@ describe('portfolio visibility default hashtag setting spec', () => {
 
     // 公開範囲「ポートフォリオ」で利用するハッシュタグを設定
     cy.get('#user_settings_attributes_portfolio_default_hashtag').type(
-      '#HALO_Infinite'
+      '#HALO_Infinite',
     );
 
     // 変更した設定を保存
@@ -104,20 +104,20 @@ describe('portfolio visibility default hashtag setting spec', () => {
     cy.get('button.button.button--block').click();
 
     // ホームタイムラインへ遷移し、リロード
-    cy.visit('/home');
+    cy.visit('/deck/public/local');
     cy.reload();
 
     // タイムライン上に投稿した内容が表示されている
     cy.get(
-      '[aria-posinset="1"] > [tabindex="-1"] > .status__wrapper > .status'
+      '[aria-posinset="1"] > [tabindex="-1"] > .status__wrapper > .status',
     ).contains('HALOやりたい');
     cy.get(
-      '[aria-posinset="1"] > [tabindex="-1"] > .status__wrapper > .status'
+      '[aria-posinset="1"] > [tabindex="-1"] > .status__wrapper > .status',
     ).contains('CreatodonFolio');
 
     // デフォルトハッシュタグは表示されない
     cy.get(
-      '[aria-posinset="1"] > [tabindex="-1"] > .status__wrapper > .status'
+      '[aria-posinset="1"] > [tabindex="-1"] > .status__wrapper > .status',
     ).should('not.include.text', 'HALO_Infinite');
   });
 
@@ -150,20 +150,20 @@ describe('portfolio visibility default hashtag setting spec', () => {
     cy.get('button.button.button--block').click();
 
     // ホームタイムラインへ遷移し、リロード
-    cy.visit('/home');
+    cy.visit('/deck/public/local');
     cy.reload();
 
     // タイムライン上に投稿した内容が表示されている
     cy.get(
-      '[aria-posinset="1"] > [tabindex="-1"] > .status__wrapper > .status'
+      '[aria-posinset="1"] > [tabindex="-1"] > .status__wrapper > .status',
     ).contains('HALOやりたい');
     cy.get(
-      '[aria-posinset="1"] > [tabindex="-1"] > .status__wrapper > .status'
+      '[aria-posinset="1"] > [tabindex="-1"] > .status__wrapper > .status',
     ).contains('CreatodonFolio');
 
     // デフォルトハッシュタグは表示されない
     cy.get(
-      '[aria-posinset="1"] > [tabindex="-1"] > .status__wrapper > .status'
+      '[aria-posinset="1"] > [tabindex="-1"] > .status__wrapper > .status',
     ).should('not.include.text', 'HALO_Infinite');
   });
 });
