@@ -18,7 +18,7 @@ module Webpacker::HelperExtensions
     # And Webpack will (correctly) only add it in this case, so we need to conditionally set it here
     # otherwise the preloaded request and the real request will have different crossorigin values
     # and the preloaded file wont be loaded
-    crossorigin = 'anonymous' if Rails.configuration.action_controller.asset_host.present?
+    crossorigin = 'anonymous' if Rails.configuration.action_controller.asset_host.present? || Rails.env.test?
 
     preload_link_tag(src, options.merge(integrity: integrity, crossorigin: crossorigin))
   end
