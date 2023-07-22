@@ -713,5 +713,7 @@
   "video.play": "Play",
   "video.unmute": "Unmute sound",
   "schedule_button.add_schedule": "Add schedule post",
-  "schedule_button.remove_schedule": "Remove schedule post"
+  "schedule_button.remove_schedule": "Remove schedule post",
+  "delete_schedule_button.add_delete_schedule": "Add delete schedule",
+  "delete_schedule_button.remove_delete_schedule": "Remove delete schedule"
 }

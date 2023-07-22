@@ -719,5 +719,7 @@
   "video.play": "再生",
   "video.unmute": "ミュートを解除する",
   "schedule_button.add_schedule": "予約投稿を追加",
-  "schedule_button.remove_schedule": "予約投稿を削除"
+  "schedule_button.remove_schedule": "予約投稿を削除",
+  "delete_schedule_button.add_delete_schedule": "自動削除投稿をON",
+  "delete_schedule_button.remove_delete_schedule": "自動削除投稿をOFF"
 }
