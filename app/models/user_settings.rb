@@ -23,7 +23,6 @@ class UserSettings
   setting :unfollow_all_when_migrate, default: true
 
   namespace :web do
-    setting :crop_images, default: true
     setting :advanced_layout, default: false
     setting :trends, default: true
     setting :use_blurhash, default: true
