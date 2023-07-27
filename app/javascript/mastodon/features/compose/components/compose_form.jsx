@@ -301,8 +301,6 @@ class ComposeForm extends ImmutablePureComponent {
             autoFocus={autoFocus}
             lang={this.props.lang}
           >
-            <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} />
-
             <div className='compose-form__modifiers'>
               <UploadFormContainer />
               <PollFormContainer />
@@ -310,6 +308,7 @@ class ComposeForm extends ImmutablePureComponent {
               <DeleteScheduleFormContainer />
             </div>
           </AutosuggestTextarea>
+          <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} />
 
           <div className='compose-form__buttons-wrapper'>
             <div className='compose-form__buttons'>
