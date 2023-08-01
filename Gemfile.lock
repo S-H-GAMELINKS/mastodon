@@ -233,6 +233,10 @@ GEM
     cypress-rails (0.6.0)
       puma (>= 3.8.0)
       railties (>= 5.2.0)
+    database_cleaner-active_record (2.1.0)
+      activerecord (>= 5.a)
+      database_cleaner-core (~> 2.0.0)
+    database_cleaner-core (2.0.1)
     date (3.3.3)
     debug (1.8.0)
       irb (>= 1.5.0)
@@ -699,6 +703,7 @@ GEM
       rubocop (~> 1.33)
       rubocop-capybara (~> 2.17)
       rubocop-factory_bot (~> 2.22)
+    ruby-prof (1.6.3)
     ruby-progressbar (1.13.0)
     ruby-saml (1.15.0)
       nokogiri (>= 1.13.10)
@@ -718,6 +723,10 @@ GEM
       activerecord (>= 4.0.0)
       railties (>= 4.0.0)
     securerandom (0.2.2)
+    selenium-webdriver (4.9.1)
+      rexml (~> 3.2, >= 3.2.5)
+      rubyzip (>= 1.2.2, < 3.0)
+      websocket (~> 1.0)
     semantic_range (3.0.0)
     sidekiq (6.5.9)
       connection_pool (>= 2.2.5, < 3)
@@ -773,6 +782,7 @@ GEM
       unicode-display_width (>= 1.1.1, < 3)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
+    test-prof (1.2.1)
     thor (1.2.2)
     tilt (2.2.0)
     timeout (0.4.0)
@@ -833,6 +843,7 @@ GEM
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
       semantic_range (>= 2.3.0)
+    websocket (1.2.9)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -871,6 +882,7 @@ DEPENDENCIES
   connection_pool
   cypress-rails
   debug (>= 1.0.0)
+  database_cleaner-active_record
   devise (~> 4.9)
   devise-two-factor (~> 4.1)
   devise_pam_authenticatable2 (~> 9.2)
@@ -955,11 +967,13 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rails
   rubocop-rspec
+  ruby-prof
   ruby-progressbar (~> 1.13)
   rubyzip (~> 2.3)
   sanitize (~> 6.0)
   sassc
   scenic (~> 1.7)
+  selenium-webdriver
   sidekiq (~> 6.5)
   sidekiq-bulk (~> 0.2.0)
   sidekiq-scheduler (~> 5.0)
@@ -973,6 +987,7 @@ DEPENDENCIES
   steep!
   stoplight (~> 3.0.1)
   strong_migrations (~> 0.8)
+  test-prof
   thor (~> 1.2)
   tty-prompt (~> 0.23)
   twitter-text (~> 3.1.0)
