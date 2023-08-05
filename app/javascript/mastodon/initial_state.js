@@ -81,6 +81,7 @@
  * @property {boolean=} use_pending_items
  * @property {string} version
  * @property {boolean} resized_custom_emoji
+ * @property {string} sso_redirect
  */
 
 /**
@@ -143,5 +144,6 @@ export const languages = initialState?.languages;
 export const resizedCustomEmoji = getMeta('resized_custom_emoji');
 // @ts-expect-error
 export const statusPageUrl = getMeta('status_page_url');
+export const sso_redirect = getMeta('sso_redirect');
 
 export default initialState;
