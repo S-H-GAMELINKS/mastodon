@@ -203,7 +203,7 @@ group :development, :test do
   gem 'rbs_rails'
 
   # For type signature lsp
-  gem 'steep', github: 'soutaro/steep', ref: '56c911bcb660077ea5dd7db9077a0149277b241c'
+  gem 'steep'
 end
 
 group :production do
