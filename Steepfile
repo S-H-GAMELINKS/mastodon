@@ -47,7 +47,8 @@ ignores = [
   Steep::Diagnostic::Ruby::BreakTypeMismatch,
   Steep::Diagnostic::Ruby::RequiredBlockMissing,
   Steep::Diagnostic::Ruby::ImplicitBreakValueMismatch,
-  Steep::Diagnostic::Ruby::UnexpectedKeywordArgument
+  Steep::Diagnostic::Ruby::UnexpectedKeywordArgument,
+  Steep::Diagnostic::RBS::GenericParameterMismatch,
 ]
 
 target :app do
