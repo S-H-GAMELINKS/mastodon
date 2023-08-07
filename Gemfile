@@ -203,7 +203,7 @@ group :development, :test do
   gem 'rbs_rails'
 
   # For type signature lsp
-  gem 'steep'
+  gem 'steep', require: false
 end
 
 group :production do
