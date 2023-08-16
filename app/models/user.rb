@@ -136,7 +136,7 @@ class User < ApplicationRecord
            :expand_spoilers, :default_language, :aggregate_reblogs, :show_application,
            :advanced_layout, :use_blurhash, :use_pending_items, :trends, :crop_images,
            :disable_swiping, :always_send_emails,
-           :resized_custom_emoji, :resized_custom_emoji_stamp, :display_wide_emoji,
+           :resized_custom_emoji, :resized_custom_emoji_stamp,
            :hide_local_timeline, :hide_federated_timeline, :show_otadon_tag_cloud,
            to: :settings, prefix: :setting, allow_nil: false
 

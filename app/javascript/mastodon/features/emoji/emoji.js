@@ -1,4 +1,4 @@
-import {autoPlayGif, resizedCustomEmoji, resizedCustomEmojiStamp, displayWideEmoji} from '../../initial_state';
+import {autoPlayGif, resizedCustomEmoji, resizedCustomEmojiStamp} from '../../initial_state';
 import unicodeMapping from './emoji_unicode_mapping_light';
 import {assetHost} from 'mastodon/utils/config';
 import Trie from 'substring-trie';
@@ -88,7 +88,7 @@ const emojifyTextNode = (node, customEmojis) => {
   node.parentElement.replaceChild(fragment, node);
 };
 
-const emojifyTextNodeForLocal = (isLocalCustomEmoji, node, customEmojis) => {
+const emojifyTextNodeResized = (node, customEmojis) => {
   let str = node.textContent;
 
   const fragment = new DocumentFragment();
@@ -121,60 +121,32 @@ const emojifyTextNodeForLocal = (isLocalCustomEmoji, node, customEmojis) => {
           replacement = document.createElement('img');
           replacement.setAttribute('draggable', false);
 
-          if (isLocalCustomEmoji) {
-            if (shortname.startsWith('stamp_', 1) && (resizedCustomEmojiStamp !== 'same_as_emoji')) {
-              switch (resizedCustomEmojiStamp) {
-                case 'fixed_x2':
-                  replacement.setAttribute('class', 'emojione local-custom-emoji-stamp');
-                  break;
-                default:
-                  replacement.setAttribute('class', 'emojione custom-emoji');
-                  break;
-              }
-            } else {
-              if (displayWideEmoji) {
-                switch (resizedCustomEmoji) {
-                  case 'hover':
-                    replacement.setAttribute('class', 'emojione local-custom-emoji');
-                    break;
-                  case 'best':
-                    replacement.setAttribute('class', 'emojione local-custom-emoji-wide-the-best');
-                    break;
-                  case 'fixed_x2':
-                    replacement.setAttribute('class', 'emojione local-custom-emoji-wide-fixed');
-                    break;
-                  case 'fixed_x3':
-                    replacement.setAttribute('class', 'emojione local-custom-emoji-wide-fixed-big');
-                    break;
-                  default:
-                    replacement.setAttribute('class', 'emojione-wide custom-emoji');
-                    break;
-                }
-              } else {
-                switch (resizedCustomEmoji) {
-                  case 'hover':
-                    replacement.setAttribute('class', 'emojione local-custom-emoji');
-                    break;
-                  case 'best':
-                    replacement.setAttribute('class', 'emojione local-custom-emoji-the-best');
-                    break;
-                  case 'fixed_x2':
-                    replacement.setAttribute('class', 'emojione local-custom-emoji-fixed');
-                    break;
-                  case 'fixed_x3':
-                    replacement.setAttribute('class', 'emojione local-custom-emoji-fixed-big');
-                    break;
-                  default:
-                    replacement.setAttribute('class', 'emojione custom-emoji');
-                    break;
-                }
-              }
+          if (shortname.startsWith('stamp_', 1) && (resizedCustomEmojiStamp !== 'same_as_emoji')) {
+            switch (resizedCustomEmojiStamp) {
+              case 'fixed_x2':
+                replacement.setAttribute('class', 'emojione resized-custom-emoji-stamp');
+                break;
+              default:
+                replacement.setAttribute('class', 'emojione custom-emoji');
+                break;
             }
           } else {
-            if (displayWideEmoji) {
-              replacement.setAttribute('class', 'emojione-wide custom-emoji');
-            } else {
-              replacement.setAttribute('class', 'emojione custom-emoji');
+            switch (resizedCustomEmoji) {
+              case 'hover':
+                replacement.setAttribute('class', 'emojione resized-custom-emoji');
+                break;
+              case 'best':
+                replacement.setAttribute('class', 'emojione resized-custom-emoji-the-best');
+                break;
+              case 'fixed_x2':
+                replacement.setAttribute('class', 'emojione resized-custom-emoji-fixed');
+                break;
+              case 'fixed_x3':
+                replacement.setAttribute('class', 'emojione resized-custom-emoji-fixed-big');
+                break;
+              default:
+                replacement.setAttribute('class', 'emojione-wide custom-emoji');
+                break;
             }
           }
 
@@ -218,25 +190,11 @@ const emojifyNode = (node, customEmojis) => {
   for (const child of node.childNodes) {
     switch (child.nodeType) {
       case Node.TEXT_NODE:
-        emojifyTextNode(child, customEmojis);
+        emojifyTextNodeResized(child, customEmojis);
         break;
       case Node.ELEMENT_NODE:
         if (!child.classList.contains('invisible'))
           emojifyNode(child, customEmojis);
-        break;
-    }
-  }
-};
-
-const emojifyNodeForLocal = (isLocalCustomEmoji, node, customEmojis) => {
-  for (const child of node.childNodes) {
-    switch (child.nodeType) {
-      case Node.TEXT_NODE:
-        emojifyTextNodeForLocal(isLocalCustomEmoji, child, customEmojis);
-        break;
-      case Node.ELEMENT_NODE:
-        if (!child.classList.contains('invisible'))
-          emojifyNodeForLocal(isLocalCustomEmoji, child, customEmojis);
         break;
     }
   }
@@ -254,14 +212,14 @@ const emojify = (str, customEmojis = {}) => {
   return wrapper.innerHTML;
 };
 
-export const emojifyStatus = (isLocalCustomEmoji, str, customEmojis = {}) => {
+export const emojifyStatus = (str, customEmojis = {}) => {
   const wrapper = document.createElement('div');
   wrapper.innerHTML = str;
 
   if (!Object.keys(customEmojis).length)
     customEmojis = null;
 
-  emojifyNodeForLocal(isLocalCustomEmoji, wrapper, customEmojis);
+  emojifyNode(wrapper, customEmojis);
 
   return wrapper.innerHTML;
 }

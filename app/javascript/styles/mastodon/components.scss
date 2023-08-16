@@ -894,7 +894,7 @@ body > [data-popper-placement] {
     margin: -3px 0 0;
   }
 
-  .local-custom-emoji {
+  .resized-custom-emoji {
     width: 30px;
     height: 30px;
     transition-duration: 500ms;
@@ -905,37 +905,21 @@ body > [data-popper-placement] {
     }
   }
 
-  .local-custom-emoji-the-best {
-    width: 35px;
-    height: 35px;
-  }
-
-  .local-custom-emoji-fixed {
-    width: 50px;
-    height: 50px;
-  }
-
-  .local-custom-emoji-fixed-big {
-    width: 75px;
-    height: 75px;
-    padding: 3px;
-  }
-
-  .local-custom-emoji-wide-the-best {
+  .resized-custom-emoji-the-best {
     width: auto;
     max-width: 100%;
     height: auto;
     max-height: 35px;
   }
 
-  .local-custom-emoji-wide-fixed {
+  .resized-custom-emoji-fixed {
     width: auto;
     max-width: 100%;
     height: auto;
     max-height: 50px;
   }
 
-  .local-custom-emoji-wide-fixed-big {
+  .resized-custom-emoji-fixed-big {
     width: auto;
     max-width: 100%;
     height: auto;
@@ -943,7 +927,7 @@ body > [data-popper-placement] {
     padding: 3px;
   }
 
-  .local-custom-emoji-stamp {
+  .resized-custom-emoji-stamp {
     width: 120px;
     height: 120px;
     padding: 3px;
@@ -1378,7 +1362,7 @@ body > [data-popper-placement] {
       margin: -1px 0 0;
     }
 
-    .local-custom-emoji {
+    .resized-custom-emoji {
       width: 30px;
       height: 30px;
       transition-duration: 500ms;
@@ -1389,37 +1373,21 @@ body > [data-popper-placement] {
       }
     }
 
-    .local-custom-emoji-the-best {
-      width: 35px;
-      height: 35px;
-    }
-
-    .local-custom-emoji-fixed {
-      width: 50px;
-      height: 50px;
-    }
-
-    .local-custom-emoji-fixed-big {
-      width: 70px;
-      height: 70px;
-      padding: 3px;
-    }
-
-    .local-custom-emoji-wide-the-best {
+    .resized-custom-emoji-the-best {
       width: auto;
       max-width: 100%;
       height: auto;
       max-height: 35px;
     }
 
-    .local-custom-emoji-wide-fixed {
+    .resized-custom-emoji-fixed {
       width: auto;
       max-width: 100%;
       height: auto;
       max-height: 50px;
     }
 
-    .local-custom-emoji-wide-fixed-big {
+    .resized-custom-emoji-fixed-big {
       width: auto;
       max-width: 100%;
       height: auto;
@@ -1427,7 +1395,7 @@ body > [data-popper-placement] {
       padding: 3px;
     }
 
-    .local-custom-emoji-stamp {
+    .resized-custom-emoji-stamp {
       width: 120px;
       height: 120px;
       padding: 3px;

@@ -41,7 +41,6 @@ class UserSettingsDecorator
     user.settings['always_send_emails']  = always_send_emails_preference if change?('setting_always_send_emails')
     user.settings['resized_custom_emoji'] = resized_custom_emoji if change?('setting_resized_custom_emoji')
     user.settings['resized_custom_emoji_stamp'] = resized_custom_emoji_stamp if change?('setting_resized_custom_emoji_stamp')
-    user.settings['display_wide_emoji'] = display_wide_emoji if change?('setting_display_wide_emoji')
     user.settings['hide_local_timeline'] = hide_local_timeline if change?('setting_hide_local_timeline')
     user.settings['hide_federated_timeline'] = hide_federated_timeline if change?('setting_hide_federated_timeline')
     user.settings['show_otadon_tag_cloud'] = show_otadon_tag_cloud if change?('setting_show_otadon_tag_cloud')
@@ -149,10 +148,6 @@ class UserSettingsDecorator
 
   def resized_custom_emoji_stamp
     settings['setting_resized_custom_emoji_stamp']
-  end
-
-  def display_wide_emoji
-    boolean_cast_setting 'setting_display_wide_emoji'
   end
 
   def hide_local_timeline
