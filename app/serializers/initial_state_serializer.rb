@@ -53,7 +53,6 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:crop_images]       = object.current_account.user.setting_crop_images
       store[:resized_custom_emoji] = object.current_account.user.setting_resized_custom_emoji
       store[:resized_custom_emoji_stamp] = object.current_account.user.setting_resized_custom_emoji_stamp
-      store[:display_wide_emoji] = object.current_account.user.setting_display_wide_emoji
       store[:hide_local_timeline] = object.current_account.user.setting_hide_local_timeline
       store[:hide_federated_timeline] = object.current_account.user.setting_hide_federated_timeline
       store[:show_otadon_tag_cloud] = object.current_account.user.setting_show_otadon_tag_cloud

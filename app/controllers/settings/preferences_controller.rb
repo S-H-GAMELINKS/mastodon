@@ -57,7 +57,6 @@ class Settings::PreferencesController < Settings::BaseController
       :setting_always_send_emails,
       :setting_resized_custom_emoji,
       :setting_resized_custom_emoji_stamp,
-      :setting_display_wide_emoji,
       :setting_hide_local_timeline,
       :setting_hide_federated_timeline,
       :setting_show_otadon_tag_cloud,

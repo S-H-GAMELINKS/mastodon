@@ -227,7 +227,6 @@ ja:
         setting_use_pending_items: 手動更新モード
         setting_resized_custom_emoji: 絵文字のサイズ
         setting_resized_custom_emoji_stamp: スタンプのサイズ
-        setting_display_wide_emoji: 横に長い絵文字を正しい比率で表示する
         setting_hide_local_timeline: ローカルタイムラインを非表示にする
         setting_hide_federated_timeline: 連合タイムラインを非表示にする
         setting_show_otadon_tag_cloud: Otadon Hashtag Cloudを表示する
