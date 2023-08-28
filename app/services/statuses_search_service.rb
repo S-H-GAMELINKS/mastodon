@@ -27,7 +27,7 @@ class StatusesSearchService < BaseService
       )
     )
 
-    results             = definition.collapse(field: :id).order(_id: { order: :desc }).limit(@limit).offset(@offset).objects.compact
+    results             = definition.collapse(field: :id).order(id: { order: :desc }).limit(@limit).offset(@offset).objects.compact
     account_ids         = results.map(&:account_id)
     account_domains     = results.map(&:account_domain)
     preloaded_relations = @account.relations_map(account_ids, account_domains)
@@ -59,6 +59,6 @@ class StatusesSearchService < BaseService
   end
 
   def parsed_query
-    SearchQueryTransformer.new.apply(SearchQueryParser.new.parse(@query))
+    SearchQueryTransformer.new.apply(SearchQueryParser.new.parse(@query), current_account: @account)
   end
 end
