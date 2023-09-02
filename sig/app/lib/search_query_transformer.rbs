@@ -23,20 +23,23 @@ class SearchQueryTransformer
     attr_reader prefix: untyped
     attr_reader operator: :must | :must_not | :should
     attr_reader term: String
-    def initialize: (untyped prefix, untyped operator, String term) -> void
+    def initialize: (untyped operator, String term) -> void
+    def to_query: -> untyped
   end
 
   class PhraseClause
     attr_reader prefix: untyped
     attr_reader operator: :must | :must_not | :should
     attr_reader phrase: untyped
-    def initialize: (untyped prefix, untyped operator, untyped phrase) -> void
+    def initialize: (untyped operator, untyped phrase) -> void
+    def to_query: -> untyped
   end
 
   class PrefixClause
     attr_reader filter: :account_id
     attr_reader operator: :filter
     attr_reader term: untyped
-    def initialize: (untyped prefix, untyped term) -> void
+    def initialize: (untyped prefix, untyped term, untyped options) -> void
+    def to_query: -> untyped
   end
 end
