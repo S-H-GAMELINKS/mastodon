@@ -63,9 +63,6 @@
   .fields-group
     = f.input :setting_resized_custom_emoji, collection: ['default', 'hover', 'best', 'fixed_x2', 'fixed_x3'],label_method: lambda { |item| t("simple_form.hints.defaults.setting_display_local_emoji_#{item}") }, hint: false, as: :radio_buttons, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li', wrapper: :with_floating_label
 
-  .fields-group
-    = f.input :setting_resized_custom_emoji_stamp, collection: ['default', 'same_as_emoji', 'fixed_x2'],label_method: lambda { |item| t("simple_form.hints.defaults.setting_display_local_emoji_stamp_#{item}") }, hint: false, as: :radio_buttons, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li', wrapper: :with_floating_label
-
   %h4= t 'appearance.discovery'
 
   .fields-group
