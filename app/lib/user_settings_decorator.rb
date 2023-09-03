@@ -40,7 +40,6 @@ class UserSettingsDecorator
     user.settings['crop_images']         = crop_images_preference if change?('setting_crop_images')
     user.settings['always_send_emails']  = always_send_emails_preference if change?('setting_always_send_emails')
     user.settings['resized_custom_emoji'] = resized_custom_emoji if change?('setting_resized_custom_emoji')
-    user.settings['resized_custom_emoji_stamp'] = resized_custom_emoji_stamp if change?('setting_resized_custom_emoji_stamp')
     user.settings['hide_local_timeline'] = hide_local_timeline if change?('setting_hide_local_timeline')
     user.settings['hide_federated_timeline'] = hide_federated_timeline if change?('setting_hide_federated_timeline')
     user.settings['show_otadon_tag_cloud'] = show_otadon_tag_cloud if change?('setting_show_otadon_tag_cloud')
@@ -144,10 +143,6 @@ class UserSettingsDecorator
 
   def resized_custom_emoji
     settings['setting_resized_custom_emoji']
-  end
-
-  def resized_custom_emoji_stamp
-    settings['setting_resized_custom_emoji_stamp']
   end
 
   def hide_local_timeline

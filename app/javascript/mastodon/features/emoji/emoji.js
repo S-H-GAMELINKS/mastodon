@@ -1,4 +1,4 @@
-import {autoPlayGif, resizedCustomEmoji, resizedCustomEmojiStamp} from '../../initial_state';
+import {autoPlayGif, resizedCustomEmoji} from '../../initial_state';
 import unicodeMapping from './emoji_unicode_mapping_light';
 import {assetHost} from 'mastodon/utils/config';
 import Trie from 'substring-trie';
@@ -121,15 +121,8 @@ const emojifyTextNodeResized = (node, customEmojis) => {
           replacement = document.createElement('img');
           replacement.setAttribute('draggable', false);
 
-          if (shortname.startsWith('stamp_', 1) && (resizedCustomEmojiStamp !== 'same_as_emoji')) {
-            switch (resizedCustomEmojiStamp) {
-              case 'fixed_x2':
-                replacement.setAttribute('class', 'emojione resized-custom-emoji-stamp');
-                break;
-              default:
-                replacement.setAttribute('class', 'emojione custom-emoji');
-                break;
-            }
+          if (shortname.startsWith('stamp_', 1)) {
+            replacement.setAttribute('class', 'emojione resized-custom-emoji-stamp');
           } else {
             switch (resizedCustomEmoji) {
               case 'hover':

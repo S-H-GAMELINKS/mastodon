@@ -226,7 +226,6 @@ ja:
         setting_use_blurhash: 非表示のメディアを色付きのぼかしで表示する
         setting_use_pending_items: 手動更新モード
         setting_resized_custom_emoji: 絵文字のサイズ
-        setting_resized_custom_emoji_stamp: スタンプのサイズ
         setting_hide_local_timeline: ローカルタイムラインを非表示にする
         setting_hide_federated_timeline: 連合タイムラインを非表示にする
         setting_show_otadon_tag_cloud: Otadon Hashtag Cloudを表示する
