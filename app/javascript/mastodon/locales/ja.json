@@ -522,7 +522,7 @@
   "report_notification.categories.violation": "ルール違反",
   "report_notification.open": "通報を開く",
   "search.placeholder": "検索",
-  "search.search_or_paste": "検索またはURLを入力",
+  "search.search_or_paste": "検索・URLから照会",
   "search_popout.search_format": "高度な検索フォーマット",
   "search_popout.tips.full_text": "表示名やユーザー名、ハッシュタグのほか、あなたの投稿やお気に入り、ブーストした投稿、返信に一致する単純なテキスト。",
   "search_popout.tips.hashtag": "ハッシュタグ",
