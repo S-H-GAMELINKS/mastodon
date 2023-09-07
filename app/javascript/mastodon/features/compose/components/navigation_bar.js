@@ -17,6 +17,8 @@ export default class NavigationBar extends ImmutablePureComponent {
   };
 
   render () {
+    const displayNameHtml = { __html: this.props.account.get('display_name_html') };
+
     return (
       <div className='navigation-bar'>
         <Link to={`/@${this.props.account.get('acct')}`}>
@@ -25,11 +27,10 @@ export default class NavigationBar extends ImmutablePureComponent {
         </Link>
 
         <div className='navigation-bar__profile'>
+          <strong dangerouslySetInnerHTML={displayNameHtml} />
           <Link to={`/@${this.props.account.get('acct')}`}>
-            <strong className='navigation-bar__profile-account'>@{this.props.account.get('acct')}</strong>
+            <span className='navigation-bar__profile-account'>@{this.props.account.get('acct')}</span>
           </Link>
-
-          <a href='/settings/profile' className='navigation-bar__profile-edit'><FormattedMessage id='navigation_bar.edit_profile' defaultMessage='Edit profile' /></a>
         </div>
 
         <div className='navigation-bar__actions'>
