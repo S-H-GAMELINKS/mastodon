@@ -83,7 +83,7 @@ class LinkFooter extends React.PureComponent {
           {DividingCircle}
           <a href='https://help.otadon.com' target='_blank'><FormattedMessage id='footer.help_center' defaultMessage='Help Center' /></a>
           {DividingCircle}
-          Otaku Social.
+          2023 Otaku Social.
         </p>
 
         <p>
