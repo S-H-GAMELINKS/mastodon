@@ -230,7 +230,7 @@ GEM
     crass (1.0.6)
     css_parser (1.14.0)
       addressable
-    csv (3.2.8)
+    csv (3.2.7)
     cypress-rails (0.6.0)
       puma (>= 3.8.0)
       railties (>= 5.2.0)
@@ -900,6 +900,7 @@ DEPENDENCIES
   color_diff (~> 0.1)
   concurrent-ruby
   connection_pool
+  csv (= 3.2.7)
   cypress-rails
   database_cleaner-active_record
   debug (>= 1.0.0)
