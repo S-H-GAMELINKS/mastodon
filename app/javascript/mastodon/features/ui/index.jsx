@@ -90,7 +90,7 @@ const checkRevision = () => {
 
     const user_cached_version = getLocalStorageRevision();
 
-    if (user_cached_version !== current_version) {
+    if (user_cached_version !== current_version && process.env.NODE_ENV !== 'tests') {
       alert('新しいリリースが出ています。自動的にリロードを行います。');
       setLocalStorageVersion(current_version);
       location.reload(true)
