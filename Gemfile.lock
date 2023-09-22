@@ -791,7 +791,7 @@ GEM
       redlock (~> 1.0)
     strong_migrations (0.8.0)
       activerecord (>= 5.2)
-    strscan (3.0.7)
+    strscan (3.0.6)
     swd (1.3.0)
       activesupport (>= 3)
       attr_required (>= 0.0.5)
@@ -1009,6 +1009,7 @@ DEPENDENCIES
   steep
   stoplight (~> 3.0.1)
   strong_migrations (~> 0.8)
+  strscan (= 3.0.6)
   test-prof
   thor (~> 1.2)
   tty-prompt (~> 0.23)
