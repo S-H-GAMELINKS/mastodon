@@ -33,7 +33,7 @@ export default class NavigationBar extends ImmutablePureComponent {
         <div className='navigation-bar__profile'>
           <strong dangerouslySetInnerHTML={displayNameHtml} />
           <Link to={`/@${username}`}>
-            <span className='navigation-bar__profile-account'>@${username}</span>
+            <span className='navigation-bar__profile-account'>@{username}</span>
           </Link>
         </div>
 
