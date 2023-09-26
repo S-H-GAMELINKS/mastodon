@@ -5,3 +5,6 @@ not dead
 
 [development]
 supports es6-module
+
+[tests]
+supports es6-module
