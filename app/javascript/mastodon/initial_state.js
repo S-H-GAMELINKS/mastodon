@@ -83,6 +83,7 @@
  * @property {string} sso_redirect
  * @property {boolean} resized_custom_emoji
  * @property {boolean} hide_local_timeline
+ * @property {boolean} hide_remote_timeline
  * @property {boolean} hide_federated_timeline
  * @property {boolean} show_otadon_tag_cloud
  */
@@ -151,6 +152,7 @@ export const statusPageUrl = getMeta('status_page_url');
 export const sso_redirect = getMeta('sso_redirect');
 export const resizedCustomEmoji = getMeta('resized_custom_emoji');
 export const hideLocalTimeline = getMeta('hide_local_timeline');
+export const hideRemoteTimeline = getMeta('hide_remote_timeline');
 export const hideFederatedTimeline = getMeta('hide_federated_timeline');
 export const showOtadonTagCloud = getMeta('show_otadon_tag_cloud');
 

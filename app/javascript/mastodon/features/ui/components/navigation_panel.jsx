@@ -7,7 +7,14 @@ import { Link } from 'react-router-dom';
 
 import { WordmarkLogo } from 'mastodon/components/logo';
 import NavigationPortal from 'mastodon/components/navigation_portal';
-import { timelinePreview, trendsEnabled, showOtadonTagCloud } from 'mastodon/initial_state';
+import {
+  timelinePreview,
+  trendsEnabled,
+  showOtadonTagCloud,
+  hideLocalTimeline,
+  hideRemoteTimeline,
+  hideFederatedTimeline
+} from 'mastodon/initial_state';
 import { transientSingleColumn } from 'mastodon/is_mobile';
 
 import ColumnLink from './column_link';
@@ -85,9 +92,26 @@ class NavigationPanel extends Component {
           <ColumnLink transparent to='/search' icon='search' text={intl.formatMessage(messages.search)} />
         )}
 
-        {(signedIn || timelinePreview) && (
-          <ColumnLink transparent to='/public/local' isActive={this.isFirehoseActive} icon='globe' text={intl.formatMessage(messages.firehose)} />
-        )}
+        {
+          (() => {
+            if (!signedIn) {
+              return <ColumnLink transparent to='/public/local' isActive={this.isFirehoseActive} icon='globe' text={intl.formatMessage(messages.firehose)}/>
+            } else {
+              if (!hideLocalTimeline || !hideRemoteTimeline || !hideFederatedTimeline) {
+                let path = "/public/local";
+
+                if (hideLocalTimeline) {
+                  path = "/public/remote";
+                  if (hideRemoteTimeline) {
+                    path = "/public";
+                  }
+                }
+                return <ColumnLink transparent to={path} isActive={this.isFirehoseActive} icon='globe' text={intl.formatMessage(messages.firehose)}/>
+              }
+            }
+          })()
+        }
+
 
         {(!signedIn && timelinePreview) && (
           <>

@@ -18,7 +18,7 @@ import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
 import SettingToggle from '../notifications/components/setting_toggle';
 import StatusListContainer from '../ui/containers/status_list_container';
-import { hideLocalTimeline, hideFederatedTimeline } from '../../initial_state';
+import { hideLocalTimeline, hideRemoteTimeline, hideFederatedTimeline } from '../../initial_state';
 
 const messages = defineMessages({
   title: { id: 'column.firehose', defaultMessage: 'Live feeds' },
@@ -178,9 +178,11 @@ const Firehose = ({ feedType, multiColumn }) => {
             </NavLink>
           )}
 
-          <NavLink exact to='/public/remote'>
-            <FormattedMessage tagName='div' id='firehose.remote' defaultMessage='Other servers' />
-          </NavLink>
+          {(!hideRemoteTimeline) && (
+            <NavLink exact to='/public/remote'>
+              <FormattedMessage tagName='div' id='firehose.remote' defaultMessage='Other servers' />
+            </NavLink>
+          )}
 
           {(!hideFederatedTimeline) && (
             <NavLink exact to='/public'>

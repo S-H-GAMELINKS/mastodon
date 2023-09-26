@@ -21,6 +21,7 @@ class UserSettings
   setting :resized_custom_emoji, default: 'default'
   setting :hide_local_timeline, default: false
   setting :hide_federated_timeline, default: false
+  setting :hide_remote_timeline, default: false
   setting :show_otadon_tag_cloud, default: true
 
   namespace :web do

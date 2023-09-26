@@ -53,6 +53,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:show_trends]       = Setting.trends && object.current_account.user.setting_trends
       store[:resized_custom_emoji] = object.current_account.user.resized_custom_emoji
       store[:hide_local_timeline] = object.current_account.user.hide_local_timeline
+      store[:hide_remote_timeline] = object.current_account.user.hide_remote_timeline
       store[:hide_federated_timeline] = object.current_account.user.hide_federated_timeline
       store[:show_otadon_tag_cloud] = object.current_account.user.show_otadon_tag_cloud
     else

@@ -26,6 +26,7 @@
 
     .fields-group
       = ff.input :hide_local_timeline, as: :boolean, wrapper: :with_label
+      = ff.input :hide_remote_timeline, as: :boolean, wrapper: :with_label
       = ff.input :hide_federated_timeline, as: :boolean, wrapper: :with_label
 
     %p.hint= t '（いつも使う公開範囲）意図せず公開タイムラインに投稿が掲載されないようにするには、いつも使う公開範囲を「公開」以外に設定することをおすすめします。'

@@ -147,6 +147,10 @@ module HasUserSettings
     settings['hide_federated_timeline']
   end
 
+  def hide_remote_timeline
+    settings['hide_remote_timeline']
+  end
+
   def show_otadon_tag_cloud
     settings['show_otadon_tag_cloud']
   end
