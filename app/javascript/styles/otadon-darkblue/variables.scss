@@ -20,3 +20,8 @@ $action-button-color: lighten($ui-base-color, 50%);
 $inverted-text-color: $black !default;
 $lighter-text-color: darken($ui-base-color, 6%) !default;
 $light-text-color: darken($ui-primary-color, 40%) !default;
+
+$blurple-500: #2076d9;
+
+$ui-button-tertiary-color: $blurple-500 !default;
+$ui-button-tertiary-border-color: $blurple-500 !default;
