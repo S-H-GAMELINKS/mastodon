@@ -321,7 +321,7 @@ jobs:
         search-image:
           - docker.elastic.co/elasticsearch/elasticsearch:7.17.13
         include:
-          - ruby-version: '.ruby-version'
+          - ruby-version: 'head'
             search-image: docker.elastic.co/elasticsearch/elasticsearch:8.10.2
 
     steps:
