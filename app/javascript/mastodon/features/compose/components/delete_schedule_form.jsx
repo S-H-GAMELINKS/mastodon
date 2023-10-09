@@ -20,7 +20,7 @@ class DeleteShceduleForm extends ImmutablePureComponent {
 
   handleSelectDuration = e => {
     this.props.onChangeSchedule(e.target.value);
-  }
+  };
 
   render () {
     const { intl, expires_at } = this.props;

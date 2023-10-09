@@ -11,7 +11,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onChangeSchedule(schedule) {
-    dispatch(changeSchedule(schedule))
+    dispatch(changeSchedule(schedule));
   }
 });
 

@@ -864,7 +864,7 @@ export function submitScheduledStatusSuccess(status) {
     type: SCHEDULED_STATUS_SUBMIT_SUCCESS,
     scheduled_status: status,
   };
-};
+}
 
 // 以下、投稿自動削除関連の処理用
 export function addDeleteSchedule() {
