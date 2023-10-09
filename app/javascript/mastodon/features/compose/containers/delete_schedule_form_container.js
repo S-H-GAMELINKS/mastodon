@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import {
-    changeDeleteSchedule,
+  changeDeleteSchedule,
 } from '../../../actions/compose';
 import DeleteScheduleForm from '../components/delete_schedule_form';
 
@@ -11,7 +11,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onChangeSchedule(expires_at) {
-    dispatch(changeDeleteSchedule(expires_at))
+    dispatch(changeDeleteSchedule(expires_at));
   }
 });
 

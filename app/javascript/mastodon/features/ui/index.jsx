@@ -8,7 +8,7 @@ import { Redirect, Route, withRouter } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
-import axios from 'axios'
+import axios from 'axios';
 import { debounce } from 'lodash';
 import { HotKeys } from 'react-hotkeys';
 
@@ -73,15 +73,15 @@ import '../../components/status';
 
 
 const setLocalStorageVersion = (version) => {
-  localStorage.setItem('VERSION', version)
-}
+  localStorage.setItem('VERSION', version);
+};
 
 const getLocalStorageRevision = () => {
   if (!localStorage.getItem('VERSION')) {
-    return ''
+    return '';
   }
-  return localStorage.getItem('VERSION')
-}
+  return localStorage.getItem('VERSION');
+};
 
 const checkRevision = () => {
   axios.get('/api/v2/instance').then(response => {
@@ -93,11 +93,11 @@ const checkRevision = () => {
     if (user_cached_version !== current_version && process.env.NODE_ENV !== 'tests') {
       alert('新しいリリースが出ています。自動的にリロードを行います。');
       setLocalStorageVersion(current_version);
-      location.reload(true)
+      location.reload(true);
     }
   }).catch(error => { // eslint-disable-line
   });
-}
+};
 
 const messages = defineMessages({
   beforeUnload: { id: 'ui.beforeunload', defaultMessage: 'Your draft will be lost if you leave Mastodon.' },

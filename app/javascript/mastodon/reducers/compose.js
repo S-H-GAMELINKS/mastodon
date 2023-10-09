@@ -113,11 +113,11 @@ const initialPoll = ImmutableMap({
 
 const initialSchedule = ImmutableMap({
   schedule: 24 * 3600,
-})
+});
 
 const initialDeleteSchedule = ImmutableMap({
   expires_at: 24 * 3600,
-})
+});
 
 function statusToTextMentions(state, status) {
   let set = ImmutableOrderedSet([]);

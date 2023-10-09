@@ -20,7 +20,7 @@ class ShceduleForm extends ImmutablePureComponent {
 
   handleSelectDuration = e => {
     this.props.onChangeSchedule(e.target.value);
-  }
+  };
 
   render () {
     const { intl, schedule } = this.props;
