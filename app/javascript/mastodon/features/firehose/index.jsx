@@ -170,7 +170,6 @@ const Firehose = ({ feedType, multiColumn }) => {
         <ColumnSettings />
       </ColumnHeader>
 
-      <div className='scrollable scrollable--flex'>
         <div className='account__section-headline'>
           {(!hideLocalTimeline) && (
             <NavLink exact to='/public/local'>
@@ -191,16 +190,15 @@ const Firehose = ({ feedType, multiColumn }) => {
           )}
         </div>
 
-        <StatusListContainer
-          prepend={prependBanner}
-          timelineId={`${feedType}${onlyMedia ? ':media' : ''}`}
-          onLoadMore={handleLoadMore}
-          trackScroll
-          scrollKey='firehose'
-          emptyMessage={emptyMessage}
-          bindToDocument={!multiColumn}
-        />
-      </div>
+      <StatusListContainer
+        prepend={prependBanner}
+        timelineId={`${feedType}${onlyMedia ? ':media' : ''}`}
+        onLoadMore={handleLoadMore}
+        trackScroll
+        scrollKey='firehose'
+        emptyMessage={emptyMessage}
+        bindToDocument={!multiColumn}
+      />
 
       <Helmet>
         <title>{intl.formatMessage(messages.title)}</title>
