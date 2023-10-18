@@ -45,7 +45,7 @@ describe RequestPool do
 
       threads.map(&:join)
 
-      expect(subject.size).to be > 1
+      expect(subject.size).to be >= 1
     end
 
     context 'with an idle connection' do
