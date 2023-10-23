@@ -116,6 +116,8 @@ jobs:
       SAML_ENABLED: true
       CAS_ENABLED: true
       BUNDLE_WITH: 'pam_authentication test'
+      RUBY_MN_THREADS: 1
+      RUBY_MAX_CPU: 4
       CI_JOBS: ${{ matrix.ci_job }}/4
       GITHUB_RSPEC: ${{ matrix.ruby-version == '.ruby-version' && github.event.pull_request && 'true' }}
 
