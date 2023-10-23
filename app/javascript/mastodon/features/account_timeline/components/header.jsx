@@ -2,10 +2,12 @@ import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
 
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 import InnerHeader from '../../account/components/header';
 
@@ -18,7 +20,7 @@ function DynamicFormattedMessage(props) {
   return <FormattedMessage {...props} />;
 }
 
-export default class Header extends ImmutablePureComponent {
+class Header extends ImmutablePureComponent {
 
   static propTypes = {
     account: ImmutablePropTypes.map,
@@ -41,10 +43,7 @@ export default class Header extends ImmutablePureComponent {
     hideTabs: PropTypes.bool,
     domain: PropTypes.string.isRequired,
     hidden: PropTypes.bool,
-  };
-
-  static contextTypes = {
-    router: PropTypes.object,
+    ...WithRouterPropTypes,
   };
 
   handleFollow = () => {
@@ -56,11 +55,11 @@ export default class Header extends ImmutablePureComponent {
   };
 
   handleMention = () => {
-    this.props.onMention(this.props.account, this.context.router.history);
+    this.props.onMention(this.props.account, this.props.history);
   };
 
   handleDirect = () => {
-    this.props.onDirect(this.props.account, this.context.router.history);
+    this.props.onDirect(this.props.account, this.props.history);
   };
 
   handleReport = () => {
@@ -171,3 +170,5 @@ export default class Header extends ImmutablePureComponent {
   }
 
 }
+
+export default withRouter(Header);
