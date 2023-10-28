@@ -2,6 +2,6 @@
 
 # Classes
 module StatusSafeReblogInsert
-  def _insert_record: (untyped values) -> untyped
+  def _insert_record: (untyped values, untyped returning) -> untyped
   def _compile_reblog_insert: (untyped values) -> untyped
 end
