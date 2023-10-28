@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
+import { ReactComponent as LockIcon } from '@material-symbols/svg-600/outlined/lock.svg';
 import { length } from 'stringz';
 
 import { Icon }  from 'mastodon/components/icon';
@@ -244,7 +245,7 @@ class ComposeForm extends ImmutablePureComponent {
     if (this.props.isEditing) {
       publishText = intl.formatMessage(messages.saveChanges);
     } else if (this.props.privacy === 'private' || this.props.privacy === 'direct') {
-      publishText = <span className='compose-form__publish-private'><Icon id='lock' /> {intl.formatMessage(messages.publish)}</span>;
+      publishText = <><Icon id='lock' icon={LockIcon} /> {intl.formatMessage(messages.publish)}</>;
     } else if (this.props.privacy === 'portfolio') {
       publishText = 'ポートフォリオを投稿';
     } else if (this.props.privacy === 'nyan') {
