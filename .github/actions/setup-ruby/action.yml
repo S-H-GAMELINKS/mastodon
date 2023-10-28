@@ -3,7 +3,7 @@ description: 'Setup a Ruby environment ready to run the Mastodon code'
 inputs:
   ruby-version:
     description: The Ruby version to install
-    default: '.ruby-version'
+    default: 'head'
   additional-system-dependencies:
     description: 'Additional packages to install'
 
