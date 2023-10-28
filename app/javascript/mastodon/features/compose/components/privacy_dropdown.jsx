@@ -6,10 +6,10 @@ import { injectIntl, defineMessages } from 'react-intl';
 import classNames from 'classnames';
 
 
-import { ReactComponent as AccountCircleIcon } from '@material-symbols/svg-600/outlined/account_circle.svg';
 import { ReactComponent as AlternateEmailIcon } from '@material-symbols/svg-600/outlined/alternate_email.svg';
 import { ReactComponent as LockIcon } from '@material-symbols/svg-600/outlined/lock.svg';
 import { ReactComponent as LockOpenIcon } from '@material-symbols/svg-600/outlined/lock_open.svg';
+import { ReactComponent as MeowIcon } from '@material-symbols/svg-600/outlined/pets.svg';
 import { ReactComponent as PublicIcon } from '@material-symbols/svg-600/outlined/public.svg';
 import { ReactComponent as PortfolioIcon } from '@material-symbols/svg-600/outlined/work_history.svg';
 import { supportsPassiveEvents } from 'detect-passive-events';
@@ -235,10 +235,10 @@ class PrivacyDropdown extends PureComponent {
 
     this.options = [
       { icon: 'globe', iconComponent: PublicIcon, value: 'public', text: formatMessage(messages.public_short), meta: formatMessage(messages.public_long) },
-      { icon: 'vcard', iconComponent: PortfolioIcon, value: 'portfolio', text: formatMessage(messages.portfolio_short), meta: formatMessage(messages.portfolio_long) },
+      { icon: 'work_history', iconComponent: PortfolioIcon, value: 'portfolio', text: formatMessage(messages.portfolio_short), meta: formatMessage(messages.portfolio_long) },
       { icon: 'unlock', iconComponent: LockOpenIcon,  value: 'unlisted', text: formatMessage(messages.unlisted_short), meta: formatMessage(messages.unlisted_long) },
       { icon: 'lock', iconComponent: LockIcon, value: 'private', text: formatMessage(messages.private_short), meta: formatMessage(messages.private_long) },
-      { icon: 'user-circle', iconComponent: AccountCircleIcon, value: 'nyan', text: formatMessage(messages.nyan_short), meta: formatMessage(messages.nyan_long) },
+      { icon: 'pets', iconComponent: MeowIcon, value: 'nyan', text: formatMessage(messages.nyan_short), meta: formatMessage(messages.nyan_long) },
     ];
 
     if (!this.props.noDirect) {
