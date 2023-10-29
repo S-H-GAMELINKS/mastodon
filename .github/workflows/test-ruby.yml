@@ -141,7 +141,6 @@ jobs:
           bundle exec rake parallel:drop
           bundle exec rake parallel:create
           bundle exec rake parallel:migrate
-          bundle exec rails db:seed
 
       - run: bundle exec rake parallel:spec
 
