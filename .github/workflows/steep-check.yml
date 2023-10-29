@@ -33,7 +33,7 @@ jobs:
           bundler-cache: true
 
       - name: Install rbs collection
-        run: bundle exec rbs collection install
+        run: bundle exec rbs collection install --frozen
 
       - name: Running steep check
         run: bundle exec steep check

@@ -13,7 +13,7 @@ describe('custom theme change test', () => {
     cy.visit('/publish');
 
     // 公開範囲を選択
-    cy.get('.privacy-dropdown__value-icon > .fa').click();
+    cy.get('.privacy-dropdown__value-icon').click();
 
     // 公開範囲をチェック
     cy.contains('ポートフォリオ');
@@ -26,7 +26,7 @@ describe('custom theme change test', () => {
     cy.visit('/publish');
 
     // 公開範囲を選択
-    cy.get('.privacy-dropdown__value-icon > .fa').click();
+    cy.get('.privacy-dropdown__value-icon').click();
 
     // 公開範囲「ポートフォリオ」を選択
     cy.get('[data-index="portfolio"]').click();
@@ -42,7 +42,7 @@ describe('custom theme change test', () => {
     cy.visit('/publish');
 
     // 公開範囲を選択
-    cy.get('.privacy-dropdown__value-icon > .fa').click();
+    cy.get('.privacy-dropdown__value-icon').click();
 
     // 公開範囲「ポートフォリオ」を選択
     cy.get('[data-index="portfolio"]').click();
@@ -74,7 +74,7 @@ describe('custom theme change test', () => {
     cy.visit('/publish');
 
     // 公開範囲を選択
-    cy.get('.privacy-dropdown__value-icon > .fa').click();
+    cy.get('.privacy-dropdown__value-icon').click();
 
     // 公開範囲「にゃーん」を選択
     cy.get('[data-index="nyan"]').click();
@@ -90,7 +90,7 @@ describe('custom theme change test', () => {
     cy.visit('/publish');
 
     // 公開範囲を選択
-    cy.get('.privacy-dropdown__value-icon > .fa').click();
+    cy.get('.privacy-dropdown__value-icon').click();
 
     // 公開範囲「にゃーん」を選択
     cy.get('[data-index="nyan"]').click();
@@ -119,7 +119,7 @@ describe('custom theme change test', () => {
     cy.visit('/publish');
 
     // 公開範囲を選択
-    cy.get('.privacy-dropdown__value-icon > .fa').click();
+    cy.get('.privacy-dropdown__value-icon').click();
 
     // 公開範囲「にゃーん」を選択
     cy.get('[data-index="nyan"]').click();

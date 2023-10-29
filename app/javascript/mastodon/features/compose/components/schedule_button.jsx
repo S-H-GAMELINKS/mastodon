@@ -3,6 +3,8 @@ import { PureComponent } from 'react';
 
 import { defineMessages, injectIntl } from 'react-intl';
 
+import { ReactComponent as CalendarIcon } from '@material-symbols/svg-600/outlined/calendar_add_on.svg';
+
 import { IconButton } from '../../../components/icon_button';
 
 const messages = defineMessages({
@@ -40,6 +42,7 @@ class ScheduleButton extends PureComponent {
       <div className='compose-form__schedule-button'>
         <IconButton
           icon='calendar'
+          iconComponent={CalendarIcon}
           title={intl.formatMessage(active ? messages.remove_schedule : messages.add_schedule)}
           disabled={disabled}
           onClick={this.handleClick}

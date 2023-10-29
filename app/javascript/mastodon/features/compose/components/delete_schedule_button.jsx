@@ -3,6 +3,8 @@ import { PureComponent } from 'react';
 
 import { defineMessages, injectIntl } from 'react-intl';
 
+import { ReactComponent as TrachIcon } from '@material-symbols/svg-600/outlined/delete.svg';
+
 import { IconButton } from '../../../components/icon_button';
 
 const messages = defineMessages({
@@ -40,6 +42,7 @@ class DeleteScheduleButton extends PureComponent {
       <div className='compose-form__delete-schedule-button'>
         <IconButton
           icon='trash'
+          iconComponent={TrachIcon}
           title={intl.formatMessage(active ? messages.remove_delete_schedule : messages.add_delete_schedule)}
           disabled={disabled}
           onClick={this.handleClick}
