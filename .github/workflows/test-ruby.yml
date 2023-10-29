@@ -136,13 +136,10 @@ jobs:
           ruby-version: ${{ matrix.ruby-version}}
           additional-system-dependencies: ffmpeg imagemagick libpam-dev
 
-      - name: Set up database
-        run: |
-          bundle exec rake parallel:drop
-          bundle exec rake parallel:create
-          bundle exec rake parallel:migrate
+      - name: Load database schema
+        run: './bin/rails db:create db:schema:load db:seed'
 
-      - run: bundle exec rake parallel:spec
+      - run: bundle exec rspec
 
   test-e2e:
     name: End to End testing

@@ -139,7 +139,7 @@ describe WellKnown::WebfingerController do
         expect(response.media_type).to eq 'application/jrd+json'
       end
 
-      it 'returns links for the internal account', skip: RUBY_VERSION.to_f > 3.2 do
+      it 'returns links for the internal account' do
         json = body_as_json
         expect(json[:subject]).to eq 'acct:mastodon.internal@cb6e6126.ngrok.io'
         expect(json[:aliases]).to eq ['https://cb6e6126.ngrok.io/actor']

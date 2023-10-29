@@ -28,7 +28,7 @@ describe RequestPool do
       subject.with('http://example.org') { |http_client| expect(http_client).to_not be test_client }
     end
 
-    it 'grows to the number of threads accessing it', skip: RUBY_VERSION.to_f > 3.2 do
+    it 'grows to the number of threads accessing it' do
       stub_request(:get, 'http://example.com/').to_return(status: 200, body: 'Hello!')
 
       subject
