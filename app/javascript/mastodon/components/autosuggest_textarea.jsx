@@ -213,7 +213,7 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
               placeholder={placeholder}
               autoFocus={autoFocus}
               value={value}
-              onChange={this.onChange}
+              onChange={this.props.onChange}
               onKeyDown={this.onKeyDown}
               onKeyUp={onKeyUp}
               onFocus={this.onFocus}
