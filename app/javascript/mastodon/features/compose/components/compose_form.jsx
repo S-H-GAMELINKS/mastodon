@@ -238,7 +238,8 @@ class ComposeForm extends ImmutablePureComponent {
   render () {
     const { intl, onPaste, autoFocus } = this.props;
     const { highlighted } = this.state;
-    const disabled = this.props.isSubmitting;
+    // TODO: comment out when mastodon used react-router v6
+    // const disabled = this.props.isSubmitting;
 
     let publishText = '';
 
@@ -286,7 +287,7 @@ class ComposeForm extends ImmutablePureComponent {
           <AutosuggestTextarea
             ref={this.setAutosuggestTextarea}
             placeholder={messagePlaceholder}
-            disabled={disabled}
+            disabled
             value={this.props.text}
             onChange={this.handleChange}
             suggestions={this.props.suggestions}
