@@ -13,4 +13,4 @@
 !.eslintrc.js
 cypress.config.ts
 cypress/**
-
+app/javascript/mastodon/features/emoji/emoji_mart_data_light.d.ts
