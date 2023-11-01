@@ -9,7 +9,7 @@ function padLeft(str, num) {
   return str;
 }
 
-export const unicodeToUnifiedName = (str) => {
+exports.unicodeToUnifiedName = (str) => {
   let output = '';
 
   for (let i = 0; i < str.length; i += 2) {
