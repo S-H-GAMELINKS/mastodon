@@ -5,3 +5,7 @@ export function isDevelopment() {
 export function isProduction() {
   return process.env.NODE_ENV === 'production';
 }
+
+export function isRailsProduction() {
+  return process.env.RAILS_ENV === 'production';
+}
