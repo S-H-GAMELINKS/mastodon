@@ -25,6 +25,7 @@ import { expandNotifications } from '../../actions/notifications';
 import { fetchServer, fetchServerTranslationLanguages } from '../../actions/server';
 import { expandHomeTimeline } from '../../actions/timelines';
 import initialState, { me, owner, singleUserMode, trendsEnabled, trendsAsLanding } from '../../initial_state';
+import { isRailsProduction } from '../../utils/environment';
 
 import BundleColumnError from './components/bundle_column_error';
 import Header from './components/header';
@@ -71,8 +72,6 @@ import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
 // Without this it ends up in ~8 very commonly used bundles.
 import '../../components/status';
 
-
-
 const setLocalStorageVersion = (version) => {
   localStorage.setItem('VERSION', version);
 };
@@ -91,7 +90,7 @@ const checkRevision = () => {
 
     const user_cached_version = getLocalStorageRevision();
 
-    if (user_cached_version !== current_version && process.env.NODE_ENV !== 'tests') {
+    if (user_cached_version !== current_version && isRailsProduction()) {
       alert('新しいリリースが出ています。自動的にリロードを行います。');
       setLocalStorageVersion(current_version);
       location.reload(true);

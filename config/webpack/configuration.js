@@ -22,6 +22,7 @@ module.exports = {
   themes,
   env: {
     NODE_ENV: env.NODE_ENV,
+    RAILS_ENV: env.RAILS_ENV,
     PUBLIC_OUTPUT_PATH: settings.public_output_path,
   },
   output,
