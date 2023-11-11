@@ -52,7 +52,7 @@ jobs:
         # Previously had set this, but it's not supported
         # export NODE_OPTIONS=--openssl-legacy-provider
         run: |-
-          NODE_ENV=production NODE_OPTIONS=--openssl-legacy-provider ./bin/rails assets:precompile
+          NODE_OPTIONS=--openssl-legacy-provider ./bin/rails assets:precompile
 
       - name: Archive asset artifacts
         run: |

@@ -92,7 +92,7 @@ jobs:
           bundler-cache: true
 
       - name: Precompile assets
-        run: NODE_ENV=production NODE_OPTIONS=--openssl-legacy-provider bundle exec rails assets:precompile
+        run: NODE_OPTIONS=--openssl-legacy-provider bundle exec rails assets:precompile
 
       - name: Load database schema
         run: 'bundle exec rails db:create db:schema:load db:seed'
