@@ -27,7 +27,7 @@ jobs:
           - test
     env:
       RAILS_ENV: ${{ matrix.mode }}
-      NODE_ENV: production
+      NODE_ENV: ${{ matrix.mode }}
       BUNDLE_WITH: ${{ matrix.mode }}
       OTP_SECRET: precompile_placeholder
       SECRET_KEY_BASE: precompile_placeholder

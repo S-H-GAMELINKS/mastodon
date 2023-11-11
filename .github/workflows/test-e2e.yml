@@ -48,6 +48,7 @@ jobs:
       DB_PASS: postgres
       DISABLE_SIMPLECOV: true
       RAILS_ENV: test
+      NODE_END: test
       ALLOW_NOPAM: true
       BUNDLE_WITH: test
       CI_JOBS: ${{ matrix.ci_job }}/4
