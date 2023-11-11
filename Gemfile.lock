@@ -630,6 +630,7 @@ GEM
       rbs (>= 1)
     rdf (3.3.1)
       bcp47_spec (~> 0.2)
+      link_header (~> 0.0, >= 0.0.8)
     rdf-normalize (0.6.1)
       rdf (~> 3.2)
     rdoc (6.5.0)
