@@ -27,7 +27,7 @@ jobs:
           - test
     env:
       RAILS_ENV: ${{ matrix.mode }}
-      NODE_ENV: ${{ matrix.mode }}
+      NODE_ENV: production
       BUNDLE_WITH: ${{ matrix.mode }}
       OTP_SECRET: precompile_placeholder
       SECRET_KEY_BASE: precompile_placeholder
@@ -181,6 +181,7 @@ jobs:
       DB_PASS: postgres
       DISABLE_SIMPLECOV: true
       RAILS_ENV: test
+      NODE_ENV: test
       BUNDLE_WITH: test
 
     strategy:
