@@ -48,7 +48,6 @@ jobs:
       DB_PASS: postgres
       DISABLE_SIMPLECOV: true
       RAILS_ENV: test
-      NODE_ENV: test
       ALLOW_NOPAM: true
       BUNDLE_WITH: test
       CI_JOBS: ${{ matrix.ci_job }}/4
@@ -93,7 +92,7 @@ jobs:
           bundler-cache: true
 
       - name: Precompile assets
-        run: NODE_OPTIONS=--openssl-legacy-provider bundle exec rails assets:precompile
+        run: NODE_ENV=production NODE_OPTIONS=--openssl-legacy-provider bundle exec rails assets:precompile
 
       - name: Load database schema
         run: 'bundle exec rails db:create db:schema:load db:seed'
