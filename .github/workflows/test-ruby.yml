@@ -181,6 +181,7 @@ jobs:
       DB_PASS: postgres
       DISABLE_SIMPLECOV: true
       RAILS_ENV: test
+      NODE_ENV: test
       BUNDLE_WITH: test
 
     strategy:
