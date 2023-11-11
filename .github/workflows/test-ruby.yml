@@ -27,6 +27,7 @@ jobs:
           - test
     env:
       RAILS_ENV: ${{ matrix.mode }}
+      NODE_ENV: production
       BUNDLE_WITH: ${{ matrix.mode }}
       OTP_SECRET: precompile_placeholder
       SECRET_KEY_BASE: precompile_placeholder
@@ -52,7 +53,7 @@ jobs:
         # Previously had set this, but it's not supported
         # export NODE_OPTIONS=--openssl-legacy-provider
         run: |-
-          NODE_ENV=test NODE_OPTIONS=--openssl-legacy-provider ./bin/rails assets:precompile
+          NODE_OPTIONS=--openssl-legacy-provider ./bin/rails assets:precompile
 
       - name: Archive asset artifacts
         run: |
@@ -180,6 +181,7 @@ jobs:
       DB_PASS: postgres
       DISABLE_SIMPLECOV: true
       RAILS_ENV: test
+      NODE_ENV: test
       BUNDLE_WITH: test
 
     strategy:
