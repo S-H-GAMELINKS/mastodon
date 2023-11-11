@@ -222,7 +222,8 @@
   },
   "resolutions": {
     "kind-of": "^6.0.3",
-    "webpack/terser-webpack-plugin": "^4.2.3"
+    "webpack/terser-webpack-plugin": "^4.2.3",
+    "lru-cache": "npm:^5.1.1"
   },
   "peerDependenciesMeta": {
     "react": {
