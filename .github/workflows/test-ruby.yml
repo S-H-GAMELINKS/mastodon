@@ -193,6 +193,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Update Twitter theme submodules
+        run: git submodule update  --init
+
       - uses: actions/download-artifact@v3
         with:
           path: './public'
