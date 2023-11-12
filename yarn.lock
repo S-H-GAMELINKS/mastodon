@@ -2345,6 +2345,7 @@ __metadata:
     "@material-symbols/svg-600": "npm:^0.14.0"
     "@rails/ujs": "npm:^7.1.1"
     "@reduxjs/toolkit": "npm:^1.9.5"
+    "@ronilaukkarinen/stylelint-value-no-unknown-custom-properties": "npm:^4.0.1"
     "@svgr/webpack": "npm:^5.5.0"
     "@testing-library/jest-dom": "npm:^6.0.0"
     "@testing-library/react": "npm:^14.0.0"
@@ -2490,6 +2491,7 @@ __metadata:
     stringz: "npm:^2.1.0"
     stylelint: "npm:^15.10.1"
     stylelint-config-standard-scss: "npm:^11.0.0"
+    stylelint-order: "npm:^6.0.3"
     substring-trie: "npm:^1.0.2"
     terser-webpack-plugin: "npm:^4.2.3"
     tesseract.js: "npm:^2.1.5"
@@ -2739,6 +2741,18 @@ __metadata:
   peerDependencies:
     rollup: ^1.20.0||^2.0.0
   checksum: 7151753160d15ba2b259461a6c25b3932150994ea52dba8fd3144f634c7647c2e56733d986e2c15de67c4d96a9ee7d6278efa6d2e626a7169898fd64adc0f90c
+  languageName: node
+  linkType: hard
+
+"@ronilaukkarinen/stylelint-value-no-unknown-custom-properties@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "@ronilaukkarinen/stylelint-value-no-unknown-custom-properties@npm:4.0.1"
+  dependencies:
+    postcss-value-parser: "npm:^4.2.0"
+    resolve: "npm:^1.22.0"
+  peerDependencies:
+    stylelint: 10 - 15
+  checksum: 51c967341d5bf6fc03cbae0a3390cbcf694c6de6ea709b4ad9c5caa0eef51a6183cec94f53b0d9f5cc28f3202be7b9242e0bd8e36ce39d13d51c10046c9cf531
   languageName: node
   linkType: hard
 
@@ -13765,6 +13779,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"postcss-sorting@npm:^8.0.2":
+  version: 8.0.2
+  resolution: "postcss-sorting@npm:8.0.2"
+  peerDependencies:
+    postcss: ^8.4.20
+  checksum: 955c72d8d71b6b54dcdcbcef765a593803512d215cef12a49b71d1abf8ab8d2dacb5645dbb5a0a6535609aab6bffb834599d6073f28fe61e589a4437af85e243
+  languageName: node
+  linkType: hard
+
 "postcss-svgo@npm:^6.0.0":
   version: 6.0.0
   resolution: "postcss-svgo@npm:6.0.0"
@@ -13795,7 +13818,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.2.15, postcss@npm:^8.4.24, postcss@npm:^8.4.28":
+"postcss@npm:^8.2.15, postcss@npm:^8.4.21, postcss@npm:^8.4.24, postcss@npm:^8.4.28":
   version: 8.4.31
   resolution: "postcss@npm:8.4.31"
   dependencies:
@@ -15027,7 +15050,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"resolve@npm:^1.14.2, resolve@npm:^1.19.0, resolve@npm:^1.20.0, resolve@npm:^1.22.4":
+"resolve@npm:^1.14.2, resolve@npm:^1.19.0, resolve@npm:^1.20.0, resolve@npm:^1.22.0, resolve@npm:^1.22.4":
   version: 1.22.8
   resolution: "resolve@npm:1.22.8"
   dependencies:
@@ -15053,7 +15076,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"resolve@patch:resolve@npm%3A^1.14.2#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.19.0#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.20.0#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.22.4#optional!builtin<compat/resolve>":
+"resolve@patch:resolve@npm%3A^1.14.2#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.19.0#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.20.0#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.22.0#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.22.4#optional!builtin<compat/resolve>":
   version: 1.22.8
   resolution: "resolve@patch:resolve@npm%3A1.22.8#optional!builtin<compat/resolve>::version=1.22.8&hash=c3c19d"
   dependencies:
@@ -15407,12 +15430,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:^6.3.1":
-  version: 6.3.1
-  resolution: "semver@npm:6.3.1"
+"semver@npm:7.5.4":
+  version: 7.5.4
+  resolution: "semver@npm:7.5.4"
+  dependencies:
+    lru-cache: "npm:^6.0.0"
   bin:
     semver: bin/semver.js
-  checksum: e3d79b609071caa78bcb6ce2ad81c7966a46a7431d9d58b8800cfa9cb6a63699b3899a0e4bcce36167a284578212d9ae6942b6929ba4aa5015c079a67751d42d
+  checksum: 5160b06975a38b11c1ab55950cb5b8a23db78df88275d3d8a42ccf1f29e55112ac995b3a26a522c36e3b5f76b0445f1eef70d696b8c7862a2b4303d7b0e7609e
   languageName: node
   linkType: hard
 
@@ -16422,6 +16447,18 @@ __metadata:
   peerDependencies:
     stylelint: ^15.10.0
   checksum: 2494468af2359490b6ebb9723d9653f9e31db3a0772b8d9f0e081018b0079ef84ae6f90dcf94c879a3c374f299e334941e3dcff1afb603c2284d3103085b71fb
+  languageName: node
+  linkType: hard
+
+"stylelint-order@npm:^6.0.3":
+  version: 6.0.3
+  resolution: "stylelint-order@npm:6.0.3"
+  dependencies:
+    postcss: "npm:^8.4.21"
+    postcss-sorting: "npm:^8.0.2"
+  peerDependencies:
+    stylelint: ^14.0.0 || ^15.0.0
+  checksum: 8e6ba85b39ff827038ec4dc46a37ea6aeac110c0a8d468c6962b068c623ceac26b7d6617f5e372be4a10571127e4a3ce424714b7a66d54147ce57116776d4d13
   languageName: node
   linkType: hard
 

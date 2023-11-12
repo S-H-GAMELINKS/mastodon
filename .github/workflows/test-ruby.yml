@@ -210,10 +210,6 @@ jobs:
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'
 
-      - name: Expand archived asset artifacts
-        run: |
-          tar xvzf artifacts.tar.gz
-
       - run: bundle exec rake spec:system
 
       - name: Archive logs
