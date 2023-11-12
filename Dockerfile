@@ -40,8 +40,6 @@ RUN apt-get update && \
 COPY Gemfile* package.json yarn.lock .yarnrc.yml /opt/mastodon/
 COPY .yarn /opt/mastodon/.yarn
 
-RUN git submodule update  --init
-
 RUN bundle install -j"$(nproc)"
 
 RUN yarn workspaces focus --all --production && \
