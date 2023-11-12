@@ -16,7 +16,7 @@ gem 'dotenv-rails', '~> 2.8'
 
 gem 'aws-sdk-s3', '~> 1.123', require: false
 gem 'fog-core', '<= 2.4.0'
-gem 'fog-openstack', '~> 0.3', require: false
+gem 'fog-openstack', '~> 1.0', require: false
 gem 'kt-paperclip', '~> 7.2'
 gem 'md-paperclip-azure', '~> 2.2', require: false
 gem 'blurhash', '~> 0.1'
@@ -88,7 +88,7 @@ gem 'simple-navigation', '~> 4.4'
 gem 'simple_form', '~> 5.2'
 gem 'sprockets-rails', '~> 3.4', require: 'sprockets/railtie'
 gem 'stoplight', '~> 3.0.1'
-gem 'strong_migrations', '1.3.0'
+gem 'strong_migrations', '1.6.4'
 gem 'tty-prompt', '~> 0.23', require: false
 gem 'twitter-text', '~> 3.1.0'
 gem 'tzinfo-data', '~> 1.2023'
@@ -103,9 +103,6 @@ gem 'rdf-normalize', '~> 0.5'
 gem 'private_address_check', '~> 0.5'
 
 group :test do
-  # Used to split testing into chunks in CI
-  gem 'rspec_chunked', '~> 0.6'
-
   # Adds RSpec Error/Warning annotations to GitHub PRs on the Files tab
   gem 'rspec-github', '~> 2.4', require: false
 
@@ -214,11 +211,8 @@ gem 'concurrent-ruby', require: false
 gem 'connection_pool', require: false
 gem 'xorcist', '~> 1.1'
 gem 'cocoon', '~> 1.2'
-gem 'net-imap'
-gem 'net-pop'
-gem 'net-smtp'
-gem 'jwt', '~> 2.5'
-gem 'net-http', '~> 0.3.2'
+
+gem 'net-http', '~> 0.4.0'
 gem 'rubyzip', '~> 2.3'
 gem 'sassc'
 
