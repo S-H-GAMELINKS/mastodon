@@ -207,6 +207,8 @@ jobs:
       - name: Set up Javascript environment
         uses: ./.github/actions/setup-javascript
 
+      - run: NODE_OPTIONS=--openssl-legacy-provider ./bin/rails assets:precompile
+
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'
 
