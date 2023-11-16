@@ -42,6 +42,7 @@ Click below to **learn more** in a video:
 ### No vendor lock-in: Fully interoperable with any conforming platform
 
 It doesn't have to be Mastodon; whatever implements ActivityPub is part of the social network! [Learn more](https://blog.joinmastodon.org/2018/06/why-activitypub-is-the-future/)
+oosjaoksoak
 
 ### Real-time, chronological timeline updates
 
