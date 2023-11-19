@@ -288,7 +288,6 @@ jobs:
           - 'head'
         elasticsearch-version:
           - '7.17.15'
-          - '8.11.1'
         include:
           - ruby-version: 'head'
 
