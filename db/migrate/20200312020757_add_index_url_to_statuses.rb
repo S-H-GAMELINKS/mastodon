@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddIndexUrlToStatuses < ActiveRecord::Migration[5.2]
+class AddIndexURLToStatuses < ActiveRecord::Migration[5.2]
   disable_ddl_transaction!
 
   def change

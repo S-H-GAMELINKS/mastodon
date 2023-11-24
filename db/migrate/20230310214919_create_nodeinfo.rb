@@ -1,4 +1,4 @@
-class CreateNode < ActiveRecord::Migration[6.1]
+class CreateNodeInfo < ActiveRecord::Migration[6.1]
   def change
     create_table :nodes do |t|
       t.string :domain, null: false
