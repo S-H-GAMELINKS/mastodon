@@ -4,7 +4,7 @@ class ProcessStatusReferenceService
   def call(status, **options)
     @status = status
 
-    urls = (parse_urls(status, options).union(options[:urls]) - [ActivityPub::TagManager.instance.uri_for(status), ActivityPub::TagManager.instance.url_for(status)]).compact
+    urls = (parse_urls(status, **options).union(*options[:urls]) - [ActivityPub::TagManager.instance.uri_for(status), ActivityPub::TagManager.instance.url_for(status)]).compact
 
     return urls if options[:skip_process]
 
