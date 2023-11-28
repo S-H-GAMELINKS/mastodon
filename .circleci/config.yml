@@ -32,7 +32,8 @@ commands:
           name: Install system dependencies
           command: |
             sudo apt-get update
-            sudo apt-get install -y libicu-dev libidn11-dev libicu66
+            sudo apt-get install -y libicu-dev libidn11-dev
+            sudo dpkg -i libicu66_66.1-2ubuntu2_amd64.deb
   prepare-yarn:
     steps:
       - run:
