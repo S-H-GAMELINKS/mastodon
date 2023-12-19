@@ -4,6 +4,8 @@
 class AccountSuggestions
   SOURCES: [untyped, untyped, untyped]
 
+  def initialize: (Account account) -> void
+
   def self.get: (untyped account, untyped limit) -> Array[untyped]
   def self.remove: (untyped account, untyped target_account_id) -> [untyped, untyped, untyped]
 end
