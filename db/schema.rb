@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_10_06_183200) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_12_073317) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -474,6 +474,15 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_06_183200) do
     t.index ["tag_id"], name: "index_featured_tags_on_tag_id"
   end
 
+  create_table "follow_recommendation_mutes", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "target_account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id", "target_account_id"], name: "idx_on_account_id_target_account_id_a8c8ddf44e", unique: true
+    t.index ["target_account_id"], name: "index_follow_recommendation_mutes_on_target_account_id"
+  end
+
   create_table "follow_recommendation_suppressions", force: :cascade do |t|
     t.bigint "account_id", null: false
     t.datetime "created_at", null: false
@@ -616,7 +625,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_06_183200) do
     t.string "thumbnail_file_name"
     t.string "thumbnail_content_type"
     t.bigint "thumbnail_file_size"
-    t.datetime "thumbnail_updated_at", precision: nil
+    t.datetime "thumbnail_updated_at"
     t.string "thumbnail_remote_url"
     t.index ["account_id", "status_id"], name: "index_media_attachments_on_account_id_and_status_id", order: { status_id: :desc }
     t.index ["scheduled_status_id"], name: "index_media_attachments_on_scheduled_status_id", where: "(scheduled_status_id IS NOT NULL)"
@@ -1209,6 +1218,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_06_183200) do
   add_foreign_key "favourites", "statuses", name: "fk_b0e856845e", on_delete: :cascade
   add_foreign_key "featured_tags", "accounts", on_delete: :cascade
   add_foreign_key "featured_tags", "tags", on_delete: :cascade
+  add_foreign_key "follow_recommendation_mutes", "accounts", column: "target_account_id", on_delete: :cascade
+  add_foreign_key "follow_recommendation_mutes", "accounts", on_delete: :cascade
   add_foreign_key "follow_recommendation_suppressions", "accounts", on_delete: :cascade
   add_foreign_key "follow_requests", "accounts", column: "target_account_id", name: "fk_9291ec025d", on_delete: :cascade
   add_foreign_key "follow_requests", "accounts", name: "fk_76d644b0e7", on_delete: :cascade
@@ -1279,55 +1290,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_06_183200) do
   add_foreign_key "web_settings", "users", name: "fk_11910667b2", on_delete: :cascade
   add_foreign_key "webauthn_credentials", "users"
 
-  create_view "account_summaries", materialized: true, sql_definition: <<-SQL
-      SELECT accounts.id AS account_id,
-      mode() WITHIN GROUP (ORDER BY t0.language) AS language,
-      mode() WITHIN GROUP (ORDER BY t0.sensitive) AS sensitive
-     FROM (accounts
-       CROSS JOIN LATERAL ( SELECT statuses.account_id,
-              statuses.language,
-              statuses.sensitive
-             FROM statuses
-            WHERE ((statuses.account_id = accounts.id) AND (statuses.deleted_at IS NULL) AND (statuses.reblog_of_id IS NULL))
-            ORDER BY statuses.id DESC
-           LIMIT 20) t0)
-    WHERE ((accounts.suspended_at IS NULL) AND (accounts.silenced_at IS NULL) AND (accounts.moved_to_account_id IS NULL) AND (accounts.discoverable = true) AND (accounts.locked = false))
-    GROUP BY accounts.id;
-  SQL
-  add_index "account_summaries", ["account_id"], name: "index_account_summaries_on_account_id", unique: true
-
-  create_view "global_follow_recommendations", materialized: true, sql_definition: <<-SQL
-      SELECT account_id,
-      sum(rank) AS rank,
-      array_agg(reason) AS reason
-     FROM ( SELECT account_summaries.account_id,
-              ((count(follows.id))::numeric / (1.0 + (count(follows.id))::numeric)) AS rank,
-              'most_followed'::text AS reason
-             FROM ((follows
-               JOIN account_summaries ON ((account_summaries.account_id = follows.target_account_id)))
-               JOIN users ON ((users.account_id = follows.account_id)))
-            WHERE ((users.current_sign_in_at >= (now() - 'P30D'::interval)) AND (account_summaries.sensitive = false) AND (NOT (EXISTS ( SELECT 1
-                     FROM follow_recommendation_suppressions
-                    WHERE (follow_recommendation_suppressions.account_id = follows.target_account_id)))))
-            GROUP BY account_summaries.account_id
-           HAVING (count(follows.id) >= 5)
-          UNION ALL
-           SELECT account_summaries.account_id,
-              (sum((status_stats.reblogs_count + status_stats.favourites_count)) / (1.0 + sum((status_stats.reblogs_count + status_stats.favourites_count)))) AS rank,
-              'most_interactions'::text AS reason
-             FROM ((status_stats
-               JOIN statuses ON ((statuses.id = status_stats.status_id)))
-               JOIN account_summaries ON ((account_summaries.account_id = statuses.account_id)))
-            WHERE ((statuses.id >= (((date_part('epoch'::text, (now() - 'P30D'::interval)) * (1000)::double precision))::bigint << 16)) AND (account_summaries.sensitive = false) AND (NOT (EXISTS ( SELECT 1
-                     FROM follow_recommendation_suppressions
-                    WHERE (follow_recommendation_suppressions.account_id = statuses.account_id)))))
-            GROUP BY account_summaries.account_id
-           HAVING (sum((status_stats.reblogs_count + status_stats.favourites_count)) >= (5)::numeric)) t0
-    GROUP BY account_id
-    ORDER BY (sum(rank)) DESC;
-  SQL
-  add_index "global_follow_recommendations", ["account_id"], name: "index_global_follow_recommendations_on_account_id", unique: true
-
   create_view "instances", materialized: true, sql_definition: <<-SQL
       WITH domain_counts(domain, accounts_count) AS (
            SELECT accounts.domain,
@@ -1375,4 +1337,54 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_06_183200) do
             WHERE (login_activities.success = true)) t0
     GROUP BY user_id, ip;
   SQL
+  create_view "account_summaries", materialized: true, sql_definition: <<-SQL
+      SELECT accounts.id AS account_id,
+      mode() WITHIN GROUP (ORDER BY t0.language) AS language,
+      mode() WITHIN GROUP (ORDER BY t0.sensitive) AS sensitive
+     FROM (accounts
+       CROSS JOIN LATERAL ( SELECT statuses.account_id,
+              statuses.language,
+              statuses.sensitive
+             FROM statuses
+            WHERE ((statuses.account_id = accounts.id) AND (statuses.deleted_at IS NULL) AND (statuses.reblog_of_id IS NULL))
+            ORDER BY statuses.id DESC
+           LIMIT 20) t0)
+    WHERE ((accounts.suspended_at IS NULL) AND (accounts.silenced_at IS NULL) AND (accounts.moved_to_account_id IS NULL) AND (accounts.discoverable = true) AND (accounts.locked = false))
+    GROUP BY accounts.id;
+  SQL
+  add_index "account_summaries", ["account_id", "language", "sensitive"], name: "idx_on_account_id_language_sensitive_250461e1eb"
+  add_index "account_summaries", ["account_id"], name: "index_account_summaries_on_account_id", unique: true
+
+  create_view "global_follow_recommendations", materialized: true, sql_definition: <<-SQL
+      SELECT account_id,
+      sum(rank) AS rank,
+      array_agg(reason) AS reason
+     FROM ( SELECT account_summaries.account_id,
+              ((count(follows.id))::numeric / (1.0 + (count(follows.id))::numeric)) AS rank,
+              'most_followed'::text AS reason
+             FROM ((follows
+               JOIN account_summaries ON ((account_summaries.account_id = follows.target_account_id)))
+               JOIN users ON ((users.account_id = follows.account_id)))
+            WHERE ((users.current_sign_in_at >= (now() - 'P30D'::interval)) AND (account_summaries.sensitive = false) AND (NOT (EXISTS ( SELECT 1
+                     FROM follow_recommendation_suppressions
+                    WHERE (follow_recommendation_suppressions.account_id = follows.target_account_id)))))
+            GROUP BY account_summaries.account_id
+           HAVING (count(follows.id) >= 5)
+          UNION ALL
+           SELECT account_summaries.account_id,
+              (sum((status_stats.reblogs_count + status_stats.favourites_count)) / (1.0 + sum((status_stats.reblogs_count + status_stats.favourites_count)))) AS rank,
+              'most_interactions'::text AS reason
+             FROM ((status_stats
+               JOIN statuses ON ((statuses.id = status_stats.status_id)))
+               JOIN account_summaries ON ((account_summaries.account_id = statuses.account_id)))
+            WHERE ((statuses.id >= (((date_part('epoch'::text, (now() - 'P30D'::interval)) * (1000)::double precision))::bigint << 16)) AND (account_summaries.sensitive = false) AND (NOT (EXISTS ( SELECT 1
+                     FROM follow_recommendation_suppressions
+                    WHERE (follow_recommendation_suppressions.account_id = statuses.account_id)))))
+            GROUP BY account_summaries.account_id
+           HAVING (sum((status_stats.reblogs_count + status_stats.favourites_count)) >= (5)::numeric)) t0
+    GROUP BY account_id
+    ORDER BY (sum(rank)) DESC;
+  SQL
+  add_index "global_follow_recommendations", ["account_id"], name: "index_global_follow_recommendations_on_account_id", unique: true
+
 end
