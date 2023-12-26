@@ -10,6 +10,7 @@ exports[`<Avatar /> Autoplay renders a animated avatar 1`] = `
       "backgroundImage": "url(/animated/alice.gif)",
       "backgroundSize": "100px 100px",
       "height": "100px",
+      "minWidth": "100px",
       "width": "100px",
     }
   }
@@ -26,6 +27,7 @@ exports[`<Avatar /> Still renders a still avatar 1`] = `
       "backgroundImage": "url(/static/alice.jpg)",
       "backgroundSize": "100px 100px",
       "height": "100px",
+      "minWidth": "100px",
       "width": "100px",
     }
   }
