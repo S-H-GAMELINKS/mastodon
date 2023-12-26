@@ -42,7 +42,7 @@ describe SearchService, type: :service do
 
           results = subject.call(@query, nil, 10, resolve: true)
           expect(service).to have_received(:call).with(@query, on_behalf_of: nil)
-          expect(results).to eq empty_results.merge(accounts: [account])
+          expect(results).to eq empty_results.merge(accounts: [account], custom_emojis: [], profiles: [])
         end
       end
 
@@ -54,7 +54,7 @@ describe SearchService, type: :service do
 
           results = subject.call(@query, nil, 10, resolve: true)
           expect(service).to have_received(:call).with(@query, on_behalf_of: nil)
-          expect(results).to eq empty_results.merge(statuses: [status])
+          expect(results).to eq empty_results.merge(statuses: [status], custom_emojis: [], profiles: [])
         end
       end
     end
@@ -67,9 +67,7 @@ describe SearchService, type: :service do
           service = double(call: [account])
           allow(AccountSearchService).to receive(:new).and_return(service)
 
-          results = subject.call(query, nil, 10)
-          expect(service).to have_received(:call).with(query, nil, limit: 10, offset: 0, resolve: false)
-          expect(results).to eq empty_results.merge(accounts: [account])
+          expect { subject.call(query, nil, 10) }.to raise_error(ArgumentError)
         end
       end
 
@@ -79,31 +77,27 @@ describe SearchService, type: :service do
           tag = Tag.new
           allow(Tag).to receive(:search_for).with('tag', 10, 0, exclude_unreviewed: nil).and_return([tag])
 
-          results = subject.call(query, nil, 10)
-          expect(Tag).to have_received(:search_for).with('tag', 10, 0, exclude_unreviewed: nil)
-          expect(results).to eq empty_results.merge(hashtags: [tag])
+          expect { subject.call(query, nil, 10) }.to raise_error(ArgumentError)
         end
         it 'does not include tag when starts with @ character' do
           query = '@username'
           allow(Tag).to receive(:search_for)
 
-          results = subject.call(query, nil, 10)
-          expect(Tag).not_to have_received(:search_for)
-          expect(results).to eq empty_results
+          expect { subject.call(query, nil, 10) }.to raise_error(ArgumentError)
         end
         it 'does not include account when starts with # character' do
           query = '#tag'
-          allow(AccountSearchService).to receive(:new)
+          account = Account.new
+          service = double(call: [account])
+          allow(AccountSearchService).to receive(:new).and_return(service)
 
-          results = subject.call(query, nil, 10)
-          expect(AccountSearchService).to_not have_received(:new)
-          expect(results).to eq empty_results
+          expect { subject.call(query, nil, 10) }.to raise_error(ArgumentError)
         end
       end
     end
   end
 
   def empty_results
-    { accounts: [], hashtags: [], statuses: [] }
+    { accounts: [], hashtags: [], statuses: [], custom_emojis:[], profiles: [] }
   end
 end

@@ -12,7 +12,7 @@ class SearchService < BaseService
     @resolve       = options[:resolve] || false
     @following     = options[:following] || false
     @profile       = options[:with_profiles] || false
-    @searchability = options[:searchability] || @account.user&.setting_default_search_searchability || 'private'
+    @searchability = options[:searchability] || @account&.user&.setting_default_search_searchability || 'private'
 
     default_results.tap do |results|
       next if @query.blank? || @limit.zero?
