@@ -519,7 +519,7 @@ GEM
     omniauth_openid_connect (0.6.1)
       omniauth (>= 1.9, < 3)
       openid_connect (~> 1.1)
-    onnxruntime (0.8.0-x86_64-linux)
+    onnxruntime (0.8.0)
       ffi
     openid_connect (1.4.2)
       activemodel
@@ -882,7 +882,7 @@ GEM
     zeitwerk (2.6.12)
 
 PLATFORMS
-  x86_64-linux
+  ruby
 
 DEPENDENCIES
   active_model_serializers (~> 0.10)
@@ -967,6 +967,7 @@ DEPENDENCIES
   premailer-rails
   private_address_check (~> 0.5)
   propshaft
+  psych
   public_suffix (~> 5.0)
   puma (~> 6.3)
   pundit (~> 2.3)
