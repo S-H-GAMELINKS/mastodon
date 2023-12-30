@@ -181,16 +181,16 @@ GEM
       elasticsearch (>= 7.12.0, < 7.14.0)
       elasticsearch-dsl
     chunky_png (1.4.0)
-    cld3 (3.4.2)
+    cld3 (3.4.4)
       ffi (>= 1.1.0, < 1.16.0)
     climate_control (0.2.0)
     coderay (1.1.3)
     color_diff (0.1)
     concurrent-ruby (1.1.9)
     connection_pool (2.2.5)
-    cose (1.0.0)
+    cose (1.3.0)
       cbor (~> 0.5.9)
-      openssl-signature_algorithm (~> 0.4.0)
+      openssl-signature_algorithm (~> 1.0)
     crack (0.4.5)
       rexml
     crass (1.0.6)
@@ -291,8 +291,8 @@ GEM
     fuubar (2.5.1)
       rspec-core (~> 3.0)
       ruby-progressbar (~> 1.4)
-    globalid (0.4.2)
-      activesupport (>= 4.2.0)
+    globalid (1.0.0)
+      activesupport (>= 5.0)
     hamlit (2.13.0)
       temple (>= 0.8.2)
       thor
@@ -392,14 +392,13 @@ GEM
       redis (>= 3.0.5)
     memory_profiler (1.0.0)
     method_source (1.0.0)
-    microformats (4.3.1)
-      json (~> 2.2)
-      nokogiri (~> 1.10)
+    microformats (4.5.0)
+      json
+      nokogiri
     mime-types (3.3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2022.0105)
     mini_mime (1.1.0)
-    mini_portile2 (2.6.1)
     minitest (5.14.4)
     msgpack (1.4.2)
     multi_json (1.15.0)
@@ -409,8 +408,7 @@ GEM
       net-ssh (>= 2.6.5, < 7.0.0)
     net-ssh (6.1.0)
     nio4r (2.5.7)
-    nokogiri (1.12.2)
-      mini_portile2 (~> 2.6.1)
+    nokogiri (1.12.2-x86_64-linux)
       racc (~> 1.4)
     nsa (0.2.8)
       activesupport (>= 4.2, < 7)
@@ -431,8 +429,9 @@ GEM
     omniauth-saml (1.10.3)
       omniauth (~> 1.3, >= 1.3.2)
       ruby-saml (~> 1.9)
-    openssl (2.2.0)
-    openssl-signature_algorithm (0.4.0)
+    openssl (3.1.0)
+    openssl-signature_algorithm (1.3.0)
+      openssl (> 2.0)
     order_as_specified (1.7)
       activerecord (>= 5.0.0)
     orm_adapter (0.5.0)
@@ -592,7 +591,6 @@ GEM
     scenic (1.5.4)
       activerecord (>= 4.0.0)
       railties (>= 4.0.0)
-    securecompare (1.0.0)
     semantic_range (3.0.0)
     sidekiq (6.2.1)
       connection_pool (>= 2.2.2)
@@ -648,9 +646,10 @@ GEM
     thwait (0.2.0)
       e2mmap
     tilt (2.0.10)
-    tpm-key_attestation (0.9.0)
+    tpm-key_attestation (0.12.0)
       bindata (~> 2.4)
-      openssl-signature_algorithm (~> 0.4.0)
+      openssl (> 2.0)
+      openssl-signature_algorithm (~> 1.0)
     tty-color (0.6.0)
     tty-cursor (0.7.1)
     tty-prompt (0.23.1)
@@ -675,16 +674,15 @@ GEM
     uniform_notifier (1.14.1)
     warden (1.2.9)
       rack (>= 2.0.9)
-    webauthn (3.0.0.alpha1)
+    webauthn (3.0.0)
       android_key_attestation (~> 0.3.0)
       awrence (~> 1.1)
       bindata (~> 2.4)
       cbor (~> 0.5.9)
-      cose (~> 1.0)
-      openssl (~> 2.0)
+      cose (~> 1.1)
+      openssl (>= 2.2)
       safety_net_attestation (~> 0.4.0)
-      securecompare (~> 1.0)
-      tpm-key_attestation (~> 0.9.0)
+      tpm-key_attestation (~> 0.12.0)
     webmock (3.13.0)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
@@ -707,7 +705,7 @@ GEM
     zeitwerk (2.5.4)
 
 PLATFORMS
-  ruby
+  x86_64-linux
 
 DEPENDENCIES
   active_model_serializers (~> 0.10)
@@ -838,3 +836,9 @@ DEPENDENCIES
   webpacker (~> 5.4)
   webpush (~> 0.3)
   xorcist (~> 1.1)
+
+RUBY VERSION
+   ruby 3.0.6p216
+
+BUNDLED WITH
+   2.4.22

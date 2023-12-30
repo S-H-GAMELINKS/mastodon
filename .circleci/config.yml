@@ -3,7 +3,7 @@ version: 2
 aliases:
   - &defaults
     docker:
-      - image: circleci/ruby:2.7-buster-node
+      - image: circleci/ruby:3.0-buster-node
         environment: &ruby_environment
           BUNDLE_JOBS: 3
           BUNDLE_RETRY: 3
@@ -118,22 +118,8 @@ jobs:
     <<: *defaults
     <<: *install_steps
 
-  install-ruby2.7:
-    <<: *defaults
-    <<: *install_ruby_dependencies
-
-  install-ruby2.6:
-    <<: *defaults
-    docker:
-      - image: circleci/ruby:2.6-buster-node
-        environment: *ruby_environment
-    <<: *install_ruby_dependencies
-
   install-ruby3.0:
     <<: *defaults
-    docker:
-      - image: circleci/ruby:3.0-buster-node
-        environment: *ruby_environment
     <<: *install_ruby_dependencies
 
   build:
@@ -153,7 +139,7 @@ jobs:
   test-migrations:
     <<: *defaults
     docker:
-      - image: circleci/ruby:2.7-buster-node
+      - image: circleci/ruby:3.0-buster-node
         environment: *ruby_environment
       - image: circleci/postgres:12.2
         environment:
@@ -169,30 +155,6 @@ jobs:
       - run:
           name: Run migrations
           command: ./bin/rails db:migrate
-
-  test-ruby2.7:
-    <<: *defaults
-    docker:
-      - image: circleci/ruby:2.7-buster-node
-        environment: *ruby_environment
-      - image: circleci/postgres:12.2
-        environment:
-          POSTGRES_USER: root
-          POSTGRES_HOST_AUTH_METHOD: trust
-      - image: circleci/redis:5-alpine
-    <<: *test_steps
-
-  test-ruby2.6:
-    <<: *defaults
-    docker:
-      - image: circleci/ruby:2.6-buster-node
-        environment: *ruby_environment
-      - image: circleci/postgres:12.2
-        environment:
-          POSTGRES_USER: root
-          POSTGRES_HOST_AUTH_METHOD: trust
-      - image: circleci/redis:5-alpine
-    <<: *test_steps
 
   test-ruby3.0:
     <<: *defaults
@@ -221,31 +183,15 @@ workflows:
   build-and-test:
     jobs:
       - install
-      - install-ruby2.7:
-          requires:
-            - install
-      - install-ruby2.6:
-          requires:
-            - install
-            - install-ruby2.7
       - install-ruby3.0:
           requires:
             - install
-            - install-ruby2.7
       - build:
           requires:
-            - install-ruby2.7
+            - install-ruby3.0
       - test-migrations:
           requires:
-            - install-ruby2.7
-      - test-ruby2.7:
-          requires:
-            - install-ruby2.7
-            - build
-      - test-ruby2.6:
-          requires:
-            - install-ruby2.6
-            - build
+            - install-ruby3.0
       - test-ruby3.0:
           requires:
             - install-ruby3.0

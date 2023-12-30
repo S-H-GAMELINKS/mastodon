@@ -75,7 +75,7 @@ class RemoveStatusService < BaseService
   end
 
   def remove_from_self
-    FeedManager.instance.unpush_from_home(@account, @status, @options)
+    FeedManager.instance.unpush_from_home(@account, @status, **@options)
   end
 
   def remove_from_followers
