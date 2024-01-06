@@ -78,6 +78,10 @@ module Attachmentable
     Paperclip.run('file', '-b --mime :file', file: attachment.queued_for_write[:original].path).split(/[:;\s]+/).first.chomp
   rescue Terrapin::CommandLineError
     ''
+  rescue => e
+    Rails.logger.warn "Error: #{e.class.name}"
+    Rails.logger.warn e.backtrace.join("\n").to_s
+    ''
   end
 
   def obfuscate_file_name(attachment)
