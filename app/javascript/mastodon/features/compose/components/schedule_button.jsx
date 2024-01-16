@@ -3,7 +3,7 @@ import { PureComponent } from 'react';
 
 import { defineMessages, injectIntl } from 'react-intl';
 
-import { ReactComponent as CalendarIcon } from '@/material-icons/400-24px/calendar_add_on.svg?react';
+import CalendarIcon from '@/material-icons/400-24px/calendar_add_on.svg?react';
 
 import { IconButton } from '../../../components/icon_button';
 
