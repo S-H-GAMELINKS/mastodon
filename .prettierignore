@@ -82,3 +82,5 @@ public/gallery/static/css/*.css
 
 # Ignore Twitetr theme json
 app/javascript/styles/twitter/package.json
+
+!lint-staged.config.js

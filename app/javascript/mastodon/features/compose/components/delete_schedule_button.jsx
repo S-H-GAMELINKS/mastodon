@@ -3,7 +3,7 @@ import { PureComponent } from 'react';
 
 import { defineMessages, injectIntl } from 'react-intl';
 
-import { ReactComponent as TrachIcon } from '@material-symbols/svg-600/outlined/delete.svg';
+import TrachIcon from '@/material-icons/400-24px/delete.svg?react';
 
 import { IconButton } from '../../../components/icon_button';
 
