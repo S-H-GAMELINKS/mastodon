@@ -227,3 +227,4 @@ gem 'nsfw-rb', github: 'S-H-GAMELINKS/nsfw-rb', ref: 'f8114814dfd4200641a11f24df
 
 gem 'strscan', '3.0.6'
 gem 'psych'
+gem 'abbrev'

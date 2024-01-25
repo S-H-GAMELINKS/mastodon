@@ -30,6 +30,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    abbrev (0.1.2)
     actioncable (7.1.3)
       actionpack (= 7.1.3)
       activesupport (= 7.1.3)
@@ -872,6 +873,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  abbrev
   active_model_serializers (~> 0.10)
   addressable (~> 2.8)
   annotate (~> 3.2)
