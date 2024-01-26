@@ -283,7 +283,7 @@ class ComposeForm extends ImmutablePureComponent {
 
             <AutosuggestTextarea
               ref={this.textareaRef}
-              placeholder={intl.formatMessage(messages.placeholder)}
+              placeholder={messagePlaceholder}
               disabled={disabled}
               value={this.props.text}
               onChange={this.handleChange}
