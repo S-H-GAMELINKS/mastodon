@@ -13,7 +13,7 @@ describe('custom theme change test', () => {
     cy.visit('/publish');
 
     // 公開範囲を選択
-    cy.get('.privacy-dropdown__value-icon').click();
+    cy.get(':nth-child(1) > .dropdown-button').click();
 
     // 公開範囲をチェック
     cy.contains('ポートフォリオ');
@@ -26,14 +26,14 @@ describe('custom theme change test', () => {
     cy.visit('/publish');
 
     // 公開範囲を選択
-    cy.get('.privacy-dropdown__value-icon').click();
+    cy.get(':nth-child(1) > .dropdown-button').click();
 
     // 公開範囲「ポートフォリオ」を選択
     cy.get('[data-index="portfolio"]').click();
 
     // 公開範囲「ポートフォリオ」を選択した際の表示をチェック
     cy.contains('公開範囲が「ポートフォリオ」になっています。');
-    cy.contains('どんな作品を投稿する？');
+    cy.get('textarea[placeholder="どんな作品を投稿する？"]');
   });
 
   // 投稿の公開範囲「ポートフォリオ」で投稿できる
@@ -42,18 +42,18 @@ describe('custom theme change test', () => {
     cy.visit('/publish');
 
     // 公開範囲を選択
-    cy.get('.privacy-dropdown__value-icon').click();
+    cy.get(':nth-child(1) > .dropdown-button').click();
 
     // 公開範囲「ポートフォリオ」を選択
     cy.get('[data-index="portfolio"]').click();
 
     // 公開範囲「ポートフォリオ」を選択した際の表示をチェック
     cy.contains('公開範囲が「ポートフォリオ」になっています。');
-    cy.contains('どんな作品を投稿する？');
+    cy.get('textarea[placeholder="どんな作品を投稿する？"]');
 
     // 公開範囲「ポートフォリオ」で投稿
     cy.get('.autosuggest-textarea__textarea').type('HALOやりたい');
-    cy.get('button.button.button--block').click();
+    cy.get('.compose-form__submit > .button').click();
 
     // ローカルタイムラインへ遷移し、リロード
     cy.visit('/deck/public/local');
@@ -74,14 +74,14 @@ describe('custom theme change test', () => {
     cy.visit('/publish');
 
     // 公開範囲を選択
-    cy.get('.privacy-dropdown__value-icon').click();
+    cy.get(':nth-child(1) > .dropdown-button').click();
 
     // 公開範囲「にゃーん」を選択
     cy.get('[data-index="nyan"]').click();
 
     // 公開範囲「にゃーん」を選択した際の表示をチェック
     cy.contains('公開範囲が「にゃーん」になっています。');
-    cy.contains('どんなことを吐き出したい？');
+    cy.get('textarea[placeholder="どんなことを吐き出したい？"]');
   });
 
   // 投稿の公開範囲「にゃーん」で投稿できる
@@ -90,18 +90,18 @@ describe('custom theme change test', () => {
     cy.visit('/publish');
 
     // 公開範囲を選択
-    cy.get('.privacy-dropdown__value-icon').click();
+    cy.get(':nth-child(1) > .dropdown-button').click();
 
     // 公開範囲「にゃーん」を選択
     cy.get('[data-index="nyan"]').click();
 
     // 公開範囲「にゃーん」を選択した際の表示をチェック
     cy.contains('公開範囲が「にゃーん」になっています。');
-    cy.contains('どんなことを吐き出したい？');
+    cy.get('textarea[placeholder="どんなことを吐き出したい？"]');
 
     // 公開範囲「にゃーん」で投稿
     cy.get('.autosuggest-textarea__textarea').type('HALOやりたい');
-    cy.get('button.button.button--block').click();
+    cy.get('.compose-form__submit > .button').click();
 
     // ローカルタイムラインへ遷移し、リロード
     cy.visit('/deck/public/local');
@@ -119,14 +119,14 @@ describe('custom theme change test', () => {
     cy.visit('/publish');
 
     // 公開範囲を選択
-    cy.get('.privacy-dropdown__value-icon').click();
+    cy.get(':nth-child(1) > .dropdown-button').click();
 
     // 公開範囲「にゃーん」を選択
     cy.get('[data-index="nyan"]').click();
 
     // 公開範囲「にゃーん」を選択した際の表示をチェック
     cy.contains('公開範囲が「にゃーん」になっています。');
-    cy.contains('どんなことを吐き出したい？');
+    cy.get('textarea[placeholder="どんなことを吐き出したい？"]');
 
     // CWを設定
     cy.get('[title="本文は隠されていません"]').click();
@@ -134,7 +134,7 @@ describe('custom theme change test', () => {
 
     // 公開範囲「にゃーん」で投稿
     cy.get('.autosuggest-textarea__textarea').type('HALOやりたい');
-    cy.get('button.button.button--block').click();
+    cy.get('.compose-form__submit > .button').click();
 
     // ローカルタイムラインへ遷移し、リロード
     cy.visit('/deck/public/local');

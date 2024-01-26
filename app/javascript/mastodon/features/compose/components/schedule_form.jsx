@@ -31,9 +31,8 @@ class ShceduleForm extends ImmutablePureComponent {
 
     return (
       <div className='compose-form__poll-wrapper'>
-        <div className='poll__footer'>
-          {/* eslint-disable-next-line jsx-a11y/no-onchange */}
-          <select value={schedule} onChange={this.handleSelectDuration}>
+        <div className='compose-form__poll__footer'>
+          <select className='compose-form__poll__select__value' value={schedule} onChange={this.handleSelectDuration}>
             <option value={300}>{intl.formatMessage(messages.minutes, { number: 5 })}</option>
             <option value={1800}>{intl.formatMessage(messages.minutes, { number: 30 })}</option>
             <option value={3600}>{intl.formatMessage(messages.hours, { number: 1 })}</option>
