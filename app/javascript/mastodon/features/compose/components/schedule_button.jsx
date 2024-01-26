@@ -39,14 +39,14 @@ class ScheduleButton extends PureComponent {
     }
 
     return (
-      <div className='compose-form__schedule-button'>
+      <div>
         <IconButton
           icon='calendar'
           iconComponent={CalendarIcon}
           title={intl.formatMessage(active ? messages.remove_schedule : messages.add_schedule)}
           disabled={disabled}
           onClick={this.handleClick}
-          className={`compose-form__schedule-button-icon ${active ? 'active' : ''}`}
+          className={`dropdown-button ${active ? 'active' : ''}`}
           size={18}
           inverted
           style={iconStyle}
