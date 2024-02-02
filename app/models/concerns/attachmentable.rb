@@ -38,59 +38,28 @@ module Attachmentable
   private
 
   def set_file_content_type(attachment) # rubocop:disable Naming/AccessorMethodName
-    Sidekiq.logger.info('###################################################')
-    Sidekiq.logger.info('Started Attachmentable.set_file_content_type')
-    Sidekiq.logger.info('###################################################')
     return if attachment.blank? || attachment.queued_for_write[:original].blank? || !INCORRECT_CONTENT_TYPES.include?(attachment.instance_read(:content_type))
 
     attachment.instance_write :content_type, calculated_content_type(attachment)
-
-    Sidekiq.logger.info('###################################################')
-    Sidekiq.logger.info('Finished Attachmentable.set_file_content_type')
-    Sidekiq.logger.info('###################################################')
   end
 
   def set_file_extension(attachment) # rubocop:disable Naming/AccessorMethodName
-    Sidekiq.logger.info('###################################################')
-    Sidekiq.logger.info('Started Attachmentable.set_file_extension')
-    Sidekiq.logger.info('###################################################')
-
     return if attachment.blank?
 
     attachment.instance_write :file_name, [Paperclip::Interpolations.basename(attachment, :original), appropriate_extension(attachment)].compact_blank!.join('.')
-
-    Sidekiq.logger.info('###################################################')
-    Sidekiq.logger.info('Finished Attachmentable.set_file_extension')
-    Sidekiq.logger.info('###################################################')
   end
 
   def check_image_dimension(attachment)
-    Sidekiq.logger.info('###################################################')
-    Sidekiq.logger.info('Started Attachmentable.check_image_dimension')
-    Sidekiq.logger.info('###################################################')
-
     return if attachment.blank? || !/image.*/.match?(attachment.content_type) || attachment.queued_for_write[:original].blank?
 
     width, height = FastImage.size(attachment.queued_for_write[:original].path)
     return unless width.present? && height.present?
 
     if attachment.content_type == 'image/gif' && width * height > GIF_MATRIX_LIMIT
-      Sidekiq.logger.info('###################################################')
-      Sidekiq.logger.info('raise Mastodon::DimensionsValidationError in Attachmentable.check_image_dimension')
-      Sidekiq.logger.info('###################################################')
-
       raise Mastodon::DimensionsValidationError, "#{width}x#{height} GIF files are not supported"
     elsif width * height > MAX_MATRIX_LIMIT
-
-      Sidekiq.logger.info('###################################################')
-      Sidekiq.logger.info('raise Mastodon::DimensionsValidationError in Attachmentable.check_image_dimension')
-      Sidekiq.logger.info('###################################################')
       raise Mastodon::DimensionsValidationError, "#{width}x#{height} images are not supported"
     end
-
-    Sidekiq.logger.info('###################################################')
-    Sidekiq.logger.info('Finished Attachmentable.check_image_dimension')
-    Sidekiq.logger.info('###################################################')
   end
 
   def appropriate_extension(attachment)
@@ -106,32 +75,18 @@ module Attachmentable
   end
 
   def calculated_content_type(attachment)
-    Sidekiq.logger.info('###################################################')
-    Sidekiq.logger.info('Started Attachmentable.calculated_content_type')
-    Sidekiq.logger.info('###################################################')
-
-    result = Paperclip.run('file', '-b --mime :file', file: attachment.queued_for_write[:original].path).split(/[:;\s]+/).first.chomp
-
-    Sidekiq.logger.info('###################################################')
-    Sidekiq.logger.info('Finished Attachmentable.calculated_content_type')
-    Sidekiq.logger.info('###################################################')
-
-    result
+    Paperclip.run('file', '-b --mime :file', file: attachment.queued_for_write[:original].path).split(/[:;\s]+/).first.chomp
   rescue Terrapin::CommandLineError
+    ''
+  rescue => e
+    Rails.logger.warn "Error: #{e.class.name}"
+    Rails.logger.warn e.backtrace.join("\n").to_s
     ''
   end
 
   def obfuscate_file_name(attachment)
-    Sidekiq.logger.info('###################################################')
-    Sidekiq.logger.info('Started Attachmentable.obfuscate_file_name')
-    Sidekiq.logger.info('###################################################')
-
     return if attachment.blank? || attachment.queued_for_write[:original].blank? || attachment.options[:preserve_files]
 
     attachment.instance_write :file_name, SecureRandom.hex(8) + File.extname(attachment.instance_read(:file_name))
-
-    Sidekiq.logger.info('###################################################')
-    Sidekiq.logger.info('Finished Attachmentable.obfuscate_file_name')
-    Sidekiq.logger.info('###################################################')
   end
 end
