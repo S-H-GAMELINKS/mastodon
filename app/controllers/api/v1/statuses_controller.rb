@@ -87,13 +87,9 @@ class Api::V1::StatusesController < Api::BaseController
     # 削除までの時間があり、予約投稿でない場合は自動で投稿が削除されるジョブを発行
     ScheduledDeleteStatusWorker.perform_at(status_params[:expires_at], @status.id) if status_params[:expires_at] && status_params[:scheduled_at].blank?
 
-    render json: @status, serializer: @status.is_a?(ScheduledStatus) ? REST::ScheduledStatusSerializer : REST::StatusSerializer
+    render json: @status, serializer: serializer_for_status
   rescue PostStatusUpdatedWithVisibilityService::UnexpectedMentionsError, PostStatusService::UnexpectedMentionsError => e
-    unexpected_accounts = ActiveModel::Serializer::CollectionSerializer.new(
-      e.accounts,
-      serializer: REST::AccountSerializer
-    )
-    render json: { error: e.message, unexpected_accounts: unexpected_accounts }, status: 422
+    render json: unexpected_accounts_error_json(e), status: 422
   end
 
   def update
@@ -170,6 +166,21 @@ class Api::V1::StatusesController < Api::BaseController
         options: [],
       ]
     )
+  end
+
+  def serializer_for_status
+    @status.is_a?(ScheduledStatus) ? REST::ScheduledStatusSerializer : REST::StatusSerializer
+  end
+
+  def unexpected_accounts_error_json(error)
+    {
+      error: error.message,
+      unexpected_accounts: serialized_accounts(error.accounts),
+    }
+  end
+
+  def serialized_accounts(accounts)
+    ActiveModel::Serializer::CollectionSerializer.new(accounts, serializer: REST::AccountSerializer)
   end
 
   def pagination_params(core_params)
