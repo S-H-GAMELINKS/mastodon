@@ -8,6 +8,13 @@ GIT
       jwt (~> 2.0)
 
 GIT
+  remote: https://github.com/S-H-GAMELINKS/mastodon-spam-activity-rejecter.git
+  revision: e42e6d02191554426f976854b8de2997aa5b457c
+  branch: master
+  specs:
+    mastodon-spam-activity-rejecter (0.1.0)
+
+GIT
   remote: https://github.com/S-H-GAMELINKS/nsfw-rb.git
   revision: f8114814dfd4200641a11f24dfbba0f32fe4fcdb
   ref: f8114814dfd4200641a11f24dfbba0f32fe4fcdb
@@ -823,7 +830,7 @@ GEM
       unf_ext
     unf_ext (0.0.8.2)
     unicode-display_width (2.5.0)
-    uri (0.12.2)
+    uri (0.13.0)
     validate_email (0.1.6)
       activemodel (>= 3.0)
       mail (>= 2.2.5)
@@ -928,6 +935,7 @@ DEPENDENCIES
   link_header (~> 0.0)
   lograge (~> 0.12)
   mario-redis-lock (~> 1.2)
+  mastodon-spam-activity-rejecter!
   md-paperclip-azure (~> 2.2)
   memory_profiler
   mime-types (~> 3.5.0)
