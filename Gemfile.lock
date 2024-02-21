@@ -16,6 +16,11 @@ GIT
       mini_magick (~> 4.11)
       onnxruntime (~> 0.6)
 
+PATH
+  remote: ../mastodon-spam-activity-rejecter
+  specs:
+    mastodon-spam-activity-rejecter (0.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -823,7 +828,7 @@ GEM
       unf_ext
     unf_ext (0.0.8.2)
     unicode-display_width (2.5.0)
-    uri (0.12.2)
+    uri (0.13.0)
     validate_email (0.1.6)
       activemodel (>= 3.0)
       mail (>= 2.2.5)
@@ -928,6 +933,7 @@ DEPENDENCIES
   link_header (~> 0.0)
   lograge (~> 0.12)
   mario-redis-lock (~> 1.2)
+  mastodon-spam-activity-rejecter!
   md-paperclip-azure (~> 2.2)
   memory_profiler
   mime-types (~> 3.5.0)
