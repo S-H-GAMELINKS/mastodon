@@ -54,6 +54,13 @@
 # Ignore Docker option files
 docker-compose.override.yml
 
+# Ignore public
+/public/assets
+/public/emoji
+/public/packs
+/public/packs-test
+/public/system
+
 # Ignore emoji map file
 /app/javascript/mastodon/features/emoji/emoji_map.json
 
@@ -83,4 +90,5 @@ public/gallery/static/css/*.css
 # Ignore Twitetr theme json
 app/javascript/styles/twitter/package.json
 
+# Process a few selected JS files
 !lint-staged.config.js
