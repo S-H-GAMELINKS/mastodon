@@ -5,6 +5,9 @@ inputs:
     description: Only install production dependencies
     default: 'false'
 
+env:
+  YARN_ENABLE_IMMUTABLE_INSTALLS: false
+
 runs:
   using: 'composite'
   steps:
