@@ -100,6 +100,9 @@ jobs:
       - name: Load User data
         run: bundle exec rails r db/seeds/e2e/user.rb
 
+      - name: Accept User
+        run: bin/tootctl accounts approve S_H_
+
       - name: Cypress run with env
         run: bundle exec rake cypress:run
         env:
@@ -107,3 +110,6 @@ jobs:
           CYPRESS_password: MasterChief117
           CYPRESS_RAILS_HOST: localhost
           CYPRESS_RAILS_PORT: 3000
+          CYPRESS_RAILS_CYPRESS_OPTS: --record
+          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}

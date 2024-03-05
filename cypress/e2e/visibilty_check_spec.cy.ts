@@ -56,7 +56,7 @@ describe('custom theme change test', () => {
     cy.get('.compose-form__submit > .button').click();
 
     // ローカルタイムラインへ遷移し、リロード
-    cy.visit('/deck/public/local');
+    cy.visit('/home');
     cy.reload();
 
     // タイムライン上に投稿した内容が表示されている
@@ -104,7 +104,7 @@ describe('custom theme change test', () => {
     cy.get('.compose-form__submit > .button').click();
 
     // ローカルタイムラインへ遷移し、リロード
-    cy.visit('/deck/public/local');
+    cy.visit('/home');
     cy.reload();
 
     // タイムライン上に投稿した内容が表示されている
@@ -137,7 +137,7 @@ describe('custom theme change test', () => {
     cy.get('.compose-form__submit > .button').click();
 
     // ローカルタイムラインへ遷移し、リロード
-    cy.visit('/deck/public/local');
+    cy.visit('/home');
     cy.reload();
 
     // タイムライン上に投稿した内容が表示されている
