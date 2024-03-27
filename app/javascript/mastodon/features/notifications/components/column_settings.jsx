@@ -54,6 +54,7 @@ export default class ColumnSettings extends PureComponent {
   render () {
     const { settings, pushSettings, onChange, onClear, alertsEnabled, browserSupport, browserPermission, onRequestNotificationPermission, notificationPolicy } = this.props;
 
+    const filterAdvancedStr = <FormattedMessage id='notifications.column_settings.filter_bar.advanced' defaultMessage='Display all categories' />;
     const unreadMarkersShowStr = <FormattedMessage id='notifications.column_settings.unread_notifications.highlight' defaultMessage='Highlight unread notifications' />;
     const alertStr = <FormattedMessage id='notifications.column_settings.alert' defaultMessage='Desktop notifications' />;
     const showStr = <FormattedMessage id='notifications.column_settings.show' defaultMessage='Show in column' />;
@@ -68,15 +69,17 @@ export default class ColumnSettings extends PureComponent {
           <span className='warning-hint'><FormattedMessage id='notifications.permission_denied' defaultMessage='Desktop notifications are unavailable due to previously denied browser permissions request' /></span>
         )}
 
-        {alertsEnabled && browserSupport && browserPermission === 'default' && (
-          <span className='warning-hint'>
-            <FormattedMessage id='notifications.permission_required' defaultMessage='Desktop notifications are unavailable because the required permission has not been granted.' /> <GrantPermissionButton onClick={onRequestNotificationPermission} />
-          </span>
-        )}
-
         <section>
           <ClearColumnButton onClick={onClear} />
         </section>
+
+        {alertsEnabled && browserSupport && browserPermission === 'default' && (
+          <section>
+            <span className='warning-hint'>
+              <FormattedMessage id='notifications.permission_required' defaultMessage='Desktop notifications are unavailable because the required permission has not been granted.' /> <GrantPermissionButton onClick={onRequestNotificationPermission} />
+            </span>
+          </section>
+        )}
 
         <section>
           <h3><FormattedMessage id='notifications.policy.title' defaultMessage='Filter out notifications from…' /></h3>
@@ -111,6 +114,16 @@ export default class ColumnSettings extends PureComponent {
 
           <div className='column-settings__row'>
             <SettingToggle id='unread-notification-markers' prefix='notifications' settings={settings} settingPath={['showUnread']} onChange={onChange} label={unreadMarkersShowStr} />
+          </div>
+        </section>
+
+        <section role='group' aria-labelledby='notifications-filter-bar'>
+          <h3 id='notifications-filter-bar'>
+            <FormattedMessage id='notifications.column_settings.filter_bar.category' defaultMessage='Quick filter bar' />
+          </h3>
+
+          <div className='column-settings__row'>
+            <SettingToggle id='advanced-filter-bar' prefix='notifications' settings={settings} settingPath={['quickFilter', 'advanced']} onChange={onChange} label={filterAdvancedStr} />
           </div>
         </section>
 

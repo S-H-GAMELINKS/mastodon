@@ -114,7 +114,7 @@ module ApplicationHelper
   end
 
   def check_icon
-    content_tag(:svg, tag.path('fill-rule': 'evenodd', 'clip-rule': 'evenodd', d: 'M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z'), xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 20 20', fill: 'currentColor')
+    inline_svg_tag 'check.svg'
   end
 
   def visibility_icon(status)
@@ -158,6 +158,15 @@ module ApplicationHelper
     output << (current_account&.user&.setting_reduce_motion ? 'reduce-motion' : 'no-reduce-motion')
     output << 'rtl' if locale_direction == 'rtl'
     output.compact_blank.join(' ')
+  end
+
+  def theme_style_tags(theme)
+    if theme == 'system'
+      concat stylesheet_pack_tag('mastodon-light', media: 'not all and (prefers-color-scheme: dark)', crossorigin: 'anonymous')
+      concat stylesheet_pack_tag('default', media: '(prefers-color-scheme: dark)', crossorigin: 'anonymous')
+    else
+      stylesheet_pack_tag theme, media: 'all', crossorigin: 'anonymous'
+    end
   end
 
   def cdn_host

@@ -585,6 +585,9 @@ th:
       actions_description_html: ตัดสินใจว่าการกระทำใดที่จะใช้เพื่อแก้ปัญหารายงานนี้ หากคุณใช้การกระทำที่เป็นการลงโทษต่อบัญชีที่รายงาน จะส่งการแจ้งเตือนอีเมลถึงเขา ยกเว้นเมื่อมีการเลือกหมวดหมู่ <strong>สแปม</strong>
       actions_description_remote_html: ตัดสินใจว่าการกระทำใดที่จะใช้เพื่อแก้ปัญหารายงานนี้ นี่จะมีผลต่อวิธีที่เซิร์ฟเวอร์ <strong>ของคุณ</strong> สื่อสารกับบัญชีระยะไกลนี้และจัดการเนื้อหาของบัญชีเท่านั้น
       add_to_report: เพิ่มข้อมูลเพิ่มเติมไปยังรายงาน
+      already_suspended_badges:
+        local: ระงับในเซิร์ฟเวอร์นี้อยู่แล้ว
+        remote: ระงับในเซิร์ฟเวอร์ของเขาอยู่แล้ว
       are_you_sure: คุณแน่ใจหรือไม่?
       assign_to_self: มอบหมายให้ฉัน
       assigned: ผู้กลั่นกรองที่ได้รับมอบหมาย
@@ -1626,14 +1629,25 @@ th:
     import: การนำเข้า
     import_and_export: การนำเข้าและการส่งออก
     migrate: การโยกย้ายบัญชี
-    notifications: การแจ้งเตือน
+    notifications: การแจ้งเตือนทางอีเมล
     preferences: การกำหนดลักษณะ
     profile: โปรไฟล์สาธารณะ
     relationships: การติดตามและผู้ติดตาม
+    severed_relationships: ความสัมพันธ์ที่ตัดขาด
     statuses_cleanup: การลบโพสต์แบบอัตโนมัติ
     strikes: การดำเนินการการกลั่นกรอง
     two_factor_authentication: การรับรองความถูกต้องด้วยสองปัจจัย
     webauthn_authentication: กุญแจความปลอดภัย
+  severed_relationships:
+    download: ดาวน์โหลด (%{count})
+    event_type:
+      account_suspension: การระงับบัญชี (%{target_name})
+      domain_block: การระงับเซิร์ฟเวอร์ (%{target_name})
+      user_domain_block: คุณได้ปิดกั้น %{target_name}
+    lost_followers: ผู้ติดตามที่หายไป
+    lost_follows: การติดตามที่หายไป
+    purged: มีการล้างข้อมูลเกี่ยวกับเซิร์ฟเวอร์นี้โดยผู้ดูแลของเซิร์ฟเวอร์ของคุณ
+    type: เหตุการณ์
   statuses:
     attached:
       audio:
