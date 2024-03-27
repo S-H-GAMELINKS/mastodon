@@ -597,6 +597,9 @@ gl:
       actions_description_html: Decide que acción tomar respecto desta denuncia. Se tomas accións punitivas contra a conta denunciada, enviaráselles un email coa notificación, excepto se está seleccionada a categoría <strong>Spam</strong>.
       actions_description_remote_html: Decide a acción a tomar para resolver a denuncia. Isto só lle afecta ao xeito en que o <strong>teu</strong> servidor se comunica con esta conta remota e xestiona o seu contido.
       add_to_report: Engadir máis á denuncia
+      already_suspended_badges:
+        local: Xa está suspendida neste servidor
+        remote: Xa está suspendida no seu servidor
       are_you_sure: Tes certeza?
       assign_to_self: Asignarme
       assigned: Moderador asignado
@@ -1652,14 +1655,26 @@ gl:
     import: Importar
     import_and_export: Importar e exportar
     migrate: Migrar conta
-    notifications: Notificacións
+    notifications: Notificacións por correo
     preferences: Preferencias
     profile: Perfil
     relationships: Seguindo e seguidoras
+    severed_relationships: Relacións cortadas
     statuses_cleanup: Borrado automático da publicación
     strikes: Avisos da moderación
     two_factor_authentication: Validar Dobre Factor
     webauthn_authentication: Chaves de seguridade
+  severed_relationships:
+    download: Descargar (%{count})
+    event_type:
+      account_suspension: Suspensión da conta (%{target_name})
+      domain_block: Suspensión do servidor (%{target_name})
+      user_domain_block: Bloqueaches a %{target_name}
+    lost_followers: Seguidoras perdidas
+    lost_follows: Seguimentos perdidos
+    preamble: Pode acontecer que perdas seguidoras e seguimentos ao bloquear un dominio ou cando a Moderación do teu servidor decide suspender un servidor remoto. Se acontecese isto, podes descargar unha lista coas relacións cortadas para revisala e, se queres, importala noutro servidor.
+    purged: A administración do teu servidor purgou a información acerca deste servidor.
+    type: Evento
   statuses:
     attached:
       audio:
@@ -1865,6 +1880,9 @@ gl:
       follows_subtitle: Sigue estas contas populares
       follows_title: A quen seguir
       follows_view_more: Ver máis persoas para seguir
+      hashtags_recent_count:
+        one: "%{people} persoa nos últimos 2 días"
+        other: "%{people} persoas nos últimos 2 días"
       hashtags_subtitle: Descubre os temas en voga nos últimos 2 días
       hashtags_title: Cancelos en voga
       hashtags_view_more: Ver máis cancelos en voga
