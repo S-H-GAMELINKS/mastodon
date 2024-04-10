@@ -1735,6 +1735,7 @@ ja:
     mizuki: ミヅキ
     orochi: オロチ
     twitter: Twitter
+    system: 自動 (システムのテーマを使用)
   time:
     formats:
       default: "%Y年%m月%d日 %H:%M"
