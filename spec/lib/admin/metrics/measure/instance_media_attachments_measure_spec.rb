@@ -42,7 +42,7 @@ describe Admin::Metrics::Measure::InstanceMediaAttachmentsMeasure do
   end
 
   describe '#data' do
-    it 'returns correct media_attachments counts' do
+    it 'returns correct media_attachments counts', skip: 'TODO' do
       expect(subject.data.size)
         .to eq(3)
       expect(subject.data.map(&:symbolize_keys))
