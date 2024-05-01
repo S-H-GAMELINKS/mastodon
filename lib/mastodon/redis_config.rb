@@ -28,7 +28,6 @@ setup_redis_env_url(:sidekiq, false)
 
 namespace         = ENV.fetch('REDIS_NAMESPACE', nil)
 cache_namespace   = namespace ? "#{namespace}_cache" : 'cache'
-sidekiq_namespace = namespace
 
 REDIS_CACHE_PARAMS = {
   driver: :hiredis,
@@ -37,7 +36,7 @@ REDIS_CACHE_PARAMS = {
   namespace: "#{cache_namespace}:7.1",
   connect_timeout: 5,
   pool: {
-    size: Sidekiq.server? ? Sidekiq[:concurrency] : Integer(ENV['MAX_THREADS'] || 5),
+    size: Sidekiq.server? ? Sidekiq.default_configuration[:concurrency] : Integer(ENV['MAX_THREADS'] || 5),
     timeout: 5,
   },
 }.freeze
@@ -45,7 +44,6 @@ REDIS_CACHE_PARAMS = {
 REDIS_SIDEKIQ_PARAMS = {
   driver: :hiredis,
   url: ENV['SIDEKIQ_REDIS_URL'],
-  namespace: sidekiq_namespace,
 }.freeze
 
 ENV['REDIS_NAMESPACE'] = "mastodon_test#{ENV['TEST_ENV_NUMBER']}" if Rails.env.test?
