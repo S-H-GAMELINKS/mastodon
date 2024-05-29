@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 
 import PublicIcon from '@/material-icons/400-24px/public.svg?react';
 import { DismissableBanner } from 'mastodon/components/dismissable_banner';
+import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { domain } from 'mastodon/initial_state';
 
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
@@ -42,17 +43,13 @@ const mapStateToProps = (state, { columnId }) => {
 };
 
 class PublicTimeline extends PureComponent {
-
-  static contextTypes = {
-    identity: PropTypes.object,
-  };
-
   static defaultProps = {
     onlyMedia: false,
     onlyLocal: false,
   };
 
   static propTypes = {
+    identity: identityContextPropShape,
     dispatch: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     columnId: PropTypes.string,
@@ -94,7 +91,7 @@ class PublicTimeline extends PureComponent {
   }
 
   componentDidUpdate (prevProps) {
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     if (prevProps.onlyMedia !== this.props.onlyMedia || prevProps.onlyRemote !== this.props.onlyRemote, prevProps.onlyLocal !== this.props.onlyLocal) {
       const { dispatch, onlyMedia, onlyRemote, onlyLocal } = this.props;
@@ -168,4 +165,4 @@ class PublicTimeline extends PureComponent {
 
 }
 
-export default connect(mapStateToProps)(injectIntl(PublicTimeline));
+export default connect(mapStateToProps)(withIdentity(injectIntl(PublicTimeline)));
