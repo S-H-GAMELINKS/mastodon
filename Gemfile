@@ -14,7 +14,7 @@ gem 'irb', '~> 1.8'
 
 gem 'dotenv'
 gem 'haml-rails', '~>2.0'
-gem 'pg', '~> 1.5'
+gem 'pg', github: 'ged/ruby-pg', ref: 'd072b21852865ecb84e6345df11d68eed50702bb'
 gem 'pghero'
 
 gem 'aws-sdk-s3', '~> 1.123', require: false
