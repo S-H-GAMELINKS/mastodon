@@ -1081,6 +1081,7 @@ DEPENDENCIES
   redcarpet (~> 3.6)
   redis (~> 4.5)
   redis-namespace (~> 1.10)
+  rexml (~> 3.2)
   rqrcode (~> 2.2)
   rspec-github (~> 2.4)
   rspec-rails (~> 6.0)
