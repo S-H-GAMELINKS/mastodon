@@ -39,3 +39,6 @@ require:
   - rubocop-rspec_rails
   - rubocop-performance
   - rubocop-capybara
+
+Metrics/AbcSize:
+  Max: 100
