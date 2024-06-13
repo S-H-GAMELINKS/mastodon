@@ -10,7 +10,10 @@ class ScopeTransformer < Parslet::Transform
     def initialize(scope)
       @namespace = scope[:namespace]&.to_s
       @access    = scope[:access] ? [scope[:access].to_s] : DEFAULT_ACCESS.dup
-      @term      = scope[:term].try(:to_s) || DEFAULT_TERM
+      @term      = scope[:term]&.to_s || DEFAULT_TERM
+
+      # # override for profile scope which is read only
+      @access = %w(read) if @term == 'profile'
     end
 
     def key
