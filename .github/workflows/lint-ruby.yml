@@ -27,18 +27,33 @@ jobs:
   lint:
     runs-on: ubuntu-latest
 
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby-version:
+          - '3.1'
+          - '3.2'
+          - '3.3'
+          - 'head'
+
+    env:
+      BUNDLE_ONLY: development
+
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
 
       - name: Set up Ruby environment
         uses: ./.github/actions/setup-ruby
+        with:
+          ruby-version: ${{ matrix.ruby-version}}
+          additional-system-dependencies: ffmpeg libpam-dev
 
       - name: Set-up RuboCop Problem Matcher
         uses: r7kamura/rubocop-problem-matchers-action@v1
 
       - name: Run rubocop
-        run: bundle exec rubocop
+        run: bin/rubocop
 
       - name: Run brakeman
         if: always() # Run both checks, even if the first failed
