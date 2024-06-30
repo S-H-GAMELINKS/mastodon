@@ -9,9 +9,6 @@ gem 'rack', '~> 2.2.7'
 gem 'rails', '~> 7.1.1'
 gem 'thor', '~> 1.2'
 
-# For why irb is in the Gemfile, see: https://ruby.social/@st0012/111444685161478182
-gem 'irb', '~> 1.8'
-
 gem 'dotenv'
 gem 'haml-rails', '~>2.0'
 gem 'pg', github: 'ged/ruby-pg', ref: 'd072b21852865ecb84e6345df11d68eed50702bb'
@@ -61,6 +58,7 @@ gem 'httplog', '~> 1.7.0'
 gem 'i18n'
 gem 'idn-ruby', require: 'idn'
 gem 'inline_svg'
+gem 'irb', '~> 1.8'
 gem 'kaminari', '~> 1.2'
 gem 'link_header', '~> 0.0'
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
@@ -71,7 +69,7 @@ gem 'oj', '~> 3.15'
 gem 'ox', '~> 2.14'
 gem 'parslet'
 gem 'premailer-rails'
-gem 'public_suffix', '~> 5.0'
+gem 'public_suffix', '~> 6.0'
 gem 'pundit', '~> 2.3'
 gem 'rack-attack', '~> 6.6'
 gem 'rack-cors', '~> 2.0', require: 'rack/cors'
@@ -102,12 +100,10 @@ gem 'json-ld'
 gem 'json-ld-preloaded', '~> 3.2'
 gem 'rdf-normalize', '~> 0.5'
 
-gem 'private_address_check', '~> 0.5'
-
 gem 'opentelemetry-api', '~> 1.2.5'
 
 group :opentelemetry do
-  gem 'opentelemetry-exporter-otlp', '~> 0.27.0', require: false
+  gem 'opentelemetry-exporter-otlp', '~> 0.28.0', require: false
   gem 'opentelemetry-instrumentation-active_job', '~> 0.7.1', require: false
   gem 'opentelemetry-instrumentation-active_model_serializers', '~> 0.20.1', require: false
   gem 'opentelemetry-instrumentation-concurrent_ruby', '~> 0.21.2', require: false
@@ -125,6 +121,9 @@ group :opentelemetry do
 end
 
 group :test do
+  # Enable usage of all available CPUs/cores during spec runs
+  gem 'flatware-rspec'
+
   # Adds RSpec Error/Warning annotations to GitHub PRs on the Files tab
   gem 'rspec-github', '~> 2.4', require: false
 
