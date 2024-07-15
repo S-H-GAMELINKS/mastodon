@@ -28,6 +28,7 @@ GIT
   revision: d072b21852865ecb84e6345df11d68eed50702bb
   ref: d072b21852865ecb84e6345df11d68eed50702bb
   specs:
+    pg (1.5.6)
 
 GEM
   remote: https://rubygems.org/
@@ -624,7 +625,6 @@ GEM
     parslet (2.0.0)
     pastel (0.8.0)
       tty-color (~> 0.5)
-    pg (1.5.6)
     pghero (3.6.0)
       activerecord (>= 6.1)
     premailer (1.23.0)
