@@ -87,8 +87,8 @@ public/gallery/asset-manifest.json
 public/creatodon-folio/static/css/*.css
 public/gallery/static/css/*.css
 
-# Ignore Twitetr theme json
-app/javascript/styles/twitter/package.json
+# Ignore Twitetr theme
+app/javascript/styles/twitter/*
 
 # Process a few selected JS files
 !lint-staged.config.js

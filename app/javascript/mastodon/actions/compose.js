@@ -4,6 +4,7 @@ import axios from 'axios';
 import { throttle } from 'lodash';
 
 import api from 'mastodon/api';
+import { browserHistory } from 'mastodon/components/router';
 import { search as emojiSearch } from 'mastodon/features/emoji/emoji_mart_search_light';
 import { tagHistory } from 'mastodon/settings';
 
@@ -99,9 +100,9 @@ const messages = defineMessages({
   saved: { id: 'compose.saved.body', defaultMessage: 'Post saved.' },
 });
 
-export const ensureComposeIsVisible = (getState, routerHistory) => {
+export const ensureComposeIsVisible = (getState) => {
   if (!getState().getIn(['compose', 'mounted'])) {
-    routerHistory.push('/publish');
+    browserHistory.push('/publish');
   }
 };
 
@@ -121,14 +122,14 @@ export function changeCompose(text) {
   };
 }
 
-export function replyCompose(status, routerHistory) {
+export function replyCompose(status) {
   return (dispatch, getState) => {
     dispatch({
       type: COMPOSE_REPLY,
       status: status,
     });
 
-    ensureComposeIsVisible(getState, routerHistory);
+    ensureComposeIsVisible(getState);
   };
 }
 
@@ -144,38 +145,38 @@ export function resetCompose() {
   };
 }
 
-export const focusCompose = (routerHistory, defaultText) => (dispatch, getState) => {
+export const focusCompose = (defaultText) => (dispatch, getState) => {
   dispatch({
     type: COMPOSE_FOCUS,
     defaultText,
   });
 
-  ensureComposeIsVisible(getState, routerHistory);
+  ensureComposeIsVisible(getState);
 };
 
-export function mentionCompose(account, routerHistory) {
+export function mentionCompose(account) {
   return (dispatch, getState) => {
     dispatch({
       type: COMPOSE_MENTION,
       account: account,
     });
 
-    ensureComposeIsVisible(getState, routerHistory);
+    ensureComposeIsVisible(getState);
   };
 }
 
-export function directCompose(account, routerHistory) {
+export function directCompose(account) {
   return (dispatch, getState) => {
     dispatch({
       type: COMPOSE_DIRECT,
       account: account,
     });
 
-    ensureComposeIsVisible(getState, routerHistory);
+    ensureComposeIsVisible(getState);
   };
 }
 
-export function submitCompose(routerHistory) {
+export function submitCompose() {
   return function (dispatch, getState) {
     const status   = getState().getIn(['compose', 'text'], '');
     const media    = getState().getIn(['compose', 'media_attachments']);
@@ -244,8 +245,8 @@ export function submitCompose(routerHistory) {
         dispatch(submitScheduledStatusSuccess({ ...response.data }));
         return;
       }
-      if (routerHistory && (routerHistory.location.pathname === '/publish' || routerHistory.location.pathname === '/statuses/new') && window.history.state) {
-        routerHistory.goBack();
+      if ((browserHistory.location.pathname === '/publish' || browserHistory.location.pathname === '/statuses/new') && window.history.state) {
+        browserHistory.goBack();
       }
 
       dispatch(insertIntoTagHistory(response.data.tags, status));
@@ -279,7 +280,7 @@ export function submitCompose(routerHistory) {
         message: statusId === null ? messages.published : messages.saved,
         action: messages.open,
         dismissAfter: 10000,
-        onClick: () => routerHistory.push(`/@${response.data.account.username}/${response.data.id}`),
+        onClick: () => browserHistory.push(`/@${response.data.account.username}/${response.data.id}`),
       }));
     }).catch(function (error) {
       dispatch(submitComposeFail(error));
