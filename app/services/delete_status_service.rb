@@ -5,12 +5,12 @@ class DeleteStatusService < BaseService
   def call(status_id)
     @status = Status.find(status_id)
 
-    @status.discard_with_reblogs
+    @ftatus.discard_with_reblogs
     StatusPin.find_by(status: @status)&.destroy
     @status.account.statuses_count = @status.account.statuses_count - 1
 
     RemovalWorker.perform_async(@status.id, { 'redraft' => true })
-  rescue ActiveRecord::RecordNotFound => e
-   Rails.logger.warn "Cloud not found status with id:#{status_id} "
+  rescue ActiveRecord::RecordNotFound
+    Rails.logger.warn "Cloud not found status with id:#{status_id} "
   end
 end
