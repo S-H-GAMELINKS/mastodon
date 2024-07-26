@@ -6,7 +6,7 @@ class ScheduledDeleteStatusWorker
 
   sidekiq_options queue: 'pull', lock: :until_executed
 
-  def perform(account_id)
-    DeleteStatusService.new.call(account_id)
+  def perform(status_id)
+    DeleteStatusService.new.call(status_id)
   end
 end

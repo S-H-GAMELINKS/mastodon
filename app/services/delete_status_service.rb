@@ -10,5 +10,7 @@ class DeleteStatusService < BaseService
     @status.account.statuses_count = @status.account.statuses_count - 1
 
     RemovalWorker.perform_async(@status.id, { 'redraft' => true })
+  rescue ActiveRecord::RecordNotFound
+    Rails.logger.warn "Cloud not found status with id:#{status_id} "
   end
 end
