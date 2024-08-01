@@ -13,4 +13,8 @@
 !.eslintrc.js
 cypress.config.ts
 cypress/**
+app/javascript/mastodon/store/typed_functions.ts
+app/javascript/mastodon/actions/notification_groups.ts
+app/javascript/mastodon/actions/directory.ts
+app/javascript/mastodon/actions/interactions_typed.ts
 
