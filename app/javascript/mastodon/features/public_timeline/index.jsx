@@ -31,21 +31,18 @@ const mapStateToProps = (state, { columnId }) => {
   const index = columns.findIndex(c => c.get('uuid') === uuid);
   const onlyMedia = (columnId && index >= 0) ? columns.get(index).getIn(['params', 'other', 'onlyMedia']) : state.getIn(['settings', 'public', 'other', 'onlyMedia']);
   const onlyRemote = (columnId && index >= 0) ? columns.get(index).getIn(['params', 'other', 'onlyRemote']) : state.getIn(['settings', 'public', 'other', 'onlyRemote']);
-  const onlyLocal = (columnId && index >= 0) ? columns.get(index).getIn(['params', 'other', 'onlyLocal']) : state.getIn(['settings', 'public', 'other', 'onlyLocal']);
   const timelineState = state.getIn(['timelines', `public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`]);
 
   return {
     hasUnread: !!timelineState && timelineState.get('unread') > 0,
     onlyMedia,
     onlyRemote,
-    onlyLocal,
   };
 };
 
 class PublicTimeline extends PureComponent {
   static defaultProps = {
     onlyMedia: false,
-    onlyLocal: false,
   };
 
   static propTypes = {
@@ -57,16 +54,15 @@ class PublicTimeline extends PureComponent {
     hasUnread: PropTypes.bool,
     onlyMedia: PropTypes.bool,
     onlyRemote: PropTypes.bool,
-    onlyLocal: PropTypes.bool,
   };
 
   handlePin = () => {
-    const { columnId, dispatch, onlyMedia, onlyRemote, onlyLocal } = this.props;
+    const { columnId, dispatch, onlyMedia, onlyRemote } = this.props;
 
     if (columnId) {
       dispatch(removeColumn(columnId));
     } else {
-      dispatch(addColumn(onlyRemote ? 'REMOTE' : 'PUBLIC', { other: { onlyMedia, onlyRemote, onlyLocal } }));
+      dispatch(addColumn(onlyRemote ? 'REMOTE' : 'PUBLIC', { other: { onlyMedia, onlyRemote } }));
     }
   };
 
@@ -80,30 +76,30 @@ class PublicTimeline extends PureComponent {
   };
 
   componentDidMount () {
-    const { dispatch, onlyMedia, onlyRemote, onlyLocal } = this.props;
+    const { dispatch, onlyMedia, onlyRemote } = this.props;
     const { signedIn } = this.context.identity;
 
-    dispatch(expandPublicTimeline({ onlyMedia, onlyRemote, onlyLocal }));
+    dispatch(expandPublicTimeline({ onlyMedia, onlyRemote }));
 
     if (signedIn) {
-      this.disconnect = dispatch(connectPublicStream({ onlyMedia, onlyRemote, onlyLocal }));
+      this.disconnect = dispatch(connectPublicStream({ onlyMedia, onlyRemote }));
     }
   }
 
   componentDidUpdate (prevProps) {
     const { signedIn } = this.props.identity;
 
-    if (prevProps.onlyMedia !== this.props.onlyMedia || prevProps.onlyRemote !== this.props.onlyRemote, prevProps.onlyLocal !== this.props.onlyLocal) {
-      const { dispatch, onlyMedia, onlyRemote, onlyLocal } = this.props;
+    if (prevProps.onlyMedia !== this.props.onlyMedia || prevProps.onlyRemote !== this.props.onlyRemote) {
+      const { dispatch, onlyMedia, onlyRemote } = this.props;
 
       if (this.disconnect) {
         this.disconnect();
       }
 
-      dispatch(expandPublicTimeline({ onlyMedia, onlyRemote, onlyLocal }));
+      dispatch(expandPublicTimeline({ onlyMedia, onlyRemote }));
 
       if (signedIn) {
-        this.disconnect = dispatch(connectPublicStream({ onlyMedia, onlyRemote, onlyLocal }));
+        this.disconnect = dispatch(connectPublicStream({ onlyMedia, onlyRemote }));
       }
     }
   }
@@ -120,13 +116,13 @@ class PublicTimeline extends PureComponent {
   };
 
   handleLoadMore = maxId => {
-    const { dispatch, onlyMedia, onlyRemote, onlyLocal } = this.props;
+    const { dispatch, onlyMedia, onlyRemote } = this.props;
 
-    dispatch(expandPublicTimeline({ maxId, onlyMedia, onlyRemote, onlyLocal }));
+    dispatch(expandPublicTimeline({ maxId, onlyMedia, onlyRemote }));
   };
 
   render () {
-    const { intl, columnId, hasUnread, multiColumn, onlyMedia, onlyRemote, onlyLocal } = this.props;
+    const { intl, columnId, hasUnread, multiColumn, onlyMedia, onlyRemote } = this.props;
     const pinned = !!columnId;
 
     return (
@@ -147,7 +143,7 @@ class PublicTimeline extends PureComponent {
 
         <StatusListContainer
           prepend={<DismissableBanner id='public_timeline'><FormattedMessage id='dismissable_banner.public_timeline' defaultMessage='These are the most recent public posts from people on the social web that people on {domain} follow.' values={{ domain }} /></DismissableBanner>}
-          timelineId={`public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}${onlyLocal ? ':local' : ''}`}
+          timelineId={`public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`}
           onLoadMore={this.handleLoadMore}
           trackScroll={!pinned}
           scrollKey={`public_timeline-${columnId}`}

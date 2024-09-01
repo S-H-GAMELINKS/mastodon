@@ -35,6 +35,17 @@ RSpec.describe 'Notifications' do
       end
     end
 
+    context 'with grouped_types parameter' do
+      let(:params) { { grouped_types: %w(reblog) } }
+
+      it 'returns expected notifications count' do
+        subject
+
+        expect(response).to have_http_status(200)
+        expect(body_as_json[:count]).to eq 5
+      end
+    end
+
     context 'with a read marker' do
       before do
         id = user.account.notifications.browserable.order(id: :desc).offset(2).first.id
@@ -97,8 +108,7 @@ RSpec.describe 'Notifications' do
     before do
       first_status = PostStatusService.new.call(user.account, text: 'Test')
       ReblogService.new.call(bob.account, first_status)
-      mentioning_status = PostStatusService.new.call(bob.account, text: 'Hello @alice')
-      mentioning_status.mentions.first
+      PostStatusService.new.call(bob.account, text: 'Hello @alice')
       FavouriteService.new.call(bob.account, first_status)
       FavouriteService.new.call(tom.account, first_status)
       FollowService.new.call(bob.account, user.account)
@@ -112,6 +122,38 @@ RSpec.describe 'Notifications' do
 
         expect(response).to have_http_status(200)
         expect(body_json_types).to include('reblog', 'mention', 'favourite', 'follow')
+      end
+    end
+
+    context 'with grouped_types param' do
+      let(:params) { { grouped_types: %w(reblog) } }
+
+      it 'returns everything, but does not group favourites' do
+        subject
+
+        expect(response).to have_http_status(200)
+        expect(body_as_json[:notification_groups]).to contain_exactly(
+          a_hash_including(
+            type: 'reblog',
+            sample_account_ids: [bob.account_id.to_s]
+          ),
+          a_hash_including(
+            type: 'mention',
+            sample_account_ids: [bob.account_id.to_s]
+          ),
+          a_hash_including(
+            type: 'favourite',
+            sample_account_ids: [bob.account_id.to_s]
+          ),
+          a_hash_including(
+            type: 'favourite',
+            sample_account_ids: [tom.account_id.to_s]
+          ),
+          a_hash_including(
+            type: 'follow',
+            sample_account_ids: [bob.account_id.to_s]
+          )
+        )
       end
     end
 
@@ -141,18 +183,37 @@ RSpec.describe 'Notifications' do
 
     context 'with limit param' do
       let(:params) { { limit: 3 } }
+      let(:notifications) { user.account.notifications.reorder(id: :desc) }
 
       it 'returns the requested number of notifications paginated', :aggregate_failures do
         subject
-
-        notifications = user.account.notifications
 
         expect(body_as_json[:notification_groups].size)
           .to eq(params[:limit])
 
         expect(response)
           .to include_pagination_headers(
-            prev: api_v2_alpha_notifications_url(limit: params[:limit], min_id: notifications.last.id),
+            prev: api_v2_alpha_notifications_url(limit: params[:limit], min_id: notifications.first.id),
+            # TODO: one downside of the current approach is that we return the first ID matching the group,
+            # not the last that has been skipped, so pagination is very likely to give overlap
+            next: api_v2_alpha_notifications_url(limit: params[:limit], max_id: notifications[3].id)
+          )
+      end
+    end
+
+    context 'with since_id param' do
+      let(:params) { { since_id: notifications[2].id } }
+      let(:notifications) { user.account.notifications.reorder(id: :desc) }
+
+      it 'returns the requested number of notifications paginated', :aggregate_failures do
+        subject
+
+        expect(body_as_json[:notification_groups].size)
+          .to eq(2)
+
+        expect(response)
+          .to include_pagination_headers(
+            prev: api_v2_alpha_notifications_url(limit: params[:limit], min_id: notifications.first.id),
             # TODO: one downside of the current approach is that we return the first ID matching the group,
             # not the last that has been skipped, so pagination is very likely to give overlap
             next: api_v2_alpha_notifications_url(limit: params[:limit], max_id: notifications[1].id)

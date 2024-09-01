@@ -64,7 +64,6 @@ gem 'link_header', '~> 0.0'
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
 gem 'mime-types', '~> 3.5.0', require: 'mime/types/columnar'
 gem 'nokogiri', '~> 1.15'
-gem 'nsa'
 gem 'oj', '~> 3.15'
 gem 'ox', '~> 2.14'
 gem 'parslet'
@@ -100,10 +99,10 @@ gem 'json-ld'
 gem 'json-ld-preloaded', '~> 3.2'
 gem 'rdf-normalize', '~> 0.5'
 
-gem 'opentelemetry-api', '~> 1.3.0'
+gem 'opentelemetry-api', '~> 1.4.0'
 
 group :opentelemetry do
-  gem 'opentelemetry-exporter-otlp', '~> 0.28.0', require: false
+  gem 'opentelemetry-exporter-otlp', '~> 0.29.0', require: false
   gem 'opentelemetry-instrumentation-active_job', '~> 0.7.1', require: false
   gem 'opentelemetry-instrumentation-active_model_serializers', '~> 0.20.1', require: false
   gem 'opentelemetry-instrumentation-concurrent_ruby', '~> 0.21.2', require: false
