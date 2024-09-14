@@ -4,7 +4,7 @@
 
 require 'rails_helper'
 
-describe DeleteStatusService do
+RSpec.describe DeleteStatusService do
   describe '#call' do
     context 'with status' do
       let!(:status) { Fabricate(:status) }
