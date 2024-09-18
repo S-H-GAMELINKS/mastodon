@@ -44,7 +44,6 @@
  * @property {string} version
  * @property {boolean} resized_custom_emoji
  * @property {string} sso_redirect
- * @property {boolean} force_grouped_notifications
  */
 
 /**
@@ -122,7 +121,6 @@ export const resizedCustomEmoji = getMeta('resized_custom_emoji');
 // @ts-expect-error
 export const statusPageUrl = getMeta('status_page_url');
 export const sso_redirect = getMeta('sso_redirect');
-export const forceGroupedNotifications = getMeta('force_grouped_notifications');
 
 /**
  * @returns {string | undefined}
