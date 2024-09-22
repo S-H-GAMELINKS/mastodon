@@ -48,12 +48,7 @@ jobs:
           - 5432:5432
 
       redis:
-        image: redis:7-alpine
-        options: >-
-          --health-cmd "redis-cli ping"
-          --health-interval 10ms
-          --health-timeout 3s
-          --health-retries 50
+        image: valkey/valkey:8-alpine
         ports:
           - 6379:6379
 
