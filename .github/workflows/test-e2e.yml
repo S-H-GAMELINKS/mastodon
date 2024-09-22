@@ -33,7 +33,7 @@ jobs:
           - 5432:5432
 
       redis:
-        image: valkey:8-alpine
+        image: valkey/valkey:8-alpine
         ports:
           - 6379:6379
 
