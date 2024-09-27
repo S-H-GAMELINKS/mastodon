@@ -16,6 +16,7 @@ import { Button } from '../../../components/button';
 import DeleteScheduleButtonContainer from '../containers/delete_schedule_button_container'; // 投稿自動削除の日時表示切替のボタン
 import DeleteScheduleFormContainer from '../containers/delete_schedule_form_container'; // 投稿自動削除の日時選択のフォーム
 import EmojiPickerDropdown from '../containers/emoji_picker_dropdown_container';
+import FreeHandCanvas from '../containers/free_hand_canvas_form_container'; // 手書きCanvas
 import LanguageDropdown from '../containers/language_dropdown_container';
 import PollButtonContainer from '../containers/poll_button_container';
 import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
@@ -25,6 +26,7 @@ import SpoilerButtonContainer from '../containers/spoiler_button_container';
 import UploadButtonContainer from '../containers/upload_button_container';
 import WarningContainer from '../containers/warning_container';
 import { countableText } from '../util/counter';
+
 
 import { CharacterCounter } from './character_counter';
 import { EditIndicator } from './edit_indicator';
@@ -81,6 +83,7 @@ class ComposeForm extends ImmutablePureComponent {
 
   state = {
     highlighted: false,
+    showCanvas: false,
   };
 
   constructor(props) {
@@ -228,6 +231,10 @@ class ComposeForm extends ImmutablePureComponent {
     }
   };
 
+  handleShowCanvas = () => {
+    this.setState({ showCanvas: !this.state.showCanvas });
+  };
+
   handleEmojiPick = (data) => {
     const { text }     = this.props;
     const position     = this.textareaRef.current.selectionStart;
@@ -238,10 +245,19 @@ class ComposeForm extends ImmutablePureComponent {
 
   render () {
     const { intl, onPaste, autoFocus, withoutNavigation, maxChars } = this.props;
-    const { highlighted } = this.state;
+    const { highlighted, showCanvas } = this.state;
     const disabled = this.props.isSubmitting;
 
     const messagePlaceholder = this.setPlaceholder(intl, this.props.privacy);
+
+    if (showCanvas) {
+      return (
+        <div className='compose-form'>
+          <button onClick={this.handleShowCanvas} className='button'>絵を描くのをやめる</button>
+          <FreeHandCanvas />
+        </div>
+      );
+    }
 
     return (
       <form className='compose-form' onSubmit={this.handleSubmit}>
@@ -327,6 +343,9 @@ class ComposeForm extends ImmutablePureComponent {
               </div>
             </div>
           </div>
+        </div>
+        <div>
+          <button onClick={this.handleShowCanvas} className='button'>絵を描く</button>
         </div>
       </form>
     );
