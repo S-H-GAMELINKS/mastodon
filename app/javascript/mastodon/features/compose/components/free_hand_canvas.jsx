@@ -29,6 +29,8 @@ class FreeHandCanvas extends ImmutablePureComponent {
 
   state = {
     eraseMode: false,
+    strokeColor: "#000000",
+    strokeWidth: 5,
   };
 
   constructor (props, context) {
@@ -59,14 +61,24 @@ class FreeHandCanvas extends ImmutablePureComponent {
     this.canvas.current?.clearCanvas();
   };
 
+  handleStrokeColor = (e) => {
+    this.setState({strokeColor: e.target.value});
+  };
+
+  handleStrokeWidth = (e) => {
+    this.setState({strokeWidth: e.target.value});
+  };
+
   handleSaveCanvas = () => {
     this.canvas.current.exportImage("png")
       .then((data) => {
         this.props.onCanvasSave([data]);
+        confirm("画像を保存しました!");
       })
       .catch((e) => {
-        console.log(e);
+        confirm(e);
       });
+    this.canvas.current?.resetCanvas();
   };
 
   render() {
@@ -123,9 +135,13 @@ class FreeHandCanvas extends ImmutablePureComponent {
             inverted
             style={iconStyle}
           />
+          <input type='color' value={this.state.strokeColor} onChange={this.handleStrokeColor} style={{marginLeft: "0.5rem"}} />
+          <span className='simple_form'>
+            <input type='number' min='1' max='20' step='1' value={this.state.strokeWidth} onChange={this.handleStrokeWidth} style={{marginLeft: "0.5rem", width: "2.75rem", display: "inline"}} />
+          </span>
         </div>
-        <ReactSketchCanvas ref={this.canvas} strokeWidth={5} height='25rem' strokeColor='black' />
-        <div style={{marginTop: "1.5rem"}}>
+        <ReactSketchCanvas ref={this.canvas} strokeWidth={this.state.strokeWidth} height='25rem' strokeColor={this.state.strokeColor} />
+        <div style={{marginTop: "0.5rem"}}>
           <button className='button' onClick={this.handleSaveCanvas}>
             投稿に添付する
           </button>
