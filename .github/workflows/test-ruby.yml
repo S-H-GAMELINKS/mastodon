@@ -11,6 +11,7 @@ on:
 env:
   BUNDLE_CLEAN: true
   BUNDLE_FROZEN: true
+  RUBYOPT: --parser=parse.y
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -120,6 +121,7 @@ jobs:
       CAS_ENABLED: true
       BUNDLE_WITH: 'pam_authentication test'
       GITHUB_RSPEC: ${{ matrix.ruby-version == '.ruby-version' && github.event.pull_request && 'true' }}
+      RUBYOPT: --parser=parse.y
 
     strategy:
       fail-fast: false
@@ -223,6 +225,7 @@ jobs:
       BUNDLE_WITH: 'pam_authentication test'
       GITHUB_RSPEC: ${{ matrix.ruby-version == '.ruby-version' && github.event.pull_request && 'true' }}
       MASTODON_USE_LIBVIPS: true
+      RUBYOPT: --parser=parse.y
 
     strategy:
       fail-fast: false
@@ -303,6 +306,7 @@ jobs:
       BUNDLE_WITH: test
       LOCAL_DOMAIN: localhost:3000
       LOCAL_HTTPS: false
+      RUBYOPT: --parser=parse.y
 
     strategy:
       fail-fast: false
@@ -398,6 +402,7 @@ jobs:
       ES_ENABLED: true
       ES_HOST: localhost
       ES_PORT: 9200
+      RUBYOPT: --parser=parse.y
 
     strategy:
       fail-fast: false
