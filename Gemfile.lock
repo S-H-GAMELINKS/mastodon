@@ -9,8 +9,8 @@ GIT
 
 GIT
   remote: https://github.com/S-H-GAMELINKS/mastodon-spam-activity-rejecter.git
-  revision: 5cae8eaea4ae386cfcb0818ae6b4155a529ba024
-  ref: 5cae8eaea4ae386cfcb0818ae6b4155a529ba024
+  revision: 61fad45a5677c1a9b21ca727c9ff2b96bc3e4a67
+  ref: 61fad45a5677c1a9b21ca727c9ff2b96bc3e4a67
   specs:
     mastodon-spam-activity-rejecter (0.1.0)
 
