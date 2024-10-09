@@ -246,7 +246,7 @@ gem 'mail', '~> 2.8'
 # Auto NSFW masking
 gem 'nsfw-rb', github: 'S-H-GAMELINKS/nsfw-rb', ref: 'f8114814dfd4200641a11f24dfbba0f32fe4fcdb'
 
-gem 'mastodon-spam-activity-rejecter', github: 'S-H-GAMELINKS/mastodon-spam-activity-rejecter', ref: '5cae8eaea4ae386cfcb0818ae6b4155a529ba024'
+gem 'mastodon-spam-activity-rejecter', github: 'S-H-GAMELINKS/mastodon-spam-activity-rejecter', ref: '61fad45a5677c1a9b21ca727c9ff2b96bc3e4a67'
 
 gem 'abbrev'
 gem 'psych'
