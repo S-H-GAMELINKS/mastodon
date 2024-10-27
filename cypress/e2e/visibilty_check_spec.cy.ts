@@ -146,6 +146,6 @@ describe('custom theme change test', () => {
     ).contains('にゃーん');
     cy.get(
       '[aria-posinset="1"] > [tabindex="-1"] > .status__wrapper > .status',
-    ).contains('承知の上で表示');
+    ).contains('Show more');
   });
 });
