@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '>= 3.1.0'
+ruby '>= 3.2.0'
 
 gem 'propshaft'
 gem 'puma', '~> 6.3'
@@ -16,10 +16,10 @@ gem 'pghero'
 
 gem 'aws-sdk-s3', '~> 1.123', require: false
 gem 'blurhash', '~> 0.1'
-gem 'fog-core', '<= 2.5.0'
+gem 'fog-core', '<= 2.6.0'
 gem 'fog-openstack', '~> 1.0', require: false
+gem 'jd-paperclip-azure', '~> 3.0', require: false
 gem 'kt-paperclip', '~> 7.2'
-gem 'md-paperclip-azure', '~> 2.2', require: false
 gem 'ruby-vips', '~> 2.2', require: false
 
 gem 'active_model_serializers', '~> 0.10'
@@ -247,7 +247,7 @@ gem 'mail', '~> 2.8'
 # Auto NSFW masking
 gem 'nsfw-rb', github: 'S-H-GAMELINKS/nsfw-rb', ref: 'f8114814dfd4200641a11f24dfbba0f32fe4fcdb'
 
-gem 'mastodon-spam-activity-rejecter', github: 'S-H-GAMELINKS/mastodon-spam-activity-rejecter', ref: '61fad45a5677c1a9b21ca727c9ff2b96bc3e4a67'
+gem 'mastodon-spam-activity-rejecter', github: 'S-H-GAMELINKS/mastodon-spam-activity-rejecter', ref: '0bbeae7ecbbb9c5bd806ef76aef001a82e972c1d'
 
 gem 'abbrev'
 gem 'psych'
