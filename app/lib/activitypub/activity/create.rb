@@ -2,7 +2,7 @@
 
 class ActivityPub::Activity::Create < ActivityPub::Activity
   include FormattingHelper
-  prepend Mastodon::Spam::Activity::Rejecter
+  prepend Mastodon::Spam::Activity::Rejecter if ENV['SPAM_ACTIVITY_REJECTER_ENABLED']
 
   def perform
     @account.schedule_refresh_if_stale!
