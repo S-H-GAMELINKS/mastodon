@@ -163,7 +163,7 @@ group :test do
   gem 'webmock', '~> 3.18'
 
   # for E2E test framework Cypress
-  gem 'cypress-rails'
+  gem 'cypress-rails', github: 'azyzio/cypress-rails', branch: 'rails-72-compat'
 
   # for parallel test for GitHub Actions
   gem 'parallel_tests'
