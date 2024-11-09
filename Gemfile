@@ -6,7 +6,7 @@ ruby '>= 3.2.0'
 gem 'propshaft'
 gem 'puma', '~> 6.3'
 gem 'rack', '~> 2.2.7'
-gem 'rails', '~> 7.1.1'
+gem 'rails', '~> 7.2.0'
 gem 'thor', '~> 1.2'
 
 gem 'dotenv'
@@ -47,6 +47,7 @@ gem 'color_diff', '~> 0.1'
 gem 'csv', '~> 3.2'
 gem 'discard', '~> 1.2'
 gem 'doorkeeper', '~> 5.6'
+gem 'faraday-httpclient'
 gem 'fast_blank', '~> 1.0'
 gem 'fastimage'
 gem 'hiredis', '~> 0.6'
@@ -63,6 +64,7 @@ gem 'kaminari', '~> 1.2'
 gem 'link_header', '~> 0.0'
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
 gem 'mime-types', '~> 3.6.0', require: 'mime/types/columnar'
+gem 'mutex_m'
 gem 'nokogiri', '~> 1.15'
 gem 'oj', '~> 3.15'
 gem 'ox', '~> 2.14'
@@ -161,7 +163,7 @@ group :test do
   gem 'webmock', '~> 3.18'
 
   # for E2E test framework Cypress
-  gem 'cypress-rails'
+  gem 'cypress-rails', github: 'azyzio/cypress-rails', branch: 'rails-72-compat'
 
   # for parallel test for GitHub Actions
   gem 'parallel_tests'
@@ -236,7 +238,7 @@ gem 'concurrent-ruby', require: false
 gem 'connection_pool', require: false
 gem 'xorcist', '~> 1.1'
 
-gem 'net-http', '~> 0.4.0'
+gem 'net-http', '~> 0.5.0'
 gem 'rubyzip', '~> 2.3'
 gem 'sassc'
 

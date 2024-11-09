@@ -34,6 +34,8 @@ Rails.application.configure do
   # Disable request forgery protection in test environment.
   config.action_controller.allow_forgery_protection = false
 
+  # Disable caching for Action Mailer templates even if Action Controller
+  # caching is enabled.
   config.action_mailer.perform_caching = false
 
   config.action_mailer.default_options = { from: 'notifications@localhost' }
@@ -42,6 +44,10 @@ Rails.application.configure do
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
+
+  # Unlike controllers, the mailer instance doesn't have any context about the
+  # incoming request so you'll need to provide the :host parameter yourself.
+  config.action_mailer.default_url_options = { host: 'www.example.com' }
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
@@ -60,7 +66,6 @@ Rails.application.configure do
   # Raise exceptions for disallowed deprecations.
   config.active_support.disallowed_deprecation = :raise
 
-  config.i18n.default_locale = :en
   config.i18n.fallbacks = true
 
   # Tell Active Support which deprecation messages to disallow.
