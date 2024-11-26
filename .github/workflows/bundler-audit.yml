@@ -45,4 +45,4 @@ jobs:
           additional-system-dependencies: ffmpeg libpam-dev
 
       - name: Run bundler-audit
-        run: bundle exec bundler-audit check --update
+        run: bin/bundler-audit check --update
