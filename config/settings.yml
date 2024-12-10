@@ -52,6 +52,7 @@ defaults: &defaults
   backups_retention_period: 7
   resized_custom_emoji: true
   captcha_enabled: false
+  allow_referer_origin: false
 
 development:
   <<: *defaults
