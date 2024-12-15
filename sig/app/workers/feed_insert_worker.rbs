@@ -13,7 +13,7 @@ class FeedInsertWorker
   private
   def check_and_insert: -> nil
   def feed_filtered?: -> nil
-  def notify?: -> false
+  def notify?: (Symbol filter_result) -> bool
   def perform_push: -> nil
   def perform_unpush: -> nil
   def perform_notify: -> untyped
