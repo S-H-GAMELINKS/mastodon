@@ -335,10 +335,6 @@ class Status < ApplicationRecord
   end
 
   class << self
-    def selectable_visibilities
-      %w(public portfolio unlisted nyan)
-    end
-
     def favourites_map(status_ids, account_id)
       Favourite.select(:status_id).where(status_id: status_ids).where(account_id: account_id).each_with_object({}) { |f, h| h[f.status_id] = true }
     end
