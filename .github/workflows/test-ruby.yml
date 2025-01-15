@@ -127,6 +127,7 @@ jobs:
         ruby-version:
           - '3.2'
           - '3.3'
+          - '3.4'
           - 'head'
     steps:
       - uses: actions/checkout@v4
@@ -229,6 +230,7 @@ jobs:
         ruby-version:
           - '3.2'
           - '3.3'
+          - '3.4'
           - 'head'
     steps:
       - uses: actions/checkout@v4
@@ -308,6 +310,7 @@ jobs:
         ruby-version:
           - '3.2'
           - '3.3'
+          - '3.4'
           - 'head'
     steps:
       - uses: actions/checkout@v4
@@ -402,6 +405,7 @@ jobs:
         ruby-version:
           - '3.2'
           - '3.3'
+          - '3.4'
           - 'head'
         elasticsearch-version:
           - '7.17.24'

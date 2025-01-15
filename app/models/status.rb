@@ -38,6 +38,7 @@ class Status < ApplicationRecord
   include Status::SearchConcern
   include Status::SnapshotConcern
   include Status::ThreadingConcern
+  include Status::Visibility
 
   MEDIA_ATTACHMENTS_LIMIT = 4
 
@@ -51,8 +52,6 @@ class Status < ApplicationRecord
 
   update_index('statuses', :proper)
   update_index('public_statuses', :proper)
-
-  enum :visibility, { public: 0, unlisted: 1, private: 2, direct: 3, limited: 4 }, suffix: :visibility, validate: true
 
   belongs_to :application, class_name: 'Doorkeeper::Application', optional: true
 
@@ -98,7 +97,6 @@ class Status < ApplicationRecord
   validates_with StatusLengthValidator
   validates_with DisallowedHashtagsValidator
   validates :reblog, uniqueness: { scope: :account }, if: :reblog?
-  validates :visibility, exclusion: { in: %w(direct limited) }, if: :reblog?
 
   accepts_nested_attributes_for :poll
 
@@ -125,9 +123,6 @@ class Status < ApplicationRecord
   scope :tagged_with_none, lambda { |tag_ids|
     where('NOT EXISTS (SELECT * FROM statuses_tags forbidden WHERE forbidden.status_id = statuses.id AND forbidden.tag_id IN (?))', tag_ids)
   }
-  scope :distributable_visibility, -> { where(visibility: %i(public unlisted)) }
-  scope :list_eligible_visibility, -> { where(visibility: %i(public unlisted private)) }
-  scope :not_direct_visibility, -> { where.not(visibility: :direct) }
 
   after_create_commit :trigger_create_webhooks
   after_update_commit :trigger_update_webhooks
@@ -140,7 +135,6 @@ class Status < ApplicationRecord
 
   before_validation :prepare_contents, if: :local?
   before_validation :set_reblog
-  before_validation :set_visibility
   before_validation :set_conversation
   before_validation :set_local
 
@@ -241,16 +235,6 @@ class Status < ApplicationRecord
   def reset_preview_card!
     PreviewCardsStatus.where(status_id: id).delete_all
   end
-
-  def hidden?
-    !distributable?
-  end
-
-  def distributable?
-    public_visibility? || unlisted_visibility?
-  end
-
-  alias sign? distributable?
 
   def with_media?
     ordered_media_attachments.any?
@@ -434,11 +418,6 @@ class Status < ApplicationRecord
 
   def set_poll_id
     update_column(:poll_id, poll.id) if association(:poll).loaded? && poll.present?
-  end
-
-  def set_visibility
-    self.visibility = reblog.visibility if reblog? && visibility.nil?
-    self.visibility = (account.locked? ? :private : :public) if visibility.nil?
   end
 
   def set_conversation
