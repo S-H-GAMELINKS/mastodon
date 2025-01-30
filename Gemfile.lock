@@ -408,7 +408,7 @@ GEM
       marcel (~> 1.0.1)
       mime-types
       terrapin (>= 0.6.0, < 2.0)
-    language_server-protocol (3.17.0.3)
+    language_server-protocol (3.17.0.4)
     launchy (3.0.1)
       addressable (~> 2.8)
       childprocess (~> 5.0)
@@ -574,7 +574,7 @@ GEM
     opentelemetry-instrumentation-rack (0.26.0)
       opentelemetry-api (~> 1.0)
       opentelemetry-instrumentation-base (~> 0.23.0)
-    opentelemetry-instrumentation-rails (0.35.0)
+    opentelemetry-instrumentation-rails (0.35.1)
       opentelemetry-api (~> 1.0)
       opentelemetry-instrumentation-action_mailer (~> 0.4.0)
       opentelemetry-instrumentation-action_pack (~> 0.11.0)
@@ -601,7 +601,7 @@ GEM
       opentelemetry-api (~> 1.0)
     orm_adapter (0.5.0)
     ostruct (0.6.1)
-    ox (2.14.20)
+    ox (2.14.21)
       bigdecimal (>= 3.0)
     parallel (1.26.3)
     parallel_tests (4.2.1)
@@ -625,6 +625,8 @@ GEM
       net-smtp
       premailer (~> 1.7, >= 1.7.9)
     prettyprint (0.2.0)
+    prometheus_exporter (2.2.0)
+      webrick
     propshaft (1.1.0)
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
@@ -769,7 +771,7 @@ GEM
       rspec-mocks (~> 3.0)
       sidekiq (>= 5, < 8)
     rspec-support (3.13.2)
-    rubocop (1.70.0)
+    rubocop (1.71.0)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
@@ -779,14 +781,14 @@ GEM
       rubocop-ast (>= 1.36.2, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 4.0)
-    rubocop-ast (1.37.0)
+    rubocop-ast (1.38.0)
       parser (>= 3.3.1.0)
     rubocop-capybara (2.21.0)
       rubocop (~> 1.41)
     rubocop-performance (1.23.1)
       rubocop (>= 1.48.1, < 2.0)
       rubocop-ast (>= 1.31.1, < 2.0)
-    rubocop-rails (2.28.0)
+    rubocop-rails (2.29.1)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.52.0, < 2.0)
@@ -1066,6 +1068,7 @@ DEPENDENCIES
   pg!
   pghero
   premailer-rails
+  prometheus_exporter (~> 2.2)
   propshaft
   psych
   public_suffix (~> 6.0)
