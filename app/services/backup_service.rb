@@ -181,7 +181,7 @@ class BackupService < BaseService
     ).as_json
   end
 
-  CHUNK_SIZE = 1.megabyte
+  CHUNK_SIZE = 1.megabyte # rubocop:disable Lint/UselessConstantScoping
 
   def download_to_zip(zipfile, attachment, filename)
     adapter = Paperclip.io_adapters.for(attachment)

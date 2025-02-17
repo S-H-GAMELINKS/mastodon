@@ -310,6 +310,7 @@ module Mastodon::CLI
       SQL
     end
 
+    # rubocop:disable Lint/UselessConstantScoping
     PRELOADED_MODELS = %w(
       Account
       Backup
@@ -319,6 +320,7 @@ module Mastodon::CLI
       PreviewCard
       SiteUpload
     ).freeze
+    # rubocop:enable Lint/UselessConstantScoping
 
     def preload_records_from_mixed_objects(objects)
       preload_map = Hash.new { |hash, key| hash[key] = [] }
