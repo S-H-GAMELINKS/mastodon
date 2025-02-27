@@ -1,6 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { Record as ImmutableRecord } from 'immutable';
 
+import { me } from 'mastodon/initial_state';
 import { accountDefaultValues } from 'mastodon/models/account';
 import type { Account, AccountShape } from 'mastodon/models/account';
 import type { Relationship } from 'mastodon/models/relationship';
@@ -45,3 +46,38 @@ export function makeGetAccount() {
     },
   );
 }
+
+export const getAccountHidden = createSelector(
+  [
+    (state: RootState, id: string) => state.accounts.get(id)?.hidden,
+    (state: RootState, id: string) =>
+      state.relationships.get(id)?.following ||
+      state.relationships.get(id)?.requested,
+    (state: RootState, id: string) => id === me,
+  ],
+  (hidden, followingOrRequested, isSelf) => {
+    return hidden && !(isSelf || followingOrRequested);
+  },
+);
+
+export const getAccountFeaturedTags = createSelector(
+  [
+    (state: RootState, id: string) => {
+      const featured_tags = state.user_lists.get('featured_tags')?.get(id);
+      if (featured_tags === undefined || featured_tags === null) {
+        return null;
+      }
+
+      if (typeof(featured_tags) == "boolean") {
+        return null;
+      }
+
+      /* eslint-disable-next-line @typescript-eslint/no-unsafe-return */
+      return featured_tags.get('items');
+    }
+  ],
+  (items) => {
+    /* eslint-disable-next-line @typescript-eslint/no-unsafe-return */
+    return items ?? [];
+  }
+);
