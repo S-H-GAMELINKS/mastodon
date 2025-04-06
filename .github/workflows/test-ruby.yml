@@ -125,7 +125,6 @@ jobs:
       fail-fast: false
       matrix:
         ruby-version:
-          - '3.2'
           - '3.3'
           - '3.4'
           - 'head'
@@ -228,7 +227,6 @@ jobs:
       fail-fast: false
       matrix:
         ruby-version:
-          - '3.2'
           - '3.3'
           - '3.4'
           - 'head'
@@ -307,7 +305,6 @@ jobs:
       fail-fast: false
       matrix:
         ruby-version:
-          - '3.2'
           - '3.3'
           - '3.4'
           - 'head'
@@ -401,7 +398,6 @@ jobs:
       fail-fast: false
       matrix:
         ruby-version:
-          - '3.2'
           - '3.3'
           - '3.4'
           - 'head'
