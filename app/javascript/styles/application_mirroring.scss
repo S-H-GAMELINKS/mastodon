@@ -1,4 +1,3 @@
-@import 'application';
+@use 'application';
 
-$wallpaper: 'mirroring/background.png';
-@import 'mirroring/wallpaper';
+@use 'mirroring/wallpaper';
