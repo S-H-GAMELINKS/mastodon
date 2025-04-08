@@ -228,7 +228,7 @@ export const AccountHeader: React.FC<{
   /* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */
   const featuredTags = useAppSelector((state) =>
     getAccountFeaturedTags(state, accountId),
-  );  
+  );
 
   const handleFollow = useCallback(() => {
     if (!account) {
