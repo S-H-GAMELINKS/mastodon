@@ -30,22 +30,22 @@ export const Warning = () => {
     return (
       <WarningMessage>
         <FormattedMessage
-	  id='compose_form.nyan_warning'
-	  defaultMessage='公開範囲が「にゃーん」になっています。ここで入力した内容はすべて「にゃーん」に置き換えられます'
-	/>
+          id='compose_form.nyan_warning'
+          defaultMessage='公開範囲が「にゃーん」になっています。ここで入力した内容はすべて「にゃーん」に置き換えられます'
+        />
       </WarningMessage>
-    )
+    );
   }
 
   if (portfolioWarning) {
     return (
       <WarningMessage>
         <FormattedMessage
-	  id='compose_form.portfolio_warning'
-	  defaultMessage='公開範囲が「ポートフォリオ」になっています。ここで入力した内容はすべてアカウントの「ポートフォリオ」欄に表示されます'
-	/>
+          id='compose_form.portfolio_warning'
+          defaultMessage='公開範囲が「ポートフォリオ」になっています。ここで入力した内容はすべてアカウントの「ポートフォリオ」欄に表示されます'
+        />
       </WarningMessage>
-    )
+    );
   }
 
   if (needsLockWarning) {

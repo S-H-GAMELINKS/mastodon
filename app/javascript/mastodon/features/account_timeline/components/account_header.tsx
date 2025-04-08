@@ -56,7 +56,10 @@ import {
   PERMISSION_MANAGE_USERS,
   PERMISSION_MANAGE_FEDERATION,
 } from 'mastodon/permissions';
-import { getAccountHidden, getAccountFeaturedTags } from 'mastodon/selectors/accounts';
+import {
+  getAccountHidden,
+  getAccountFeaturedTags,
+} from 'mastodon/selectors/accounts';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
 import { MemorialNote } from './memorial_note';
@@ -206,7 +209,7 @@ const dateFormatOptions: Intl.DateTimeFormatOptions = {
 /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
 const DynamicFormattedMessage = (props: any) => {
   return <FormattedMessage {...props} />;
-}
+};
 
 export const AccountHeader: React.FC<{
   accountId: string;
@@ -223,7 +226,9 @@ export const AccountHeader: React.FC<{
   const handleLinkClick = useLinks();
 
   /* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */
-  const featuredTags = useAppSelector((state) => getAccountFeaturedTags(state, accountId)); // eslint-disable-line @typescript-eslint/no-unsafe-return 
+  const featuredTags = useAppSelector((state) =>
+    getAccountFeaturedTags(state, accountId),
+  );  
 
   const handleFollow = useCallback(() => {
     if (!account) {
@@ -1053,10 +1058,28 @@ export const AccountHeader: React.FC<{
           <NavLink exact to={`/@${account.acct}/media`}>
             <FormattedMessage id='account.media' defaultMessage='Media' />
           </NavLink>
-          <NavLink exact to={`/@${account.get('acct')}/tagged/CreatodonFolio`}><FormattedMessage id='account.portfolio' defaultMessage='Portfolio' /></NavLink>
-          {featuredTags.map(featuredTag => {
+          <NavLink exact to={`/@${account.get('acct')}/tagged/CreatodonFolio`}>
+            <FormattedMessage
+              id='account.portfolio'
+              defaultMessage='Portfolio'
+            />
+          </NavLink>
+          {featuredTags.map((featuredTag) => {
             const tagName = `${featuredTag.get('name')}`;
-            return <NavLink key={tagName} className='feature_tag_timeline' exact to={`/@${account.get('acct')}/tagged/${tagName}`}><DynamicFormattedMessage id='account.featured_tags' defaultMessage={'{tagName}'} values={{tagName: tagName}} /></NavLink>;
+            return (
+              <NavLink
+                key={tagName}
+                className='feature_tag_timeline'
+                exact
+                to={`/@${account.get('acct')}/tagged/${tagName}`}
+              >
+                <DynamicFormattedMessage
+                  id='account.featured_tags'
+                  defaultMessage={'{tagName}'}
+                  values={{ tagName: tagName }}
+                />
+              </NavLink>
+            );
           })}
         </div>
       )}

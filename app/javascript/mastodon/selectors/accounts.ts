@@ -68,16 +68,16 @@ export const getAccountFeaturedTags = createSelector(
         return null;
       }
 
-      if (typeof(featured_tags) == "boolean") {
+      if (typeof featured_tags === 'boolean') {
         return null;
       }
 
       /* eslint-disable-next-line @typescript-eslint/no-unsafe-return */
       return featured_tags.get('items');
-    }
+    },
   ],
   (items) => {
     /* eslint-disable-next-line @typescript-eslint/no-unsafe-return */
     return items ?? [];
-  }
+  },
 );
