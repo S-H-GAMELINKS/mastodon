@@ -25,8 +25,13 @@ const selector = createSelector(
 );
 
 export const Warning = () => {
-  const { needsLockWarning, hashtagWarning, directMessageWarning } =
-    useAppSelector(selector);
+  const {
+    needsLockWarning,
+    hashtagWarning,
+    nyanWarning,
+    portfolioWarning,
+    directMessageWarning,
+  } = useAppSelector(selector);
 
   if (nyanWarning) {
     return (
