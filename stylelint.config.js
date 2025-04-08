@@ -9,7 +9,9 @@ module.exports = {
     'public/packs-test/**/*',
     'vendor/**/*',
     'public/creatodon-folio/static/css/*',
-    'public/gallery/static/css/*'
+    'public/gallery/static/css/*',
+    'app/javascript/styles/twitter/*',
+    'app/javascript/styles/fonts/inter.scss'
   ],
   reportDescriptionlessDisables: true,
   reportInvalidScopeDisables: true,
