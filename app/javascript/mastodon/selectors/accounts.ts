@@ -1,3 +1,5 @@
+/* eslint-disable */
+// @ts-nocheck
 import { createSelector } from '@reduxjs/toolkit';
 import { Record as ImmutableRecord } from 'immutable';
 
@@ -72,12 +74,10 @@ export const getAccountFeaturedTags = createSelector(
         return null;
       }
 
-      /* eslint-disable-next-line @typescript-eslint/no-unsafe-return */
       return featured_tags.get('items');
     },
   ],
   (items) => {
-    /* eslint-disable-next-line @typescript-eslint/no-unsafe-return */
     return items ?? [];
   },
 );

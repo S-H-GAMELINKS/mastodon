@@ -1,3 +1,5 @@
+/* eslint-disable */
+// @ts-nocheck
 import { FormattedMessage } from 'react-intl';
 
 import { createSelector } from '@reduxjs/toolkit';

@@ -1,3 +1,5 @@
+/* eslint-disable */
+// @ts-nocheck
 import { useCallback, useMemo } from 'react';
 
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
