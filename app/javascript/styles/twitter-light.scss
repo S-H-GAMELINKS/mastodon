@@ -1,6 +1,5 @@
 @use 'mastodon-light/variables';
-@use 'mastodon-light/css_variables';
 @use 'application';
 @use 'mastodon-light/diff';
-
-@use 'meteor-trail/wallpaper';
+@use 'twitter/layout-single-column';
+@use 'twitter/layout-multiple-columns';
