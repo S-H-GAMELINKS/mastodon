@@ -37,4 +37,5 @@ jobs:
 
       - name: Running steep check
         run: bundle exec steep check
+        timeout-minutes: 3
         continue-on-error: true
