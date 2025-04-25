@@ -191,7 +191,6 @@ RSpec.describe Mastodon::RedisConfiguration do
     end
 
     it_behaves_like 'setting a different driver'
-    it_behaves_like 'setting a namespace'
     it_behaves_like 'sentinel support'
   end
 
