@@ -190,16 +190,17 @@ RSpec.describe Mastodon::RedisConfiguration do
       end
     end
 
-    include_examples 'setting a different driver'
-    include_examples 'sentinel support'
+    it_behaves_like 'setting a different driver'
+    it_behaves_like 'setting a namespace'
+    it_behaves_like 'sentinel support'
   end
 
   describe '#sidekiq' do
     subject { redis_environment.sidekiq }
 
-    include_examples 'secondary configuration', 'SIDEKIQ'
-    include_examples 'setting a different driver'
-    include_examples 'sentinel support', 'SIDEKIQ'
+    it_behaves_like 'secondary configuration', 'SIDEKIQ'
+    it_behaves_like 'setting a different driver'
+    it_behaves_like 'sentinel support', 'SIDEKIQ'
   end
 
   describe '#cache' do
@@ -218,8 +219,26 @@ RSpec.describe Mastodon::RedisConfiguration do
       })
     end
 
-    include_examples 'secondary configuration', 'CACHE'
-    include_examples 'setting a different driver'
-    include_examples 'sentinel support', 'CACHE'
+    context 'when `REDIS_NAMESPACE` is not set' do
+      it 'uses the `cache` namespace' do
+        expect(subject[:namespace]).to eq 'cache'
+      end
+    end
+
+    context 'when setting the `REDIS_NAMESPACE` variable' do
+      around do |example|
+        ClimateControl.modify REDIS_NAMESPACE: 'testns' do
+          example.run
+        end
+      end
+
+      it 'attaches the `_cache` postfix to the namespace' do
+        expect(subject[:namespace]).to eq 'testns_cache'
+      end
+    end
+
+    it_behaves_like 'secondary configuration', 'CACHE'
+    it_behaves_like 'setting a different driver'
+    it_behaves_like 'sentinel support', 'CACHE'
   end
 end
