@@ -77,7 +77,7 @@ class PublicTimeline extends PureComponent {
 
   componentDidMount () {
     const { dispatch, onlyMedia, onlyRemote } = this.props;
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     dispatch(expandPublicTimeline({ onlyMedia, onlyRemote }));
 
