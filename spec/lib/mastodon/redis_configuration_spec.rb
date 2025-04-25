@@ -218,24 +218,6 @@ RSpec.describe Mastodon::RedisConfiguration do
       })
     end
 
-    context 'when `REDIS_NAMESPACE` is not set' do
-      it 'uses the `cache` namespace' do
-        expect(subject[:namespace]).to eq 'cache'
-      end
-    end
-
-    context 'when setting the `REDIS_NAMESPACE` variable' do
-      around do |example|
-        ClimateControl.modify REDIS_NAMESPACE: 'testns' do
-          example.run
-        end
-      end
-
-      it 'attaches the `_cache` postfix to the namespace' do
-        expect(subject[:namespace]).to eq 'testns_cache'
-      end
-    end
-
     it_behaves_like 'secondary configuration', 'CACHE'
     it_behaves_like 'setting a different driver'
     it_behaves_like 'sentinel support', 'CACHE'
