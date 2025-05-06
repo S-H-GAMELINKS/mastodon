@@ -221,7 +221,7 @@ group :development, :test do
   gem 'test-prof', require: false
 
   # RSpec runner for rails
-  gem 'rspec-rails', '~> 7.0'
+  gem 'rspec-rails', '~> 8.0'
 
   # For generate type signature
   gem 'typeprof'
