@@ -464,10 +464,10 @@ GEM
       redis (>= 3.0.5)
     matrix (0.4.2)
     memory_profiler (1.1.0)
-    mime-types (3.6.2)
+    mime-types (3.7.0)
       logger
-      mime-types-data (~> 3.2015)
-    mime-types-data (3.2025.0408)
+      mime-types-data (~> 3.2025, >= 3.2025.0507)
+    mime-types-data (3.2025.0507)
     mini_magick (4.13.2)
     mini_mime (1.1.5)
     mini_portile2 (2.8.8)
@@ -673,7 +673,7 @@ GEM
     pycall (1.5.2)
     raabro (1.4.0)
     racc (1.8.1)
-    rack (2.2.13)
+    rack (2.2.14)
     rack-attack (6.7.0)
       rack (>= 1.0, < 4)
     rack-cors (2.0.2)
@@ -1079,7 +1079,7 @@ DEPENDENCIES
   mario-redis-lock (~> 1.2)
   mastodon-spam-activity-rejecter!
   memory_profiler
-  mime-types (~> 3.6.0)
+  mime-types (~> 3.7.0)
   mutex_m
   net-http (~> 0.6.0)
   net-ldap (~> 0.18)
