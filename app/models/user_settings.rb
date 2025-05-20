@@ -15,6 +15,7 @@ class UserSettings
   setting :default_language, default: nil
   setting :default_sensitive, default: false
   setting :default_privacy, default: nil, in: %w(public unlisted private)
+  setting :default_quote_policy, default: 'public', in: %w(public followers nobody)
 
   # Creatodonの独自機能設定
   setting :resized_custom_emoji, default: true
