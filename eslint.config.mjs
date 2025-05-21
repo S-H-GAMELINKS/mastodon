@@ -251,7 +251,6 @@ export default tseslint.config([
         {
           devDependencies: [
             'eslint.config.mjs',
-            'config/webpack/**',
             'app/javascript/mastodon/performance.js',
             'app/javascript/mastodon/test_setup.js',
             'app/javascript/mastodon/test_helpers.tsx',
@@ -259,7 +258,12 @@ export default tseslint.config([
           ],
         },
       ],
-      'import/no-webpack-loader-syntax': 'error',
+      'import/no-unresolved': [
+        'error',
+        {
+          ignore: ['vite/modulepreload-polyfill'],
+        },
+      ],
 
       'react/jsx-filename-extension': [
         'error',
@@ -295,7 +299,6 @@ export default tseslint.config([
       '**/*.config.js',
       '**/.*rc.js',
       '**/ide-helper.js',
-      'config/webpack/**/*',
       'config/formatjs-formatter.js',
     ],
 

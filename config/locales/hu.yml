@@ -818,7 +818,6 @@ hu:
         preamble: Az érdekes tartalmak felszínre hozása fontos szerepet játszik az új felhasználók bevonásában, akik esetleg nem ismerik a Mastodont. Szabályozd, hogy a különböző felfedezési funkciók hogyan működjenek a kiszolgálón.
         profile_directory: Profiladatbázis
         public_timelines: Nyilvános idővonalak
-        publish_discovered_servers: Felfedezett kiszolgálók közzététele
         publish_statistics: Statisztikák közzététele
         title: Felfedezés
         trends: Trendek
@@ -1858,6 +1857,10 @@ hu:
       limit: Elérted a kitűzhető bejegyzések maximális számát
       ownership: Nem tűzheted ki valaki más bejegyzését
       reblog: Megtolt bejegyzést nem tudsz kitűzni
+    quote_policies:
+      followers: Követők és említett felhasználók
+      nobody: Csak említett felhasználók
+      public: Mindenki
     title: "%{name}: „%{quote}”"
     visibilities:
       direct: Közvetlen
@@ -1911,6 +1914,8 @@ hu:
     does_not_match_previous_name: nem illeszkedik az előző névvel
   terms_of_service:
     title: Felhasználási feltételek
+  terms_of_service_interstitial:
+    future_preamble_html: A használati feltételekben módosításokat végzünk, amely <strong>%{date}</strong> dátummal lép életbe. Ajánljuk a frissített feltételek elolvasását.
   themes:
     contrast: Mastodon (nagy kontrasztú)
     default: Mastodon (sötét)

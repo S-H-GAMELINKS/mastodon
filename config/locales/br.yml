@@ -281,6 +281,7 @@ br:
       content_retention:
         danger_zone: Takad dañjer
       discovery:
+        privacy: Buhez prevez
         title: Dizoloadur
         trends: Luskadoù
       domain_blocks:
@@ -553,6 +554,8 @@ br:
         two: "%{count} skeudenn"
     pin_errors:
       ownership: N'hallit ket spilhennañ embannadurioù ar re all
+    quote_policies:
+      public: Pep den
     visibilities:
       direct: War-eeun
       public: Publik
