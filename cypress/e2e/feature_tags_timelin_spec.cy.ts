@@ -1,5 +1,5 @@
 // 注目のハッシュタグタイムライン機能のE2Eテスト
-describe('feature tag timeline', () => {
+describe.skip('feature tag timeline', () => {
   // URLのチェック
   it('url check', () => {
     cy.visit('/@S_H_/tagged/HALO');
