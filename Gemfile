@@ -257,6 +257,7 @@ gem 'nsfw-rb', github: 'S-H-GAMELINKS/nsfw-rb', ref: 'f8114814dfd4200641a11f24df
 gem 'mastodon-spam-activity-rejecter', github: 'S-H-GAMELINKS/mastodon-spam-activity-rejecter', ref: '0bbeae7ecbbb9c5bd806ef76aef001a82e972c1d'
 
 gem 'abbrev'
+gem 'cgi'
 gem 'psych'
 gem 'rexml', '~> 3.2'
 gem 'strscan', '3.0.9'

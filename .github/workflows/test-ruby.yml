@@ -131,6 +131,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Update Twitter theme submodules
+        run: git submodule update  --init
+
       - uses: actions/download-artifact@v4
         with:
           path: './'
@@ -145,6 +148,18 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby-version}}
           additional-system-dependencies: ffmpeg imagemagick libpam-dev
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          cache: yarn
+          node-version-file: '.nvmrc'
+
+      - run: yarn --frozen-lockfile
+
+      - name: Precompile assets
+        run: |-
+          NODE_OPTIONS=--openssl-legacy-provider ./bin/rails assets:precompile
 
       - name: Load database schema
         run: |
