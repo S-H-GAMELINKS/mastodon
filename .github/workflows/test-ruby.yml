@@ -164,7 +164,7 @@ jobs:
             rspec-persistence-main
             rspec-persistence
 
-      - run: bin/flatware rspec -r ./spec/flatware_helper.rb
+      - run: bundle exec rspec
 
       - name: Upload coverage reports to Codecov
         if: matrix.ruby-version == '.ruby-version'
