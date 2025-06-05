@@ -146,6 +146,10 @@ jobs:
           ruby-version: ${{ matrix.ruby-version}}
           additional-system-dependencies: ffmpeg imagemagick libpam-dev
 
+      - name: Precompile assets
+        run: |-
+          NODE_OPTIONS=--openssl-legacy-provider ./bin/rails assets:precompile
+
       - name: Load database schema
         run: |
           bin/rails db:setup
