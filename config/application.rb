@@ -24,7 +24,6 @@ Bundler.require(*Rails.groups)
 
 require_relative '../lib/exceptions'
 require_relative '../lib/sanitize_ext/sanitize_config'
-require_relative '../lib/redis/namespace_extensions'
 require_relative '../lib/paperclip/url_generator_extensions'
 require_relative '../lib/paperclip/attachment_extensions'
 
@@ -95,7 +94,7 @@ module Mastodon
       require 'mastodon/redis_configuration'
       ::REDIS_CONFIGURATION = Mastodon::RedisConfiguration.new
 
-      config.x.use_vips = ENV['MASTODON_USE_LIBVIPS'] == 'true'
+      config.x.use_vips = ENV['MASTODON_USE_LIBVIPS'] != 'false'
 
       if config.x.use_vips
         require_relative '../lib/paperclip/vips_lazy_thumbnail'
@@ -104,9 +103,11 @@ module Mastodon
       end
     end
 
+    config.x.cache_buster = config_for(:cache_buster)
     config.x.captcha = config_for(:captcha)
     config.x.mastodon = config_for(:mastodon)
     config.x.translation = config_for(:translation)
+    config.x.vapid = config_for(:vapid)
 
     if ENV.fetch('QUERY_LOG_TAGS_ENABLED', 'false') == 'true'
       config.active_record.query_log_tags_enabled = ENV.fetch('QUERY_LOG_TAGS_ENABLED', 'false') == 'true'
