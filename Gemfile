@@ -4,7 +4,6 @@ source 'https://rubygems.org'
 
 gem 'propshaft'
 gem 'puma', '~> 6.3'
-gem 'rack', '~> 2.2.7'
 gem 'rails', '~> 8.0'
 gem 'thor', '~> 1.2'
 
@@ -62,7 +61,7 @@ gem 'inline_svg'
 gem 'irb', '~> 1.8'
 gem 'kaminari', '~> 1.2'
 gem 'link_header', '~> 0.0'
-gem 'linzer', '~> 0.6.1'
+gem 'linzer', '~> 0.7.2'
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
 gem 'mime-types', '~> 3.7.0', require: 'mime/types/columnar'
 gem 'mutex_m'
@@ -74,11 +73,10 @@ gem 'premailer-rails'
 gem 'public_suffix', '~> 6.0'
 gem 'pundit', '~> 2.3'
 gem 'rack-attack', '~> 6.6'
-gem 'rack-cors', '~> 2.0', require: 'rack/cors'
+gem 'rack-cors', require: 'rack/cors'
 gem 'rails-i18n', '~> 8.0'
 gem 'redcarpet', '~> 3.6'
 gem 'redis', '~> 4.5', require: ['redis', 'redis/connection/hiredis']
-gem 'redis-namespace', '~> 1.10'
 gem 'rqrcode', '~> 3.0'
 gem 'ruby-progressbar', '~> 1.13'
 gem 'sanitize', '~> 7.0'
@@ -111,7 +109,7 @@ group :opentelemetry do
   gem 'opentelemetry-instrumentation-active_model_serializers', '~> 0.22.0', require: false
   gem 'opentelemetry-instrumentation-concurrent_ruby', '~> 0.22.0', require: false
   gem 'opentelemetry-instrumentation-excon', '~> 0.23.0', require: false
-  gem 'opentelemetry-instrumentation-faraday', '~> 0.26.0', require: false
+  gem 'opentelemetry-instrumentation-faraday', '~> 0.27.0', require: false
   gem 'opentelemetry-instrumentation-http', '~> 0.24.0', require: false
   gem 'opentelemetry-instrumentation-http_client', '~> 0.23.0', require: false
   gem 'opentelemetry-instrumentation-net_http', '~> 0.23.0', require: false
@@ -211,7 +209,7 @@ group :development, :test do
   gem 'faker', '~> 3.2'
 
   # Generate factory objects
-  gem 'fabrication', '~> 2.30'
+  gem 'fabrication'
 
   # Profiling tools
   gem 'memory_profiler', require: false
