@@ -12,8 +12,7 @@ RSpec.describe 'NewStatuses', :inline_jobs, :js, :streaming do
 
   before { as_a_logged_in_user }
 
-  it 'can be posted' do
-    pending('May be Mastodon origin code issue')
+  it 'can be posted', skip: 'May be Mastodon origin code issue' do
     visit_homepage
     status_text = 'This is a new status!'
 
