@@ -76,6 +76,9 @@ docker-compose.override.yml
 # Ignore local-only rspec configuration
 .rspec-local
 
+*storybook.log
+storybook-static
+
 # GoogleCloudVision Key
 key.json
 
@@ -86,3 +89,4 @@ cypress/videos
 # ignore rails type signature
 .gem_rbs_collection
 sig/rbs_rails/**
+
