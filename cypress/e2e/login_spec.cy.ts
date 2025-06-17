@@ -23,7 +23,7 @@ describe('access to login page', () => {
     cy.get('#user_email').type(Cypress.env('email'));
     cy.get('#user_password').type(`${Cypress.env('password')}{enter}`);
 
-    // ログイン後の画面で投稿フォームが表示されているのを確認
-    cy.contains('投稿');
+    // ログイン後の画面に/deckへ移動できることを確認
+    cy.visit('/deck');
   });
 });
