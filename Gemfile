@@ -256,6 +256,7 @@ gem 'mastodon-spam-activity-rejecter', github: 'S-H-GAMELINKS/mastodon-spam-acti
 
 gem 'abbrev'
 gem 'cgi'
+gem 'fileutils'
 gem 'psych'
 gem 'rexml', '~> 3.2'
 gem 'strscan', '3.0.9'
