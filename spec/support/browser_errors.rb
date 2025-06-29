@@ -25,6 +25,7 @@ RSpec.configure do |config|
     ignored_errors = [
       /Error while trying to use the following icon from the Manifest/, # https://github.com/mastodon/mastodon/pull/30793
       /Manifest: Line: 1, column: 1, Syntax error/, # Similar parsing/interruption issue as above
+      /Failed to load resource: the server responded with a status of 404/, # 404 errors from resource loading
     ].concat(@ignored_js_errors_for_spec)
 
     errors = example.metadata[:js_console_messages].reject do |msg|
