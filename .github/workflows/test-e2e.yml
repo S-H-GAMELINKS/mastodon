@@ -52,7 +52,7 @@ jobs:
       fail-fast: false
       matrix:
         ruby-version:
-          - 'head'
+          - '3.4'
         ci_job:
           - 1
           - 2
