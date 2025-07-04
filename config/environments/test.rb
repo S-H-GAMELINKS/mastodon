@@ -21,7 +21,7 @@ Rails.application.configure do
 
   config.assets_digest = false
 
-  config.public_file_server.enabled = true
+  config.public_file_server.enabled = ENV['E2E'].present?
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local = true

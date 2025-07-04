@@ -28,7 +28,6 @@ RSpec.describe 'Public files' do
 
       expect(response)
         .to have_http_status(200)
-
       expect(response.headers['Cache-Control'])
         .to eq "public, max-age=#{Mastodon::Middleware::PublicFileServer::CACHE_TTL}, immutable"
 
