@@ -8,6 +8,7 @@ import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
 import { NavLink } from 'react-router-dom';
 
+import { AccountBio } from '@/mastodon/components/account_bio';
 import CheckIcon from '@/material-icons/400-24px/check.svg?react';
 import LockIcon from '@/material-icons/400-24px/lock.svg?react';
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
@@ -804,7 +805,6 @@ export const AccountHeader: React.FC<{
     );
   }
 
-  const content = { __html: account.note_emojified };
   const displayNameHtml = { __html: account.display_name_html };
   const fields = account.fields;
   const isLocal = !account.acct.includes('@');
@@ -928,12 +928,11 @@ export const AccountHeader: React.FC<{
                   <AccountNote accountId={accountId} />
                 )}
 
-                {account.note.length > 0 && account.note !== '<p></p>' && (
-                  <div
-                    className='account__header__content translate'
-                    dangerouslySetInnerHTML={content}
-                  />
-                )}
+                <AccountBio
+                  note={account.note_emojified}
+                  dropdownAccountId={accountId}
+                  className='account__header__content'
+                />
 
                 <div className='account__header__fields'>
                   <dl>
