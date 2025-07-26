@@ -34,6 +34,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:portfolio_default_hashtag_flag] = object_account_user.portfolio_default_hashtag_flag
       store[:portfolio_default_hashtag] = object_account_user.portfolio_default_hashtag
       store[:unfollow_all_when_migrate] = object_account_user.unfollow_all_when_migrate
+      store[:emoji_style]       = object_account_user.settings['web.emoji_style'] if Mastodon::Feature.modern_emojis_enabled?
     else
       store[:auto_play_gif] = Setting.auto_play_gif
       store[:display_media] = Setting.display_media

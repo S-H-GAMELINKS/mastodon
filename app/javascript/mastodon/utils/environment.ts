@@ -1,3 +1,5 @@
+import initialState from '../initial_state';
+
 export function isDevelopment() {
   if (typeof process !== 'undefined')
     return process.env.NODE_ENV === 'development';
@@ -12,4 +14,14 @@ export function isProduction() {
 
 export function isRailsProduction() {
   return process.env.RAILS_ENV === 'production';
+}
+
+export type Features = 'modern_emojis';
+
+export function isFeatureEnabled(feature: Features) {
+  return initialState?.features.includes(feature) ?? false;
+}
+
+export function isModernEmojiEnabled() {
+  return isFeatureEnabled('modern_emojis') && isDevelopment();
 }
