@@ -1,0 +1,104 @@
+# mastodon/mainブランチからの変更差分
+
+## マージされた変更内容
+
+- ホットキー: 修飾キーが押されていない場合のみ`just()`をマッチするように修正
+- `AnnouncementReaction`モデルのカバレッジを追加
+- 関連する箇所で`moved?`クエリメソッドを使用
+- セーフナビゲーションよりも委譲されたnilラッピングメソッドを優先
+- `rate_limit`ブール値の定義に`attribute`を使用
+- 繰り返されるスノーフレークIDの収集をベースクラスに移動
+- 新しいCrowdin翻訳（自動）
+- ジョブがすでに実行される可能性がある後にバッチに追加される問題を修正
+- `List`モデルに`with_list_account`スコープを追加
+- 依存関係vite-plugin-pwaをv1.0.2に更新
+- `Webfinger`ライブラリで`Style/GuardClause`を修正
+- `WebfingerResource`で`Style/GuardClause`を修正
+- app/helpersで`Style/GuardClause`を修正
+- `PreviewCard`で`Style/GuardClause`を修正
+- 依存関係omniauth-casをv3.0.2に更新
+- 移動ワーカープロセスをチェックするための`skip_*`メソッドを追加
+- `User#wrap_email_confirmation`で`Style/GuardClause`を修正
+- `User#regenerate_feed!`で`Style/GuardClause`を修正
+- `Tag`で`Style/GuardClause`を修正
+- 依存関係strong_migrationsをv2.5.0に更新
+- 投稿カードでの翻訳復元とサービスクレジットの順序を入れ替え
+- 移動ワーカーで`Style/GuardClause`を修正
+- シードされた管理者ユーザーの登録チェックをバイパス
+- JSON-LDヘルパーで`Lint/NonLocalExitFromIterator`コップを修正
+- bundlerバージョン2.7.1を使用
+- すでにミュートされている移動先ユーザーへの不要なアカウントノート追加を修正
+- 新しいCrowdin翻訳（自動）
+- アカウントの年齢に関係なくアカウントに適用される2番目のブロックテキストセットを追加
+- Web UIで「新しい返信が利用可能」通知を返信の上に表示するように変更
+- ステータスを取得できない場合に非同期更新が完了しない問題を修正
+- ユーザー名に含まれる単語をブロックする機能を追加
+- 返信が取得されなかった場合でも新しい返信数が増加する問題を修正
+- 新しいCrowdin翻訳（自動）
+- より多くのadmin/domain_blocksシナリオのカバレッジを追加
+- admin/domain_blocksのチェックに生成されたクエリメソッドを使用
+- statusesコントローラーで`return not_found`を回避
+- `User#external?`に属性を使用
+- `User::Confirmation`コンサーンを抽出
+- `User#update_sign_in!`のオプション変更に`increment`を使用
+- `User::Activity`コンサーンを抽出
+- 依存関係eslint-plugin-jsdocをv52に更新
+- 依存関係cross-envをv10に更新
+- `User#bypass_registration_checks?`に属性を使用
+- `MediaAttachment.combined_media_file_size`メソッドを追加
+- 管理コントローラーでの誤ったポリシー認証を修正
+- `last_sign_in_at`シナリオが欠落しているユーザー仕様にカバレッジを追加
+- `StatusReachFinder`がリブログだけでなく引用も考慮するように変更
+- 深くネストされた引用投稿の同期的な再帰的取得を修正
+- 監査可能なアカウントをソート
+- Web UIでの引用投稿のデザインを変更
+- 「新しい返信が利用可能」が再取得されたルートステータスに対して誤検知を報告する問題を修正
+- スレッドが以前空だった場合、新しい返信を自動的に読み込むように変更
+- 友達の友達の推奨ですでにリクエストされたアカウントを提案する問題を修正
+- 依存関係database_cleaner-active_recordをv2.2.2に更新
+- 新しいCrowdin翻訳（自動）
+- 引用の検証を変更して、メンションの認証フローをバイパスしないようにする
+- 自分の引用投稿を表示および取り消すAPIエンドポイントを追加
+- Elasticsearchが有効な場合の`dev:populate_sample_data`タスクでの`Chewy::UndefinedUpdateStrategy`を修正
+- 依存関係rubocopをv1.79.1に更新
+- モダン絵文字：オプトインにローカルストレージを使用
+- 開発サンプルデータにプレビューカード付きの引用投稿の例を追加
+- 削除された引用投稿を取り消す
+- 絵文字レンダリングの効率化
+- 依存関係pumaをv6.6.1に更新
+- 新しいCrowdin翻訳（自動）
+- インバウンド引用の通知を追加
+- ブロックされたユーザーが引用できないことを確認
+- 依存関係sidekiq-schedulerをv6に更新
+- `DeliveryFailureTracker`に分解能を追加
+- 未使用の`obscured_counter`ヘルパーメソッドを削除
+- ローカル引用スタンプのサポートを追加
+- Node.jsを22.18に更新
+- peter-evans/create-pull-requestアクションをv7.0.8に更新
+- FASPへの配信失敗を追跡
+- 依存関係ruby-samlをv1.18.1に更新
+- `null` URLを持つアカウントでWebUIがクラッシュする問題を修正
+- DefinitelyTypedタイプを更新（非メジャー）
+- 依存関係pgをv1.6.1に更新
+- 依存関係haml_lintをv0.66.0に更新
+- 依存関係ioredisをv5.7.0に更新
+- 新しいCrowdin翻訳（自動）
+- 引用通知用の不足しているメーラーを追加
+- 「新しい返信が利用可能」が以前に既知の返信を誤ってカウントする問題を修正
+- ユーザー名ブロックで承認オプションが機能しない問題を修正
+- `WorkerBatch`仕様をより堅牢にする
+- `Create`クリティカルパスでActiveRecordクエリキャッシュを無効化
+- eslintを更新（非メジャー）
+- 引用投稿を取得する際のネストされたトランザクションを回避
+- 設定されたポリシーに従ってローカル引用のリモート引用を受け入れる
+- 引用されたユーザーに投稿を見るアクセスを確実に与える
+- 正規表現フラグvをサポートしないブラウザーのレガシーフォールバックを提供
+- パフォーマンス回帰の修正
+- WebUIに引用通知を追加
+- 引用投稿通知グループのシリアル化を修正
+- `unprocessable_entity` -> `unprocessable_content`に置き換え
+- 新しいCrowdin翻訳（自動）
+- 依存関係capybara-playwright-driverをv0.5.7に更新
+- 引用取り消しREST APIエンドポイントを更新された引用投稿を返すように変更
+- フォークからのコミットをマージ
+- バージョンをv4.4.3にバンプ
