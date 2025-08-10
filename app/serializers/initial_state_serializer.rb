@@ -12,7 +12,7 @@ class InitialStateSerializer < ActiveModel::Serializer
   has_one :push_subscription, serializer: REST::WebPushSubscriptionSerializer
   has_one :role, serializer: REST::RoleSerializer
 
-  def meta
+  def meta # rubocop:disable Metrics/AbcSize
     store = default_meta_store
 
     if object.current_account
@@ -34,7 +34,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:portfolio_default_hashtag_flag] = object_account_user.portfolio_default_hashtag_flag
       store[:portfolio_default_hashtag] = object_account_user.portfolio_default_hashtag
       store[:unfollow_all_when_migrate] = object_account_user.unfollow_all_when_migrate
-      store[:emoji_style]       = object_account_user.settings['web.emoji_style'] if Mastodon::Feature.modern_emojis_enabled?
+      store[:emoji_style] = object_account_user.settings['web.emoji_style'] if Mastodon::Feature.modern_emojis_enabled?
     else
       store[:auto_play_gif] = Setting.auto_play_gif
       store[:display_media] = Setting.display_media
@@ -58,6 +58,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:default_privacy]   = object.visibility || object_account_user.setting_default_privacy
       store[:default_sensitive] = object_account_user.setting_default_sensitive
       store[:default_language]  = object_account_user.preferred_posting_language
+      store[:default_quote_policy] = object_account_user.setting_default_quote_policy
     end
 
     store[:text] = object.text if object.text
