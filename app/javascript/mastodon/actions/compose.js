@@ -253,6 +253,8 @@ export function submitCompose() {
         language: getState().getIn(['compose', 'language']),
         scheduled_at: postScheduledAt,
         expires_at: getState().getIn(['compose', 'deleteSchedule', 'expires_at']),
+        quoted_status_id: getState().getIn(['compose', 'quoted_status_id']),
+        quote_approval_policy: getState().getIn(['compose', 'quote_policy']),
       },
       headers: {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
