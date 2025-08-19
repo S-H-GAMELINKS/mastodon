@@ -16,7 +16,7 @@ import PortfolioIcon from '@/material-icons/400-24px/work_history.svg?react';
 import { DropdownSelector } from 'mastodon/components/dropdown_selector';
 import { Icon }  from 'mastodon/components/icon';
 
-const messages = defineMessages({
+export const messages = defineMessages({
   public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },
   public_long: { id: 'privacy.public.long', defaultMessage: 'Anyone on and off Mastodon' },
   portfolio_short: { id: 'privacy.portfolio.short', defaultMessage: 'ポートフォリオとして公開されます' },
