@@ -191,5 +191,19 @@ export const connectDirectStream = () =>
  * @param {boolean} [options.onlyMedia]
  * @returns {function(): void}
  */
-export const connectListStream = (listId, { onlyMedia } = {}) =>
-  connectTimelineStream(`list:${listId}${onlyMedia ? ':media' : ''}`, 'list', { list: listId }, { fillGaps: () => fillListTimelineGaps(listId, { onlyMedia }) });
+export const connectListStream = (listId, { onlyMedia } = {}) => {
+  const acceptFunction = onlyMedia ? (status) => {
+    // Filter to only accept statuses with media attachments
+    return status.media_attachments && status.media_attachments.length > 0;
+  } : null;
+
+  return connectTimelineStream(
+    `list:${listId}${onlyMedia ? ':media' : ''}`,
+    'list',
+    { list: listId },
+    {
+      fillGaps: () => fillListTimelineGaps(listId, { onlyMedia }),
+      accept: acceptFunction
+    }
+  );
+};
