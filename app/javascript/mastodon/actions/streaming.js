@@ -187,7 +187,9 @@ export const connectDirectStream = () =>
 
 /**
  * @param {string} listId
+ * @param {Object} options
+ * @param {boolean} [options.onlyMedia]
  * @returns {function(): void}
  */
-export const connectListStream = listId =>
-  connectTimelineStream(`list:${listId}`, 'list', { list: listId }, { fillGaps: () => fillListTimelineGaps(listId) });
+export const connectListStream = (listId, { onlyMedia } = {}) =>
+  connectTimelineStream(`list:${listId}${onlyMedia ? ':media' : ''}`, 'list', { list: listId }, { fillGaps: () => fillListTimelineGaps(listId, { onlyMedia }) });

@@ -110,6 +110,12 @@ const initialState = ImmutableMap({
     }),
   }),
 
+  list: ImmutableMap({
+    other: ImmutableMap({
+      onlyMedia: false,
+    }),
+  }),
+
   dismissed_banners: ImmutableMap({
     'public_timeline': false,
     'community_timeline': false,

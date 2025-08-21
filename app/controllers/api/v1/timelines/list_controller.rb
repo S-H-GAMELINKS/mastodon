@@ -6,7 +6,7 @@ class Api::V1::Timelines::ListController < Api::V1::Timelines::BaseController
   before_action :set_list
   before_action :set_statuses
 
-  PERMITTED_PARAMS = %i(limit).freeze
+  PERMITTED_PARAMS = %i(limit only_media).freeze
 
   def show
     render json: @statuses,
@@ -38,7 +38,7 @@ class Api::V1::Timelines::ListController < Api::V1::Timelines::BaseController
   end
 
   def list_feed
-    ListFeed.new(@list)
+    ListFeed.new(@list, only_media: truthy_param?(:only_media))
   end
 
   def next_path

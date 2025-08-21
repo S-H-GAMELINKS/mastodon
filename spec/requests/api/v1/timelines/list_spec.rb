@@ -26,6 +26,35 @@ RSpec.describe 'API V1 Timelines List' do
         expect(response.content_type)
           .to start_with('application/json')
       end
+
+      context 'with only_media parameter' do
+        before do
+          follow = Fabricate(:follow, account: user.account)
+          list.accounts << follow.target_account
+          PostStatusService.new.call(follow.target_account, text: 'Status without media')
+          media_status = PostStatusService.new.call(follow.target_account, text: 'Status with media')
+          media_status.media_attachments << Fabricate(:media_attachment, account: follow.target_account)
+        end
+
+        it 'returns only statuses with media when only_media is true' do
+          get "/api/v1/timelines/list/#{list.id}", params: { only_media: true }, headers: headers
+
+          expect(response).to have_http_status(200)
+          json = response.parsed_body
+          expect(json).to be_an(Array)
+          # All returned statuses should have media attachments
+          json.each do |status|
+            expect(status['media_attachments']).to_not be_empty if status['media_attachments']
+          end
+        end
+
+        it 'returns all statuses when only_media is false' do
+          get "/api/v1/timelines/list/#{list.id}", params: { only_media: false }, headers: headers
+
+          expect(response).to have_http_status(200)
+          expect(response.parsed_body).to be_an(Array)
+        end
+      end
     end
   end
 
