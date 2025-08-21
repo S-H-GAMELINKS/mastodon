@@ -25,10 +25,22 @@ import BundleColumnError from 'mastodon/features/ui/components/bundle_column_err
 import StatusListContainer from 'mastodon/features/ui/containers/status_list_container';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
-const mapStateToProps = (state, props) => ({
-  list: state.getIn(['lists', props.params.id]),
-  hasUnread: state.getIn(['timelines', `list:${props.params.id}`, 'unread']) > 0,
-});
+import ColumnSettingsContainer from './containers/column_settings_container';
+
+const mapStateToProps = (state, props) => {
+  const { columnId } = props;
+  const uuid = columnId;
+  const columns = state.getIn(['settings', 'columns']);
+  const index = columns ? columns.findIndex(c => c.get('uuid') === uuid) : -1;
+  const onlyMedia = (columnId && index >= 0) ? columns.get(index).getIn(['params', 'other', 'onlyMedia']) : state.getIn(['settings', 'list', 'other', 'onlyMedia'], false);
+  const timelineId = `list:${props.params.id}${onlyMedia ? ':media' : ''}`;
+
+  return {
+    list: state.getIn(['lists', props.params.id]),
+    hasUnread: state.getIn(['timelines', timelineId, 'unread']) > 0,
+    onlyMedia,
+  };
+};
 
 class ListTimeline extends PureComponent {
 
@@ -38,18 +50,19 @@ class ListTimeline extends PureComponent {
     columnId: PropTypes.string,
     hasUnread: PropTypes.bool,
     multiColumn: PropTypes.bool,
+    onlyMedia: PropTypes.bool,
     list: PropTypes.oneOfType([ImmutablePropTypes.map, PropTypes.bool]),
     intl: PropTypes.object.isRequired,
     ...WithRouterPropTypes,
   };
 
   handlePin = () => {
-    const { columnId, dispatch } = this.props;
+    const { columnId, dispatch, onlyMedia } = this.props;
 
     if (columnId) {
       dispatch(removeColumn(columnId));
     } else {
-      dispatch(addColumn('LIST', { id: this.props.params.id }));
+      dispatch(addColumn('LIST', { id: this.props.params.id, other: { onlyMedia } }));
       this.props.history.push('/');
     }
   };
@@ -64,29 +77,30 @@ class ListTimeline extends PureComponent {
   };
 
   componentDidMount () {
-    const { dispatch } = this.props;
+    const { dispatch, onlyMedia } = this.props;
     const { id } = this.props.params;
 
     dispatch(fetchList(id));
-    dispatch(expandListTimeline(id));
+    dispatch(expandListTimeline(id, { onlyMedia }));
 
-    this.disconnect = dispatch(connectListStream(id));
+    this.disconnect = dispatch(connectListStream(id, { onlyMedia }));
   }
 
   UNSAFE_componentWillReceiveProps (nextProps) {
     const { dispatch } = this.props;
     const { id } = nextProps.params;
+    const { onlyMedia } = nextProps;
 
-    if (id !== this.props.params.id) {
+    if (id !== this.props.params.id || onlyMedia !== this.props.onlyMedia) {
       if (this.disconnect) {
         this.disconnect();
         this.disconnect = null;
       }
 
       dispatch(fetchList(id));
-      dispatch(expandListTimeline(id));
+      dispatch(expandListTimeline(id, { onlyMedia }));
 
-      this.disconnect = dispatch(connectListStream(id));
+      this.disconnect = dispatch(connectListStream(id, { onlyMedia }));
     }
   }
 
@@ -103,7 +117,8 @@ class ListTimeline extends PureComponent {
 
   handleLoadMore = maxId => {
     const { id } = this.props.params;
-    this.props.dispatch(expandListTimeline(id, { maxId }));
+    const { onlyMedia } = this.props;
+    this.props.dispatch(expandListTimeline(id, { maxId, onlyMedia }));
   };
 
   handleDeleteClick = () => {
@@ -114,10 +129,11 @@ class ListTimeline extends PureComponent {
   };
 
   render () {
-    const { hasUnread, columnId, multiColumn, list } = this.props;
+    const { hasUnread, columnId, multiColumn, list, onlyMedia } = this.props;
     const { id } = this.props.params;
     const pinned = !!columnId;
     const title  = list ? list.get('title') : id;
+    const timelineId = `list:${id}${onlyMedia ? ':media' : ''}`;
 
     if (typeof list === 'undefined') {
       return (
@@ -156,13 +172,15 @@ class ListTimeline extends PureComponent {
                 <Icon id='trash' icon={DeleteIcon} /> <FormattedMessage id='lists.delete' defaultMessage='Delete list' />
               </button>
             </section>
+
+            <ColumnSettingsContainer columnId={columnId} />
           </div>
         </ColumnHeader>
 
         <StatusListContainer
           trackScroll={!pinned}
           scrollKey={`list_timeline-${columnId}`}
-          timelineId={`list:${id}`}
+          timelineId={timelineId}
           onLoadMore={this.handleLoadMore}
           emptyMessage={<FormattedMessage id='empty_column.list' defaultMessage='There is nothing in this list yet. When members of this list post new statuses, they will appear here.' />}
           bindToDocument={!multiColumn}
