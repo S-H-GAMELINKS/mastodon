@@ -63,24 +63,34 @@ type GetStatusSelector = (
   props: { id?: string | null; contextType?: string },
 ) => Status | null;
 
-export const QuotedStatus: React.FC<{
+interface QuotedStatusProps {
   quote: QuoteMap;
   contextType?: string;
   variant?: 'full' | 'link';
   nestingLevel?: number;
-}> = ({ quote, contextType, nestingLevel = 1, variant = 'full' }) => {
+  onQuoteCancel?: () => void; // Used for composer.
+}
+
+export const QuotedStatus: React.FC<QuotedStatusProps> = ({
+  quote,
+  contextType,
+  nestingLevel = 1,
+  variant = 'full',
+  onQuoteCancel,
+}) => {
   const dispatch = useAppDispatch();
   const quotedStatusId = quote.get('quoted_status');
   const quoteState = quote.get('state');
   const status = useAppSelector((state) =>
     quotedStatusId ? state.statuses.get(quotedStatusId) : undefined,
   );
+  const isQuoteLoaded = !!status && !status.get('isLoading');
 
   useEffect(() => {
-    if (!status && quotedStatusId) {
+    if (!isQuoteLoaded && quotedStatusId) {
       dispatch(fetchStatus(quotedStatusId));
     }
-  }, [status, quotedStatusId, dispatch]);
+  }, [isQuoteLoaded, quotedStatusId, dispatch]);
 
   // In order to find out whether the quoted post should be completely hidden
   // due to a matching filter, we run it through the selector used by `status_container`.
@@ -160,6 +170,7 @@ export const QuotedStatus: React.FC<{
         id={quotedStatusId}
         contextType={contextType}
         avatarSize={32}
+        onQuoteCancel={onQuoteCancel}
       >
         {canRenderChildQuote && (
           <QuotedStatus
