@@ -358,7 +358,6 @@ ja:
       title: カスタム絵文字
       uncategorized: 未分類
       unlist: 非表示
-      unlisted: 非表示
       update_failed_msg: 絵文字を更新できませんでした
       updated_msg: 絵文字の更新に成功しました！
       upload: アップロード
@@ -1824,19 +1823,14 @@ ja:
       limit: 固定できる投稿数の上限に達しました
       ownership: 他人の投稿を固定することはできません
       reblog: ブーストを固定することはできません
-    quote_policies:
-      public: 全員
     title: '%{name}: "%{quote}"'
     visibilities:
-      direct: ダイレクト
       private: フォロワー限定
       private_long: フォロワーにのみ表示されます
       public: 公開
-      public_long: 誰でも見ることができ、かつ公開タイムラインに表示されます
       portfolio: ポートフォリオ
       portfolio_long: 指定のハッシュタグが付き、ポートフォリオとして公開されます
       unlisted: 非収載
-      unlisted_long: 誰でも見ることができますが、公開タイムラインには表示されません
       nyan: にゃーん
       nyan_long: 投稿の内容を「にゃーん」に置き換えます
   statuses_cleanup:

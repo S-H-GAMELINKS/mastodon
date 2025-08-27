@@ -15,7 +15,6 @@ import { missingAltTextModal } from 'mastodon/initial_state';
 import AutosuggestInput from 'mastodon/components/autosuggest_input';
 import AutosuggestTextarea from 'mastodon/components/autosuggest_textarea';
 import { Button } from 'mastodon/components/button';
-import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import DeleteScheduleButtonContainer from '../containers/delete_schedule_button_container'; // 投稿自動削除の日時表示切替のボタン
 import DeleteScheduleFormContainer from '../containers/delete_schedule_form_container'; // 投稿自動削除の日時選択のフォーム
 import EmojiPickerDropdown from '../containers/emoji_picker_dropdown_container';
@@ -38,6 +37,7 @@ import { ReplyIndicator } from './reply_indicator';
 import { UploadForm } from './upload_form';
 import { Warning } from './warning';
 import { ComposeQuotedStatus } from './quoted_post';
+import { VisibilityButton } from './visibility_button';
 
 const allowedAroundShortCode = '><\u0085\u0020\u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029\u0009\u000a\u000b\u000c\u000d';
 
@@ -292,6 +292,13 @@ class ComposeForm extends ImmutablePureComponent {
         <div className={classNames('compose-form__highlightable', { active: highlighted })} ref={this.setRef}>
           <EditIndicator />
 
+          <div className='compose-form__dropdowns'>
+            <VisibilityButton disabled={this.props.isEditing} />
+            <ScheduleButtonContainer />
+            <DeleteScheduleButtonContainer />
+            <LanguageDropdown />
+          </div>
+
           {this.props.spoiler && (
             <div className='spoiler-input'>
               <div className='spoiler-input__border' />
@@ -317,13 +324,6 @@ class ComposeForm extends ImmutablePureComponent {
               <div className='spoiler-input__border' />
             </div>
           )}
-
-          <div className='compose-form__dropdowns'>
-            <PrivacyDropdownContainer disabled={this.props.isEditing} />
-            <ScheduleButtonContainer />
-            <DeleteScheduleButtonContainer />
-            <LanguageDropdown />
-          </div>
 
           <AutosuggestTextarea
             ref={this.textareaRef}
