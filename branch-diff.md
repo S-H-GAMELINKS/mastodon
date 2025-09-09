@@ -1,0 +1,60 @@
+# merge/mastodon-main-branchとcreatodonブランチの差分
+
+## 変更リスト
+
+- sasscを追加
+- 引用の効率的なリスト表示のため、引用のインデックスを変更
+- opentelemetry-ruby（非メジャー）を更新
+- prometheus_exporterをv2.3.0に更新
+- @vitejs/plugin-reactをv5.0.1に更新
+- viteをv7.1.3に更新
+- 新しいCrowdin翻訳（自動）
+- トークン確認時にトークンを生成するメソッドを回避
+- コンポーザー引用UI
+- DockerfileをDebian 'trixie'を使用するように更新
+- メール確認がユーザー名承認をバイパスする問題を修正
+- カラーアルファブレンドをSassカラー関数を使用するように更新
+- 「削除＆下書き」および「編集」が予期せず引用ポリシーをリセットする問題を修正
+- Vagrant以外のセットアップ用にDEVELOPMENT.mdでadmin@localhostについて言及
+- 引用ポリシーの更新がフェデレーションされない問題を修正
+- api/web/push_subscriptionsルートのリソース引数に`update`を含める
+- 新しいCrowdin翻訳（自動）
+- rails-i18nをv8.0.2に更新
+- 新しいCrowdin翻訳（自動）
+- sidekiqをバージョン8.0.7に更新
+- ステータス引用ポリシーの編集を許可
+- プライベート投稿を引用可能にすることを禁止
+- `tootctl admin create`が予約済みユーザー名チェックをバイパスしない問題を修正
+- devDependencies（非メジャー）を更新
+- アンチスパムクラスの最初のカバレッジ追加
+- opentelemetry-ruby（非メジャー）を更新
+- rubocop-railsをv2.33.3に更新
+- @rails/ujsをv7.1.502に更新
+- railsをv8.0.2.1に更新
+- Vagrantfileを更新
+- `PUT /api/v1/statuses/:status_id/interaction_policy`を追加
+- コンポーザーボタンを上部に移動
+- スタンドアロンコンポーズの成功時にリダイレクト
+- eslint-plugin-jsdocをv54に更新
+- 新しいCrowdin翻訳（自動）
+- 手動build-securityワークフローの不要な制限を削除
+- json-schemaをv6に更新
+- 返信インジケーターがまれに間違ったアバターを表示する問題を修正
+- pinoをv9.8.0に更新
+- eslint-plugin-jsdocをv53に更新
+- 暗黙的な更新でインタラクションポリシーの変更が保存されない問題を修正
+- rspec-railsをv8.0.2に更新
+- rubocop-railsをv2.33.1に更新
+- stoplightをバージョン5.3.1に更新
+- viteをv7.1.2に更新
+- 新しいCrowdin翻訳（自動）
+- `rubocop-rails`をバージョン2.33.0に更新
+- Vite 7に更新
+- propsがHTML属性として追加されるのを防ぐ
+- rubyzipをv3に更新
+- sassをv1.90.0に更新
+- インライン化された`QuoteAuthorization`の`Delete`のテストを追加
+- `QuoteAuthorization`の`Delete`アクティビティのシリアライゼーションを後者をインライン化するように変更
+- hiredis-clientをv0.25.2に更新
+- 新しいCrowdin翻訳（自動）
+- `CustomEmoji`が自身のドメインを正規化できるようにする
