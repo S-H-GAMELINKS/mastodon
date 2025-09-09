@@ -22,7 +22,7 @@ export const messages = defineMessages({
   portfolio_short: { id: 'privacy.portfolio.short', defaultMessage: 'ポートフォリオとして公開されます' },
   portfolio_long: { id: 'privacy.portfolio.long', defaultMessage: 'ポートフォリオとして公開されます' },
   unlisted_short: { id: 'privacy.unlisted.short', defaultMessage: 'Quiet public' },
-  unlisted_long: { id: 'privacy.unlisted.long', defaultMessage: 'Fewer algorithmic fanfares' },
+  unlisted_long: { id: 'privacy.unlisted.long', defaultMessage: 'Hidden from Mastodon search results, trending, and public timelines' },
   private_short: { id: 'privacy.private.short', defaultMessage: 'Followers' },
   private_long: { id: 'privacy.private.long', defaultMessage: 'Only your followers' },
   nyan_short: { id: 'privacy.nyan.short', defaultMessage: 'Replace content to にゃーん' },

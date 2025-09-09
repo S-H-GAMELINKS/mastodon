@@ -358,6 +358,7 @@ ja:
       title: カスタム絵文字
       uncategorized: 未分類
       unlist: 非表示
+      unlisted: 非表示
       update_failed_msg: 絵文字を更新できませんでした
       updated_msg: 絵文字の更新に成功しました！
       upload: アップロード
