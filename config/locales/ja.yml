@@ -1826,8 +1826,6 @@ ja:
       reblog: ブーストを固定することはできません
     title: '%{name}: "%{quote}"'
     visibilities:
-      private: フォロワー限定
-      private_long: フォロワーにのみ表示されます
       public: 公開
       portfolio: ポートフォリオ
       portfolio_long: 指定のハッシュタグが付き、ポートフォリオとして公開されます
