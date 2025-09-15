@@ -260,3 +260,5 @@ gem 'psych'
 gem 'rexml', '~> 3.2'
 gem 'sassc'
 gem 'strscan', '3.0.9'
+
+gem 'pathname', '~> 0.4.0'
