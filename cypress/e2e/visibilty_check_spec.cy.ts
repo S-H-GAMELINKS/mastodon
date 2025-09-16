@@ -15,6 +15,12 @@ describe('custom theme change test', () => {
     // 公開範囲を選択
     cy.get(':nth-child(1) > .dropdown-button').click();
 
+    // モーダルが開いていることを確認
+    cy.get('.visibility-modal').should('be.visible');
+
+    // 公開範囲のドロップダウンを選択
+    cy.get('.visibility-dropdown__button').first().click();
+
     // 公開範囲をチェック
     cy.contains('ポートフォリオ');
     cy.contains('にゃーん');
@@ -28,8 +34,17 @@ describe('custom theme change test', () => {
     // 公開範囲を選択
     cy.get(':nth-child(1) > .dropdown-button').click();
 
+    // モーダルが開いていることを確認
+    cy.get('.visibility-modal').should('be.visible');
+
+    // 公開範囲のドロップダウンを選択
+    cy.get('.visibility-dropdown__button').first().click();
+
     // 公開範囲「ポートフォリオ」を選択
-    cy.get('[data-index="portfolio"]').click();
+    cy.contains('li', 'ポートフォリオ').click();
+
+    // 保存ボタンをクリック
+    cy.contains('button', 'Save').click();
 
     // 公開範囲「ポートフォリオ」を選択した際の表示をチェック
     cy.contains('公開範囲が「ポートフォリオ」になっています。');
@@ -44,8 +59,17 @@ describe('custom theme change test', () => {
     // 公開範囲を選択
     cy.get(':nth-child(1) > .dropdown-button').click();
 
+    // モーダルが開いていることを確認
+    cy.get('.visibility-modal').should('be.visible');
+
+    // 公開範囲のドロップダウンを選択
+    cy.get('.visibility-dropdown__button').first().click();
+
     // 公開範囲「ポートフォリオ」を選択
-    cy.get('[data-index="portfolio"]').click();
+    cy.contains('li', 'ポートフォリオ').click();
+
+    // 保存ボタンをクリック
+    cy.contains('button', 'Save').click();
 
     // 公開範囲「ポートフォリオ」を選択した際の表示をチェック
     cy.contains('公開範囲が「ポートフォリオ」になっています。');
@@ -76,8 +100,17 @@ describe('custom theme change test', () => {
     // 公開範囲を選択
     cy.get(':nth-child(1) > .dropdown-button').click();
 
+    // モーダルが開いていることを確認
+    cy.get('.visibility-modal').should('be.visible');
+
+    // 公開範囲のドロップダウンを選択
+    cy.get('.visibility-dropdown__button').first().click();
+
     // 公開範囲「にゃーん」を選択
-    cy.get('[data-index="nyan"]').click();
+    cy.contains('li', 'にゃーん').click();
+
+    // 保存ボタンをクリック
+    cy.contains('button', 'Save').click();
 
     // 公開範囲「にゃーん」を選択した際の表示をチェック
     cy.contains('公開範囲が「にゃーん」になっています。');
@@ -92,8 +125,17 @@ describe('custom theme change test', () => {
     // 公開範囲を選択
     cy.get(':nth-child(1) > .dropdown-button').click();
 
+    // モーダルが開いていることを確認
+    cy.get('.visibility-modal').should('be.visible');
+
+    // 公開範囲のドロップダウンを選択
+    cy.get('.visibility-dropdown__button').first().click();
+
     // 公開範囲「にゃーん」を選択
-    cy.get('[data-index="nyan"]').click();
+    cy.contains('li', 'にゃーん').click();
+
+    // 保存ボタンをクリック
+    cy.contains('button', 'Save').click();
 
     // 公開範囲「にゃーん」を選択した際の表示をチェック
     cy.contains('公開範囲が「にゃーん」になっています。');
@@ -121,8 +163,17 @@ describe('custom theme change test', () => {
     // 公開範囲を選択
     cy.get(':nth-child(1) > .dropdown-button').click();
 
+    // モーダルが開いていることを確認
+    cy.get('.visibility-modal').should('be.visible');
+
+    // 公開範囲のドロップダウンを選択
+    cy.get('.visibility-dropdown__button').first().click();
+
     // 公開範囲「にゃーん」を選択
-    cy.get('[data-index="nyan"]').click();
+    cy.contains('li', 'にゃーん').click();
+
+    // 保存ボタンをクリック
+    cy.contains('button', 'Save').click();
 
     // 公開範囲「にゃーん」を選択した際の表示をチェック
     cy.contains('公開範囲が「にゃーん」になっています。');

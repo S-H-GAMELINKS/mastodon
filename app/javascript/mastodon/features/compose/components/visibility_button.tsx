@@ -15,8 +15,10 @@ import { useAppSelector, useAppDispatch } from '@/mastodon/store';
 import { isFeatureEnabled } from '@/mastodon/utils/environment';
 import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
 import LockIcon from '@/material-icons/400-24px/lock.svg?react';
+import MeowIcon from '@/material-icons/400-24px/pets.svg?react';
 import PublicIcon from '@/material-icons/400-24px/public.svg?react';
 import QuietTimeIcon from '@/material-icons/400-24px/quiet_time.svg?react';
+import PortfolioIcon from '@/material-icons/400-24px/work_history.svg?react';
 
 import type { VisibilityModalCallback } from '../../ui/components/visibility_modal';
 import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
@@ -56,6 +58,12 @@ const visibilityOptions = {
     value: 'public',
     text: privacyMessages.public_short,
   },
+  portfolio: {
+    icon: 'work_history',
+    iconComponent: PortfolioIcon,
+    value: 'portfolio',
+    text: privacyMessages.portfolio_short,
+  },
   unlisted: {
     icon: 'unlock',
     iconComponent: QuietTimeIcon,
@@ -67,6 +75,12 @@ const visibilityOptions = {
     iconComponent: LockIcon,
     value: 'private',
     text: privacyMessages.private_short,
+  },
+  nyan: {
+    icon: 'pets',
+    iconComponent: MeowIcon,
+    value: 'nyan',
+    text: privacyMessages.nyan_short,
   },
   direct: {
     icon: 'at',
