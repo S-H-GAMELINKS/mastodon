@@ -12,7 +12,9 @@ export type StatusVisibility =
   | 'unlisted'
   | 'private'
   // | 'limited' // This is never exposed to the API (they become `private`)
-  | 'direct';
+  | 'direct'
+  | 'portfolio'
+  | 'nyan';
 
 export interface ApiStatusApplicationJSON {
   name: string;
@@ -138,5 +140,12 @@ export interface ApiStatusSourceJSON {
 export function isStatusVisibility(
   visibility: string,
 ): visibility is StatusVisibility {
-  return ['public', 'unlisted', 'private', 'direct'].includes(visibility);
+  return [
+    'public',
+    'unlisted',
+    'private',
+    'direct',
+    'portfolio',
+    'nyan',
+  ].includes(visibility);
 }

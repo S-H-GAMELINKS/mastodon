@@ -18,8 +18,10 @@ import { createAppSelector, useAppSelector } from '@/mastodon/store';
 import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import LockIcon from '@/material-icons/400-24px/lock.svg?react';
+import MeowIcon from '@/material-icons/400-24px/pets.svg?react';
 import PublicIcon from '@/material-icons/400-24px/public.svg?react';
 import QuietTimeIcon from '@/material-icons/400-24px/quiet_time.svg?react';
+import PortfolioIcon from '@/material-icons/400-24px/work_history.svg?react';
 
 import type { BaseConfirmationModalProps } from './confirmation_modals/confirmation_modal';
 
@@ -165,6 +167,20 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
             meta: intl.formatMessage(privacyMessages.unlisted_long),
             icon: 'unlock',
             iconComponent: QuietTimeIcon,
+          },
+          {
+            value: 'portfolio',
+            text: intl.formatMessage(privacyMessages.portfolio_short),
+            meta: intl.formatMessage(privacyMessages.portfolio_long),
+            icon: 'work_history',
+            iconComponent: PortfolioIcon,
+          },
+          {
+            value: 'nyan',
+            text: intl.formatMessage(privacyMessages.nyan_short),
+            meta: intl.formatMessage(privacyMessages.nyan_long),
+            icon: 'pets',
+            iconComponent: MeowIcon,
           },
         );
       }

@@ -107,3 +107,4 @@ jobs:
           CYPRESS_RAILS_PORT: 3000
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          EXPERIMENTAL_FEATURES: 'inbound_quotes,outgoing_quotes'
