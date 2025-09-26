@@ -34,7 +34,7 @@ class PostStatusUpdatedWithVisibilityService < BaseService
     end
 
     # 投稿内に「シュレディンガーの猫」というハッシュタグがあった場合、ランダムに「にゃーん」に置き換える
-    @text = "にゃーん\n#シュレディンガーの猫" if @text.include?('#シュレディンガーの猫') && rand(0...10) > 4
+    @text = "にゃーん\n#シュレディンガーの猫" if @test.present? && @text.include?('#シュレディンガーの猫') && rand(0...10) > 4
 
     # フロントから受け取った公開範囲：ポートフォリオの呟きかどうかをチェックし、
     # ポートフォリオの場合は公開範囲を置き換えた上でハッシュタグを追加する
