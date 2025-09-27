@@ -78,13 +78,19 @@ class Api::V1::StatusesController < Api::BaseController
   end
 
   def create
-    # フロントから受け取った投稿内容と公開範囲を元に投稿内容などを変更
-    text, visibility, spoiler_text = PostStatusUpdatedWithVisibilityService.new.call(
-      current_user,
-      text: status_params[:status],
-      visibility: status_params[:visibility],
-      spoiler_text: status_params[:spoiler_text]
-    )
+    if @quoted_status.blank?
+      # フロントから受け取った投稿内容と公開範囲を元に投稿内容などを変更
+      text, visibility, spoiler_text = PostStatusUpdatedWithVisibilityService.new.call(
+        current_user,
+        text: status_params[:status],
+        visibility: status_params[:visibility],
+        spoiler_text: status_params[:spoiler_text]
+      )
+    else
+      text = status_params[:status]
+      visibility = status_params[:visibility]
+      spoiler_text = status_params[:spoiler_text]
+    end
 
     sensitive = status_params[:sensitive]
 
@@ -173,8 +179,6 @@ class Api::V1::StatusesController < Api::BaseController
   end
 
   def set_quoted_status
-    return unless Mastodon::Feature.outgoing_quotes_enabled?
-
     @quoted_status = Status.find(status_params[:quoted_status_id]) if status_params[:quoted_status_id].present?
     authorize(@quoted_status, :quote?) if @quoted_status.present?
   rescue ActiveRecord::RecordNotFound, Mastodon::NotPermittedError
