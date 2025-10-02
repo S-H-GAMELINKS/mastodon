@@ -56,7 +56,7 @@ describe('portfolio visibility default hashtag setting spec', () => {
     cy.contains('li', 'ポートフォリオ').click();
 
     // 保存ボタンをクリック
-    cy.contains('button', 'Save').click();
+    cy.contains('button', '保存').click();
 
     // 公開範囲「ポートフォリオ」を選択した際の表示をチェック
     cy.contains('公開範囲が「ポートフォリオ」になっています。');
@@ -111,7 +111,7 @@ describe('portfolio visibility default hashtag setting spec', () => {
     cy.contains('li', 'ポートフォリオ').click();
 
     // 保存ボタンをクリック
-    cy.contains('button', 'Save').click();
+    cy.contains('button', '保存').click();
 
     // 公開範囲「ポートフォリオ」を選択した際の表示をチェック
     cy.contains('公開範囲が「ポートフォリオ」になっています。');
@@ -166,7 +166,7 @@ describe('portfolio visibility default hashtag setting spec', () => {
     cy.contains('li', 'ポートフォリオ').click();
 
     // 保存ボタンをクリック
-    cy.contains('button', 'Save').click();
+    cy.contains('button', '保存').click();
 
     // 公開範囲「ポートフォリオ」を選択した際の表示をチェック
     cy.contains('公開範囲が「ポートフォリオ」になっています。');

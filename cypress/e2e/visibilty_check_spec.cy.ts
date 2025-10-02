@@ -44,7 +44,7 @@ describe('custom theme change test', () => {
     cy.contains('li', 'ポートフォリオ').click();
 
     // 保存ボタンをクリック
-    cy.contains('button', 'Save').click();
+    cy.contains('button', '保存').click();
 
     // 公開範囲「ポートフォリオ」を選択した際の表示をチェック
     cy.contains('公開範囲が「ポートフォリオ」になっています。');
@@ -69,7 +69,7 @@ describe('custom theme change test', () => {
     cy.contains('li', 'ポートフォリオ').click();
 
     // 保存ボタンをクリック
-    cy.contains('button', 'Save').click();
+    cy.contains('button', '保存').click();
 
     // 公開範囲「ポートフォリオ」を選択した際の表示をチェック
     cy.contains('公開範囲が「ポートフォリオ」になっています。');
@@ -110,7 +110,7 @@ describe('custom theme change test', () => {
     cy.contains('li', 'にゃーん').click();
 
     // 保存ボタンをクリック
-    cy.contains('button', 'Save').click();
+    cy.contains('button', '保存').click();
 
     // 公開範囲「にゃーん」を選択した際の表示をチェック
     cy.contains('公開範囲が「にゃーん」になっています。');
@@ -135,7 +135,7 @@ describe('custom theme change test', () => {
     cy.contains('li', 'にゃーん').click();
 
     // 保存ボタンをクリック
-    cy.contains('button', 'Save').click();
+    cy.contains('button', '保存').click();
 
     // 公開範囲「にゃーん」を選択した際の表示をチェック
     cy.contains('公開範囲が「にゃーん」になっています。');
@@ -173,7 +173,7 @@ describe('custom theme change test', () => {
     cy.contains('li', 'にゃーん').click();
 
     // 保存ボタンをクリック
-    cy.contains('button', 'Save').click();
+    cy.contains('button', '保存').click();
 
     // 公開範囲「にゃーん」を選択した際の表示をチェック
     cy.contains('公開範囲が「にゃーん」になっています。');
