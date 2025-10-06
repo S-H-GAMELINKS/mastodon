@@ -182,6 +182,7 @@ export default tseslint.config([
     'cypress/**/*',
     'cypress.config.ts',
     'app/javascript/mastodon/features/account_timeline/components/account_header.tsx',
+    '.bundle/**/*',
   ]),
   react.configs.flat.recommended,
   react.configs.flat['jsx-runtime'],
