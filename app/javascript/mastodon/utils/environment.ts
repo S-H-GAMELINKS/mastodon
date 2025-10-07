@@ -28,10 +28,7 @@ export function isFeatureEnabled(feature: Features) {
 
 export function isModernEmojiEnabled() {
   try {
-    return (
-      isFeatureEnabled('modern_emojis') &&
-      localStorage.getItem('experiments')?.split(',').includes('modern_emojis')
-    );
+    return isFeatureEnabled('modern_emojis');
   } catch {
     return false;
   }
