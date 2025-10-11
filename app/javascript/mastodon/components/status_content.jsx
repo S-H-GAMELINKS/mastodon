@@ -28,9 +28,6 @@ const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
  * @returns {string}
  */
 export function getStatusContent(status) {
-  if (isModernEmojiEnabled()) {
-    return status.getIn(['translation', 'content']) || status.get('content');
-  }
   return status.getIn(['translation', 'contentHtml']) || status.get('contentHtml');
 }
 
@@ -207,7 +204,7 @@ class StatusContent extends PureComponent {
     this.node = c;
   };
 
-  handleElement = (element, { key, ...props }) => {
+  handleElement = (element, { key, ...props }, children) => {
     if (element instanceof HTMLAnchorElement) {
       const mention = this.props.status.get('mentions').find(item => element.href === item.get('url'));
       return (
@@ -216,9 +213,11 @@ class StatusContent extends PureComponent {
           href={element.href}
           text={element.innerText}
           hashtagAccountId={this.props.status.getIn(['account', 'id'])}
-          mentionAccountId={mention?.get('id')}
+          mention={mention?.toJSON()}
           key={key}
-        />
+        >
+          {children}
+        </HandledLink>
       );
     } else if (element instanceof HTMLParagraphElement && element.classList.contains('quote-inline')) {
       return null;
