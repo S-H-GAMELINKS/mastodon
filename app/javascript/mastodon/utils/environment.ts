@@ -25,11 +25,3 @@ export type Features =
 export function isFeatureEnabled(feature: Features) {
   return initialState?.features.includes(feature) ?? false;
 }
-
-export function isModernEmojiEnabled() {
-  try {
-    return isFeatureEnabled('modern_emojis');
-  } catch {
-    return false;
-  }
-}
