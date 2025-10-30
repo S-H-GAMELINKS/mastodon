@@ -116,7 +116,7 @@ GEM
       public_suffix (>= 2.0.2, < 7.0)
     aes_key_wrap (1.1.0)
     android_key_attestation (0.3.0)
-    annotaterb (4.19.0)
+    annotaterb (4.20.0)
       activerecord (>= 6.0.0)
       activesupport (>= 6.0.0)
     ast (2.4.3)
@@ -216,10 +216,10 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    devise-two-factor (6.1.0)
-      activesupport (>= 7.0, < 8.1)
+    devise-two-factor (6.2.0)
+      activesupport (>= 7.0, < 8.2)
       devise (~> 4.0)
-      railties (>= 7.0, < 8.1)
+      railties (>= 7.0, < 8.2)
       rotp (~> 6.0)
     devise_pam_authenticatable2 (9.2.0)
       devise (>= 4.0.0)
@@ -250,7 +250,7 @@ GEM
       mail (~> 2.7)
     email_validator (2.2.4)
       activemodel
-    erb (5.0.2)
+    erb (5.1.1)
     erd_map (0.1.6)
       fiddle
       pycall
@@ -280,7 +280,7 @@ GEM
       ffi (>= 1.15.5)
       rake
     fiddle (1.1.8)
-    fileutils (1.7.3)
+    fileutils (1.8.0)
     flatware (2.3.4)
       drb
       thor (< 2.0)
@@ -501,7 +501,7 @@ GEM
     nokogiri (1.18.10)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    oj (3.16.11)
+    oj (3.16.12)
       bigdecimal (>= 3.0)
       ostruct (>= 0.2)
     omniauth (2.1.4)
@@ -755,9 +755,9 @@ GEM
       io-console (~> 0.5)
     request_store (1.7.0)
       rack (>= 1.4)
-    responders (3.1.1)
-      actionpack (>= 5.2)
-      railties (>= 5.2)
+    responders (3.2.0)
+      actionpack (>= 7.0)
+      railties (>= 7.0)
     rexml (3.4.4)
     rotp (6.3.0)
     rouge (4.6.1)
@@ -982,7 +982,7 @@ GEM
       activesupport
       faraday (~> 2.0)
       faraday-follow_redirects
-    webmock (3.26.0)
+    webmock (3.26.1)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
