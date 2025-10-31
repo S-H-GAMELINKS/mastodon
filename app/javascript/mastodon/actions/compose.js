@@ -5,6 +5,7 @@ import { throttle } from 'lodash';
 
 import api from 'mastodon/api';
 import { browserHistory } from 'mastodon/components/router';
+import { countableText } from 'mastodon/features/compose/util/counter';
 import { search as emojiSearch } from 'mastodon/features/emoji/emoji_mart_search_light';
 import { tagHistory } from 'mastodon/settings';
 
@@ -99,6 +100,7 @@ const messages = defineMessages({
   open: { id: 'compose.published.open', defaultMessage: 'Open' },
   published: { id: 'compose.published.body', defaultMessage: 'Post published.' },
   saved: { id: 'compose.saved.body', defaultMessage: 'Post saved.' },
+  blankPostError: { id: 'compose.error.blank_post', defaultMessage: 'Post can\'t be blank.' },
 });
 
 export const ensureComposeIsVisible = (getState) => {
@@ -220,7 +222,15 @@ export function submitCompose(successCallback) {
       postScheduledAt = new Date(now.getTime() + schedule * 1000).toISOString();
     }
 
-    if (!(status?.length || media.size !== 0 || (hasQuote && spoiler_text?.length))) {
+    const fulltext = `${spoiler_text ?? ''}${countableText(status ?? '')}`;
+    const hasText = fulltext.trim().length > 0;
+
+    if (!(hasText || media.size !== 0 || (hasQuote && spoiler_text?.length))) {
+      dispatch(showAlert({
+        message: messages.blankPostError,
+      }));
+      dispatch(focusCompose());
+
       return;
     }
 
