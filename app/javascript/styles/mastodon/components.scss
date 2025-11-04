@@ -2700,6 +2700,7 @@ a.account__display-name {
     outline-offset: -1px;
     border-radius: 8px;
     touch-action: none;
+    user-select: none;
   }
 
   &--zoomed-in {
@@ -6111,6 +6112,7 @@ a.status-card {
   width: 100%;
   height: 100%;
   position: relative;
+  touch-action: pan-y;
 
   &__buttons {
     position: absolute;
@@ -6146,11 +6148,17 @@ a.status-card {
 }
 
 .media-modal__closer {
+  display: flex;
   position: absolute;
   top: 0;
   inset-inline-start: 0;
   inset-inline-end: 0;
   bottom: 0;
+
+  > div {
+    flex-shrink: 0;
+    overflow: auto;
+  }
 }
 
 .media-modal__navigation {
@@ -8958,6 +8966,10 @@ noscript {
   flex: 0 0 auto;
   position: relative;
   overflow: hidden;
+
+  .layout-multiple-columns & {
+    width: 100%;
+  }
 
   @media screen and (max-width: (124px + 300px)) {
     width: 100%;

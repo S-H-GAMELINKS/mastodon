@@ -32,7 +32,7 @@ jobs:
       SECRET_KEY_BASE_DUMMY: 1
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Update Twitter theme submodules
         run: git submodule update  --init
@@ -128,7 +128,7 @@ jobs:
           - '3.3'
           - '3.4'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Update Twitter theme submodules
         run: git submodule update  --init
@@ -244,7 +244,7 @@ jobs:
           - '3.3'
           - '3.4'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - uses: actions/download-artifact@v4
         with:
@@ -321,7 +321,7 @@ jobs:
           - '3.3'
           - '3.4'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Update Twitter theme submodules
         run: git submodule update  --init
@@ -432,7 +432,7 @@ jobs:
         search-image:
           - docker.elastic.co/elasticsearch/elasticsearch:7.17.13
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - uses: actions/download-artifact@v4
         with:
