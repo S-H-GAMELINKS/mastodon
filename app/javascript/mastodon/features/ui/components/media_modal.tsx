@@ -116,6 +116,9 @@ export const MediaModal: FC<MediaModalProps> = forwardRef<
           onChangeBackgroundColor(backgroundColor);
         }
       }
+      return () => {
+        onChangeBackgroundColor(null);
+      };
     }, [currentMedia, onChangeBackgroundColor]);
 
     const [viewportDimensions, setViewportDimensions] = useState<{
@@ -247,6 +250,7 @@ export const MediaModal: FC<MediaModalProps> = forwardRef<
         className='media-modal__nav media-modal__nav--prev'
         onClick={handlePrevClick}
         aria-label={intl.formatMessage(messages.previous)}
+        type='button'
       >
         <Icon id='chevron-left' icon={ChevronLeftIcon} />
       </button>
@@ -257,6 +261,7 @@ export const MediaModal: FC<MediaModalProps> = forwardRef<
         className='media-modal__nav  media-modal__nav--next'
         onClick={handleNextClick}
         aria-label={intl.formatMessage(messages.next)}
+        type='button'
       >
         <Icon id='chevron-right' icon={ChevronRightIcon} />
       </button>
@@ -354,6 +359,7 @@ const MediaPagination: FC<MediaPaginationProps> = ({
             active: i === index,
           })}
           onClick={handleChangeIndex(i)}
+          type='button'
         >
           {i + 1}
         </button>
