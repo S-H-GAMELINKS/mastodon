@@ -187,7 +187,7 @@ export default tseslint.config([
   ]),
   react.configs.flat.recommended,
   react.configs.flat['jsx-runtime'],
-  reactHooks.configs['recommended-latest'],
+  reactHooks.configs.flat.recommended,
   jsxA11Y.flatConfigs.recommended,
   importPlugin.flatConfigs.react,
   // @ts-expect-error -- For some reason the formatjs package exports an empty object?
@@ -332,7 +332,7 @@ export default tseslint.config([
       tseslint.configs.stylisticTypeChecked,
       react.configs.flat.recommended,
       react.configs.flat['jsx-runtime'],
-      reactHooks.configs['recommended-latest'],
+      reactHooks.configs.flat.recommended,
       jsxA11Y.flatConfigs.recommended,
       importPlugin.flatConfigs.react,
       importPlugin.flatConfigs.typescript,
