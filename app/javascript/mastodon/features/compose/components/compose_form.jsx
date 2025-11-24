@@ -20,7 +20,6 @@ import DeleteScheduleFormContainer from '../containers/delete_schedule_form_cont
 import EmojiPickerDropdown from '../containers/emoji_picker_dropdown_container';
 import FreeHandCanvas from '../containers/free_hand_canvas_form_container'; // 手書きCanvas
 import PollButtonContainer from '../containers/poll_button_container';
-import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
 import ScheduleButtonContainer from '../containers/schedule_button_container'; // 予約投稿の日時表示切替のボタン
 import ScheduleFormContainer from '../containers/schedule_form_container'; // 予約投稿の日時選択のフォーム
 import SpoilerButtonContainer from '../containers/spoiler_button_container';
