@@ -1,5 +1,6 @@
-@use 'mastodon-light/variables';
-@use 'application';
-@use 'mastodon-light/diff';
+@use 'mastodon/variables' with (
+  $emojis-requiring-inversion: 'chains'
+);
+@use 'common';
 @use 'twitter/layout-single-column';
 @use 'twitter/layout-multiple-columns';
