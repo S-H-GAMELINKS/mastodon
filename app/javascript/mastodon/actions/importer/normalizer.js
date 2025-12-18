@@ -5,6 +5,8 @@ import { makeEmojiMap } from 'mastodon/models/custom_emoji';
 import emojify, { emojifyStatus } from '../../features/emoji/emoji';
 import { expandSpoilers, domain } from '../../initial_state';
 
+import { importCustomEmoji } from './emoji';
+
 const domParser = new DOMParser();
 
 export function searchTextFromRawStatus (status) {
@@ -160,6 +162,10 @@ export function normalizeAnnouncement(announcement) {
   const emojiMap = makeEmojiMap(normalAnnouncement.emojis);
 
   normalAnnouncement.contentHtml = emojify(normalAnnouncement.content, emojiMap);
+
+  if (normalAnnouncement.emojis) {
+    importCustomEmoji(normalAnnouncement.emojis);
+  }
 
   return normalAnnouncement;
 }

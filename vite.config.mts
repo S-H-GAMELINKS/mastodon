@@ -122,6 +122,8 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       manifest: true,
       outDir,
       assetsDir: 'assets',
+      assetsInlineLimit: (filePath, _) =>
+        /\.woff2?$/.exec(filePath) ? false : undefined,
       rollupOptions: {
         input: await findEntrypoints(),
         output: {
