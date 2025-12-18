@@ -13,7 +13,7 @@ describe('custom theme change test', () => {
     cy.visit('/publish');
 
     // 公開範囲を選択
-    cy.get(':nth-child(1) > .dropdown-button').click();
+    cy.get('.compose-form__dropdowns > .dropdown-button').first().click();
 
     // モーダルが開いていることを確認
     cy.get('.visibility-modal').should('be.visible');
@@ -32,7 +32,7 @@ describe('custom theme change test', () => {
     cy.visit('/publish');
 
     // 公開範囲を選択
-    cy.get(':nth-child(1) > .dropdown-button').click();
+    cy.get('.compose-form__dropdowns > .dropdown-button').first().click();
 
     // モーダルが開いていることを確認
     cy.get('.visibility-modal').should('be.visible');
@@ -57,7 +57,7 @@ describe('custom theme change test', () => {
     cy.visit('/publish');
 
     // 公開範囲を選択
-    cy.get(':nth-child(1) > .dropdown-button').click();
+    cy.get('.compose-form__dropdowns > .dropdown-button').first().click();
 
     // モーダルが開いていることを確認
     cy.get('.visibility-modal').should('be.visible');
@@ -98,7 +98,7 @@ describe('custom theme change test', () => {
     cy.visit('/publish');
 
     // 公開範囲を選択
-    cy.get(':nth-child(1) > .dropdown-button').click();
+    cy.get('.compose-form__dropdowns > .dropdown-button').first().click();
 
     // モーダルが開いていることを確認
     cy.get('.visibility-modal').should('be.visible');
@@ -123,7 +123,7 @@ describe('custom theme change test', () => {
     cy.visit('/publish');
 
     // 公開範囲を選択
-    cy.get(':nth-child(1) > .dropdown-button').click();
+    cy.get('.compose-form__dropdowns > .dropdown-button').first().click();
 
     // モーダルが開いていることを確認
     cy.get('.visibility-modal').should('be.visible');
@@ -161,7 +161,7 @@ describe('custom theme change test', () => {
     cy.visit('/publish');
 
     // 公開範囲を選択
-    cy.get(':nth-child(1) > .dropdown-button').click();
+    cy.get('.compose-form__dropdowns > .dropdown-button').first().click();
 
     // モーダルが開いていることを確認
     cy.get('.visibility-modal').should('be.visible');
