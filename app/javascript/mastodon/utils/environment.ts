@@ -22,6 +22,21 @@ export type Features =
   | 'fasp'
   | 'http_message_signatures';
 
-export function isFeatureEnabled(feature: Features) {
+export type ServerFeatures = 'fasp';
+
+export function isServerFeatureEnabled(feature: ServerFeatures) {
   return initialState?.features.includes(feature) ?? false;
+}
+
+type ClientFeatures = 'profile_redesign';
+
+export function isClientFeatureEnabled(feature: ClientFeatures) {
+  try {
+    const features =
+      window.localStorage.getItem('experiments')?.split(',') ?? [];
+    return features.includes(feature);
+  } catch (err) {
+    console.warn('Could not access localStorage to get client features', err);
+    return false;
+  }
 }
