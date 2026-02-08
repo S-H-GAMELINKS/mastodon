@@ -1,9 +1,5 @@
-/* eslint-disable */
-// @ts-nocheck
 import type { RefCallback } from 'react';
 import { useCallback, useEffect, useState } from 'react';
-
-import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
@@ -16,11 +12,6 @@ import { AccountNote } from 'mastodon/features/account/components/account_note';
 import FollowRequestNoteContainer from 'mastodon/features/account/containers/follow_request_note_container';
 import { autoPlayGif, me, domain as localDomain } from 'mastodon/initial_state';
 import type { Account } from 'mastodon/models/account';
-import type { MenuItem } from 'mastodon/models/dropdown_menu';
-import {
-  PERMISSION_MANAGE_USERS,
-  PERMISSION_MANAGE_FEDERATION,
-} from 'mastodon/permissions';
 import {
   getAccountHidden,
   getAccountFeaturedTags,
@@ -54,13 +45,6 @@ const titleFromAccount = (account: Account) => {
   return `${prefix} (@${acct})`;
 };
 
-// 注目のハッシュタグの名前をデフォルト値に設定吸うためのWorkaround
-// See: https://github.com/formatjs/babel-plugin-react-intl/issues/119#issuecomment-326202499
-/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-const DynamicFormattedMessage = (props: any) => {
-  return <FormattedMessage {...props} />;
-};
-
 export const AccountHeader: React.FC<{
   accountId: string;
   hideTabs?: boolean;
@@ -72,160 +56,10 @@ export const AccountHeader: React.FC<{
   );
   const hidden = useAppSelector((state) => getAccountHidden(state, accountId));
 
-  /* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */
+  // Creatodon: Get featured tags for the account
   const featuredTags = useAppSelector((state) =>
     getAccountFeaturedTags(state, accountId),
   );
-
-  const handleFollow = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    if (relationship?.following || relationship?.requested) {
-      dispatch(
-        openModal({ modalType: 'CONFIRM_UNFOLLOW', modalProps: { account } }),
-      );
-    } else {
-      dispatch(followAccount(account.id));
-    }
-  }, [dispatch, account, relationship]);
-
-  const handleBlock = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    if (relationship?.blocking) {
-      dispatch(unblockAccount(account.id));
-    } else {
-      dispatch(initBlockModal(account));
-    }
-  }, [dispatch, account, relationship]);
-
-  const handleMention = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    dispatch(mentionCompose(account));
-  }, [dispatch, account]);
-
-  const handleDirect = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    dispatch(directCompose(account));
-  }, [dispatch, account]);
-
-  const handleReport = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    dispatch(initReport(account));
-  }, [dispatch, account]);
-
-  const handleReblogToggle = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    if (relationship?.showing_reblogs) {
-      dispatch(followAccount(account.id, { reblogs: false }));
-    } else {
-      dispatch(followAccount(account.id, { reblogs: true }));
-    }
-  }, [dispatch, account, relationship]);
-
-  const handleNotifyToggle = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    if (relationship?.notifying) {
-      dispatch(followAccount(account.id, { notify: false }));
-    } else {
-      dispatch(followAccount(account.id, { notify: true }));
-    }
-  }, [dispatch, account, relationship]);
-
-  const handleMute = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    if (relationship?.muting) {
-      dispatch(unmuteAccount(account.id));
-    } else {
-      dispatch(initMuteModal(account));
-    }
-  }, [dispatch, account, relationship]);
-
-  const handleBlockDomain = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    dispatch(initDomainBlockModal(account));
-  }, [dispatch, account]);
-
-  const handleUnblockDomain = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    const domain = account.acct.split('@')[1];
-
-    if (!domain) {
-      return;
-    }
-
-    dispatch(unblockDomain(domain));
-  }, [dispatch, account]);
-
-  const handleEndorseToggle = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    if (relationship?.endorsed) {
-      dispatch(unpinAccount(account.id));
-    } else {
-      dispatch(pinAccount(account.id));
-    }
-  }, [dispatch, account, relationship]);
-
-  const handleAddToList = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    dispatch(
-      openModal({
-        modalType: 'LIST_ADDER',
-        modalProps: {
-          accountId: account.id,
-        },
-      }),
-    );
-  }, [dispatch, account]);
-
-  const handleChangeLanguages = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    dispatch(
-      openModal({
-        modalType: 'SUBSCRIBED_LANGUAGES',
-        modalProps: {
-          accountId: account.id,
-        },
-      }),
-    );
-  }, [dispatch, account]);
 
   const handleOpenAvatar = useCallback(
     (e: React.MouseEvent) => {

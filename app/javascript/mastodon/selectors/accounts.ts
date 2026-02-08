@@ -1,5 +1,3 @@
-/* eslint-disable */
-// @ts-nocheck
 import { createSelector } from '@reduxjs/toolkit';
 import type { Map as ImmutableMap } from 'immutable';
 import { Record as ImmutableRecord, List as ImmutableList } from 'immutable';

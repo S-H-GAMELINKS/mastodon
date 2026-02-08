@@ -1,6 +1,5 @@
-/* eslint-disable */
-// @ts-nocheck
 import type { FC } from 'react';
+import type { List as ImmutableList } from 'immutable';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -11,14 +10,14 @@ import { isRedesignEnabled } from '../common';
 
 import classes from './redesign.module.scss';
 
-// 注目のハッシュタグの名前をデフォルト値に設定吸うためのWorkaround
-// See: https://github.com/formatjs/babel-plugin-react-intl/issues/119#issuecomment-326202499
-/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-const DynamicFormattedMessage = (props: any) => {
-  return <FormattedMessage {...props} />;
-};
+interface FeaturedTagRecord {
+  get(key: 'name'): string;
+}
 
-export const AccountTabs: FC<{ acct: string; featuredTags?: any }> = ({ acct, featuredTags }) => {
+export const AccountTabs: FC<{
+  acct: string;
+  featuredTags?: ImmutableList<FeaturedTagRecord> | FeaturedTagRecord[];
+}> = ({ acct, featuredTags }) => {
   if (isRedesignEnabled()) {
     return (
       <div className={classes.tabs}>
@@ -57,8 +56,8 @@ export const AccountTabs: FC<{ acct: string; featuredTags?: any }> = ({ acct, fe
           defaultMessage='Portfolio'
         />
       </NavLink>
-      {featuredTags && featuredTags.map((featuredTag: any) => {
-        const tagName = `${featuredTag.get('name')}`;
+      {featuredTags && Array.from(featuredTags).map((featuredTag) => {
+        const tagName = featuredTag.get('name');
         return (
           <NavLink
             key={tagName}
@@ -66,10 +65,10 @@ export const AccountTabs: FC<{ acct: string; featuredTags?: any }> = ({ acct, fe
             exact
             to={`/@${acct}/tagged/${tagName}`}
           >
-            <DynamicFormattedMessage
+            <FormattedMessage
               id='account.featured_tags'
-              defaultMessage={'{tagName}'}
-              values={{ tagName: tagName }}
+              defaultMessage='{tagName}'
+              values={{ tagName }}
             />
           </NavLink>
         );
