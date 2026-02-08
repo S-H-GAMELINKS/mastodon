@@ -22,13 +22,13 @@ export type Features =
   | 'fasp'
   | 'http_message_signatures';
 
-export type ServerFeatures = 'fasp';
+export type ServerFeatures = 'fasp' | 'collections';
 
 export function isServerFeatureEnabled(feature: ServerFeatures) {
   return initialState?.features.includes(feature) ?? false;
 }
 
-type ClientFeatures = 'profile_redesign';
+type ClientFeatures = 'profile_redesign' | 'collections';
 
 export function isClientFeatureEnabled(feature: ClientFeatures) {
   try {

@@ -1,8 +1,9 @@
 /* eslint-disable */
 // @ts-nocheck
-import { useCallback, useMemo } from 'react';
+import type { RefCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
-import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
@@ -36,6 +37,7 @@ import { AccountHeaderFields } from './fields';
 import { AccountInfo } from './info';
 import { MemorialNote } from './memorial_note';
 import { MovedNote } from './moved_note';
+import { AccountNote as AccountNoteRedesign } from './note';
 import { AccountNumberFields } from './number_fields';
 import redesignClasses from './redesign.module.scss';
 import { AccountTabs } from './tabs';
@@ -250,6 +252,40 @@ export const AccountHeader: React.FC<{
     [dispatch, account],
   );
 
+  const [isFooterIntersecting, setIsIntersecting] = useState(false);
+  const handleIntersect: IntersectionObserverCallback = useCallback(
+    (entries) => {
+      const entry = entries.at(0);
+      if (!entry) {
+        return;
+      }
+
+      setIsIntersecting(entry.isIntersecting);
+    },
+    [],
+  );
+  const [observer] = useState(
+    () =>
+      new IntersectionObserver(handleIntersect, {
+        rootMargin: '0px 0px -55px 0px', // Height of bottom nav bar.
+      }),
+  );
+
+  const handleObserverRef: RefCallback<HTMLDivElement> = useCallback(
+    (node) => {
+      if (node) {
+        observer.observe(node);
+      }
+    },
+    [observer],
+  );
+
+  useEffect(() => {
+    return () => {
+      observer.disconnect();
+    };
+  }, [observer]);
+
   if (!account) {
     return null;
   }
@@ -274,7 +310,7 @@ export const AccountHeader: React.FC<{
         )}
 
         <div className='account__header__image'>
-          {me !== account.id && relationship && (
+          {me !== account.id && relationship && !isRedesignEnabled() && (
             <AccountInfo relationship={relationship} />
           )}
 
@@ -287,7 +323,12 @@ export const AccountHeader: React.FC<{
           )}
         </div>
 
-        <div className='account__header__bar'>
+        <div
+          className={classNames(
+            'account__header__bar',
+            isRedesignEnabled() && redesignClasses.barWrapper,
+          )}
+        >
           <div className='account__header__tabs'>
             <a
               className='avatar'
@@ -316,13 +357,14 @@ export const AccountHeader: React.FC<{
               isRedesignEnabled() && redesignClasses.nameWrapper,
             )}
           >
-            <AccountName
-              accountId={accountId}
-              className={classNames(
-                isRedesignEnabled() && redesignClasses.name,
-              )}
-            />
-            {isRedesignEnabled() && <AccountButtons accountId={accountId} />}
+            <AccountName accountId={accountId} />
+            {isRedesignEnabled() && (
+              <AccountButtons
+                accountId={accountId}
+                className={redesignClasses.buttonsDesktop}
+                noShare
+              />
+            )}
           </div>
 
           <AccountBadges accountId={accountId} />
@@ -331,18 +373,24 @@ export const AccountHeader: React.FC<{
             <FamiliarFollowers accountId={accountId} />
           )}
 
-          <AccountButtons
-            className='account__header__buttons--mobile'
-            accountId={accountId}
-            noShare
-          />
+          {!isRedesignEnabled() && (
+            <AccountButtons
+              className='account__header__buttons--mobile'
+              accountId={accountId}
+              noShare
+            />
+          )}
 
           {!suspendedOrHidden && (
             <div className='account__header__extra'>
               <div className='account__header__bio'>
-                {me && account.id !== me && (
-                  <AccountNote accountId={accountId} />
-                )}
+                {me &&
+                  account.id !== me &&
+                  (isRedesignEnabled() ? (
+                    <AccountNoteRedesign accountId={accountId} />
+                  ) : (
+                    <AccountNote accountId={accountId} />
+                  ))}
 
                 <AccountBio
                   accountId={accountId}
@@ -355,51 +403,22 @@ export const AccountHeader: React.FC<{
               <AccountNumberFields accountId={accountId} />
             </div>
           )}
+
+          {isRedesignEnabled() && (
+            <AccountButtons
+              className={classNames(
+                redesignClasses.buttonsMobile,
+                !isFooterIntersecting && redesignClasses.buttonsMobileIsStuck,
+              )}
+              accountId={accountId}
+              noShare
+            />
+          )}
         </div>
       </AnimateEmojiProvider>
 
-      {!(hideTabs || hidden) && (
-        <div className='account__section-headline'>
-          <NavLink exact to={`/@${account.acct}/featured`}>
-            <FormattedMessage id='account.featured' defaultMessage='Featured' />
-          </NavLink>
-          <NavLink exact to={`/@${account.acct}`}>
-            <FormattedMessage id='account.posts' defaultMessage='Posts' />
-          </NavLink>
-          <NavLink exact to={`/@${account.acct}/with_replies`}>
-            <FormattedMessage
-              id='account.posts_with_replies'
-              defaultMessage='Posts and replies'
-            />
-          </NavLink>
-          <NavLink exact to={`/@${account.acct}/media`}>
-            <FormattedMessage id='account.media' defaultMessage='Media' />
-          </NavLink>
-          <NavLink exact to={`/@${account.get('acct')}/tagged/CreatodonFolio`}>
-            <FormattedMessage
-              id='account.portfolio'
-              defaultMessage='Portfolio'
-            />
-          </NavLink>
-          {featuredTags.map((featuredTag) => {
-            const tagName = `${featuredTag.get('name')}`;
-            return (
-              <NavLink
-                key={tagName}
-                className='feature_tag_timeline'
-                exact
-                to={`/@${account.get('acct')}/tagged/${tagName}`}
-              >
-                <DynamicFormattedMessage
-                  id='account.featured_tags'
-                  defaultMessage={'{tagName}'}
-                  values={{ tagName: tagName }}
-                />
-              </NavLink>
-            );
-          })}
-        </div>
-      )}
+      {!hideTabs && !hidden && <AccountTabs acct={account.acct} featuredTags={featuredTags} />}
+      <div ref={handleObserverRef} />
 
       <Helmet>
         <title>{titleFromAccount(account)}</title>

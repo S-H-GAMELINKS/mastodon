@@ -12,7 +12,9 @@ sq:
     followers:
       one: Ndjekës
       other: Ndjekës
-    following: Po ndjek
+    following:
+      one: E ndjekur
+      other: Të ndjekura
     instance_actor_flash: Kjo llogari është një aktor virtual, i përdorur për të përfaqësuar vetë serverin dhe jo ndonjë përdorues. Përdoret për qëllime federimi dhe s’duhet pezulluar.
     last_active: aktiv së fundi
     link_verified_on: Pronësia e kësaj lidhjeje qe kontrolluar më %{date}
@@ -884,7 +886,7 @@ sq:
       types:
         major: Hedhje e rëndësishme në qarkullim
         minor: Hedhje e vockël në qarkullim
-        patch: Hedhje në qarkullim arnimesh — ndreqje të meash dhe ndryshime të lehta për t’u aplikuar
+        patch: Hedhje në qarkullim arnimesh — ndreqje të metash dhe ndryshime të lehta për t’u aplikuar
       version: Version
     statuses:
       account: Autor
