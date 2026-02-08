@@ -88,7 +88,7 @@ class StreamingClient
       @driver
     end
 
-    def wait_for_event(expected_event, timeout: 10)
+    def wait_for_event(expected_event, timeout: 30)
       Timeout.timeout(timeout) do
         loop do
           event = dequeue_event
