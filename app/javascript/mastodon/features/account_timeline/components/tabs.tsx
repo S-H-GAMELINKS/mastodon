@@ -1,17 +1,18 @@
 import type { FC } from 'react';
-import type { List as ImmutableList } from 'immutable';
 
 import { FormattedMessage } from 'react-intl';
 
 import type { NavLinkProps } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 
+import type { List as ImmutableList } from 'immutable';
+
 import { isRedesignEnabled } from '../common';
 
 import classes from './redesign.module.scss';
 
 interface FeaturedTagRecord {
-  get(key: 'name'): string;
+  get(key: 'name'): string | null | undefined;
 }
 
 export const AccountTabs: FC<{
@@ -51,28 +52,23 @@ export const AccountTabs: FC<{
         <FormattedMessage id='account.media' defaultMessage='Media' />
       </NavLink>
       <NavLink exact to={`/@${acct}/tagged/CreatodonFolio`}>
-        <FormattedMessage
-          id='account.portfolio'
-          defaultMessage='Portfolio'
-        />
+        <FormattedMessage id='account.portfolio' defaultMessage='Portfolio' />
       </NavLink>
-      {featuredTags && Array.from(featuredTags).map((featuredTag) => {
-        const tagName = featuredTag.get('name');
-        return (
-          <NavLink
-            key={tagName}
-            className='feature_tag_timeline'
-            exact
-            to={`/@${acct}/tagged/${tagName}`}
-          >
-            <FormattedMessage
-              id='account.featured_tags'
-              defaultMessage='{tagName}'
-              values={{ tagName }}
-            />
-          </NavLink>
-        );
-      })}
+      {featuredTags &&
+        Array.from(featuredTags).map((featuredTag) => {
+          const tagName = featuredTag.get('name');
+          if (!tagName) return null;
+          return (
+            <NavLink
+              key={tagName}
+              className='feature_tag_timeline'
+              exact
+              to={`/@${acct}/tagged/${tagName}`}
+            >
+              {tagName}
+            </NavLink>
+          );
+        })}
     </div>
   );
 };

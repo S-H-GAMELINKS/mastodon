@@ -66,21 +66,20 @@ export const getAccountHidden = createAppSelector(
 
 export const getAccountFeaturedTags = createSelector(
   [
-    (state: RootState, id: string) => {
-      const featured_tags = state.user_lists.get('featured_tags')?.get(id);
-      if (featured_tags === undefined || featured_tags === null) {
+    (
+      state: RootState,
+      id: string,
+    ): ImmutableList<ImmutableMap<string, string | null>> | null => {
+      const items = state.user_lists.getIn(['featured_tags', id, 'items']);
+      if (items === undefined || items === null) {
         return null;
       }
 
-      if (typeof featured_tags === 'boolean') {
-        return null;
-      }
-
-      return featured_tags.get('items');
+      return items as ImmutableList<ImmutableMap<string, string | null>>;
     },
   ],
-  (items) => {
-    return items ?? [];
+  (items): ImmutableList<ImmutableMap<string, string | null>> => {
+    return items ?? ImmutableList();
   },
 );
 

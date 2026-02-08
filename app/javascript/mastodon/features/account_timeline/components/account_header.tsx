@@ -251,7 +251,9 @@ export const AccountHeader: React.FC<{
         </div>
       </AnimateEmojiProvider>
 
-      {!hideTabs && !hidden && <AccountTabs acct={account.acct} featuredTags={featuredTags} />}
+      {!hideTabs && !hidden && (
+        <AccountTabs acct={account.acct} featuredTags={featuredTags} />
+      )}
       <div ref={handleObserverRef} />
 
       <Helmet>
