@@ -64,6 +64,9 @@ RSpec.describe 'Channel Subscriptions', :inline_jobs, :streaming do
       streaming_client.connect
       streaming_client.subscribe('user:notification')
 
+      # Give the subscription time to be established on the streaming server
+      sleep 0.5
+
       # We need to perform an action that triggers a notification as there is
       # no positive acknowledgement of subscriptions:
       first_status = PostStatusService.new.call(user_account, text: 'Test')
@@ -127,6 +130,9 @@ RSpec.describe 'Channel Subscriptions', :inline_jobs, :streaming do
 
       streaming_client.connect
       streaming_client.subscribe('user:notification')
+
+      # Give the subscription time to be established on the streaming server
+      sleep 0.5
 
       # We need to perform an action that triggers a notification as there is
       # no positive acknowledgement of subscriptions:

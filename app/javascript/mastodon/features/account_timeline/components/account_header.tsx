@@ -1,8 +1,5 @@
-/* eslint-disable */
-// @ts-nocheck
-import { useCallback, useMemo } from 'react';
-
-import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
+import type { RefCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
@@ -15,11 +12,6 @@ import { AccountNote } from 'mastodon/features/account/components/account_note';
 import FollowRequestNoteContainer from 'mastodon/features/account/containers/follow_request_note_container';
 import { autoPlayGif, me, domain as localDomain } from 'mastodon/initial_state';
 import type { Account } from 'mastodon/models/account';
-import type { MenuItem } from 'mastodon/models/dropdown_menu';
-import {
-  PERMISSION_MANAGE_USERS,
-  PERMISSION_MANAGE_FEDERATION,
-} from 'mastodon/permissions';
 import {
   getAccountHidden,
   getAccountFeaturedTags,
@@ -36,6 +28,7 @@ import { AccountHeaderFields } from './fields';
 import { AccountInfo } from './info';
 import { MemorialNote } from './memorial_note';
 import { MovedNote } from './moved_note';
+import { AccountNote as AccountNoteRedesign } from './note';
 import { AccountNumberFields } from './number_fields';
 import redesignClasses from './redesign.module.scss';
 import { AccountTabs } from './tabs';
@@ -52,13 +45,6 @@ const titleFromAccount = (account: Account) => {
   return `${prefix} (@${acct})`;
 };
 
-// 注目のハッシュタグの名前をデフォルト値に設定吸うためのWorkaround
-// See: https://github.com/formatjs/babel-plugin-react-intl/issues/119#issuecomment-326202499
-/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-const DynamicFormattedMessage = (props: any) => {
-  return <FormattedMessage {...props} />;
-};
-
 export const AccountHeader: React.FC<{
   accountId: string;
   hideTabs?: boolean;
@@ -70,160 +56,10 @@ export const AccountHeader: React.FC<{
   );
   const hidden = useAppSelector((state) => getAccountHidden(state, accountId));
 
-  /* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */
+  // Creatodon: Get featured tags for the account
   const featuredTags = useAppSelector((state) =>
     getAccountFeaturedTags(state, accountId),
   );
-
-  const handleFollow = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    if (relationship?.following || relationship?.requested) {
-      dispatch(
-        openModal({ modalType: 'CONFIRM_UNFOLLOW', modalProps: { account } }),
-      );
-    } else {
-      dispatch(followAccount(account.id));
-    }
-  }, [dispatch, account, relationship]);
-
-  const handleBlock = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    if (relationship?.blocking) {
-      dispatch(unblockAccount(account.id));
-    } else {
-      dispatch(initBlockModal(account));
-    }
-  }, [dispatch, account, relationship]);
-
-  const handleMention = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    dispatch(mentionCompose(account));
-  }, [dispatch, account]);
-
-  const handleDirect = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    dispatch(directCompose(account));
-  }, [dispatch, account]);
-
-  const handleReport = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    dispatch(initReport(account));
-  }, [dispatch, account]);
-
-  const handleReblogToggle = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    if (relationship?.showing_reblogs) {
-      dispatch(followAccount(account.id, { reblogs: false }));
-    } else {
-      dispatch(followAccount(account.id, { reblogs: true }));
-    }
-  }, [dispatch, account, relationship]);
-
-  const handleNotifyToggle = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    if (relationship?.notifying) {
-      dispatch(followAccount(account.id, { notify: false }));
-    } else {
-      dispatch(followAccount(account.id, { notify: true }));
-    }
-  }, [dispatch, account, relationship]);
-
-  const handleMute = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    if (relationship?.muting) {
-      dispatch(unmuteAccount(account.id));
-    } else {
-      dispatch(initMuteModal(account));
-    }
-  }, [dispatch, account, relationship]);
-
-  const handleBlockDomain = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    dispatch(initDomainBlockModal(account));
-  }, [dispatch, account]);
-
-  const handleUnblockDomain = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    const domain = account.acct.split('@')[1];
-
-    if (!domain) {
-      return;
-    }
-
-    dispatch(unblockDomain(domain));
-  }, [dispatch, account]);
-
-  const handleEndorseToggle = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    if (relationship?.endorsed) {
-      dispatch(unpinAccount(account.id));
-    } else {
-      dispatch(pinAccount(account.id));
-    }
-  }, [dispatch, account, relationship]);
-
-  const handleAddToList = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    dispatch(
-      openModal({
-        modalType: 'LIST_ADDER',
-        modalProps: {
-          accountId: account.id,
-        },
-      }),
-    );
-  }, [dispatch, account]);
-
-  const handleChangeLanguages = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    dispatch(
-      openModal({
-        modalType: 'SUBSCRIBED_LANGUAGES',
-        modalProps: {
-          accountId: account.id,
-        },
-      }),
-    );
-  }, [dispatch, account]);
 
   const handleOpenAvatar = useCallback(
     (e: React.MouseEvent) => {
@@ -250,6 +86,40 @@ export const AccountHeader: React.FC<{
     [dispatch, account],
   );
 
+  const [isFooterIntersecting, setIsIntersecting] = useState(false);
+  const handleIntersect: IntersectionObserverCallback = useCallback(
+    (entries) => {
+      const entry = entries.at(0);
+      if (!entry) {
+        return;
+      }
+
+      setIsIntersecting(entry.isIntersecting);
+    },
+    [],
+  );
+  const [observer] = useState(
+    () =>
+      new IntersectionObserver(handleIntersect, {
+        rootMargin: '0px 0px -55px 0px', // Height of bottom nav bar.
+      }),
+  );
+
+  const handleObserverRef: RefCallback<HTMLDivElement> = useCallback(
+    (node) => {
+      if (node) {
+        observer.observe(node);
+      }
+    },
+    [observer],
+  );
+
+  useEffect(() => {
+    return () => {
+      observer.disconnect();
+    };
+  }, [observer]);
+
   if (!account) {
     return null;
   }
@@ -274,7 +144,7 @@ export const AccountHeader: React.FC<{
         )}
 
         <div className='account__header__image'>
-          {me !== account.id && relationship && (
+          {me !== account.id && relationship && !isRedesignEnabled() && (
             <AccountInfo relationship={relationship} />
           )}
 
@@ -287,7 +157,12 @@ export const AccountHeader: React.FC<{
           )}
         </div>
 
-        <div className='account__header__bar'>
+        <div
+          className={classNames(
+            'account__header__bar',
+            isRedesignEnabled() && redesignClasses.barWrapper,
+          )}
+        >
           <div className='account__header__tabs'>
             <a
               className='avatar'
@@ -316,13 +191,14 @@ export const AccountHeader: React.FC<{
               isRedesignEnabled() && redesignClasses.nameWrapper,
             )}
           >
-            <AccountName
-              accountId={accountId}
-              className={classNames(
-                isRedesignEnabled() && redesignClasses.name,
-              )}
-            />
-            {isRedesignEnabled() && <AccountButtons accountId={accountId} />}
+            <AccountName accountId={accountId} />
+            {isRedesignEnabled() && (
+              <AccountButtons
+                accountId={accountId}
+                className={redesignClasses.buttonsDesktop}
+                noShare
+              />
+            )}
           </div>
 
           <AccountBadges accountId={accountId} />
@@ -331,18 +207,24 @@ export const AccountHeader: React.FC<{
             <FamiliarFollowers accountId={accountId} />
           )}
 
-          <AccountButtons
-            className='account__header__buttons--mobile'
-            accountId={accountId}
-            noShare
-          />
+          {!isRedesignEnabled() && (
+            <AccountButtons
+              className='account__header__buttons--mobile'
+              accountId={accountId}
+              noShare
+            />
+          )}
 
           {!suspendedOrHidden && (
             <div className='account__header__extra'>
               <div className='account__header__bio'>
-                {me && account.id !== me && (
-                  <AccountNote accountId={accountId} />
-                )}
+                {me &&
+                  account.id !== me &&
+                  (isRedesignEnabled() ? (
+                    <AccountNoteRedesign accountId={accountId} />
+                  ) : (
+                    <AccountNote accountId={accountId} />
+                  ))}
 
                 <AccountBio
                   accountId={accountId}
@@ -355,51 +237,24 @@ export const AccountHeader: React.FC<{
               <AccountNumberFields accountId={accountId} />
             </div>
           )}
+
+          {isRedesignEnabled() && (
+            <AccountButtons
+              className={classNames(
+                redesignClasses.buttonsMobile,
+                !isFooterIntersecting && redesignClasses.buttonsMobileIsStuck,
+              )}
+              accountId={accountId}
+              noShare
+            />
+          )}
         </div>
       </AnimateEmojiProvider>
 
-      {!(hideTabs || hidden) && (
-        <div className='account__section-headline'>
-          <NavLink exact to={`/@${account.acct}/featured`}>
-            <FormattedMessage id='account.featured' defaultMessage='Featured' />
-          </NavLink>
-          <NavLink exact to={`/@${account.acct}`}>
-            <FormattedMessage id='account.posts' defaultMessage='Posts' />
-          </NavLink>
-          <NavLink exact to={`/@${account.acct}/with_replies`}>
-            <FormattedMessage
-              id='account.posts_with_replies'
-              defaultMessage='Posts and replies'
-            />
-          </NavLink>
-          <NavLink exact to={`/@${account.acct}/media`}>
-            <FormattedMessage id='account.media' defaultMessage='Media' />
-          </NavLink>
-          <NavLink exact to={`/@${account.get('acct')}/tagged/CreatodonFolio`}>
-            <FormattedMessage
-              id='account.portfolio'
-              defaultMessage='Portfolio'
-            />
-          </NavLink>
-          {featuredTags.map((featuredTag) => {
-            const tagName = `${featuredTag.get('name')}`;
-            return (
-              <NavLink
-                key={tagName}
-                className='feature_tag_timeline'
-                exact
-                to={`/@${account.get('acct')}/tagged/${tagName}`}
-              >
-                <DynamicFormattedMessage
-                  id='account.featured_tags'
-                  defaultMessage={'{tagName}'}
-                  values={{ tagName: tagName }}
-                />
-              </NavLink>
-            );
-          })}
-        </div>
+      {!hideTabs && !hidden && (
+        <AccountTabs acct={account.acct} featuredTags={featuredTags} />
       )}
+      <div ref={handleObserverRef} />
 
       <Helmet>
         <title>{titleFromAccount(account)}</title>

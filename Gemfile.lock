@@ -157,7 +157,7 @@ GEM
     blurhash (0.1.8)
     bootsnap (1.20.1)
       msgpack (~> 1.2)
-    brakeman (7.1.2)
+    brakeman (8.0.2)
       racc
     browser (6.2.0)
     builder (3.3.0)
@@ -1024,7 +1024,7 @@ DEPENDENCIES
   binding_of_caller (~> 1.0)
   blurhash (~> 0.1)
   bootsnap
-  brakeman (~> 7.0)
+  brakeman (~> 8.0)
   browser
   bundler-audit (~> 0.9)
   capybara (~> 3.39)
@@ -1041,7 +1041,7 @@ DEPENDENCIES
   cypress-rails!
   database_cleaner-active_record
   debug (~> 1.8)
-  devise (~> 4.9)
+  devise
   devise-two-factor
   devise_pam_authenticatable2 (~> 9.2)
   discard (~> 1.2)
