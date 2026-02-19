@@ -209,6 +209,7 @@ RSpec.describe Mastodon::RedisConfiguration do
         driver: :hiredis,
         expires_in: 10.minutes,
         connect_timeout: 5,
+        namespace: 'cache',
         pool: {
           size: 5,
           timeout: 5,

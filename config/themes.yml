@@ -3,8 +3,6 @@ kohaku: styles/kohaku.scss
 mizuki: styles/mizuki.scss
 orochi: styles/orochi.scss
 creatodon: styles/creatodon.scss
-contrast: styles/contrast.scss
-mastodon-light: styles/mastodon-light.scss
 mean-of-amber: styles/mean-of-amber.scss
 meteor-trail: styles/meteor-trail.scss
 mirroring: styles/mirroring.scss
