@@ -47,7 +47,7 @@ jobs:
         uses: ruby/setup-ruby@09a7688d3b55cf0e976497ff046b70949eeaccfd # v1
         with:
           ruby-version: ${{ matrix.ruby-version}}
-          additional-system-dependencies: ffmpeg libpam-dev
+          bundler-cache: true
 
       - name: Run haml-lint
         run: |

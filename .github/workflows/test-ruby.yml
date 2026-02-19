@@ -250,7 +250,9 @@ jobs:
           additional-system-dependencies: ffmpeg imagemagick libpam-dev
 
       - name: Load database schema
-        run: './bin/rails db:create db:schema:load db:seed'
+        run: |
+          bin/rails db:setup
+          bin/flatware fan bin/rails db:test:prepare
 
       - name: Cache RSpec persistence file
         uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
