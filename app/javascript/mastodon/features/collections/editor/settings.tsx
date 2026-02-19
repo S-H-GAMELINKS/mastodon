@@ -25,7 +25,8 @@ import {
 import { useAppDispatch } from 'mastodon/store';
 
 import type { TempCollectionState } from './state';
-import { getInitialState } from './state';
+import { getCollectionEditorState } from './state';
+import classes from './styles.module.scss';
 import { WizardStepHeader } from './wizard_step_header';
 
 export const CollectionSettings: React.FC<{
@@ -35,8 +36,8 @@ export const CollectionSettings: React.FC<{
   const history = useHistory();
   const location = useLocation<TempCollectionState>();
 
-  const { id, initialDiscoverable, initialSensitive, ...temporaryState } =
-    getInitialState(collection, location.state);
+  const { id, initialDiscoverable, initialSensitive, ...editorState } =
+    getCollectionEditorState(collection, location.state);
 
   const [discoverable, setDiscoverable] = useState(initialDiscoverable);
   const [sensitive, setSensitive] = useState(initialSensitive);
@@ -67,17 +68,18 @@ export const CollectionSettings: React.FC<{
         };
 
         void dispatch(updateCollection({ payload })).then(() => {
-          history.push(`/collections`);
+          history.push(`/collections/${id}`);
         });
       } else {
         const payload: ApiCreateCollectionPayload = {
-          name: temporaryState.initialName,
-          description: temporaryState.initialDescription,
+          name: editorState.initialName,
+          description: editorState.initialDescription,
           discoverable,
           sensitive,
+          account_ids: editorState.initialItemIds,
         };
-        if (temporaryState.initialTopic) {
-          payload.tag_name = temporaryState.initialTopic;
+        if (editorState.initialTopic) {
+          payload.tag_name = editorState.initialTopic;
         }
 
         void dispatch(
@@ -94,7 +96,7 @@ export const CollectionSettings: React.FC<{
         });
       }
     },
-    [id, discoverable, sensitive, dispatch, history, temporaryState],
+    [id, discoverable, sensitive, dispatch, history, editorState],
   );
 
   return (
@@ -180,7 +182,7 @@ export const CollectionSettings: React.FC<{
         />
       </Fieldset>
 
-      <div className='actions'>
+      <div className={classes.actionWrapper}>
         <Button type='submit'>
           {id ? (
             <FormattedMessage id='lists.save' defaultMessage='Save' />

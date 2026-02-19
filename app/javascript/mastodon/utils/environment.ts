@@ -16,19 +16,13 @@ export function isRailsProduction() {
   return process.env.RAILS_ENV === 'production';
 }
 
-export type Features =
-  | 'modern_emojis'
-  | 'outgoing_quotes'
-  | 'fasp'
-  | 'http_message_signatures';
-
-export type ServerFeatures = 'fasp' | 'collections';
+export type ServerFeatures = 'fasp' | 'collections' | 'profile_redesign';
 
 export function isServerFeatureEnabled(feature: ServerFeatures) {
   return initialState?.features.includes(feature) ?? false;
 }
 
-type ClientFeatures = 'profile_redesign' | 'collections';
+type ClientFeatures = 'collections' | 'profile_editing';
 
 export function isClientFeatureEnabled(feature: ClientFeatures) {
   try {

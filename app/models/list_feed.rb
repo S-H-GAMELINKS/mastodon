@@ -19,9 +19,9 @@ class ListFeed < Feed
 
       # Filter to only statuses with media attachments and preserve order
       status_ids_with_media = Status.where(id: unhydrated_ids)
-                                    .joins(:media_attachments)
-                                    .group('statuses.id')
-                                    .pluck(:id)
+        .joins(:media_attachments)
+        .group('statuses.id')
+        .pluck(:id)
 
       # Return statuses in the correct order, limited
       filtered_ids = unhydrated_ids.select { |id| status_ids_with_media.include?(id) }.take(limit)

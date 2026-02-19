@@ -32,7 +32,7 @@ jobs:
       SECRET_KEY_BASE_DUMMY: 1
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
       - name: Update Twitter theme submodules
         run: git submodule update --init
@@ -46,7 +46,7 @@ jobs:
           onlyProduction: 'true'
 
       - name: Cache assets from compilation
-        uses: actions/cache@v4
+        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
         with:
           path: |
             public/assets
@@ -68,7 +68,7 @@ jobs:
         run: |
           tar --exclude={"*.br","*.gz"} -zcf artifacts.tar.gz public/assets public/packs* tmp/cache/vite/last-build*.json
 
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         if: matrix.mode == 'test'
         with:
           path: |-
@@ -232,9 +232,9 @@ jobs:
           - '3.3'
           - '3.4'
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
         with:
           path: './'
           name: ${{ github.sha }}
@@ -252,11 +252,24 @@ jobs:
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'
 
-      - run: bin/rspec --tag attachment_processing
+      - name: Cache RSpec persistence file
+        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+        with:
+          path: |
+            tmp/rspec/examples.txt
+          key: rspec-persistence-${{ github.head_ref || github.ref_name }}-${{ github.sha }}
+          restore-keys: |
+            rspec-persistence-${{ github.head_ref || github.ref_name }}-${{ github.sha }}-${{ matrix.ruby-version }}
+            rspec-persistence-${{ github.head_ref || github.ref_name }}-${{ github.sha }}
+            rspec-persistence-${{ github.head_ref || github.ref_name }}
+            rspec-persistence-main
+            rspec-persistence
+
+      - run: bin/flatware rspec -r ./spec/flatware_helper.rb
 
       - name: Upload coverage reports to Codecov
         if: matrix.ruby-version == '.ruby-version'
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@671740ac38dd9b0130fbe1cec585b89eea48d3de # v5
         with:
           files: coverage/lcov/mastodon.lcov
         env:
@@ -309,12 +322,12 @@ jobs:
           - '3.3'
           - '3.4'
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
       - name: Update Twitter theme submodules
         run: git submodule update --init
 
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
         with:
           path: './'
           name: ${{ github.sha }}
@@ -337,7 +350,7 @@ jobs:
 
       - name: Cache Playwright Chromium browser
         id: playwright-cache
-        uses: actions/cache@v4
+        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
         with:
           path: ~/.cache/ms-playwright
           key: playwright-browsers-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
@@ -353,14 +366,14 @@ jobs:
       - run: bin/rspec spec/system --tag streaming --tag js
 
       - name: Archive logs
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         if: failure()
         with:
           name: e2e-logs-${{ matrix.ruby-version }}
           path: log/
 
       - name: Archive test screenshots
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         if: failure()
         with:
           name: e2e-screenshots-${{ matrix.ruby-version }}
@@ -418,9 +431,9 @@ jobs:
         search-image:
           - docker.elastic.co/elasticsearch/elasticsearch:7.17.13
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
         with:
           path: './'
           name: ${{ github.sha }}
@@ -447,14 +460,14 @@ jobs:
       - run: bin/rspec --tag search
 
       - name: Archive logs
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         if: failure()
         with:
           name: test-search-logs-${{ matrix.ruby-version }}
           path: log/
 
       - name: Archive test screenshots
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         if: failure()
         with:
           name: test-search-screenshots
