@@ -7,8 +7,6 @@ import { NavLink } from 'react-router-dom';
 
 import type { List as ImmutableList } from 'immutable';
 
-import { useLayout } from '@/mastodon/hooks/useLayout';
-
 import { isRedesignEnabled } from '../common';
 
 import classes from './redesign.module.scss';
@@ -21,17 +19,10 @@ export const AccountTabs: FC<{
   acct: string;
   featuredTags?: ImmutableList<FeaturedTagRecord> | FeaturedTagRecord[];
 }> = ({ acct, featuredTags }) => {
-  const { layout } = useLayout();
-
   if (isRedesignEnabled()) {
     return (
       <div className={classes.tabs}>
-        {layout !== 'single-column' && (
-          <NavLink exact to={`/@${acct}/about`}>
-            <FormattedMessage id='account.about' defaultMessage='About' />
-          </NavLink>
-        )}
-        <NavLink isActive={isActive} to={`/@${acct}/posts`}>
+        <NavLink isActive={isActive} to={`/@${acct}`}>
           <FormattedMessage id='account.activity' defaultMessage='Activity' />
         </NavLink>
         <NavLink exact to={`/@${acct}/media`}>

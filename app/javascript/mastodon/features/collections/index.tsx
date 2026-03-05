@@ -11,10 +11,13 @@ import SquigglyArrow from '@/svg-icons/squiggly_arrow.svg?react';
 import { Column } from 'mastodon/components/column';
 import { ColumnHeader } from 'mastodon/components/column_header';
 import { Icon } from 'mastodon/components/icon';
-import ScrollableList from 'mastodon/components/scrollable_list';
+import {
+  ItemList,
+  Scrollable,
+} from 'mastodon/components/scrollable_list/components';
 import {
   fetchAccountCollections,
-  selectMyCollections,
+  selectAccountCollections,
 } from 'mastodon/reducers/slices/collections';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
@@ -31,7 +34,9 @@ export const Collections: React.FC<{
   const dispatch = useAppDispatch();
   const intl = useIntl();
   const me = useAppSelector((state) => state.meta.get('me') as string);
-  const { collections, status } = useAppSelector(selectMyCollections);
+  const { collections, status } = useAppSelector((state) =>
+    selectAccountCollections(state, me),
+  );
 
   useEffect(() => {
     void dispatch(fetchAccountCollections({ accountId: me }));
@@ -83,16 +88,18 @@ export const Collections: React.FC<{
         }
       />
 
-      <ScrollableList
-        scrollKey='collections'
-        emptyMessage={emptyMessage}
-        isLoading={status === 'loading'}
-        bindToDocument={!multiColumn}
-      >
-        {collections.map((item) => (
-          <CollectionListItem key={item.id} collection={item} />
-        ))}
-      </ScrollableList>
+      <Scrollable>
+        <ItemList emptyMessage={emptyMessage} isLoading={status === 'loading'}>
+          {collections.map((item, index) => (
+            <CollectionListItem
+              key={item.id}
+              collection={item}
+              positionInList={index + 1}
+              listSize={collections.length}
+            />
+          ))}
+        </ItemList>
+      </Scrollable>
 
       <Helmet>
         <title>{intl.formatMessage(messages.heading)}</title>

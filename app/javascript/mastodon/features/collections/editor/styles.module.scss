@@ -49,12 +49,7 @@
   flex-grow: 1;
 }
 
-.scrollableWrapper {
-  display: flex;
-  flex: 1;
-  margin-inline: -8px;
-}
-
+.scrollableWrapper,
 .scrollableInner {
   margin-inline: -8px;
 }
@@ -85,4 +80,13 @@
   min-width: 240px;
   margin-inline: auto;
   gap: 8px;
+}
+
+.accountBadge {
+  margin-inline-start: 56px;
+
+  @container (width < 360px) {
+    margin-top: 4px;
+    margin-inline-start: 46px;
+  }
 }
