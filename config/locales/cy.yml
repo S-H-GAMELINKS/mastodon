@@ -30,12 +30,12 @@ cy:
     pin_errors:
       following: Rhaid i chi fod yn dilyn y person rydych am ei gymeradwyo, yn barod
     posts:
-      few: Postiadau
-      many: Postiadau
+      few: Postiad
+      many: Postiad
       one: Postiad
-      other: Postiadau
-      two: Postiadau
-      zero: Postiadau
+      other: Postiad
+      two: Bostiad
+      zero: Postiad
     posts_tab_heading: Postiadau
     self_follow_error: Chewch chi ddim dilyn eich cyfrif eich hun
   admin:
@@ -68,6 +68,7 @@ cy:
         label: Newid rôl
         no_role: Dim rôl
         title: Newid rôl %{username}
+      collections: Casgliadau
       confirm: Cadarnhau
       confirmed: Cadarnhawyd
       confirming: Yn cadarnhau
@@ -282,6 +283,7 @@ cy:
         demote_user_html: Mae %{name} wedi israddio defnyddiwr %{target}
         destroy_announcement_html: Mae %{name} wedi dileu cyhoeddiad %{target}
         destroy_canonical_email_block_html: Mae %{name} wedi dad-rwystro parth e-bost %{target}
+        destroy_collection_html: Mae %{name} wedi tynnu casgliad gan %{target}
         destroy_custom_emoji_html: Mae %{name} wedi dileu emoji %{target}
         destroy_domain_allow_html: Mae %{name} wedi gwrthod ffederasiwn gyda pharth %{target}
         destroy_domain_block_html: Mae %{name} wedi dad rwystro parth %{target}
@@ -321,6 +323,7 @@ cy:
         unsilence_account_html: Mae %{name} wedi dadwneud terfyn cyfrif %{target}
         unsuspend_account_html: Mae %{name} wedi dad atal cyfrif %{target}
         update_announcement_html: Mae %{name} wedi diweddaru cyhoeddiad %{target}
+        update_collection_html: Mae casgliad %{name} wedi'i ddiweddaru gan %{target}
         update_custom_emoji_html: Mae %{name} wedi diweddaru emoji %{target}
         update_domain_block_html: Mae %{name} wedi diweddaru bloc parth %{target}
         update_ip_block_html: Mae %{name} wedi newid rheol IP %{target}
@@ -356,6 +359,19 @@ cy:
       unpublish: Dadgyhoeddi
       unpublished_msg: Cyhoeddiad wedi'i ddad gyhoeddi'n llwyddiannus!
       updated_msg: Cyhoeddiad wedi'i ddiweddaru'n llwyddiannus!
+    collections:
+      accounts: Cyfrifon
+      collection_title: Casgliad gan %{name}
+      contents: Cynnwys
+      number_of_accounts:
+        few: "%{count} cyfrif"
+        many: "%{count} cyfrif"
+        one: 1 cyfrif
+        other: "%{count} cyfrif"
+        two: "%{count} cyfrif"
+        zero: "%{count} cyfrif"
+      open: Agor
+      view_publicly: Gweld yn gyhoeddus
     critical_update_pending: Diweddariad hanfodol ar ei ffordd
     custom_emojis:
       assign_category: Neilltuo categori
@@ -731,6 +747,7 @@ cy:
       cancel: Canslo
       category: Categori
       category_description_html: Bydd y rheswm dros adrodd am y cyfrif a/neu’r cynnwys hwn yn cael ei ddyfynnu wrth gyfathrebu â’r cyfrif a adroddwyd
+      collections: "(%{count}) casgliad"
       comment:
         none: Dim
       comment_description_html: 'I ddarparu rhagor o wybodaeth, ysgrifennodd %{name}:'
@@ -760,12 +777,13 @@ cy:
       report: 'Adroddiad #%{id}'
       reported_account: Cyfrif wedi ei adrodd
       reported_by: Adroddwyd gan
+      reported_content: Cynnwys wedi'u hadrodd
       reported_with_application: Adroddwyd gydag ap
       resolved: Wedi ei ddatrys
       resolved_msg: Llwyddwyd i ddatrys yr adroddiad!
       skip_to_actions: Mynd i gamau gweithredu
       status: Statws
-      statuses: Cynnwys wedi'i adrodd
+      statuses: "(%{count}) postiad"
       statuses_description_html: Bydd cynnwys tramgwyddus yn cael ei ddyfynnu wrth gyfathrebu â'r cyfrif a adroddwyd
       summary:
         action_preambles:
@@ -2197,6 +2215,8 @@ cy:
     past_preamble_html: Rydym wedi newid ein telerau gwasanaeth ers eich ymweliad diwethaf. Rydym yn eich annog i ddarllen y telerau wedi'u diweddaru.
     review_link: Darllen y telerau gwasanaeth
     title: Mae telerau gwasanaeth %{domain} yn newid
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
