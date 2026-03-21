@@ -219,6 +219,7 @@ export const AccountHeader: React.FC<{
                   ))}
 
                 <AccountBio
+                  showDropdown
                   accountId={accountId}
                   className={classNames(
                     'account__header__content',

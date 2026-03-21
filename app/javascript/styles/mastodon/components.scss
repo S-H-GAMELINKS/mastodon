@@ -1371,6 +1371,9 @@ body > [data-popper-placement] {
   .autosuggest-textarea > .autosuggest-textarea__textarea:lang(#{$lang}) {
     writing-mode: vertical-lr;
     min-height: 209px; // writable
+    max-height: 209px; // suppress autosizing by react-textarea-autosize
+    overflow-x: auto;
+    scrollbar-color: unset;
   }
 
   .detailed-status > .status__content > .status__content__text:lang(#{$lang}) {
@@ -2024,7 +2027,12 @@ body > [data-popper-placement] {
 
 .account {
   padding: 16px;
-  border-bottom: 1px solid var(--color-border-primary);
+
+  // Using :where keeps specificity low, allowing for existing
+  // .account overrides to still apply
+  &:where(:not(&--without-border)) {
+    border-bottom: 1px solid var(--color-border-primary);
+  }
 
   .account__display-name {
     flex: 1 1 auto;
@@ -8496,7 +8504,7 @@ noscript {
     gap: 8px;
 
     $button-breakpoint: 420px;
-    $button-fallback-breakpoint: #{$button-breakpoint} + 55px;
+    $button-fallback-breakpoint: $button-breakpoint + 55px;
 
     &--desktop {
       margin-top: 55px;
@@ -8520,7 +8528,7 @@ noscript {
       }
 
       @supports (not (container-type: inline-size)) {
-        @media (min-width: (#{$button-fallback-breakpoint} + 1px)) {
+        @media (min-width: ($button-fallback-breakpoint + 1px)) {
           display: none;
         }
       }
@@ -11529,6 +11537,9 @@ noscript {
 
 .column-footer {
   padding: 16px;
+  position: sticky;
+  bottom: 0;
+  background: var(--color-bg-primary);
 }
 
 .lists-scrollable {
