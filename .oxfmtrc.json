@@ -12,6 +12,8 @@
     "/public/packs-test",
     "/public/system",
     "/public/vite*",
+    "/public/gallery/*",
+    "/public/creatodon-folio/*",
 
     "*.html",
     "docker-compose.override.yml",

@@ -161,7 +161,7 @@ group :test do
   gem 'websocket-driver', '~> 0.8', require: false
 
   # for E2E test framework Cypress
-  gem 'cypress-rails', github: 'azyzio/cypress-rails', branch: 'rails-72-compat'
+  gem 'cypress-rails', github: 'testdouble/cypress-rails', ref: 'bf27fcd2ca6ed93d0ab1c98b349c1d341d18f482'
 
   # for parallel test for GitHub Actions
   gem 'parallel_tests'
