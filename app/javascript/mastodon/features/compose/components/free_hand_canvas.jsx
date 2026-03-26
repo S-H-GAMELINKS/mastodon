@@ -3,7 +3,7 @@ import { createRef } from 'react';
 
 
 
-import { injectIntl } from 'react-intl';
+import { injectIntl } from '@/mastodon/components/intl';
 
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
