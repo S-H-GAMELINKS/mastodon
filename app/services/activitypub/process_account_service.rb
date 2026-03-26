@@ -60,11 +60,12 @@ class ActivityPub::ProcessAccountService < BaseService
     unless @options[:only_key] || @account.suspended?
       check_featured_collection! if @json['featured'].present?
       check_featured_tags_collection! if @json['featuredTags'].present?
+      check_featured_collections_collection! if @json['featuredCollections'].present? && Mastodon::Feature.collections_federation_enabled?
       check_links! if @account.fields.any?(&:requires_verification?)
     end
 
     @account
-  rescue Oj::ParseError
+  rescue JSON::ParserError
     nil
   end
 
@@ -125,6 +126,7 @@ class ActivityPub::ProcessAccountService < BaseService
 
   def set_immediate_attributes!
     @account.featured_collection_url = valid_collection_uri(@json['featured'])
+    @account.collections_url         = valid_collection_uri(@json['featuredCollections'])
     @account.display_name            = (@json['name'] || '')[0...(Account::DISPLAY_NAME_LENGTH_HARD_LIMIT)]
     @account.note                    = (@json['summary'] || '')[0...(Account::NOTE_LENGTH_HARD_LIMIT)]
     @account.locked                  = @json['manuallyApprovesFollowers'] || false
@@ -198,6 +200,10 @@ class ActivityPub::ProcessAccountService < BaseService
 
   def check_featured_tags_collection!
     ActivityPub::SynchronizeFeaturedTagsCollectionWorker.perform_async(@account.id, @json['featuredTags'])
+  end
+
+  def check_featured_collections_collection!
+    ActivityPub::SynchronizeFeaturedCollectionsCollectionWorker.perform_async(@account.id, @options[:request_id])
   end
 
   def check_links!

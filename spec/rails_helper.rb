@@ -43,7 +43,6 @@ require 'webmock/rspec'
 require 'paperclip/matchers'
 require 'capybara/rspec'
 require 'chewy/rspec'
-require 'email_spec/rspec'
 require 'pundit/rspec'
 require 'test_prof/recipes/rspec/before_all'
 
@@ -59,8 +58,6 @@ Sidekiq.configure_server do |cfg|
 end
 
 DatabaseCleaner.strategy = [:deletion]
-
-Chewy.settings[:enabled] = false
 
 Devise::Test::ControllerHelpers.module_eval do
   alias_method :original_sign_in, :sign_in
@@ -141,12 +138,6 @@ RSpec.configure do |config|
       Sidekiq::Testing.fake!
     end
     example.run
-  end
-
-  config.around(:each, type: :search) do |example|
-    Chewy.settings[:enabled] = true
-    example.run
-    Chewy.settings[:enabled] = false
   end
 
   config.before :each, type: :cli do

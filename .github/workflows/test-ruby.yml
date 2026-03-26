@@ -460,6 +460,8 @@ jobs:
           stack-version: ${{ matrix.elasticsearch-version }}
           plugins: analysis-kuromoji analysis-icu
           security-enabled: false
+        env:
+          STACK_VERSION: 7.17.24
 
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'

@@ -26,7 +26,7 @@ import { TextInput } from './text_input_field';
 export type EmojiInputProps = {
   value?: string;
   onChange?: Dispatch<SetStateAction<string>>;
-  maxLength?: number;
+  counterMax?: number;
   recommended?: boolean;
 } & Omit<CommonFieldWrapperProps, 'wrapperClassName'>;
 
@@ -37,8 +37,9 @@ export const EmojiTextInputField: FC<
   value,
   label,
   hint,
-  hasError,
+  status,
   maxLength,
+  counterMax = maxLength,
   recommended,
   disabled,
   ...otherProps
@@ -48,8 +49,8 @@ export const EmojiTextInputField: FC<
   const wrapperProps = {
     label,
     hint,
-    hasError,
-    maxLength,
+    status,
+    counterMax,
     recommended,
     disabled,
     inputRef,
@@ -63,6 +64,7 @@ export const EmojiTextInputField: FC<
         <TextInput
           {...inputProps}
           {...otherProps}
+          maxLength={maxLength}
           value={value}
           ref={inputRef}
         />
@@ -78,10 +80,11 @@ export const EmojiTextAreaField: FC<
   value,
   label,
   maxLength,
-  recommended = false,
+  counterMax = maxLength,
+  recommended,
   disabled,
   hint,
-  hasError,
+  status,
   ...otherProps
 }) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -89,8 +92,8 @@ export const EmojiTextAreaField: FC<
   const wrapperProps = {
     label,
     hint,
-    hasError,
-    maxLength,
+    status,
+    counterMax,
     recommended,
     disabled,
     inputRef: textareaRef,
@@ -104,6 +107,7 @@ export const EmojiTextAreaField: FC<
         <TextArea
           {...otherProps}
           {...inputProps}
+          maxLength={maxLength}
           value={value}
           ref={textareaRef}
         />
@@ -126,7 +130,7 @@ const EmojiFieldWrapper: FC<
   children,
   disabled,
   inputRef,
-  maxLength,
+  counterMax,
   recommended = false,
   ...otherProps
 }) => {
@@ -159,10 +163,10 @@ const EmojiFieldWrapper: FC<
         <>
           {children({ ...inputProps, onChange: handleChange })}
           <EmojiPickerButton onPick={handlePickEmoji} disabled={disabled} />
-          {maxLength && (
+          {counterMax && (
             <CharacterCounter
               currentString={value ?? ''}
-              maxLength={maxLength}
+              maxLength={counterMax}
               recommended={recommended}
               id={counterId}
             />

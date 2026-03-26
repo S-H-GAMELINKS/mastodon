@@ -2,7 +2,7 @@ import { useCallback, useId, useMemo, useState } from 'react';
 
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import CancelIcon from '@/material-icons/400-24px/cancel.svg?react';
 import CheckIcon from '@/material-icons/400-24px/check.svg?react';
@@ -15,7 +15,6 @@ import { Account } from 'mastodon/components/account';
 import { Avatar } from 'mastodon/components/avatar';
 import { Badge } from 'mastodon/components/badge';
 import { Button } from 'mastodon/components/button';
-import { Callout } from 'mastodon/components/callout';
 import { DisplayName } from 'mastodon/components/display_name';
 import { EmptyState } from 'mastodon/components/empty_state';
 import { FormStack, Combobox } from 'mastodon/components/form_fields';
@@ -26,21 +25,20 @@ import {
   ItemList,
   Scrollable,
 } from 'mastodon/components/scrollable_list/components';
-import { useSearchAccounts } from 'mastodon/features/lists/use_search_accounts';
 import { useAccount } from 'mastodon/hooks/useAccount';
+import { useSearchAccounts } from 'mastodon/hooks/useSearchAccounts';
 import { me } from 'mastodon/initial_state';
 import {
   addCollectionItem,
+  getCollectionItemIds,
   removeCollectionItem,
+  updateCollectionEditorField,
 } from 'mastodon/reducers/slices/collections';
 import { store, useAppDispatch, useAppSelector } from 'mastodon/store';
 
-import type { TempCollectionState } from './state';
-import { getCollectionEditorState } from './state';
 import classes from './styles.module.scss';
 import { WizardStepHeader } from './wizard_step_header';
 
-const MIN_ACCOUNT_COUNT = 1;
 const MAX_ACCOUNT_COUNT = 25;
 
 function isOlderThanAWeek(date?: string): boolean {
@@ -54,9 +52,8 @@ function isOlderThanAWeek(date?: string): boolean {
 
 const AddedAccountItem: React.FC<{
   accountId: string;
-  isRemovable: boolean;
   onRemove: (id: string) => void;
-}> = ({ accountId, isRemovable, onRemove }) => {
+}> = ({ accountId, onRemove }) => {
   const intl = useIntl();
   const account = useAccount(accountId);
 
@@ -88,17 +85,15 @@ const AddedAccountItem: React.FC<{
       id={accountId}
       extraAccountInfo={lastPostHint}
     >
-      {isRemovable && (
-        <IconButton
-          title={intl.formatMessage({
-            id: 'collections.remove_account',
-            defaultMessage: 'Remove this account',
-          })}
-          icon='remove'
-          iconComponent={CancelIcon}
-          onClick={handleRemoveAccount}
-        />
-      )}
+      <IconButton
+        title={intl.formatMessage({
+          id: 'collections.remove_account',
+          defaultMessage: 'Remove this account',
+        })}
+        icon='remove'
+        iconComponent={CancelIcon}
+        onClick={handleRemoveAccount}
+      />
     </Account>
   );
 };
@@ -141,32 +136,26 @@ export const CollectionAccounts: React.FC<{
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const history = useHistory();
-  const location = useLocation<TempCollectionState>();
-  const { id, initialItemIds } = getCollectionEditorState(
-    collection,
-    location.state,
-  );
-  const isEditMode = !!id;
-  const collectionItems = collection?.items;
 
-  const [searchValue, setSearchValue] = useState('');
-  // This state is only used when creating a new collection.
-  // In edit mode, the collection will be updated instantly
-  const [addedAccountIds, setAccountIds] = useState(initialItemIds);
+  const { id, items } = collection ?? {};
+  const isEditMode = !!id;
+  const collectionItems = items;
+
+  const addedAccountIds = useAppSelector(
+    (state) => state.collections.editor.accountIds,
+  );
+
+  // In edit mode, we're bypassing state and just return collection items directly,
+  // since they're edited "live", saving after each addition/deletion
   const accountIds = useMemo(
     () =>
-      isEditMode
-        ? (collectionItems
-            ?.map((item) => item.account_id)
-            .filter((id): id is string => !!id) ?? [])
-        : addedAccountIds,
+      isEditMode ? getCollectionItemIds(collectionItems) : addedAccountIds,
     [isEditMode, collectionItems, addedAccountIds],
   );
 
+  const [searchValue, setSearchValue] = useState('');
+
   const hasMaxAccounts = accountIds.length === MAX_ACCOUNT_COUNT;
-  const hasMinAccounts = accountIds.length === MIN_ACCOUNT_COUNT;
-  const hasTooFewAccounts = accountIds.length < MIN_ACCOUNT_COUNT;
-  const canSubmit = !hasTooFewAccounts;
 
   const {
     accountIds: suggestedAccountIds,
@@ -238,28 +227,41 @@ export const CollectionAccounts: React.FC<{
     [dispatch, relationships],
   );
 
-  const removeAccountItem = useCallback((accountId: string) => {
-    setAccountIds((ids) => ids.filter((id) => id !== accountId));
-  }, []);
+  const removeAccountItem = useCallback(
+    (accountId: string) => {
+      dispatch(
+        updateCollectionEditorField({
+          field: 'accountIds',
+          value: accountIds.filter((id) => id !== accountId),
+        }),
+      );
+    },
+    [accountIds, dispatch],
+  );
 
   const addAccountItem = useCallback(
     (accountId: string) => {
       confirmFollowStatus(accountId, () => {
-        setAccountIds((ids) => [...ids, accountId]);
+        dispatch(
+          updateCollectionEditorField({
+            field: 'accountIds',
+            value: [...accountIds, accountId],
+          }),
+        );
       });
     },
-    [confirmFollowStatus],
+    [accountIds, confirmFollowStatus, dispatch],
   );
 
   const toggleAccountItem = useCallback(
     (item: SuggestionItem) => {
-      if (addedAccountIds.includes(item.id)) {
+      if (accountIds.includes(item.id)) {
         removeAccountItem(item.id);
       } else {
         addAccountItem(item.id);
       }
     },
-    [addAccountItem, addedAccountIds, removeAccountItem],
+    [accountIds, addAccountItem, removeAccountItem],
   );
 
   const instantRemoveAccountItem = useCallback(
@@ -319,17 +321,13 @@ export const CollectionAccounts: React.FC<{
     (e: React.FormEvent) => {
       e.preventDefault();
 
-      if (!canSubmit) {
-        return;
-      }
-
       if (!id) {
         history.push(`/collections/new/details`, {
           account_ids: accountIds,
         });
       }
     },
-    [canSubmit, id, history, accountIds],
+    [id, history, accountIds],
   );
 
   const inputId = useId();
@@ -376,22 +374,13 @@ export const CollectionAccounts: React.FC<{
           onSelectItem={
             isEditMode ? instantToggleAccountItem : toggleAccountItem
           }
+          closeOnSelect={false}
         />
         {hasMaxAccounts && (
           <FormattedMessage
             id='collections.search_accounts_max_reached'
             defaultMessage='You have added the maximum number of accounts'
           />
-        )}
-
-        {hasMinAccounts && (
-          <Callout>
-            <FormattedMessage
-              id='collections.hints.can_not_remove_more_accounts'
-              defaultMessage='Collections must contain at least {count, plural, one {# account} other {# accounts}}. Removing more accounts is not possible.'
-              values={{ count: MIN_ACCOUNT_COUNT }}
-            />
-          </Callout>
         )}
 
         <Scrollable className={classes.scrollableWrapper}>
@@ -425,7 +414,6 @@ export const CollectionAccounts: React.FC<{
               >
                 <AddedAccountItem
                   accountId={accountId}
-                  isRemovable={!isEditMode || !hasMinAccounts}
                   onRemove={handleRemoveAccountItem}
                 />
               </Article>
@@ -435,39 +423,25 @@ export const CollectionAccounts: React.FC<{
       </FormStack>
       {!isEditMode && (
         <div className={classes.stickyFooter}>
-          {hasTooFewAccounts ? (
-            <Callout icon={false} className={classes.submitDisabledCallout}>
-              <FormattedMessage
-                id='collections.hints.add_more_accounts'
-                defaultMessage='Add at least {count, plural, one {# account} other {# accounts}} to continue'
-                values={{ count: MIN_ACCOUNT_COUNT }}
-              />
-            </Callout>
-          ) : (
-            <div className={classes.actionWrapper}>
-              <FormattedMessage
-                id='collections.hints.accounts_counter'
-                defaultMessage='{count} / {max} accounts'
-                values={{ count: accountIds.length, max: MAX_ACCOUNT_COUNT }}
-              >
-                {(text) => (
-                  <div className={classes.itemCountReadout}>{text}</div>
-                )}
-              </FormattedMessage>
-              {canSubmit && (
-                <Button type='submit'>
-                  {id ? (
-                    <FormattedMessage id='lists.save' defaultMessage='Save' />
-                  ) : (
-                    <FormattedMessage
-                      id='collections.continue'
-                      defaultMessage='Continue'
-                    />
-                  )}
-                </Button>
+          <div className={classes.actionWrapper}>
+            <FormattedMessage
+              id='collections.hints.accounts_counter'
+              defaultMessage='{count} / {max} accounts'
+              values={{ count: accountIds.length, max: MAX_ACCOUNT_COUNT }}
+            >
+              {(text) => <div className={classes.itemCountReadout}>{text}</div>}
+            </FormattedMessage>
+            <Button type='submit'>
+              {id ? (
+                <FormattedMessage id='lists.save' defaultMessage='Save' />
+              ) : (
+                <FormattedMessage
+                  id='collections.continue'
+                  defaultMessage='Continue'
+                />
               )}
-            </div>
-          )}
+            </Button>
+          </div>
         </div>
       )}
     </form>
