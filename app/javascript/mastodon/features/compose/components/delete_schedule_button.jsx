@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages } from 'react-intl';
+import { injectIntl } from '@/mastodon/components/intl';
 
 import TrachIcon from '@/material-icons/400-24px/delete.svg?react';
 

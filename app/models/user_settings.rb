@@ -16,6 +16,7 @@ class UserSettings
   setting :default_sensitive, default: false
   setting :default_privacy, default: nil, in: %w(public portfolio unlisted nyan private)
   setting :default_quote_policy, default: 'public', in: %w(public followers nobody)
+  setting :email_subscriptions, default: false
 
   # Creatodonの独自機能設定
   setting :resized_custom_emoji, default: true

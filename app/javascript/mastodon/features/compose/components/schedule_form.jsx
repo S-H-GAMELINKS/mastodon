@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages } from 'react-intl';
+import { injectIntl } from '@/mastodon/components/intl';
 
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
