@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import { createRef } from 'react';
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages } from 'react-intl';
+import { injectIntl } from '@/mastodon/components/intl';
 
 import classNames from 'classnames';
 
