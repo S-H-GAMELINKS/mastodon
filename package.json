@@ -167,7 +167,7 @@
     "@vitest/browser-playwright": "^4.1.0",
     "@vitest/coverage-v8": "^4.1.0",
     "@vitest/ui": "^4.1.0",
-    "chromatic": "^13.3.3",
+    "chromatic": "^16.0.0",
     "cypress": "^14.3.3",
     "cypress-file-upload": "^5.0.8",
     "eslint": "^9.39.2",
