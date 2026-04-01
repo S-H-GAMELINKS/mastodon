@@ -1421,12 +1421,15 @@ es:
     basic_information: Información básica
     hint_html: "<strong>Personaliza lo que la gente ve en tu perfil público junto a tus publicaciones.</strong> Es más probable que otras personas te sigan e interactúen contigo cuando completas tu perfil y foto."
     other: Otros
+    redesign_body: Ahora puedes acceder a la edición del perfil desde la propia página de perfil.
+    redesign_button: Llévame allí
+    redesign_title: Hay una nueva experiencia de edición de perfil
   email_subscription_mailer:
     confirmation:
       action: Confirmar dirección de correo electrónico
       instructions_to_confirm: Confirma que quieres recibir correos electrónicos de %{name} (@%{acct}) cuando publique algo nuevo.
       instructions_to_ignore: Si no estás seguro de por qué recibiste este correo electrónico, puedes eliminarlo. No te suscribirás si no haces clic en el enlace de arriba.
-      subject: Confirme tu dirección de correo electrónico
+      subject: Confirma tu dirección de correo electrónico
       title: "¿Obtener actualizaciones por correo electrónico de %{name}?"
     notification:
       create_account: Crear una cuenta de Mastodon

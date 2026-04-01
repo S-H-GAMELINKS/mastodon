@@ -9,6 +9,11 @@
 
 .barWrapper {
   border-bottom: none;
+  padding-inline: 24px;
+
+  @container (width < 500px) {
+    padding-inline: 16px;
+  }
 }
 
 .avatarWrapper {
@@ -125,7 +130,7 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
   position: sticky;
   bottom: var(--mobile-bottom-nav-height);
   padding: 12px 16px;
-  margin: 0 -20px;
+  margin: 0 -16px;
 
   @container (width >= #{$button-breakpoint}) {
     display: none;
@@ -307,37 +312,6 @@ svg.badgeIcon {
   }
 }
 
-.fieldNumbersWrapper {
-  display: flex;
-  font-size: 13px;
-  padding: 0;
-  margin: 8px 0;
-  gap: 20px;
-
-  li {
-    @container (width < 420px) {
-      flex: 1 1 0px;
-    }
-  }
-
-  a,
-  strong {
-    display: block;
-    font-weight: 600;
-    color: var(--color-text-primary);
-    font-size: 15px;
-  }
-
-  a {
-    padding: 0;
-
-    &:hover,
-    &:focus {
-      text-decoration: underline;
-    }
-  }
-}
-
 .modalCloseButton {
   padding: 8px;
   border-radius: 50%;
@@ -388,7 +362,7 @@ svg.badgeIcon {
   padding: 0 24px;
 
   @container (width < 500px) {
-    padding: 0 12px;
+    padding: 0 16px;
 
     a {
       flex: 1 1 0px;
