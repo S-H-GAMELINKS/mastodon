@@ -1484,15 +1484,11 @@ he:
         other: תקשרו עם ההודעות הללו כדי לגלות עוד כמוהן.
         two: תקשרו עם ההודעות הללו כדי לגלות עוד כמוהן.
       subject:
-        many: הודעות חדשות מאת %{name}
-        one: 'הודעה חדשה: "%{excerpt}"'
-        other: הודעות חדשות מאת %{name}
-        two: הודעות חדשות מאת %{name}
+        plural: הודעות חדשות מאת %{name}
+        singular: 'הודעה חדשה: "%{excerpt}"'
       title:
-        many: הודעות חדשות מאת %{name}
-        one: 'הודעה חדשה: "%{excerpt}"'
-        other: הודעות חדשות מאת %{name}
-        two: הודעות חדשות מאת %{name}
+        plural: הודעות חדשות מאת %{name}
+        singular: 'הודעה חדשה: "%{excerpt}"'
   email_subscriptions:
     active: פעילים
     confirmations:
