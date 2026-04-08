@@ -13,7 +13,7 @@ import { useAccountId } from '@/mastodon/hooks/useAccountId';
 import { areCollectionsEnabled } from '../../collections/utils';
 import { isRedesignEnabled } from '../common';
 
-import classes from './redesign.module.scss';
+import classes from './styles.module.scss';
 
 interface FeaturedTagRecord {
   get(key: 'name'): string | null | undefined;
