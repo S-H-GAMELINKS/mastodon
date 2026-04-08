@@ -1,23 +1,50 @@
-// 画像投稿周りのE2Eテスト
+// プロフィール編集画面でのヘッダー画像アップロードE2Eテスト
 describe('media upload test', () => {
-  // ログイン処理
   beforeEach(() => {
     cy.visit('/auth/sign_in');
     cy.get('#user_email').type(Cypress.env('email'));
     cy.get('#user_password').type(`${Cypress.env('password')}{enter}`);
+    cy.location('pathname', { timeout: 10000 }).should(
+      'not.eq',
+      '/auth/sign_in',
+    );
+
+    cy.intercept('GET', '**/api/v1/profile').as('getProfile');
+    cy.visit('/profile/edit');
+    cy.wait('@getProfile');
+    cy.get(
+      'header button[title="Add image"], header button[title="Replace image"]',
+      { timeout: 10000 },
+    ).should('have.length.at.least', 1);
   });
 
-  // アカウントのヘッダーとアイコン画像の変更
-  it('can post with image', () => {
-    cy.visit('/settings/profile');
+  it('can upload a cover photo from the current profile edit UI', () => {
+    cy.intercept('PATCH', '**/api/v1/profile').as('updateProfile');
 
-    cy.get('#account_header').attachFile('header.png', {
-      subjectType: 'drag-n-drop',
-    });
-    cy.get('#account_avatar').attachFile('icon.png', {
-      subjectType: 'drag-n-drop',
-    });
+    cy.get(
+      'header button[title="Add image"], header button[title="Replace image"]',
+    )
+      .first()
+      .click({ force: true });
 
-    cy.get('button.btn').click();
+    cy.contains('button', /Replace image|Add image/).click({ force: true });
+    cy.get('.dialog-modal', { timeout: 10000 }).should('be.visible');
+    cy.contains(
+      '.dialog-modal__header__title',
+      /cover photo|profile photo/,
+    ).should('be.visible');
+    cy.contains('.dialog-modal button', 'Browse files').should('be.visible');
+
+    cy.get('.dialog-modal input[type="file"]').selectFile(
+      'cypress/fixtures/header.png',
+      { force: true },
+    );
+
+    cy.contains('.dialog-modal button', 'Next', { timeout: 10000 }).click();
+    cy.contains('.dialog-modal button', 'Done', { timeout: 10000 }).click();
+
+    cy.wait('@updateProfile').its('response.statusCode').should('eq', 200);
+    cy.get('.dialog-modal').should('not.exist');
+    cy.get('header img').first().should('have.attr', 'src').and('not.be.empty');
   });
 });

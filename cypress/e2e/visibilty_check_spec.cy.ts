@@ -5,6 +5,10 @@ describe('custom theme change test', () => {
     cy.visit('/auth/sign_in');
     cy.get('#user_email').type(Cypress.env('email'));
     cy.get('#user_password').type(`${Cypress.env('password')}{enter}`);
+    cy.location('pathname', { timeout: 10000 }).should(
+      'not.eq',
+      '/auth/sign_in',
+    );
   });
 
   // 投稿の公開範囲チェック
@@ -44,7 +48,7 @@ describe('custom theme change test', () => {
     cy.contains('li', 'ポートフォリオ').click();
 
     // 保存ボタンをクリック
-    cy.contains('button', '保存').click();
+    cy.contains('button', /保存|Save/).click();
 
     // 公開範囲「ポートフォリオ」を選択した際の表示をチェック
     cy.contains('公開範囲が「ポートフォリオ」になっています。');
@@ -69,7 +73,7 @@ describe('custom theme change test', () => {
     cy.contains('li', 'ポートフォリオ').click();
 
     // 保存ボタンをクリック
-    cy.contains('button', '保存').click();
+    cy.contains('button', /保存|Save/).click();
 
     // 公開範囲「ポートフォリオ」を選択した際の表示をチェック
     cy.contains('公開範囲が「ポートフォリオ」になっています。');
@@ -110,7 +114,7 @@ describe('custom theme change test', () => {
     cy.contains('li', 'にゃーん').click();
 
     // 保存ボタンをクリック
-    cy.contains('button', '保存').click();
+    cy.contains('button', /保存|Save/).click();
 
     // 公開範囲「にゃーん」を選択した際の表示をチェック
     cy.contains('公開範囲が「にゃーん」になっています。');
@@ -135,7 +139,7 @@ describe('custom theme change test', () => {
     cy.contains('li', 'にゃーん').click();
 
     // 保存ボタンをクリック
-    cy.contains('button', '保存').click();
+    cy.contains('button', /保存|Save/).click();
 
     // 公開範囲「にゃーん」を選択した際の表示をチェック
     cy.contains('公開範囲が「にゃーん」になっています。');
@@ -173,7 +177,7 @@ describe('custom theme change test', () => {
     cy.contains('li', 'にゃーん').click();
 
     // 保存ボタンをクリック
-    cy.contains('button', '保存').click();
+    cy.contains('button', /保存|Save/).click();
 
     // 公開範囲「にゃーん」を選択した際の表示をチェック
     cy.contains('公開範囲が「にゃーん」になっています。');

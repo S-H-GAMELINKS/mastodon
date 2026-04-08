@@ -5,6 +5,10 @@ describe('portfolio visibility default hashtag setting spec', () => {
     cy.visit('/auth/sign_in');
     cy.get('#user_email').type(Cypress.env('email'));
     cy.get('#user_password').type(`${Cypress.env('password')}{enter}`);
+    cy.location('pathname', { timeout: 10000 }).should(
+      'not.eq',
+      '/auth/sign_in',
+    );
   });
 
   // 公開範囲「ポートフォリオ」のデフォルトハッシュタグ設定をクリア
