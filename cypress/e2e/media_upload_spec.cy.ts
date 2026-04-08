@@ -27,7 +27,14 @@ describe('media upload test', () => {
       .first()
       .click({ force: true });
 
-    cy.contains('button', /Replace image|Add image/).click({ force: true });
+    cy.get('body').then(($body) => {
+      if ($body.find('.dialog-modal').length === 0) {
+        cy.get('.dropdown-menu__item button[data-index="0"]', {
+          timeout: 10000,
+        }).click({ force: true });
+      }
+    });
+
     cy.get('.dialog-modal', { timeout: 10000 }).should('be.visible');
     cy.contains(
       '.dialog-modal__header__title',
