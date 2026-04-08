@@ -10,21 +10,27 @@ import type { List as ImmutableList } from 'immutable';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useAccountId } from '@/mastodon/hooks/useAccountId';
 
+import { areCollectionsEnabled } from '../../collections/utils';
 import { isRedesignEnabled } from '../common';
 
-import classes from './redesign.module.scss';
+import classes from './styles.module.scss';
 
 interface FeaturedTagRecord {
   get(key: 'name'): string | null | undefined;
 }
 
 export const AccountTabs: FC<{
-  acct: string;
+  acct?: string;
   featuredTags?: ImmutableList<FeaturedTagRecord> | FeaturedTagRecord[];
 }> = ({ acct, featuredTags }) => {
   if (isRedesignEnabled()) {
     return <RedesignTabs />;
   }
+
+  if (!acct) {
+    return null;
+  }
+
   return (
     <div className='account__section-headline'>
       <NavLink exact to={`/@${acct}/featured`}>
@@ -73,10 +79,13 @@ const RedesignTabs: FC = () => {
   const account = useAccount(accountId);
 
   if (!account) {
-    return null;
+    return <hr className={classes.noTabs} />;
   }
 
   const { acct, show_featured, show_media } = account;
+  if (!show_featured && !show_media) {
+    return <hr className={classes.noTabs} />;
+  }
 
   return (
     <div className={classes.tabs}>
@@ -90,7 +99,14 @@ const RedesignTabs: FC = () => {
       )}
       {show_featured && (
         <NavLink exact to={`/@${acct}/featured`}>
-          <FormattedMessage id='account.featured' defaultMessage='Featured' />
+          {areCollectionsEnabled() ? (
+            <FormattedMessage
+              id='account.featured.collections'
+              defaultMessage='Collections'
+            />
+          ) : (
+            <FormattedMessage id='account.featured' defaultMessage='Featured' />
+          )}
         </NavLink>
       )}
     </div>

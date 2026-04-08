@@ -5,8 +5,7 @@ module.exports = {
     'coverage/**/*',
     'node_modules/**/*',
     'public/assets/**/*',
-    'public/packs/**/*',
-    'public/packs-test/**/*',
+    'public/packs*/**/*',
     'vendor/**/*',
     'public/creatodon-folio/static/css/*',
     'public/gallery/static/css/*',
@@ -54,6 +53,13 @@ module.exports = {
         'selector-pseudo-class-no-unknown': [
           true,
           { ignorePseudoClasses: ['global'] },
+        ],
+
+        'property-no-unknown': [
+          true,
+          {
+            ignoreProperties: ['composes'],
+          },
         ],
       },
     },
