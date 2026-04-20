@@ -85,7 +85,7 @@ class Notification < ApplicationRecord
     }.freeze,
     collection_update: {
       filterable: false,
-    },
+    }.freeze,
   }.freeze
 
   TYPES = PROPERTIES.keys.freeze
@@ -144,6 +144,15 @@ class Notification < ApplicationRecord
       quote&.status
     when :poll
       poll&.status
+    end
+  end
+
+  def target_collection
+    case type
+    when :added_to_collection
+      collection_item&.collection
+    when :collection_update
+      collection
     end
   end
 

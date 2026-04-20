@@ -27,13 +27,23 @@ describe('media upload test', () => {
       .first()
       .click({ force: true });
 
-    cy.get('body').then(($body) => {
-      if ($body.find('.dialog-modal').length === 0) {
-        cy.get('.dropdown-menu__item button[data-index="0"]', {
-          timeout: 10000,
-        }).click({ force: true });
-      }
-    });
+    cy.get('body', { timeout: 10000 })
+      .should(($body) => {
+        expect(
+          $body.find(
+            '.dialog-modal, .dropdown-menu__item button[data-index="0"]',
+          ).length,
+        ).to.be.greaterThan(0);
+      })
+      .then(($body) => {
+        const coverPhotoButton = $body.find(
+          '.dropdown-menu__item button[data-index="0"]',
+        );
+
+        if (coverPhotoButton.length > 0) {
+          cy.wrap(coverPhotoButton.first()).click({ force: true });
+        }
+      });
 
     cy.get('.dialog-modal', { timeout: 10000 }).should('be.visible');
     cy.contains(

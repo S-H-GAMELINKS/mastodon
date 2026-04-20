@@ -4,7 +4,6 @@ gd:
     hints:
       account:
         attribution_domains: Loidhne fa leth do gach fear. Dìonaidh seo o iomraidhean meallta.
-        discoverable: Dh’fhaoidte gun dèid na postaichean poblach ’s a’ phròifil agad a bhrosnachadh no a mholadh ann an caochladh roinnean de Mhastodon agus gun dèid a’ phròifil agad a mholadh do chàch.
         display_name: D’ ainm slàn no spòrsail.
         fields: An duilleag-dhachaigh agad, roimhearan, aois, rud sam bith a thogras tu.
         indexable: Faodaidh na postaichean poblach agad a nochdadh am measg toraidhean luirg air Mastodon. ’S urrainn dhan fheadhainn a rinn eadar-ghabhail leis na postaichean agad lorg annta air a h-uile dòigh.
@@ -61,9 +60,6 @@ gd:
         setting_default_quote_policy_private: Chan urrainn do chàch postaichean dhan luchd-leantainn a-mhàin a chaidh a sgrìobhadh le Mastodon a luaidh.
         setting_default_quote_policy_unlisted: Nuair a luaidheas daoine thu, thèid am post aca-san fhalach o loidhnichean-ama nan treandaichean.
         setting_default_sensitive: Thèid meadhanan frionasach fhalach a ghnàth is gabhaidh an nochdadh le briogadh orra
-        setting_display_media_default: Falaich meadhanan ris a bheil comharra gu bheil iad frionasach
-        setting_display_media_hide_all: Falaich na meadhanan an-còmhnaidh
-        setting_display_media_show_all: Seall na meadhanan an-còmhnaidh
         setting_emoji_style: An dòigh air an dèid emojis a shealltainn. Feuchaidh “Fèin-obrachail” ris na h-emojis tùsail a chleachdadh ach thèid Twemoji a chleachdadh ’nan àite air seann-bhrabhsairean.
         setting_quick_boosting_html: Ma tha seo an comas, ma nì thu briogadh air ìomhaigheag %{boost_icon} a’ bhrosnachaidh, thèid a bhrosnachadh sa bhad seach a bhith a’ fosgladh clàr-taice teàrnach a’ bhrosnachaidh/luaidh. Thèid gnìomh an luaidh a ghluasad gu clàr-taice %{options_icon} nan roghainnean.
         setting_system_scrollbars_ui: Chan obraich seo ach air brabhsairean desktop stèidhichte air Safari ’s Chrome
@@ -179,7 +175,6 @@ gd:
     labels:
       account:
         attribution_domains: Na làraichean-lìn a dh’fhaodas iomradh a thoirt ort
-        discoverable: Brosnaich a’ phròifil is postaichean agad sna h-algairimean rùrachaidh
         fields:
           name: Leubail
           value: Susbaint
