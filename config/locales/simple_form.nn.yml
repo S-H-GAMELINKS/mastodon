@@ -4,7 +4,6 @@ nn:
     hints:
       account:
         attribution_domains: Ein per line. Vernar mot falske krediteringar.
-        discoverable: Dei offentlege innlegga dine og profilen din kan dukka opp i tilrådingar på ulike stader på Mastodon, og profilen din kan bli føreslegen for andre folk.
         display_name: Ditt fulle namn eller ditt tøysenamn.
         fields: Heimesida di, pronomen, alder, eller kva du måtte ynskje.
         indexable: Dei offentlege innlegga dine kan dukka opp i søkjeresultat på Mastodon. Folk som har reagert på oinnlegga dine kan uansett søkja gjennom dei.
@@ -61,9 +60,6 @@ nn:
         setting_default_quote_policy_private: Innlegg som er skrivne på Mastodon og berre for fylgjarar kan ikkje siterast av andre.
         setting_default_quote_policy_unlisted: Når folk siterer deg, vil innlegget deira ikkje syna på populære tidsliner.
         setting_default_sensitive: Sensitive media vert gøymde som standard, og du syner dei ved å klikka på dei
-        setting_display_media_default: Gøym media som er merka som sensitive
-        setting_display_media_hide_all: Alltid skjul alt media
-        setting_display_media_show_all: Vis alltid media
         setting_emoji_style: Korleis du skal visa smilefjes. «Auto» prøver å visa innebygde smilefjes, men bruker Twemoji som reserveløysing for eldre nettlesarar.
         setting_quick_boosting_html: Når dette er skrudd på og du klikkar på %{boost_icon} framhev-ikonet, vil du framheva innlegget med ein gong i staden for å opna framhev/siter-menyen. Du finn siteringa i %{options_icon} (Val)-menyen.
         setting_system_scrollbars_ui: Gjeld berre skrivebordsnettlesarar som er bygde på Safari og Chrome
@@ -177,7 +173,6 @@ nn:
     labels:
       account:
         attribution_domains: Nettstader som har lov å kreditera deg
-        discoverable: Ta med profilen og innlegga i oppdagingsalgoritmar
         fields:
           name: Merkelapp
           value: Innhald

@@ -7,7 +7,17 @@ if Rails.env.test? && ENV.fetch('E2E', nil)
   email = 'gamelinks007@gmail.com'
   password = 'MasterChief117'
 
-  User.where(email: email).first_or_initialize(email: email, password: password, password_confirmation: password, confirmed_at: Time.now.utc, role: UserRole.find_by(name: 'Owner'), account: account, agreement: true, approved: true, locale: 'ja').save!
+  user = User.where(email: email).first_or_initialize
+  user.email = email
+  user.password = password
+  user.password_confirmation = password
+  user.confirmed_at = Time.now.utc
+  user.role = UserRole.find_by(name: 'Owner')
+  user.account = account
+  user.agreement = true
+  user.approved = true
+  user.locale = 'ja'
+  user.save!
 
   user = User.where(email: email).first
 
@@ -63,5 +73,5 @@ if Rails.env.test? && ENV.fetch('E2E', nil)
 
   Web::Setting.where(user: user).first_or_initialize(user: user, data: setting_data).save!
 
-  FeaturedTag.create!(account: account, name: 'HALO')
+  FeaturedTag.where(account: account, name: 'HALO').first_or_create!
 end

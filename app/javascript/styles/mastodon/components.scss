@@ -4120,15 +4120,6 @@ a.account__display-name {
   margin: -6px 10px;
 }
 
-.column-subheading {
-  background: var(--color-bg-secondary);
-  color: var(--color-text-secondary);
-  padding: 12px 24px;
-  font-size: 13px;
-  font-weight: 500;
-  text-transform: uppercase;
-}
-
 .getting-started__wrapper {
   flex: 0 0 auto;
 }
@@ -10689,14 +10680,7 @@ noscript {
           }
 
           &__source {
-            overflow: hidden;
-            white-space: nowrap;
             cursor: help;
-
-            > span {
-              overflow: hidden;
-              text-overflow: ellipsis;
-            }
           }
         }
 

@@ -4,7 +4,7 @@ da:
     hints:
       account:
         attribution_domains: Ét pr. linje. Beskytter mod falske tilskrivninger.
-        discoverable: Dine offentlige indlæg og profil kan blive fremhævet eller anbefalet i forskellige områder af Mastodon, og profilen kan blive foreslået til andre brugere.
+        discoverable: Du kan blive vist i samlinger, som andre brugere har oprettet. Du og dine offentlige indlæg kan også blive foreslået til brugere i andre opdagelsesfunktioner på Mastodon.
         display_name: Dit fulde navn eller et kaldenavn.
         fields: Din hjemmeside, dine pronominer, din alder, eller hvad du har lyst til.
         indexable: Dine offentlige indlæg vil kunne vises i Mastodon-søgeresultater. Folk, som har interageret med dem, vil kunne finde dem uanset.
@@ -61,9 +61,9 @@ da:
         setting_default_quote_policy_private: Kun-følgere indlæg forfattet på Mastodon kan ikke citeres af andre.
         setting_default_quote_policy_unlisted: Når folk citerer dig, vil deres indlæg også blive skjult fra trendtidslinjer.
         setting_default_sensitive: Sensitive medier er som standard skjult og kan vises med et klik
-        setting_display_media_default: Skjul medier med sensitiv-markering
-        setting_display_media_hide_all: Skjul altid medier
-        setting_display_media_show_all: Vis altid medier
+        setting_display_media_default: Advar før visning af medie markeret som følsomt
+        setting_display_media_hide_all: Advar før visning af alle medier
+        setting_display_media_show_all: Vis alle medier uden advarsel, inklusive medier markeret som følsomme
         setting_emoji_style: Hvordan emojis skal vises. "Auto" vil forsøge at bruge indbyggede emojis, men skifter tilbage til Twemoji i ældre webbrowsere.
         setting_quick_boosting_html: Når aktiveret, vil klik på %{boost_icon} fremhæv-ikonet straks fremhæve i stedet for at åbne fremhæv/citér-foldudmenuen. Flytter citeringshandlingen til %{options_icon} menuen (Indstillinger).
         setting_system_scrollbars_ui: Gælder kun for desktop-browsere baseret på Safari og Chrome
@@ -177,7 +177,7 @@ da:
     labels:
       account:
         attribution_domains: Websteder, man må krediteres af
-        discoverable: Fremhæv profil og indlæg i opdagelsesalgoritmer
+        discoverable: Vis mig i opdagelsesfunktioner
         fields:
           name: Etiket
           value: Indhold
