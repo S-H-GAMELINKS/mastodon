@@ -91,3 +91,6 @@ cypress/videos
 .gem_rbs_collection
 sig/rbs_rails/**
 
+# ignore local files
+.codex
+.lmuirc

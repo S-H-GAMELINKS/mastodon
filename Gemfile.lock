@@ -23,15 +23,6 @@ GIT
       hkdf (~> 0.2)
       jwt (~> 2.0)
 
-GIT
-  remote: https://github.com/testdouble/cypress-rails.git
-  revision: bf27fcd2ca6ed93d0ab1c98b349c1d341d18f482
-  ref: bf27fcd2ca6ed93d0ab1c98b349c1d341d18f482
-  specs:
-    cypress-rails (0.8.0.rc1)
-      puma (>= 3.8.0)
-      railties (>= 5.2.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -1042,7 +1033,6 @@ DEPENDENCIES
   concurrent-ruby
   connection_pool
   csv (~> 3.2)
-  cypress-rails!
   database_cleaner-active_record
   debug (~> 1.8)
   devise
