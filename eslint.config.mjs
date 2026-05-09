@@ -129,8 +129,6 @@ export default tseslint.config([
     'tmp/**/*',
     'vendor/**/*',
     'streaming/**/*',
-    'cypress/**/*',
-    'cypress.config.ts',
     'app/javascript/mastodon/features/account_timeline/components/account_header.tsx',
     '.bundle/**/*',
     'storybook-static/**/*',

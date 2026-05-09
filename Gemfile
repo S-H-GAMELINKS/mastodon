@@ -159,9 +159,6 @@ group :test do
   # Websocket driver for testing integration between rails/sidekiq and streaming
   gem 'websocket-driver', '~> 0.8', require: false
 
-  # for E2E test framework Cypress
-  gem 'cypress-rails', github: 'testdouble/cypress-rails', ref: 'bf27fcd2ca6ed93d0ab1c98b349c1d341d18f482'
-
   # for parallel test for GitHub Actions
   gem 'parallel_tests'
 end
