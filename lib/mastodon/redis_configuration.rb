@@ -44,8 +44,6 @@ class Mastodon::RedisConfiguration
     port     = ENV.fetch("#{prefix}PORT", defaults[:port])
     db       = Rails.env.test? ? ENV.fetch('TEST_ENV_NUMBER', defaults[:db]).to_i + 1 : ENV.fetch("#{prefix}DB", defaults[:db])
 
-    db = ENV.fetch('TEST_ENV_NUMBER', nil) if Rails.env.test?
-
     return { url:, driver: } if url
 
     sentinel_options = setup_sentinels(prefix, default_user: user, default_password: password)
