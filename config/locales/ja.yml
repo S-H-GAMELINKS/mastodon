@@ -1872,7 +1872,7 @@ ja:
       public_long: すべての人 (Mastodon以外も含む)
       portfolio: ポートフォリオ
       portfolio_long: 指定のハッシュタグが付き、ポートフォリオとして公開されます
-      unlisted: 非収載
+      unlisted: ひかえめな公開
       unlisted_long: Mastodonの検索結果、トレンド、公開タイムラインに表示しない
       nyan: にゃーん
       nyan_long: 投稿の内容を「にゃーん」に置き換えます

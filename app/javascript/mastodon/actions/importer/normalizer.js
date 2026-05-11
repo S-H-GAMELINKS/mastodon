@@ -1,9 +1,6 @@
 import escapeTextContentForBrowser from 'escape-html';
 
-import { makeEmojiMap } from 'mastodon/models/custom_emoji';
-
-import emojify, { emojifyStatus } from '../../features/emoji/emoji';
-import { expandSpoilers, domain } from '../../initial_state';
+import { expandSpoilers } from '../../initial_state';
 
 import { importCustomEmoji } from './emoji';
 
@@ -93,14 +90,10 @@ export function normalizeStatus(status, normalOldStatus, { bogusQuotePolicy = fa
 
     const spoilerText   = normalStatus.spoiler_text || '';
     const searchContent = ([spoilerText, status.content].concat((status.poll && status.poll.options) ? status.poll.options.map(option => option.title) : [])).concat(status.media_attachments.map(att => att.description)).join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
-    const emojiMap      = makeEmojiMap(normalStatus.emojis);
-
-    const uri = status.uri;
-    const isLocalCustomEmoji = uri.match(domain) !== null;
 
     normalStatus.search_index = domParser.parseFromString(searchContent, 'text/html').documentElement.textContent;
-    normalStatus.contentHtml  = emojifyStatus(isLocalCustomEmoji, normalStatus.content, emojiMap);
-    normalStatus.spoilerHtml  = emojify(escapeTextContentForBrowser(spoilerText), emojiMap);
+    normalStatus.contentHtml  = normalStatus.content;
+    normalStatus.spoilerHtml  = escapeTextContentForBrowser(spoilerText);
     normalStatus.hidden       = expandSpoilers ? false : spoilerText.length > 0 || normalStatus.sensitive;
 
     // Remove quote fallback link from the DOM so it doesn't mess with paragraph margins
@@ -138,14 +131,12 @@ export function normalizeStatus(status, normalOldStatus, { bogusQuotePolicy = fa
 }
 
 export function normalizeStatusTranslation(translation, status) {
-  const emojiMap = makeEmojiMap(status.get('emojis').toJS());
-
   const normalTranslation = {
     detected_source_language: translation.detected_source_language,
     language: translation.language,
     provider: translation.provider,
-    contentHtml: emojify(translation.content, emojiMap),
-    spoilerHtml: emojify(escapeTextContentForBrowser(translation.spoiler_text), emojiMap),
+    contentHtml: translation.content,
+    spoilerHtml: escapeTextContentForBrowser(translation.spoiler_text),
     spoiler_text: translation.spoiler_text,
   };
 
@@ -159,9 +150,8 @@ export function normalizeStatusTranslation(translation, status) {
 
 export function normalizeAnnouncement(announcement) {
   const normalAnnouncement = { ...announcement };
-  const emojiMap = makeEmojiMap(normalAnnouncement.emojis);
 
-  normalAnnouncement.contentHtml = emojify(normalAnnouncement.content, emojiMap);
+  normalAnnouncement.contentHtml = normalAnnouncement.content;
 
   if (normalAnnouncement.emojis) {
     importCustomEmoji(normalAnnouncement.emojis);
