@@ -34,7 +34,7 @@ jobs:
         ruby-version:
           - '3.3'
           - '3.4'
-          - 'head'
+          - '.ruby-version'
 
     env:
       BUNDLE_ONLY: development
