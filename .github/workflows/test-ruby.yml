@@ -166,7 +166,7 @@ jobs:
             rspec-persistence-main
             rspec-persistence
 
-      - run: bin/flatware rspec -r ./spec/flatware_helper.rb
+      - run: bin/flatware rspec
 
       - name: Upload coverage reports to Codecov
         if: matrix.ruby-version == '.ruby-version'
@@ -223,7 +223,6 @@ jobs:
       CAS_ENABLED: true
       BUNDLE_WITH: 'pam_authentication test'
       GITHUB_RSPEC: ${{ matrix.ruby-version == '.ruby-version' && github.event.pull_request && 'true' }}
-      MASTODON_USE_LIBVIPS: false
 
     strategy:
       fail-fast: false
@@ -234,9 +233,6 @@ jobs:
           - '.ruby-version'
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
-
-      - name: Update Twitter theme submodules
-        run: git submodule update --init
 
       - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
         with:
@@ -251,10 +247,7 @@ jobs:
         uses: ./.github/actions/setup-ruby
         with:
           ruby-version: ${{ matrix.ruby-version}}
-          additional-system-dependencies: ffmpeg imagemagick libpam-dev
-
-      - name: Set up Javascript environment
-        uses: ./.github/actions/setup-javascript
+          additional-system-dependencies: ffmpeg libpam-dev
 
       - name: Load database schema
         run: |
