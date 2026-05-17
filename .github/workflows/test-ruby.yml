@@ -149,7 +149,9 @@ jobs:
         uses: ./.github/actions/setup-ruby
         with:
           ruby-version: ${{ matrix.ruby-version}}
-          additional-system-dependencies: ffmpeg libpam-dev
+          # TODO: Revisit this runner-specific HEIF plugin once we re-check upstream
+          # and Dockerfile alignment for libvips/libheif dependencies.
+          additional-system-dependencies: ffmpeg libpam-dev libheif1 libheif-plugin-libde265 libdav1d7
 
       - name: Set up Javascript environment
         uses: ./.github/actions/setup-javascript
