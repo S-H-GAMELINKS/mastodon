@@ -111,6 +111,7 @@ jobs:
       DB_USER: postgres
       DB_PASS: postgres
       COVERAGE: ${{ matrix.ruby-version == '.ruby-version' }}
+      DISABLE_BOOTSNAP_COMPILE_CACHE: ${{ matrix.ruby-version == '.ruby-version' && '1' || '' }}
       RAILS_ENV: test
       ALLOW_NOPAM: true
       PAM_ENABLED: true
