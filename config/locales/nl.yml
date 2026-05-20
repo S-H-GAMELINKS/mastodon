@@ -345,12 +345,20 @@ nl:
       updated_msg: Bijwerken van mededeling geslaagd!
     collections:
       accounts: Accounts
+      back_to_account: Terug naar de accountpagina
+      back_to_report: Terug naar de rapportagepagina
+      batch:
+        add_to_report: 'Aan rapportage #%{id} toevoegen'
+        remove_from_report: Uit de rapportage verwijderen
+        report: Rapportage
       collection_title: Verzameling van %{name}
       contents: Inhoud
+      no_collection_selected: Er werden geen verzamelingen gewijzigd, omdat er geen enkele werd geselecteerd
       number_of_accounts:
         one: 1 account
         other: "%{count} accounts"
       open: Openen
+      title: Accountverzamelingen - @%{name}
       view_publicly: Openbare verzameling bekijken
     critical_update_pending: Kritieke update in behandeling
     custom_emojis:
@@ -541,6 +549,7 @@ nl:
         empty:
           hint: Niemand heeft het recht om deze functionaliteit te gebruiken.
           no_roles_added: Geen rollen toegevoegd
+        lead: Accounts met de volgende rollen kunnen deze functionaliteit op hun profiel inschakelen.
         manage_roles: Rollen beheren
         role_name: Naam rol
         title: Rollen
@@ -548,6 +557,11 @@ nl:
         show:
           enable_feature: Functionaliteit inschakelen
           important_information: Belangrijke informatie
+          list:
+            1_permission_explanation: Wanneer deze functionaliteit is ingeschakeld, kunnen accounts met de bijbehorende rechten een e-mailaanmeldformulier aan hun profiel toevoegen.
+            2_feature_explanation: Wanneer bezoekers zich op een accountprofiel aanmelden en hun abonnement bevestigen, zullen zij e-mailupdates ontvangen wanneer het account nieuwe openbare berichten plaatst.
+            3_privacy_policy_warning: Serverbeheerders hebben toegang tot verzamelde Persoonlijk Identificeerbare Informatie (e-mailadressen). Daarom moeten voordat deze functioniteit wordt gebruikt het privacybeleid en de gebruiksvoorwaarden voor de server worden bijgewerkt.
+            4_cost_warning: E-mails kunnen, afhankelijk van de gebruikte hosting, kosten met zich meebrengen. Overleg met je hostingprovider voordat je dit inschakelt, omdat deze functionaliteit het aantal e-mails van je server drastisch kan verhogen.
     export_domain_allows:
       new:
         title: Toegestane domeinen importeren
@@ -853,6 +867,7 @@ nl:
         manage_custom_emojis: Lokale emoji's beheren
         manage_custom_emojis_description: Staat gebruikers toe om lokale emoji's op de server te beheren
         manage_email_subscriptions: E-mailabonnementen beheren
+        manage_email_subscriptions_description: Gebruikers met deze rechten toestaan om e-mailnieuwsbrieven voor hun account in te schakelen
         manage_federation: Federatie beheren
         manage_federation_description: Staat gebruikers toe om federatie met andere domeinen te blokkeren of toe te staan en om de bezorging te bepalen
         manage_invites: Uitnodigingen beheren
