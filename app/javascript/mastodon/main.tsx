@@ -44,6 +44,7 @@ function main() {
     if (
       me &&
       'serviceWorker' in navigator &&
+      import.meta.env.MODE !== 'test' &&
       (isDevelopment() || isProduction()) // Disallow testing environment
     ) {
       let swPath = '/sw.js';
