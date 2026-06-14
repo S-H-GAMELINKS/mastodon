@@ -356,8 +356,8 @@ class ComposeForm extends ImmutablePureComponent {
             className='compose-form__input'
           />
 
-          <UploadForm />
           <PollForm />
+          <UploadForm />
           <ScheduleFormContainer />
           <DeleteScheduleFormContainer />
           <ComposeQuotedStatus />
