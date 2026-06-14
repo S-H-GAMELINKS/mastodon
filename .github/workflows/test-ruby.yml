@@ -63,7 +63,7 @@ jobs:
 
       - name: Precompile assets
         run: |-
-          NODE_OPTIONS=--openssl-legacy-provider ./bin/rails assets:precompile
+          bin/rails assets:precompile
 
       - name: Archive asset artifacts
         run: |
@@ -147,6 +147,11 @@ jobs:
       - name: Expand archived asset artifacts
         run: |
           tar xvzf artifacts.tar.gz
+
+      - name: Link test service worker
+        run: |
+          ln -sfn packs-test/sw.js public/sw.js
+          ln -sfn packs-test/sw.js.map public/sw.js.map
 
       - name: Set up Ruby environment
         uses: ./.github/actions/setup-ruby
