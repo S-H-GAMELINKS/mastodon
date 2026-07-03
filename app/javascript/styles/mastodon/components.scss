@@ -372,7 +372,7 @@
   }
 }
 
-body > [data-popper-placement] {
+body > [data-popover-placement] {
   z-index: 9999;
 }
 
@@ -1591,6 +1591,10 @@ body > [data-popper-placement] {
     top: 0;
     inset-inline-start: 16px + ((46px - 2px) * 0.5);
 
+    .status__wrapper:has(> .status__prepend) &:not(&--full, &--first) {
+      height: 50px;
+    }
+
     &--full {
       top: 0;
       height: 100%;
@@ -1621,6 +1625,7 @@ body > [data-popper-placement] {
     content: '';
     position: absolute;
     inset: 0;
+    z-index: -1;
     background: var(--color-bg-brand-softest);
     opacity: 0;
     animation: fade 0.7s reverse both 0.3s;
@@ -1742,6 +1747,12 @@ body > [data-popper-placement] {
   line-height: 22px;
   font-weight: 500;
   color: var(--color-text-secondary);
+
+  .status__wrapper-reply.status__wrapper--in-thread & {
+    --thread-margin: calc(46px + 8px);
+
+    margin-inline-start: var(--thread-margin);
+  }
 
   &__icon {
     display: flex;
@@ -3901,6 +3912,7 @@ a.account__display-name {
 }
 
 .scrollable {
+  container: column / inline-size;
   overflow-y: scroll;
   overflow-x: hidden;
   flex: 1 1 auto;
@@ -4095,9 +4107,8 @@ a.account__display-name {
   align-items: center;
   gap: 8px;
   width: 100%;
-  padding: 10px;
-  padding-inline-start: 14px;
-  overflow: hidden;
+  padding: 12px;
+  padding-inline-start: 16px;
   font-size: 16px;
   font-weight: 400;
   text-decoration: none;
@@ -4108,7 +4119,7 @@ a.account__display-name {
     var(--color-text-secondary)
   );
   background: transparent;
-  border: 2px solid transparent;
+  border: none;
   border-radius: 4px;
 
   &:hover,
@@ -4122,14 +4133,14 @@ a.account__display-name {
   }
 
   &:focus-visible {
-    outline: none;
-    border-color: var(--color-border-brand);
+    outline: var(--outline-focus-default);
+    outline-offset: -2px;
     background: var(--color-bg-brand-softest);
   }
 
   &--logo {
-    padding: 8px;
-    padding-inline-start: 12px;
+    padding: 10px;
+    padding-inline-start: 14px;
   }
 }
 
@@ -4582,6 +4593,7 @@ a.status-card {
 }
 
 .column-header__wrapper {
+  container: column / inline-size;
   position: relative;
   flex: 0 0 auto;
   z-index: 1;
@@ -5775,10 +5787,6 @@ a.status-card {
 }
 
 .visibility-dropdown {
-  &__overlay[data-popper-placement] {
-    z-index: 9999;
-  }
-
   &.disabled {
     opacity: 0.6;
     cursor: default;
@@ -10726,7 +10734,7 @@ noscript {
   }
 }
 
-.hover-card-controller[data-popper-reference-hidden='true'] {
+.hover-card-controller[data-popover-reference-hidden='true'] {
   opacity: 0;
   pointer-events: none;
 }
