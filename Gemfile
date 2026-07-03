@@ -95,6 +95,7 @@ gem 'webauthn', '~> 3.0'
 gem 'webpush', github: 'mastodon/webpush', ref: '9631ac63045cfabddacc69fc06e919b4c13eb913'
 
 gem 'json'
+gem 'json-canonicalization', '~> 1.0'
 gem 'json-ld'
 gem 'json-ld-preloaded', '~> 3.2'
 gem 'rdf-normalize', '~> 0.5'
@@ -105,7 +106,7 @@ gem 'opentelemetry-api', '~> 1.10.0'
 
 group :opentelemetry do
   gem 'opentelemetry-exporter-otlp', '~> 0.34.0', require: false
-  gem 'opentelemetry-instrumentation-active_job', '~> 0.12.0', require: false
+  gem 'opentelemetry-instrumentation-active_job', '~> 0.13.0', require: false
   gem 'opentelemetry-instrumentation-active_model_serializers', '~> 0.25.0', require: false
   gem 'opentelemetry-instrumentation-concurrent_ruby', '~> 0.25.0', require: false
   gem 'opentelemetry-instrumentation-excon', '~> 0.29.0', require: false
@@ -245,6 +246,8 @@ gem 'hcaptcha', '~> 7.1'
 gem 'mail', '~> 2.8'
 
 gem 'vite_rails'
+
+gem 'base58', '~> 0.2.3'
 
 # Auto NSFW masking
 gem 'nsfw-rb', github: 'S-H-GAMELINKS/nsfw-rb', ref: 'f8114814dfd4200641a11f24dfbba0f32fe4fcdb'
