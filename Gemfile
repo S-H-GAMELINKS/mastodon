@@ -18,7 +18,7 @@ gem 'blurhash', '~> 0.1'
 gem 'fog-core', '<= 2.6.0'
 gem 'fog-openstack', '~> 1.0', require: false
 gem 'jd-paperclip-azure', '~> 3.0', require: false
-gem 'kt-paperclip', '~> 7.2'
+gem 'kt-paperclip', '~> 8.0'
 gem 'ruby-vips', '~> 2.2', require: false
 
 gem 'active_model_serializers', '~> 0.10'
@@ -152,7 +152,7 @@ group :test do
   gem 'shoulda-matchers'
 
   # Coverage formatter for RSpec
-  gem 'simplecov', '~> 0.22', require: false
+  gem 'simplecov', require: false
   gem 'simplecov-lcov', '~> 0.8', require: false
 
   # Stub web requests for specs
