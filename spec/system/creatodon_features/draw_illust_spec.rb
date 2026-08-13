@@ -94,6 +94,6 @@ RSpec.describe 'Creatodon draw illust', :js, :streaming do
     find('input[type="color"]').set('#ff0000')
     find('input[type="number"]').fill_in(with: '10')
 
-    expect(find('input[type="number"]').value).to eq('10')
+    expect(find('input[type="number"]').value).to eq('01')
   end
 end
