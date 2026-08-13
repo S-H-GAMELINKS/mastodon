@@ -12,6 +12,8 @@ import { Icon } from '../icon';
 
 import classes from './redesign.module.scss';
 
+export const buttonClasses = classes;
+
 interface ButtonPropsBase<As extends 'a' | 'button'> {
   size?: 'lg' | 'md' | 'sm' | 'xs';
   variant?: 'solid' | 'ghost';
@@ -113,7 +115,7 @@ export const IconButton: React.FC<ButtonProps & { icon: IconProp }> = ({
   children,
   ...props
 }) => (
-  <BaseButton {...props} className={classNames(classNames, classes.iconOnly)}>
+  <BaseButton {...props} className={classNames(className, classes.iconOnly)}>
     {props.loading ? (
       <LoadingIcon />
     ) : (

@@ -8,7 +8,8 @@
   color: var(--fg);
   transition:
     background-color 200ms,
-    color 200ms;
+    color 200ms,
+    opacity 200ms;
   border: 0;
   appearance: none;
   cursor: pointer;
@@ -19,7 +20,7 @@
   line-height: 1;
   box-sizing: border-box;
 
-  &:hover:not(:active) {
+  &:hover:not(:active, :disabled) {
     background-color: var(--bg-hover);
   }
 
@@ -29,9 +30,9 @@
     outline-offset: 2px;
   }
 
-  &:disabled,
-  &:hover:disabled {
-    cursor: auto;
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
   }
 }
 
@@ -95,12 +96,6 @@ a.base {
     --bg: var(--color-bg-error-base);
     --bg-hover: var(--color-bg-error-base-hover);
   }
-
-  &.solid:disabled {
-    --bg: var(--color-bg-disabled);
-    --bg-hover: var(--bg);
-    --fg: var(--color-text-on-disabled);
-  }
 }
 
 // Ghost
@@ -128,20 +123,14 @@ a.base {
       --bg: var(--color-bg-error-base);
     }
   }
-
-  &:disabled,
-  &:hover:disabled {
-    --fg: var(--color-text-disabled);
-    --bg: transparent;
-    --bg-hover: transparent;
-  }
 }
 
 // Helper classes
 
-.icon {
-  width: 1em;
-  height: 1em;
+.icon,
+.loading {
+  width: var(--fs-xl);
+  height: var(--fs-xl);
 }
 
 // Adds padding to the text label. This is supposed to be there even if there is no icon.
@@ -156,15 +145,9 @@ a.base {
 
 .iconOnly {
   aspect-ratio: 1;
+  padding: 0;
 }
 
 .loading {
   color: inherit;
-  height: 0.8em;
-  width: 0.8em;
-
-  .iconOnly & {
-    height: 1em;
-    width: 1em;
-  }
 }
