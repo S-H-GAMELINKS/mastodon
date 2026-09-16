@@ -2,6 +2,38 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.7.2] - 2026-09-15
+
+### Security
+
+- Temporarily disable HEIF support
+
+### Fixes
+
+- Fix relative privacy policy links in subscription emails (#40486 by @crafkaz)
+- Fix canonical email blocks interfering with freezing or approving users (#40463 by @ClearlyClaire)
+- Fix 500 error when trying to upload a non-custom-filter JSON import (#40449 and #40451 by @ClearlyClaire)
+- Fix 500 error when submitting a status twice (#40439 by @ClearlyClaire)
+- Fix self-deleted accounts not being un-deleted when using `tootctl accounts create --reattach` (#40430 by @mjankowski)
+- Fix account deletion not deleting generated annual reports (#40394 by @ClearlyClaire)
+- Fix notifications not being cleaned up when notification requests are deleted in bulk (#40393 by @ClearlyClaire)
+
+## [4.7.1] - 2026-09-01
+
+### Security
+
+- Fix password authentication bypass in 2FA auth for LDAP/PAM/SSO accounts ([GHSA-vx32-x96w-qq65](https://github.com/mastodon/mastodon/security/advisories/GHSA-vx32-x96w-qq65))
+- Fix Denial of Service when processing pathological JSON-LD activities ([GHSA-vgm8-frgh-rh2v](https://github.com/mastodon/mastodon/security/advisories/GHSA-vgm8-frgh-rh2v))
+- Fix disabled staff accounts still having access to admin API ([GHSA-62j4-hvj7-px3f](https://github.com/mastodon/mastodon/security/advisories/GHSA-62j4-hvj7-px3f))
+
+### Fixes
+
+- Fix invited-without-approval-bypass not being asked for a textual reason (#40332 by @ClearlyClaire)
+- Fix email blocks domain filter not being kept through pagination (#40254 by @ClearlyClaire)
+- Fix `config/` directory missing from Bootsnap precompilation options in Dockerfile (#40255 by @ClearlyClaire)
+- Fix some of 4.7 migrations not re-running cleanly when interrupted (#40264 by @ClearlyClaire)
+- Fix account creation failing on `ActiveRecord::Encryption` configuration in `mastodon:setup` rake task (#40275 by @ClearlyClaire)
+
 ## [4.7.0] - 2026-08-20
 
 ### Added
