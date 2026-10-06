@@ -207,6 +207,8 @@ const Compose: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
       )}
 
       <div className='scrollable'>
+        {/* Creatodon 独自機能 (手書きCanvas・予約投稿・自動削除・ポートフォリオ/にゃーん公開範囲) は
+            従来の ComposeForm にのみ実装されているため、リデザイン版ではなく従来版を使用する */}
         <ComposeFormContainer
           // This is fine on this single-purpose view
           // eslint-disable-next-line jsx-a11y/no-autofocus

@@ -84,6 +84,6 @@ RSpec.describe 'Creatodon visibility check', :js, :streaming do
 
     expect(page)
       .to have_text('にゃーん')
-      .and have_text('続きを表示')
+      .and have_text(frontend_translation('content_warning.show_post'))
   end
 end

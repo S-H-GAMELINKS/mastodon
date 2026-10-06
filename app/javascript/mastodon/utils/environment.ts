@@ -16,17 +16,13 @@ export function isRailsProduction() {
   return process.env.RAILS_ENV === 'production';
 }
 
-export type ServerFeatures =
-  | 'fasp'
-  | 'redesign'
-  | 'collections'
-  | 'profile_redesign';
+export type ServerFeatures = 'fasp';
 
 export function isServerFeatureEnabled(feature: ServerFeatures) {
   return initialState?.features.includes(feature) ?? false;
 }
 
-type ClientFeatures = 'redesign' | 'redesign-status';
+type ClientFeatures = never;
 
 export function isClientFeatureEnabled(feature: ClientFeatures) {
   try {
@@ -41,11 +37,5 @@ export function isClientFeatureEnabled(feature: ClientFeatures) {
 
 /* Checks if the 5.0 redesign features are enabled or not. */
 export function isRedesignEnabled() {
-  return (
-    isServerFeatureEnabled('redesign') || isClientFeatureEnabled('redesign')
-  );
-}
-
-export function isRedesignStatusEnabled() {
-  return isRedesignEnabled() && isClientFeatureEnabled('redesign-status');
+  return true;
 }

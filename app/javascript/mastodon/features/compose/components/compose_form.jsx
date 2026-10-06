@@ -7,7 +7,7 @@ import { injectIntl } from '@/mastodon/components/intl';
 import classNames from 'classnames';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import { ImmutablePureComponent } from 'react-immutable-pure-component';
 
 import { length } from 'stringz';
 
