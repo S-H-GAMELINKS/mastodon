@@ -16,6 +16,14 @@ import RedoIcon from '@/material-icons/400-24px/redo.svg?react';
 import UndoIcon from '@/material-icons/400-24px/undo.svg?react';
 
 import { IconButton } from '../../../components/icon_button';
+import { decode as decodeBase64 } from '../../../utils/base64';
+
+const dataUrlToFile = (dataUrl, filename) => {
+  const [header, base64] = dataUrl.split(',');
+  const mimeType = /:(.*?);/.exec(header)?.[1] ?? 'image/png';
+
+  return new File([decodeBase64(base64)], filename, { type: mimeType });
+};
 
 const iconStyle = {
   height: null,
@@ -72,7 +80,7 @@ class FreeHandCanvas extends ImmutablePureComponent {
   handleSaveCanvas = () => {
     this.canvas.current.exportImage("png")
       .then((data) => {
-        this.props.onCanvasSave([data]);
+        this.props.onCanvasSave([dataUrlToFile(data, 'illust.png')]);
         confirm("画像を保存しました!");
       })
       .catch((e) => {
