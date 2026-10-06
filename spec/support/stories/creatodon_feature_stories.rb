@@ -24,6 +24,14 @@ module CreatodonFeatureStories
     within('form') { find("button[type='submit'], input[type='submit']").click }
   end
 
+  # フロントエンドと同じ解決順で翻訳を引く。
+  # Crowdin が追いつくまで未訳のキーは英語にフォールバックするため、
+  # 日本語訳の有無に関わらず spec が壊れないようにする。
+  def frontend_translation(key, locale: 'ja')
+    localized = JSON.parse(Rails.root.join('app', 'javascript', 'mastodon', 'locales', "#{locale}.json").read)
+    localized[key].presence || frontend_translations(key)
+  end
+
   def open_visibility_modal
     first('.compose-form__dropdowns > .dropdown-button').click
     expect(page).to have_css('.visibility-modal')
