@@ -6,8 +6,9 @@ import {
   useCallback,
 } from 'react';
 
-import { useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
+import { useMergedRefs } from '@/mastodon/hooks/useMergedRefs';
 import type { PolymorphicProps } from '@/types/polymorphic';
 
 import type { MastodonLocation } from '../router';
@@ -105,13 +106,21 @@ export function useFocusAfterNavigation(
 ) {
   const focusTargetRef = useContext(FocusTargetContext);
   const hasFocusedOnceRef = useRef(false);
+  const wasBackOrForwardNavigation = useHistory().action === 'POP';
 
   return useCallback(
     (element: HTMLElement | null) => {
       const focusTarget = focusTargetRef?.current;
 
-      // Bail out if focusTarget was set to `false`
-      if (!element || !focusTarget || hasFocusedOnceRef.current) {
+      // Bail out if focusTarget was set to `false`,
+      // if there has already been a focus attempt,
+      // or if the navigation was history.back/forward
+      if (
+        !element ||
+        !focusTarget ||
+        hasFocusedOnceRef.current ||
+        wasBackOrForwardNavigation
+      ) {
         onAfterFocus?.(false);
         return;
       }
@@ -131,7 +140,7 @@ export function useFocusAfterNavigation(
         onAfterFocus?.(false);
       }
     },
-    [focusTargetRef, onAfterFocus, targetName],
+    [focusTargetRef, wasBackOrForwardNavigation, onAfterFocus, targetName],
   );
 }
 
@@ -149,7 +158,11 @@ export const NavigationFocusTarget = <As extends React.ElementType = 'h1'>({
   const focusAfterNavigation = useFocusAfterNavigation(focusTargetName);
 
   return (
-    <Component ref={focusAfterNavigation} tabIndex={-1} {...otherProps}>
+    <Component
+      {...otherProps}
+      ref={useMergedRefs(focusAfterNavigation, otherProps.ref)}
+      tabIndex={-1}
+    >
       {children}
     </Component>
   );

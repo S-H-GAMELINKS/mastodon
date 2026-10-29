@@ -79,8 +79,10 @@ const StatusPrependReblog: React.FC<{ reblogId: string }> = ({ reblogId }) => {
             ),
           }}
         />
-        &nbsp;&bull;
-        <RelativeTimestamp timestamp={status.created_at} />
+        <RelativeTimestamp
+          className={classes.time}
+          timestamp={status.created_at}
+        />
       </span>
     </div>
   );
@@ -127,7 +129,11 @@ const StatusPrependReply: React.FC<{
     <div className={classes.root}>
       <div className={classes.replyIcon} />
 
-      <Link to={statusLink({ id: replyId, account: accountId })}>{label}</Link>
+      {account ? (
+        <Link to={statusLink({ id: replyId, account })}>{label}</Link>
+      ) : (
+        label
+      )}
     </div>
   );
 };

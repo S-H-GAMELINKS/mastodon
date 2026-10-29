@@ -11,7 +11,7 @@ RSpec.describe 'Creatodon login' do
 
   it 'checks the login page url' do
     expect(page).to have_current_path('/auth/sign_in?lang=ja')
-    expect(page.current_url).to eq('http://localhost:3000/auth/sign_in?lang=ja')
+    expect(page).to have_current_path('http://localhost:3000/auth/sign_in?lang=ja')
   end
 
   it 'shows the login page text' do
