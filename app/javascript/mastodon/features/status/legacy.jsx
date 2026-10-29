@@ -204,7 +204,7 @@ class Status extends ImmutablePureComponent {
 
     if (signedIn) {
       if (askReplyConfirmation) {
-        dispatch(openModal({ modalType: 'CONFIRM_REPLY', modalProps: { status } }));
+        dispatch(openModal({ modalType: 'CONFIRM_REPLY', modalProps: { statusId: status.get('id') } }));
       } else {
         dispatch(replyCompose(status));
       }
@@ -286,21 +286,12 @@ class Status extends ImmutablePureComponent {
     dispatch(openModal({ modalType: 'CONFIRM_REVOKE_QUOTE', modalProps: { statusId: status.get('id'), quotedStatusId: status.getIn(['quote', 'quoted_status']) }}));
   };
 
-  handleQuotePolicyChange = (status) => {
-    const statusId = status.get('id');
-    const { dispatch } = this.props;
-    const handleChange = (_, quotePolicy) => {
-      dispatch(
-        setStatusQuotePolicy({ policy: quotePolicy, statusId }),
-      );
-    }
-    dispatch(openModal({ modalType: 'COMPOSE_PRIVACY', modalProps: { statusId, onChange: handleChange } }));
-  };
+  handleQuotePolicyChange = () => {};
 
   handleQuote = (status) => {
     const { dispatch } = this.props;
 
-    dispatch(quoteComposeById(status.get('id')));
+    dispatch(quoteComposeById({ statusId: status.get('id') }));
   };
 
   handleEditClick = (status) => {
@@ -437,7 +428,7 @@ class Status extends ImmutablePureComponent {
   };
 
   handleHotkeyQuote = () => {
-    this.props.dispatch(quoteComposeById(this.props.status.get('id')));
+    this.props.dispatch(quoteComposeById({ statusId: this.props.status.get('id') }));
   };
 
   handleHotkeyMention = e => {

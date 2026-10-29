@@ -1,4 +1,11 @@
-default: styles/application.scss
+default:
+  path: styles/application.scss
+  colors:
+    - indigo
+    - lime
+    - pink
+    - orange
+    - cyan
 kohaku: styles/kohaku.scss
 mizuki: styles/mizuki.scss
 orochi: styles/orochi.scss
