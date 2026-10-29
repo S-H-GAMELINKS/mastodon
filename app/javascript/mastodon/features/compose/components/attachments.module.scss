@@ -152,6 +152,16 @@
   text-align: center;
 }
 
+// Creatodon: 予約投稿・自動削除の時間選択
+.schedule {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 0.5px solid var(--color-text-tertiary);
+  border-radius: var(--radius-4);
+  padding: var(--space-2);
+}
+
 // Quotes
 
 // If hovering over an account link, underline all account links.

@@ -32,38 +32,38 @@ module CreatodonFeatureStories
     localized[key].presence || frontend_translations(key)
   end
 
-  def open_visibility_modal
-    first('.compose-form__dropdowns > .dropdown-button').click
-    expect(page).to have_css('.visibility-modal')
+  # 新しい投稿フォームのテキストエリアの id
+  def composer_textarea_id
+    'composer-text'
+  end
+
+  # 投稿フォームのツールバーで最初のメニューボタンが公開範囲の切り替え
+  def open_visibility_menu
+    within('form[role="dialog"]') do
+      first('button[aria-haspopup="menu"]').click
+    end
+    expect(page).to have_css('[role="menuitemradio"]')
   end
 
   def choose_visibility(name)
-    open_visibility_modal
-    within('.visibility-modal') do
-      first('.visibility-dropdown__button').click
-    end
+    open_visibility_menu
+    find('[role="menuitemradio"]', text: name).click
 
-    find("li[role='option'][data-index='#{visibility_value(name)}']", wait: 10).click
-
-    within('.visibility-modal') do
-      click_on '保存'
-    end
+    # メニューは選択後も開いたままなので、テキストエリアをクリックして閉じる
+    find_field(composer_textarea_id).click
+    expect(page).to have_no_css('[role="menuitemradio"]')
   end
 
   def compose_status(text)
-    find('.autosuggest-textarea__textarea').set(text)
-    find('.compose-form__submit > .button').click
+    # 画像添付時は浮いている投稿パネルも開いて投稿フォームが2つになるため、最初のフォームで操作する
+    within(first('form[role="dialog"]')) do
+      fill_in composer_textarea_id, with: text
+      click_on frontend_translation('compose.publish')
+    end
   end
 
   def latest_status
     first('.status__wrapper > .status, .status__wrapper .status', minimum: 1)
-  end
-
-  def visibility_value(name)
-    {
-      'ポートフォリオ' => 'portfolio',
-      'にゃーん' => 'nyan',
-    }.fetch(name, name)
   end
 
   def draw_line_on_canvas(from_x:, from_y:, to_x:, to_y:)

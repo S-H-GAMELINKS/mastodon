@@ -282,6 +282,9 @@ export function submitCompose(successCallback) {
       // 予約投稿の場合は別処理で投稿内容などをクリア
       if (response.data.scheduled_at !== null && response.data.scheduled_at !== undefined) {
         dispatch(submitScheduledStatusSuccess({ ...response.data }));
+        if (typeof successCallback === 'function') {
+          successCallback(response.data, { scheduled: true });
+        }
         return;
       }
       if (isStandaloneComposePath(browserHistory.location.pathname) && window.history.state) {

@@ -18,7 +18,7 @@ import {
 import classes from '../styles.module.scss';
 
 import { languageName, useLanguageGuess } from './hooks';
-import { selectComposeAttachments } from './selectors';
+import { selectComposeAttachments, selectComposePrivacy } from './selectors';
 
 const selectComposeAttachmentsWithoutAlt = createAppSelector(
   [selectComposeAttachments],
@@ -48,6 +48,7 @@ export const ComposeHints = (props: React.ComponentPropsWithRef<'div'>) => {
     selectComposeAttachmentsWithoutAlt,
   );
   const replyFollowersHandle = useAppSelector(selectIsFollowersReply);
+  const privacy = useAppSelector(selectComposePrivacy);
 
   const lang = useAppSelector(
     (state) => state.compose.get('language') as string,
@@ -78,6 +79,29 @@ export const ComposeHints = (props: React.ComponentPropsWithRef<'div'>) => {
           defaultMessage='Post exceeds character maximum'
         />
       </ComposerError>,
+    );
+  }
+
+  // Creatodon 独自の公開範囲を選んでいる場合の注意
+  if (privacy === 'portfolio') {
+    messages.push(
+      defaultWrapper(
+        <FormattedMessage
+          id='compose_form.portfolio_warning'
+          defaultMessage='公開範囲が「ポートフォリオ」になっています。ここで入力した内容はすべてアカウントの「ポートフォリオ」欄に表示されます'
+        />,
+        'portfolio-warning',
+      ),
+    );
+  } else if (privacy === 'nyan') {
+    messages.push(
+      defaultWrapper(
+        <FormattedMessage
+          id='compose_form.nyan_warning'
+          defaultMessage='公開範囲が「にゃーん」になっています。ここで入力した内容はすべて「にゃーん」に置き換えられます'
+        />,
+        'nyan-warning',
+      ),
     );
   }
 

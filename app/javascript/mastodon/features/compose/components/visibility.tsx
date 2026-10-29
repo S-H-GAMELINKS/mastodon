@@ -106,13 +106,31 @@ export const ComposeVisibilityButtonText: React.FC<{
         defaultMessage='Followers (+ mentions)'
       />
     );
+  } else if (privacy === 'portfolio') {
+    return (
+      <FormattedMessage
+        id='privacy.portfolio.short'
+        defaultMessage='ポートフォリオとして公開されます'
+      />
+    );
+  } else if (privacy === 'nyan') {
+    return (
+      <FormattedMessage
+        id='privacy.nyan.short'
+        defaultMessage='Replace content to にゃーん'
+      />
+    );
   }
 
   return '-';
 };
 
+// Creatodon 独自の公開範囲 (ポートフォリオ・にゃーん) は「検索から隠す」の対象外
+const CREATODON_VISIBILITIES: StatusVisibility[] = ['portfolio', 'nyan'];
+
 const ComposeVisibilityMenu: React.FC = () => {
   const privacy = useAppSelector(selectComposePrivacy);
+  const isCreatodonVisibility = CREATODON_VISIBILITIES.includes(privacy);
   const defaultPrivacy = useAppSelector(
     (state) => state.compose.get('default_privacy') as StatusVisibility,
   );
@@ -122,21 +140,30 @@ const ComposeVisibilityMenu: React.FC = () => {
   const dispatch = useAppDispatch();
   const handlePrivacyChange = useCallback(
     ({ value }: { value: string }) => {
-      if (value === 'private' && privacy !== 'private') {
+      if (value === 'portfolio' || value === 'nyan') {
         dispatch(changeComposeVisibility(value));
-      } else if (value === 'public' && privacy === 'private') {
+      } else if (value === 'private' && privacy !== 'private') {
+        dispatch(changeComposeVisibility(value));
+      } else if (
+        value === 'public' &&
+        (privacy === 'private' || isCreatodonVisibility)
+      ) {
         dispatch(
           changeComposeVisibility(
             defaultPrivacy === 'unlisted' ? 'unlisted' : 'public',
           ),
         );
-      } else if (value === 'unlisted' && privacy !== 'private') {
+      } else if (
+        value === 'unlisted' &&
+        privacy !== 'private' &&
+        !isCreatodonVisibility
+      ) {
         dispatch(
           changeComposeVisibility(privacy === 'public' ? 'unlisted' : 'public'),
         );
       }
     },
-    [defaultPrivacy, dispatch, privacy],
+    [defaultPrivacy, dispatch, privacy, isCreatodonVisibility],
   );
 
   const handleSwitchToMessage: React.MouseEventHandler<HTMLButtonElement> =
@@ -177,11 +204,49 @@ const ComposeVisibilityMenu: React.FC = () => {
           />
         </MenuItemRadio>
 
+        <MenuItemRadio
+          name='visibility'
+          value='portfolio'
+          checked={privacy === 'portfolio'}
+          onChange={handlePrivacyChange}
+          keepMenuOpenOnClick
+          description={
+            <FormattedMessage
+              id='privacy.portfolio.long'
+              defaultMessage='ポートフォリオとして公開されます'
+            />
+          }
+        >
+          <FormattedMessage
+            id='privacy.portfolio.short'
+            defaultMessage='ポートフォリオとして公開されます'
+          />
+        </MenuItemRadio>
+
+        <MenuItemRadio
+          name='visibility'
+          value='nyan'
+          checked={privacy === 'nyan'}
+          onChange={handlePrivacyChange}
+          keepMenuOpenOnClick
+          description={
+            <FormattedMessage
+              id='privacy.nyan.long'
+              defaultMessage='Replace content to にゃーん'
+            />
+          }
+        >
+          <FormattedMessage
+            id='privacy.nyan.short'
+            defaultMessage='Replace content to にゃーん'
+          />
+        </MenuItemRadio>
+
         <MenuItemDivider />
 
         <MenuItemCheckbox
           value='unlisted'
-          disabled={privacy === 'private'}
+          disabled={privacy === 'private' || isCreatodonVisibility}
           checked={privacy === 'unlisted' || privacy === 'private'}
           onChange={handlePrivacyChange}
           keepMenuOpenOnClick

@@ -131,6 +131,8 @@ export default tseslint.config([
     'app/javascript/mastodon/features/account_timeline/components/account_header.tsx',
     '.bundle/**/*',
     'storybook-static/**/*',
+    // Creatodon: Twitter テーマ (git submodule) は外部リポジトリのため対象外
+    'app/javascript/styles/twitter/**/*',
   ]),
   react.configs.flat.recommended,
   react.configs.flat['jsx-runtime'],

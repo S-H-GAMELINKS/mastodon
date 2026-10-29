@@ -1,5 +1,5 @@
 import type React from 'react';
-import { useCallback, useEffect, useId } from 'react';
+import { useCallback, useEffect, useId, useState } from 'react';
 
 import classNames from 'classnames';
 
@@ -15,11 +15,14 @@ import {
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { ComposeAttachments } from './components/attachments';
+import { ComposeCanvas } from './components/canvas';
+import canvasClasses from './components/canvas.module.scss';
 import { ComposeFooter } from './components/footer';
 import { ComposeFormHeader } from './components/header';
 import { ComposeHints } from './components/hints';
 import { LanguageButton } from './components/language';
 import { ComposeReply } from './components/reply';
+import { ComposeSchedule } from './components/schedule';
 import { selectComposeType } from './components/selectors';
 import { ComposeSensitiveField } from './components/sensitive';
 import { ComposeSettingsMenu } from './components/settings';
@@ -55,6 +58,20 @@ export const ComposeForm: React.FC<
   const titleId = useId();
   const hintsId = useId();
 
+  // Creatodon: 手書き Canvas の表示切り替え
+  const [isDrawing, setIsDrawing] = useState(false);
+  const [isCanvasExpanded, setIsCanvasExpanded] = useState(false);
+  const handleOpenCanvas = useCallback(() => {
+    setIsDrawing(true);
+  }, []);
+  const handleCloseCanvas = useCallback(() => {
+    setIsDrawing(false);
+    setIsCanvasExpanded(false);
+  }, []);
+  const handleToggleCanvasExpand = useCallback(() => {
+    setIsCanvasExpanded((expanded) => !expanded);
+  }, []);
+
   return (
     <form
       {...props}
@@ -65,6 +82,7 @@ export const ComposeForm: React.FC<
         className,
         classes.root,
         headless && classes.headless,
+        isDrawing && isCanvasExpanded && canvasClasses.expandedForm,
       )}
     >
       {(type === 'message' || type === 'replyPrivate') && (
@@ -81,23 +99,35 @@ export const ComposeForm: React.FC<
         <ComposeSettingsMenu />
       </div>
 
-      <ComposeTextarea
-        autoFocus={autoFocus}
-        aria-describedby={hintsId}
-        beforeTextArea={
-          <>
-            <ComposeReply />
+      {isDrawing ? (
+        <ComposeCanvas
+          onClose={handleCloseCanvas}
+          expanded={isCanvasExpanded}
+          onToggleExpand={handleToggleCanvasExpand}
+        />
+      ) : (
+        <>
+          <ComposeTextarea
+            autoFocus={autoFocus}
+            aria-describedby={hintsId}
+            beforeTextArea={
+              <>
+                <ComposeReply />
 
-            <ComposeSensitiveField />
-          </>
-        }
-      >
-        <ComposeAttachments className={classes.attachments} />
-      </ComposeTextarea>
+                <ComposeSensitiveField />
+              </>
+            }
+          >
+            <ComposeAttachments className={classes.attachments} />
 
-      <ComposeHints id={hintsId} />
+            <ComposeSchedule className={classes.attachments} />
+          </ComposeTextarea>
 
-      <ComposeFooter onEmojiPick={onEmojiPick} />
+          <ComposeHints id={hintsId} />
+
+          <ComposeFooter onEmojiPick={onEmojiPick} onDraw={handleOpenCanvas} />
+        </>
+      )}
     </form>
   );
 };

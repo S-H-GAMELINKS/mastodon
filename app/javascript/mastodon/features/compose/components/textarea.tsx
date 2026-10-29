@@ -38,6 +38,7 @@ import classes from '../styles.module.scss';
 
 import {
   selectComposeHasAttachments,
+  selectComposePrivacy,
   selectComposeType,
   selectSuggestions,
 } from './selectors';
@@ -52,6 +53,14 @@ const messages = defineMessages({
     defaultMessage: 'Add your recipients and your message.',
     description:
       'Message refers to a direct message. For languages where this is confusing, "chat" or "direct message" can be used.',
+  },
+  portfolioPlaceholder: {
+    id: 'compose.portfolio.placeholder',
+    defaultMessage: 'どんな作品を投稿する？',
+  },
+  nyanPlaceholder: {
+    id: 'compose.nyan.placeholder',
+    defaultMessage: 'どんなことを吐き出したい？',
   },
 });
 
@@ -86,6 +95,7 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
 
   // Selectors
   const type = useAppSelector(selectComposeType);
+  const privacy = useAppSelector(selectComposePrivacy);
   const { text, lang, isSubmitting } = useAppSelector(selectComposeTextState);
   const { hasAttachments } = useAppSelector(selectComposeHasAttachments);
   const hasErrors = useAppSelector(
@@ -193,6 +203,15 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
 
   const textAreaProps = mergeProps(props, sourceProps, { onKeyDown });
 
+  let placeholder = messages.placeholder;
+  if (type === 'message') {
+    placeholder = messages.messagePlaceholder;
+  } else if (privacy === 'portfolio') {
+    placeholder = messages.portfolioPlaceholder;
+  } else if (privacy === 'nyan') {
+    placeholder = messages.nyanPlaceholder;
+  }
+
   return (
     <div
       className={classes.textareaWrapper}
@@ -209,11 +228,7 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
         autoSize={!VERTICAL_LANG_CODES.includes(lang)}
         ref={textAreaRef}
         value={text}
-        placeholder={intl.formatMessage(
-          type === 'message'
-            ? messages.messagePlaceholder
-            : messages.placeholder,
-        )}
+        placeholder={intl.formatMessage(placeholder)}
         disabled={disabled || isSubmitting}
         onDrop={onPasteOrDrop}
         onPaste={onPasteOrDrop}

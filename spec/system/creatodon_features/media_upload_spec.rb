@@ -10,13 +10,12 @@ RSpec.describe 'Creatodon media upload', :attachment_processing, :inline_jobs, :
   before do
     log_in_through_ui(user)
     visit '/profile/edit'
-    first('header button[title="Add image"], header button[title="Replace image"]', minimum: 1)
+    first(:button, 'Add image', minimum: 1)
   end
 
   it 'uploads a cover photo from the profile edit UI' do
-    first('header button[title="Add image"], header button[title="Replace image"]').click
-
-    first('.dropdown-menu__item button[data-index="0"]').click if page.has_css?('.dropdown-menu__item button[data-index="0"]')
+    # 新しいユーザーは画像未設定なので「Add image」ボタン (最初がヘッダー画像)
+    first(:button, 'Add image').click
 
     expect(page).to have_css('.dialog-modal')
     expect(page).to have_css('.dialog-modal__header__title', text: /cover photo|profile photo/i)

@@ -397,13 +397,19 @@ export const submitComposer = createAppThunk(
       );
     } else {
       dispatch(
-        submitCompose((status: ApiStatusJSON) => {
-          if (redirectOnSuccess) {
-            window.location.assign(status.url);
-          }
+        submitCompose(
+          (
+            status: ApiStatusJSON,
+            { scheduled = false }: { scheduled?: boolean } = {},
+          ) => {
+            // 予約投稿の場合は投稿ページが存在しないのでリダイレクトしない
+            if (redirectOnSuccess && !scheduled) {
+              window.location.assign(status.url);
+            }
 
-          dispatch(resetComposer());
-        }),
+            dispatch(resetComposer());
+          },
+        ),
       );
     }
   },
