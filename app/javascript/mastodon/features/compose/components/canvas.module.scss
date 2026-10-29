@@ -1,0 +1,72 @@
+// Creatodon: 手書き Canvas
+@use '@/styles/mastodon/variables';
+
+.canvas {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  flex-grow: 1;
+  min-height: 0;
+}
+
+// 下端のハンドルで高さを変えられる描画エリア
+.canvasArea {
+  height: 25rem;
+  min-height: 200px;
+  max-height: calc(100vh - 240px);
+  resize: vertical;
+  overflow: hidden;
+}
+
+// 拡大時は投稿フォームの残りの高さいっぱいに広げる
+.canvasAreaExpanded {
+  height: auto;
+  max-height: none;
+  flex-grow: 1;
+  resize: none;
+}
+
+// 拡大時の投稿フォーム: カラム幅や高さの上限を外して画面全体に広げる
+// (投稿フォーム側の .composer などのサイズ指定より優先させるため form を付けている)
+form.expandedForm {
+  position: fixed;
+  inset: 0;
+  z-index: 210;
+  height: auto;
+  max-height: none;
+  pointer-events: auto;
+
+  @media (width >= #{variables.$mobile-menu-breakpoint}) {
+    inset: var(--space-4);
+    border-radius: var(--radius-6);
+  }
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.colorInput {
+  inline-size: 32px;
+  block-size: 32px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.widthInput {
+  inline-size: 3.5rem;
+}
+
+.expandButton {
+  margin-inline-start: auto;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}

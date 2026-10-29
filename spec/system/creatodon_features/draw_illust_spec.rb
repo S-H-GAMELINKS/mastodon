@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Creatodon draw illust', :js, :streaming, skip: '上流で旧投稿フォームが削除されたため、新フォームへの移植まで一時的にスキップ' do
+RSpec.describe 'Creatodon draw illust', :js, :streaming do
   include CreatodonFeatureStories
 
   let(:user) { create_onboarded_user(username: 'draw_user') }
@@ -10,7 +10,7 @@ RSpec.describe 'Creatodon draw illust', :js, :streaming, skip: '上流で旧投�
   before do
     log_in_through_ui(user)
     visit '/publish'
-    first('.compose-form', minimum: 1)
+    find_field(composer_textarea_id)
   end
 
   it 'shows the draw button in the compose form' do
@@ -24,17 +24,18 @@ RSpec.describe 'Creatodon draw illust', :js, :streaming, skip: '上流で旧投�
       .to have_css('#react-sketch-canvas__canvas-background')
       .and have_button('絵を描くのをやめる')
       .and have_button('投稿に添付する')
+      .and have_no_field(composer_textarea_id)
   end
 
   it 'shows the drawing tools in canvas mode' do
     click_button '絵を描く'
 
     expect(page)
-      .to have_css('[title="ペン"]')
-      .and have_css('[title="消しゴム"]')
-      .and have_css('[title="やり直し"]')
-      .and have_css('[title="元に戻す"]')
-      .and have_css('[title="削除"]')
+      .to have_button('ペン')
+      .and have_button('消しゴム')
+      .and have_button('元に戻す')
+      .and have_button('やり直し')
+      .and have_button('削除')
       .and have_field(type: 'color')
       .and have_field(type: 'number')
   end
@@ -52,15 +53,17 @@ RSpec.describe 'Creatodon draw illust', :js, :streaming, skip: '上流で旧投�
 
     draw_line_on_canvas(from_x: 300, from_y: 200, to_x: 350, to_y: 250)
 
-    accept_confirm { click_button '投稿に添付する' }
-    click_button '絵を描くのをやめる'
+    click_button '投稿に添付する'
 
-    expect(page).to have_css('.compose-form__uploads')
+    # 添付後は自動で投稿フォームに戻る
+    expect(page)
+      .to have_field(composer_textarea_id)
+      .and have_button(frontend_translation('compose.upload.menu.delete'))
 
     compose_status('イラストを描きました！')
-    click_button 'そのまま投稿する'
+    click_button frontend_translation('confirmations.missing_alt_text.secondary')
 
-    expect(page).to have_field(class: 'autosuggest-textarea__textarea', with: '', wait: 10)
+    expect(page).to have_field(composer_textarea_id, with: '', wait: 10)
   end
 
   it 'allows exiting drawing mode' do
@@ -73,7 +76,7 @@ RSpec.describe 'Creatodon draw illust', :js, :streaming, skip: '上流で旧投�
     click_button '絵を描くのをやめる'
 
     expect(page)
-      .to have_css('.autosuggest-textarea__textarea')
+      .to have_field(composer_textarea_id)
       .and have_button('絵を描く')
       .and have_no_css('#react-sketch-canvas__canvas-background')
   end
@@ -81,16 +84,15 @@ RSpec.describe 'Creatodon draw illust', :js, :streaming, skip: '上流で旧投�
   it 'allows using the drawing tools' do
     click_button '絵を描く'
 
-    find('[title="ペン"]').click
-
+    click_button 'ペン'
     draw_line_on_canvas(from_x: 200, from_y: 150, to_x: 250, to_y: 200)
 
-    find('[title="消しゴム"]').click
+    click_button '消しゴム'
     draw_line_on_canvas(from_x: 225, from_y: 175, to_x: 235, to_y: 185)
 
-    find('[title="やり直し"]').click
-    find('[title="元に戻す"]').click
-    find('[title="削除"]').click
+    click_button '元に戻す'
+    click_button 'やり直し'
+    click_button '削除'
     find_field(type: 'color').set('#ff0000')
     find_field(type: 'number').fill_in(with: '10')
 

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Creatodon visibility check', :js, :streaming, skip: '上流で旧投稿フォームが削除されたため、新フォームへの移植まで一時的にスキップ' do
+RSpec.describe 'Creatodon visibility check', :js, :streaming do
   include CreatodonFeatureStories
 
   let(:user) { create_onboarded_user(username: 'visibility_user') }
@@ -10,16 +10,15 @@ RSpec.describe 'Creatodon visibility check', :js, :streaming, skip: '上流で�
   before do
     log_in_through_ui(user)
     visit '/publish'
-    first('.compose-form', minimum: 1)
+    find_field(composer_textarea_id)
   end
 
   it 'shows portfolio and nyan in the visibility list' do
-    open_visibility_modal
-    first('.visibility-dropdown__button').click
+    open_visibility_menu
 
     expect(page)
-      .to have_text('ポートフォリオ')
-      .and have_text('にゃーん')
+      .to have_css('[role="menuitemradio"]', text: 'ポートフォリオ')
+      .and have_css('[role="menuitemradio"]', text: 'にゃーん')
   end
 
   it 'selects portfolio visibility' do
@@ -27,7 +26,7 @@ RSpec.describe 'Creatodon visibility check', :js, :streaming, skip: '上流で�
 
     expect(page)
       .to have_text('公開範囲が「ポートフォリオ」になっています。')
-      .and have_field(placeholder: 'どんな作品を投稿する？')
+      .and have_field(composer_textarea_id, placeholder: 'どんな作品を投稿する？')
   end
 
   it 'posts with portfolio visibility' do
@@ -35,7 +34,7 @@ RSpec.describe 'Creatodon visibility check', :js, :streaming, skip: '上流で�
 
     expect(page)
       .to have_text('公開範囲が「ポートフォリオ」になっています。')
-      .and have_field(placeholder: 'どんな作品を投稿する？')
+      .and have_field(composer_textarea_id, placeholder: 'どんな作品を投稿する？')
 
     compose_status('HALOやりたい')
 
@@ -51,7 +50,7 @@ RSpec.describe 'Creatodon visibility check', :js, :streaming, skip: '上流で�
 
     expect(page)
       .to have_text('公開範囲が「にゃーん」になっています。')
-      .and have_field(placeholder: 'どんなことを吐き出したい？')
+      .and have_field(composer_textarea_id, placeholder: 'どんなことを吐き出したい？')
   end
 
   it 'posts with nyan visibility' do
@@ -59,7 +58,7 @@ RSpec.describe 'Creatodon visibility check', :js, :streaming, skip: '上流で�
 
     expect(page)
       .to have_text('公開範囲が「にゃーん」になっています。')
-      .and have_field(placeholder: 'どんなことを吐き出したい？')
+      .and have_field(composer_textarea_id, placeholder: 'どんなことを吐き出したい？')
 
     compose_status('HALOやりたい')
 
@@ -73,10 +72,11 @@ RSpec.describe 'Creatodon visibility check', :js, :streaming, skip: '上流で�
 
     expect(page)
       .to have_text('公開範囲が「にゃーん」になっています。')
-      .and have_field(placeholder: 'どんなことを吐き出したい？')
+      .and have_field(composer_textarea_id, placeholder: 'どんなことを吐き出したい？')
 
-    find('[title="本文は隠されていません"]').click
-    fill_in 'cw-spoiler-input', with: 'CW'
+    # Alt+X で閲覧注意 (CW) 欄を表示する
+    find_field(composer_textarea_id).send_keys([:alt, 'x'])
+    fill_in frontend_translation('compose.sensitive.text'), with: 'CW'
 
     compose_status('HALOやりたい')
 

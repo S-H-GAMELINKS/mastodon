@@ -8,6 +8,7 @@ import classNames from 'classnames';
 import {
   ImageSquareIcon,
   ChartBarHorizontalIcon,
+  PaintBrushIcon,
   WarningCircleIcon,
 } from '@phosphor-icons/react';
 
@@ -23,6 +24,7 @@ import {
 
 import classes from '../styles.module.scss';
 
+import { ComposeScheduleButtons } from './schedule';
 import {
   selectComposeAttachments,
   selectComposeCharsCount,
@@ -30,9 +32,10 @@ import {
   selectComposeType,
 } from './selectors';
 
-export const ComposeFooter: React.FC<{ onEmojiPick: OnEmojiPick }> = ({
-  onEmojiPick,
-}) => {
+export const ComposeFooter: React.FC<{
+  onEmojiPick: OnEmojiPick;
+  onDraw: () => void;
+}> = ({ onEmojiPick, onDraw }) => {
   const type = useAppSelector(selectComposeType);
   const { current, max } = useAppSelector(selectComposeCharsCount);
   const { hasPoll, quotedStatusId } = useAppSelector(
@@ -76,6 +79,17 @@ export const ComposeFooter: React.FC<{ onEmojiPick: OnEmojiPick }> = ({
           id='poll_button.add_poll'
           defaultMessage='Add a poll'
         />
+      </IconButton>
+
+      <ComposeScheduleButtons />
+
+      <IconButton
+        size='sm'
+        icon={PaintBrushIcon}
+        disabled={hasQuote}
+        onClick={onDraw}
+      >
+        <FormattedMessage id='compose.canvas.open' defaultMessage='絵を描く' />
       </IconButton>
 
       <div className={classes.flexGrowWrap}>

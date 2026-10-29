@@ -159,6 +159,7 @@ function clearAll(state) {
     map.set('progress', 0);
     map.set('poll', null);
     map.set('scheduledAt', null);
+    map.set('deleteSchedule', null);
     map.set('idempotencyKey', uuid());
     map.set('quoted_status_id', null);
     map.set('quote_policy', state.get('default_quote_policy'));
