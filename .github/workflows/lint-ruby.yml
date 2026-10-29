@@ -29,14 +29,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
-    strategy:
-      fail-fast: false
-      matrix:
-        ruby-version:
-          - '3.3'
-          - '3.4'
-          - 'head'
-
     env:
       BUNDLE_ONLY: development
 
@@ -47,7 +39,6 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@7f797815d8adceb1c412e7abefdd1ab4abc47a5f # v1.335.0
         with:
-          ruby-version: ${{ matrix.ruby-version}}
           bundler-cache: true
 
       - name: Run rubocop
