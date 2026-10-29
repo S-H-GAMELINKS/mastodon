@@ -22,7 +22,7 @@ RSpec.describe 'Creatodon media upload', :attachment_processing, :inline_jobs, :
     expect(page).to have_css('.dialog-modal__header__title', text: /cover photo|profile photo/i)
     expect(page).to have_button('Browse files')
 
-    find('.dialog-modal input[type="file"]', visible: false).set(file_fixture('header.png'))
+    find('.dialog-modal input[type="file"]', visible: :all).set(file_fixture('header.png'))
 
     within('.dialog-modal') do
       click_button 'Next'

@@ -36,7 +36,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:portfolio_default_hashtag_flag] = object_account_user.portfolio_default_hashtag_flag
       store[:portfolio_default_hashtag] = object_account_user.portfolio_default_hashtag
       store[:unfollow_all_when_migrate] = object_account_user.unfollow_all_when_migrate
-      store[:emoji_style]       = object_account_user.settings['web.emoji_style']
+      store[:emoji_style] = object_account_user.settings['web.emoji_style']
       store[:display_own_boosts] = object_account_user.setting_display_own_boosts
       store[:display_own_posts] = object_account_user.setting_display_own_posts
       store[:wrapstodon]        = wrapstodon

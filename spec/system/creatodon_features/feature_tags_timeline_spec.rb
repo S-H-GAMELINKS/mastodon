@@ -20,7 +20,7 @@ RSpec.describe 'Creatodon featured tag timeline', :js do
     visit "/@#{account.username}/tagged/HALO"
 
     expect(page).to have_current_path("/@#{account.username}/tagged/HALO")
-    expect(page.current_url).to eq("http://localhost:3000/@#{account.username}/tagged/HALO")
+    expect(page).to have_current_path("http://localhost:3000/@#{account.username}/tagged/HALO")
   end
 
   it 'shows the featured tag timeline on the account page' do

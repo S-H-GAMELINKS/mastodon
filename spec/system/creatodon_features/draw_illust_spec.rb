@@ -91,9 +91,9 @@ RSpec.describe 'Creatodon draw illust', :js, :streaming, skip: '上流で旧投�
     find('[title="やり直し"]').click
     find('[title="元に戻す"]').click
     find('[title="削除"]').click
-    find('input[type="color"]').set('#ff0000')
-    find('input[type="number"]').fill_in(with: '10')
+    find_field(type: 'color').set('#ff0000')
+    find_field(type: 'number').fill_in(with: '10')
 
-    expect(find('input[type="number"]').value).to eq('10')
+    expect(page).to have_field(type: 'number', with: '10')
   end
 end

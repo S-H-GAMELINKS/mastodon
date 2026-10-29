@@ -7,6 +7,6 @@ RSpec.describe 'Creatodon access explore' do
     visit '/explore'
 
     expect(page).to have_current_path('/explore')
-    expect(page.current_url).to eq('http://localhost:3000/explore')
+    expect(page).to have_current_path('http://localhost:3000/explore')
   end
 end
