@@ -415,8 +415,14 @@ export const submitComposer = createAppThunk(
   },
 );
 
-export const toggleContentWarning = createAppThunk((_arg, { dispatch }) => {
-  dispatch(changeComposeSpoilerText(''));
-  dispatch(changeComposeSpoilerness());
-  dispatch(clearComposerErrors(['missing-content-warning']));
-});
+export const toggleContentWarning = createAppThunk(
+  (_arg, { dispatch, getState }) => {
+    dispatch(changeComposeSpoilerText(''));
+    dispatch(changeComposeSpoilerness());
+    dispatch(clearComposerErrors(['missing-content-warning']));
+
+    if (!getState().compose.get('spoiler')) {
+      dispatch(requestComposerFocus());
+    }
+  },
+);

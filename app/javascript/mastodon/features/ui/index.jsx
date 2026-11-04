@@ -96,6 +96,7 @@ import { CustomHomepage } from 'mastodon/features/custom_homepage';
 // Without this it ends up in ~8 very commonly used bundles.
 import '../../components/status/legacy/status';
 import { getNavigationSkipLinkId, SkipLinks } from './components/skip_links';
+import { FOCUS_TARGET } from '@/mastodon/components/navigation_focus_target';
 
 const setLocalStorageVersion = (version) => {
   localStorage.setItem('VERSION', version);
@@ -531,10 +532,12 @@ class UI extends PureComponent {
   handleHotkeySearch = e => {
     e.preventDefault();
 
-    const element = this.node.querySelector('[data-main-search="true"]');
+    const searchField = this.node.querySelector('[data-main-search="true"]');
 
-    if (element) {
-      element.focus();
+    if (searchField.checkVisibility()) {
+      searchField.focus();
+    } else {
+      this.props.history.push('/search', { focusTarget: FOCUS_TARGET.SEARCH });
     }
   };
 
